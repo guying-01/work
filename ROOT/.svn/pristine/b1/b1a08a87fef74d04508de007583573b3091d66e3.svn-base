@@ -1,0 +1,562 @@
+/**
+ * 一级分类页面
+ * Created by kuban on 2017/2/3.
+ */
+$("#pageInfo_ww").ready(function () {
+    var currentPageId = $("#pageInfo_ww").attr("currentPageId");   //获取当前页面id;
+    var currentPageName = $("#pageInfo_ww").attr("currentPageName");   //获取当前页面name;
+    var currentPageRes = $("#pageInfo_ww").attr("currentpageres");   //获取当前页面Resources路径
+    //获取二级分类
+    (function () {
+        var success = function (data) {
+            if (data != undefined && data.length != 0 && data != "[]") {
+                var template = $("#secound_category_list").html();
+                var html=loadHandlebarsTemplate(template,data);
+                $(".secound_category_list").html(html);
+                complementEle()
+            }
+        };
+        var excludeSequence = ["307_00000000000000390_gic", "307_00000000000000332_gic"];
+        if (excludeSequence.indexOf(currentPageId) == -1) {
+            requestDataWithAJAX("../fsajax/FSGoodsCategory.ajax?level2=" + currentPageId, "get", false, {"success": success});
+        }
+    })();
+    /**
+     *  一级页面分类类别补全,如果不是四的倍数，剩余部分用空标签补全
+     * */
+    function complementEle(){
+        var allEle=$('.secound_category_list ul li');
+        var num=4-allEle.length%4;
+        console.log(num)
+        if(num==4){
+            return;
+        }
+        else{
+            for (var i=0;i<num;i++){
+                $('<li><a></a></li>').appendTo($('.secound_category_list ul'))
+            }
+        }
+    }
+    //天上掉馅饼-热卖榜单
+//  (function () {
+//      var success = function (data) {
+//          data = JSON.parse(data);
+//          if (data != undefined && data.length != 0 && data != "[]") {
+//              for (var i in data) {
+//                  $("." + data[i].adsInfo.advertId).attr("href", data[i].adsInfo.goodsLink);
+//                  $("." + data[i].adsInfo.advertId + ">img").attr("src", data[i].adsInfo.advertPic);
+//              }
+//          }
+//      };
+//      var data = {"type": "level", "serialId": currentPageId, "rangeId": "banner_right"};
+//      requestDataWithAJAX("/fsajax/getAdsPic.ajax", "post", true, {"success": success, "data": data});
+//  })();
+    //新奇特怪广告位
+//  (function () {
+//      var success = function (data) {
+//          data = JSON.parse(data);
+//          if (data != undefined && data.length != 0 && data != "[]") {
+//              $(".recommend_box").ready(function () {
+//                  $(".recommend_box .new a img").attr("src", data[0].adsInfo.advertPic);
+//                  $(".recommend_box .new a").attr("href", data[0].adsInfo.goodsLink);
+//              });
+//          }
+//      };
+//      var data = {"type": "level", "serialId": currentPageId, "rangeId": "banner_bottom_left"};
+//      requestDataWithAJAX("/fsajax/getAdsPic.ajax", "post", true, {"success": success, "data": data});
+//  })();
+    //疯抢晚8点等4个广告位
+//  (function () {
+//      var success = function (data) {
+//          data = JSON.parse(data);
+//          if (data != undefined && data.length != 0 && data != "[]") {
+//              for (var i in data) {
+//                  $("." + data[i].adsInfo.advertId).attr("href", data[i].adsInfo.goodsLink);
+//                  $("." + data[i].adsInfo.advertId + ">img").attr("src", data[i].adsInfo.advertPic);
+//              }
+//          }
+//      };
+//      var data = {"type": "level", "serialId": currentPageId, "rangeId": "banner_bottom_right"};
+//      requestDataWithAJAX("/fsajax/getAdsPic.ajax", "post", true, {"success": success, "data": data});
+//  })();
+    //猜你喜欢广告位
+    (function () {
+        var success = function (data) {
+            data = JSON.parse(data);
+            if (data != undefined && data.length != 0 && data != "[]") {
+                for (var i in data) {
+                    $("." + data[i].adsInfo.advertId).attr("href", data[i].adsInfo.goodsLink);
+                    $("." + data[i].adsInfo.advertId + ">img").attr("src", data[i].adsInfo.advertPic);
+                    $("." + data[i].adsInfo.advertId).siblings("div").find("a").attr("src", data[i].adsInfo.goodsLink);
+                    var jsonInfo = data[i].adsInfo.jsonInfo ? JSON.parse(data[i].adsInfo.jsonInfo) : {"goodsName": "", "goodsPrice": ""};
+                    jsonInfo.goodsPrice = jsonInfo.goodsPrice != "" ? "￥" + jsonInfo.goodsPrice : "";
+                    $("." + data[i].adsInfo.advertId).siblings("div").find("a").html("<p>" + jsonInfo.goodsName + "</p>"+ "<p style='color: #ff1212;' title='" + jsonInfo.goodsPrice + "'>" + jsonInfo.goodsPrice + "</p>");
+                    $("." + data[i].adsInfo.advertId).siblings("div").find("a").attr("title", jsonInfo.goodsName);
+                }
+            }
+        };
+        var data = {"type": "level", "serialId": currentPageId, "rangeId": "cainixihuan"};
+        requestDataWithAJAX("/fsajax/getAdsPic.ajax", "post", true, {"success": success, "data": data});
+    })();
+    //新品推荐广告位
+    (function () {
+        var success = function (data) {
+            data = JSON.parse(data);
+            if (data != undefined && data.length != 0 && data != "[]") {
+                for (var i in data) {
+                    $("." + data[i].adsInfo.advertId).attr("href", data[i].adsInfo.goodsLink);
+                    $("." + data[i].adsInfo.advertId + ">img").attr("src", data[i].adsInfo.advertPic);
+                    $("." + data[i].adsInfo.advertId).siblings("div").find("a").attr("src", data[i].adsInfo.goodsLink);
+                    var jsonInfo = data[i].adsInfo.jsonInfo ? JSON.parse(data[i].adsInfo.jsonInfo) : {"goodsName": "", "goodsPrice": ""};
+                    jsonInfo.goodsPrice = jsonInfo.goodsPrice != "" ? "￥" + jsonInfo.goodsPrice : "";
+                    $("." + data[i].adsInfo.advertId).siblings("div").find("a").html("<p>" + jsonInfo.goodsName + "</p>" + "<p style='color: #ff1212;' title='" + jsonInfo.goodsPrice + "'>" + jsonInfo.goodsPrice + "</p>");
+                    $("." + data[i].adsInfo.advertId).siblings("div").find("a").attr("title", jsonInfo.goodsName);
+                }
+            }
+        };
+        var data = {"type": "level", "serialId": currentPageId, "rangeId": "xinpintuijian"};
+        requestDataWithAJAX("/fsajax/getAdsPic.ajax", "post", true, {"success": success, "data": data});
+    })();
+    //一层广告位
+    (function () {
+        var request1 = {"type": "level", "serialId": currentPageId, "rangeId": "f1"};
+        var request2 = {"type": "level", "serialId": currentPageId, "rangeId": "f1_banner"};
+        var request3 = {"type": "level", "serialId": currentPageId, "rangeId": "f1_bottom"};
+        var ads_mainAds = $.post("/fsajax/getAdsPic.ajax", request1);
+        var ads_banner1 = $.post("/fsajax/getAdsPic.ajax", request2);
+        var ads_bottom = $.post("/fsajax/getAdsPic.ajax", request3);
+        $.when(ads_mainAds, ads_banner1, ads_bottom).done(function () {
+            for (var i in arguments) {
+                eval("var data" + (parseInt(i) + 1) + " = JSON.parse(arguments[" + i + "][0])");
+            }
+            for (var j = 0; j < Math.max(data1.length, data2.length, data3.length); j++) {
+                if (data1[j]) {
+                    $("." + data1[j].adsInfo.advertId).attr("href", data1[j].adsInfo.goodsLink);
+                    $("." + data1[j].adsInfo.advertId + ">img").attr("src", data1[j].adsInfo.advertPic);
+                }
+                if (data2[j]) {
+                    $("." + data2[j].adsInfo.advertId).attr("href", data2[j].adsInfo.goodsLink);
+                    $("." + data2[j].adsInfo.advertId + ">img").attr("src", data2[j].adsInfo.advertPic);
+                }
+                if (data3[j]) {
+                    $("." + data3[j].adsInfo.advertId).attr("href", data3[j].adsInfo.goodsLink);
+                    $("." + data3[j].adsInfo.advertId + ">img").attr("src", data3[j].adsInfo.advertPic);
+                }
+            }
+        });
+    })();
+    //二层广告位
+    (function () {
+        var request1 = {"type": "level", "serialId": currentPageId, "rangeId": "f2"};
+        var request2 = {"type": "level", "serialId": currentPageId, "rangeId": "f2_banner1"};
+        var request3 = {"type": "level", "serialId": currentPageId, "rangeId": "f2_banner2"};
+        var request4 = {"type": "level", "serialId": currentPageId, "rangeId": "f2_bottom"};
+        var ads_mainAds = $.post("/fsajax/getAdsPic.ajax", request1);
+        var ads_banner1 = $.post("/fsajax/getAdsPic.ajax", request2);
+        var ads_banner2 = $.post("/fsajax/getAdsPic.ajax", request3);
+        var ads_bottom = $.post("/fsajax/getAdsPic.ajax", request4);
+        $.when(ads_mainAds, ads_banner1, ads_banner2, ads_bottom).done(function () {
+            for (var i in arguments) {
+                eval("var data" + (parseInt(i) + 1) + " = JSON.parse(arguments[" + i + "][0])");
+            }
+            for (var j = 0; j < Math.max(data1.length, data2.length, data3.length, data4.length); j++) {
+                if (data1[j]) {
+                    $("." + data1[j].adsInfo.advertId).attr("href", data1[j].adsInfo.goodsLink);
+                    $("." + data1[j].adsInfo.advertId + ">img").attr("src", data1[j].adsInfo.advertPic);
+                }
+                if (data2[j]) {
+                    $("." + data2[j].adsInfo.advertId).attr("href", data2[j].adsInfo.goodsLink);
+                    $("." + data2[j].adsInfo.advertId + ">img").attr("src", data2[j].adsInfo.advertPic);
+                }
+                if (data3[j]) {
+                    $("." + data3[j].adsInfo.advertId).attr("href", data3[j].adsInfo.goodsLink);
+                    $("." + data3[j].adsInfo.advertId + ">img").attr("src", data3[j].adsInfo.advertPic);
+                }
+                if (data4[j]) {
+                    $("." + data4[j].adsInfo.advertId).attr("href", data4[j].adsInfo.goodsLink);
+                    $("." + data4[j].adsInfo.advertId + ">img").attr("src", data4[j].adsInfo.advertPic);
+                }
+            }
+        });
+    })();
+    //三层广告位
+    (function () {
+        var request1 = {"type": "level", "serialId": currentPageId, "rangeId": "f3"};
+        var request2 = {"type": "level", "serialId": currentPageId, "rangeId": "f3_banner"};
+        var request3 = {"type": "level", "serialId": currentPageId, "rangeId": "f3_bottom"};
+        var ads_mainAds = $.post("/fsajax/getAdsPic.ajax", request1);
+        var ads_banner1 = $.post("/fsajax/getAdsPic.ajax", request2);
+        var ads_bottom = $.post("/fsajax/getAdsPic.ajax", request3);
+        $.when(ads_mainAds, ads_banner1, ads_bottom).done(function () {
+            for (var i in arguments) {
+                eval("var data" + (parseInt(i) + 1) + " = JSON.parse(arguments[" + i + "][0])");
+            }
+            for (var j = 0; j < Math.max(data1.length, data2.length, data3.length); j++) {
+                if (data1[j]) {
+                    $("." + data1[j].adsInfo.advertId).attr("href", data1[j].adsInfo.goodsLink);
+                    $("." + data1[j].adsInfo.advertId + ">img").attr("src", data1[j].adsInfo.advertPic);
+                }
+                if (data2[j]) {
+                    $("." + data2[j].adsInfo.advertId).attr("href", data2[j].adsInfo.goodsLink);
+                    $("." + data2[j].adsInfo.advertId + ">img").attr("src", data2[j].adsInfo.advertPic);
+                }
+                if (data3[j]) {
+                    $("." + data3[j].adsInfo.advertId).attr("href", data3[j].adsInfo.goodsLink);
+                    $("." + data3[j].adsInfo.advertId + ">img").attr("src", data3[j].adsInfo.advertPic);
+                }
+            }
+        });
+    })();
+    //四层广告位
+    (function () {
+        var request1 = {"type": "level", "serialId": currentPageId, "rangeId": "f4"};
+        var request2 = {"type": "level", "serialId": currentPageId, "rangeId": "f4_banner"};
+        var request3 = {"type": "level", "serialId": currentPageId, "rangeId": "f4_bottom"};
+        var ads_mainAds = $.post("/fsajax/getAdsPic.ajax", request1);
+        var ads_banner1 = $.post("/fsajax/getAdsPic.ajax", request2);
+        var ads_bottom = $.post("/fsajax/getAdsPic.ajax", request3);
+        $.when(ads_mainAds, ads_banner1, ads_bottom).done(function () {
+            for (var i in arguments) {
+                eval("var data" + (parseInt(i) + 1) + " = JSON.parse(arguments[" + i + "][0])");
+            }
+            for (var j = 0; j < Math.max(data1.length, data2.length, data3.length); j++) {
+                if (data1[j]) {
+                    $("." + data1[j].adsInfo.advertId).attr("href", data1[j].adsInfo.goodsLink);
+                    $("." + data1[j].adsInfo.advertId + ">img").attr("src", data1[j].adsInfo.advertPic);
+                }
+                if (data2[j]) {
+                    $("." + data2[j].adsInfo.advertId).attr("href", data2[j].adsInfo.goodsLink);
+                    $("." + data2[j].adsInfo.advertId + ">img").attr("src", data2[j].adsInfo.advertPic);
+                }
+                if (data3[j]) {
+                    $("." + data3[j].adsInfo.advertId).attr("href", data3[j].adsInfo.goodsLink);
+                    $("." + data3[j].adsInfo.advertId + ">img").attr("src", data3[j].adsInfo.advertPic);
+                }
+            }
+        });
+    })();
+    //五层广告位
+    (function () {
+        var request1 = {"type": "level", "serialId": currentPageId, "rangeId": "f5"};
+        var request2 = {"type": "level", "serialId": currentPageId, "rangeId": "f5_banner"};
+        var request3 = {"type": "level", "serialId": currentPageId, "rangeId": "f5_bottom"};
+        var ads_mainAds = $.post("/fsajax/getAdsPic.ajax", request1);
+        var ads_banner1 = $.post("/fsajax/getAdsPic.ajax", request2);
+        var ads_bottom = $.post("/fsajax/getAdsPic.ajax", request3);
+        $.when(ads_mainAds, ads_banner1, ads_bottom).done(function () {
+            for (var i in arguments) {
+                eval("var data" + (parseInt(i) + 1) + " = JSON.parse(arguments[" + i + "][0])");
+            }
+            for (var j = 0; j < Math.max(data1.length, data2.length, data3.length); j++) {
+                if (data1[j]) {
+                    $("." + data1[j].adsInfo.advertId).attr("href", data1[j].adsInfo.goodsLink);
+                    $("." + data1[j].adsInfo.advertId + ">img").attr("src", data1[j].adsInfo.advertPic);
+                }
+                if (data2[j]) {
+                    $("." + data2[j].adsInfo.advertId).attr("href", data2[j].adsInfo.goodsLink);
+                    $("." + data2[j].adsInfo.advertId + ">img").attr("src", data2[j].adsInfo.advertPic);
+                }
+                if (data3[j]) {
+                    $("." + data3[j].adsInfo.advertId).attr("href", data3[j].adsInfo.goodsLink);
+                    $("." + data3[j].adsInfo.advertId + ">img").attr("src", data3[j].adsInfo.advertPic);
+                }
+            }
+        });
+    })();
+    //六层广告位
+    (function () {
+        var request1 = {"type": "level", "serialId": currentPageId, "rangeId": "f6"};
+        var request2 = {"type": "level", "serialId": currentPageId, "rangeId": "f6_banner1"};
+        var request3 = {"type": "level", "serialId": currentPageId, "rangeId": "f6_banner2"};
+        var request4 = {"type": "level", "serialId": currentPageId, "rangeId": "f6_bottom"};
+        var ads_mainAds = $.post("/fsajax/getAdsPic.ajax", request1);
+        var ads_banner1 = $.post("/fsajax/getAdsPic.ajax", request2);
+        var ads_banner2 = $.post("/fsajax/getAdsPic.ajax", request3);
+        var ads_bottom = $.post("/fsajax/getAdsPic.ajax", request4);
+        $.when(ads_mainAds, ads_banner1, ads_banner2, ads_bottom).done(function () {
+            for (var i in arguments) {
+                eval("var data" + (parseInt(i) + 1) + " = JSON.parse(arguments[" + i + "][0])");
+            }
+            for (var j = 0; j < Math.max(data1.length, data2.length, data3.length, data4.length); j++) {
+                if (data1[j]) {
+                    $("." + data1[j].adsInfo.advertId).attr("href", data1[j].adsInfo.goodsLink);
+                    $("." + data1[j].adsInfo.advertId + ">img").attr("src", data1[j].adsInfo.advertPic);
+                }
+                if (data2[j]) {
+                    $("." + data2[j].adsInfo.advertId).attr("href", data2[j].adsInfo.goodsLink);
+                    $("." + data2[j].adsInfo.advertId + ">img").attr("src", data2[j].adsInfo.advertPic);
+                }
+                if (data3[j]) {
+                    $("." + data3[j].adsInfo.advertId).attr("href", data3[j].adsInfo.goodsLink);
+                    $("." + data3[j].adsInfo.advertId + ">img").attr("src", data3[j].adsInfo.advertPic);
+                }
+                if (data4[j]) {
+                    $("." + data4[j].adsInfo.advertId).attr("href", data4[j].adsInfo.goodsLink);
+                    $("." + data4[j].adsInfo.advertId + ">img").attr("src", data4[j].adsInfo.advertPic);
+                }
+            }
+        });
+    })();
+    //七层广告位
+    (function () {
+        var request1 = {"type": "level", "serialId": currentPageId, "rangeId": "f7"};
+        var request2 = {"type": "level", "serialId": currentPageId, "rangeId": "f7_banner1"};
+        var request3 = {"type": "level", "serialId": currentPageId, "rangeId": "f7_banner2"};
+        var request4 = {"type": "level", "serialId": currentPageId, "rangeId": "f7_bottom"};
+        var ads_mainAds = $.post("/fsajax/getAdsPic.ajax", request1);
+        var ads_banner1 = $.post("/fsajax/getAdsPic.ajax", request2);
+        var ads_banner2 = $.post("/fsajax/getAdsPic.ajax", request3);
+        var ads_bottom = $.post("/fsajax/getAdsPic.ajax", request4);
+        $.when(ads_mainAds, ads_banner1, ads_banner2, ads_bottom).done(function () {
+            for (var i in arguments) {
+                eval("var data" + (parseInt(i) + 1) + " = JSON.parse(arguments[" + i + "][0])");
+            }
+            for (var j = 0; j < Math.max(data1.length, data2.length, data3.length, data4.length); j++) {
+                if (data1[j]) {
+                    $("." + data1[j].adsInfo.advertId).attr("href", data1[j].adsInfo.goodsLink);
+                    $("." + data1[j].adsInfo.advertId + ">img").attr("src", data1[j].adsInfo.advertPic);
+                }
+                if (data2[j]) {
+                    $("." + data2[j].adsInfo.advertId).attr("href", data2[j].adsInfo.goodsLink);
+                    $("." + data2[j].adsInfo.advertId + ">img").attr("src", data2[j].adsInfo.advertPic);
+                }
+                if (data3[j]) {
+                    $("." + data3[j].adsInfo.advertId).attr("href", data3[j].adsInfo.goodsLink);
+                    $("." + data3[j].adsInfo.advertId + ">img").attr("src", data3[j].adsInfo.advertPic);
+                }
+                if (data4[j]) {
+                    $("." + data4[j].adsInfo.advertId).attr("href", data4[j].adsInfo.goodsLink);
+                    $("." + data4[j].adsInfo.advertId + ">img").attr("src", data4[j].adsInfo.advertPic);
+                }
+            }
+        });
+    })();
+    //八层广告位
+    (function () {
+        var request1 = {"type": "level", "serialId": currentPageId, "rangeId": "f8"};
+        var request2 = {"type": "level", "serialId": currentPageId, "rangeId": "f8_banner1"};
+        var request3 = {"type": "level", "serialId": currentPageId, "rangeId": "f8_banner2"};
+        var request4 = {"type": "level", "serialId": currentPageId, "rangeId": "f8_bottom"};
+        var ads_mainAds = $.post("/fsajax/getAdsPic.ajax", request1);
+        var ads_banner1 = $.post("/fsajax/getAdsPic.ajax", request2);
+        var ads_banner2 = $.post("/fsajax/getAdsPic.ajax", request3);
+        var ads_bottom = $.post("/fsajax/getAdsPic.ajax", request4);
+        $.when(ads_mainAds, ads_banner1, ads_banner2, ads_bottom).done(function () {
+            for (var i in arguments) {
+                eval("var data" + (parseInt(i) + 1) + " = JSON.parse(arguments[" + i + "][0])");
+            }
+            for (var j = 0; j < Math.max(data1.length, data2.length, data3.length, data4.length); j++) {
+                if (data1[j]) {
+                    $("." + data1[j].adsInfo.advertId).attr("href", data1[j].adsInfo.goodsLink);
+                    $("." + data1[j].adsInfo.advertId + ">img").attr("src", data1[j].adsInfo.advertPic);
+                }
+                if (data2[j]) {
+                    $("." + data2[j].adsInfo.advertId).attr("href", data2[j].adsInfo.goodsLink);
+                    $("." + data2[j].adsInfo.advertId + ">img").attr("src", data2[j].adsInfo.advertPic);
+                }
+                if (data3[j]) {
+                    $("." + data3[j].adsInfo.advertId).attr("href", data3[j].adsInfo.goodsLink);
+                    $("." + data3[j].adsInfo.advertId + ">img").attr("src", data3[j].adsInfo.advertPic);
+                }
+                if (data4[j]) {
+                    $("." + data4[j].adsInfo.advertId).attr("href", data4[j].adsInfo.goodsLink);
+                    $("." + data4[j].adsInfo.advertId + ">img").attr("src", data4[j].adsInfo.advertPic);
+                }
+            }
+        });
+    })();
+    //分享有礼广告位
+    (function () {
+        var success = function (data) {
+            data = JSON.parse(data);
+            if (data != undefined && data.length != 0 && data != "[]") {
+                $(".share a").eq(0).attr("href", data[0].adsInfo.goodsLink);
+                $(".share a img").eq(0).attr("src", data[0].adsInfo.advertPic);
+            }
+        };
+        var data = {"type": "level", "serialId": currentPageId, "rangeId": "fenxiangyouli"};
+        requestDataWithAJAX("/fsajax/getAdsPic.ajax", "post", true, {"success": success, "data": data});
+    })();
+    //饭饭淘广告位
+    (function () {
+        var success = function (data) {
+            data = JSON.parse(data);
+            if (data != undefined && data.length != 0 && data != "[]") {
+                $(".fftao a").eq(0).attr("href", data[0].adsInfo.goodsLink);
+                $(".fftao a img").eq(0).attr("src", data[0].adsInfo.advertPic);
+            }
+        };
+        var data = {"type": "level", "serialId": currentPageId, "rangeId": "fanfantao"};
+        requestDataWithAJAX("/fsajax/getAdsPic.ajax", "post", true, {"success": success, "data": data});
+    })();
+});
+
+/**
+ * 一级页面分类菜单加载
+ * Params：
+ *  template:模板
+ *  data:数据
+ * Created by WW on 2016/8/26.
+ */
+
+/*$("#pageInfo_ww").ready(function () {
+    var currentPageId = $("#pageInfo_ww").attr("currentPageId");   //获取当前页面id;
+    var currentPageName = $("#pageInfo_ww").attr("currentPageName");   //获取当前页面name;
+    var currentPageRes = $("#pageInfo_ww").attr("currentpageres");   //获取当前页面Resources路径
+    //Handlebars.registerPartial('resources', currentPageRes);
+    Handlebars.registerHelper("lv1_listCategoryLeft_lv2", function (item) {
+        if (item.length > 0) {
+            var result = "";
+            try {
+                switch (item.length) {
+                    case 1:
+                        result += '<a href="/page2/' + item[0].id + '.jhtml?name2=' + item[0].name + '&level1=' + currentPageId + '&name1=' + currentPageName + '">' + item[0].name + '</a>';
+                        break;
+                    case 2:
+                        result += '<a href="/page2/' + item[0].id + '.jhtml?name2=' + item[0].name + '&level1=' + currentPageId + '&name1=' + currentPageName + '">' + item[0].name + '</a><span>/</span><a href="/page2/' + item[1].id + '.jhtml?name2=' + item[1].name + '&level1=' + currentPageId + '&name1=' + currentPageName + '">' + item[1].name + '</a>';
+                        break;
+                    case 3:
+                        result += '<a href="/page2/' + item[0].id + '.jhtml?name2=' + item[0].name + '&level1=' + currentPageId + '&name1=' + currentPageName + '">' + item[0].name + '</a><span>/</span><a href="/page2/' + item[1].id + '.jhtml?name2=' + item[1].name + '&level1=' + currentPageId + '&name1=' + currentPageName + '">' + item[1].name + '</a><span>/</span><a href="/page2/' + item[2].id + '.jhtml?name2=' + item[2].name + '&level1=' + currentPageId + '&name1=' + currentPageName + '">' + item[2].name + '</a>';
+                        break;
+                }
+            }
+            catch (ex) {
+                console.error(ex);
+            }
+        }
+        return new Handlebars.SafeString(result);
+    });
+    Handlebars.registerHelper("lv1_listCategoryRight_lv2", function (item) {
+        if (item.length > 0) {
+            var result = "";
+            try {
+                for (var i = 0; i < item.length; i++) {
+                    result += '<div class="my_clear"><h4><a href="/page2/' + item[i].id + '.jhtml?name2=' + item[i].name + '&level1=' + currentPageId + '&name1=' + currentPageName + '">' + item[i].name + '<span>></span></a></h4></div>'
+                }
+            }
+            catch (ex) {
+                console.error(ex);
+            }
+        }
+        return new Handlebars.SafeString(result);
+    });
+    Handlebars.registerHelper("lv1_eachCategory_lv3", function (item, options) {
+        if (item.length > 0) {
+            var result = "<p>";
+            for (var i = 0; i < item.length; i++) {
+                result += options.fn(item[i]);
+                if (i == item.length - 1) {   //每加载7次换行
+                    result += "</p>";
+                } else if (i % 7 == 6) {
+                    result += "</p><p>";
+                }
+            }
+        }
+        return result;
+    });
+    Handlebars.registerHelper("doubleEach", function (item1, item2, options) {
+        var result = "";
+        var data = {};
+        for (var i = 0; i < Math.min(item1.length, item2.length); i++) {
+            data = {"banner1": item1[i], "banner2": item2[i]};
+            result += options.fn(data);
+        }
+        return result;
+    });
+
+    var success = function (data) {
+        var template_lv2 = $("#lv1_categoryList_lv2").html();
+        var result_lv2 = splitCategoryDataForLv2(data, currentPageId, currentPageRes);   //处理后的数据
+        var template_lv3 = $("#lv1_categoryList_lv3").html();
+        var result_lv3 = splitCategoryDataForLv3(data);   //处理后的数据
+        $(".classification_lv1_middle_banner_left>ul").ready(function () {
+            if (result_lv2 != "") {
+                for (var i = 0; i < result_lv2.length; i++) {
+                    var html = loadHandlebarsTemplate(template_lv2, result_lv2[i]);
+                    $(".classification_lv1_middle_banner_left>ul").append(html);  //加载到html中
+                }
+            }
+            for (var i = 0; i < result_lv3.length; i++) {
+                var html = loadHandlebarsTemplate(template_lv3, result_lv3[i]);
+                $(".c_lv1_middle_banner_left_nav_item_main_left .my_clear").eq(i).after(html);  //在不同的div间跳转
+            }
+            banner_left_nav();
+        });
+    };
+    //API:"/fsajax/FSGoodsCategory.ajax?level1={level1}"
+    var excludeSequence = ["307_00000000000000390_gic", "307_00000000000000332_gic"];
+    if (excludeSequence.indexOf(currentPageId) == -1) {
+        requestDataWithAJAX("../fsajax/FSGoodsCategory.ajax?level1=" + currentPageId, "get", false, {"success": success});
+    }
+
+    function addAdsClassNameForCenterBannerRight() {
+        $(".classification_lv1_middle_banner_right_top").find("a").addClass("level_" + currentPageId + "_banner_right_01");
+        $(".classification_lv1_middle_banner_right_middle").find("a").addClass("level_" + currentPageId + "_banner_right_02");
+    }
+
+    function addAdsClassNameForMaybeLike() {
+        $(".classification_lv1_maybe_like .lv1_fl_img_box .lv1_fl_img_box_fields").each(function (index) {
+            index = index > 8 ? index + 1 : "0" + (index + 1);
+            $(this).find(">a").addClass("level_" + currentPageId + "_cainixihuan_" + index);
+        });
+    }
+
+    function addAdsClassNameForNew() {
+        $(".classification_lv1_new .lv1_fl_img_box .lv1_fl_img_box_fields").each(function (index) {
+            index = index > 8 ? index + 1 : "0" + (index + 1);
+            $(this).find(">a").addClass("level_" + currentPageId + "_xinpintuijian_" + index);
+        });
+    }
+
+    function addAdsClassNameForOneBanner() {
+        for (var i = 0; i < arguments.length; i++) {
+            var main_ads = $(".floor_hb_" + arguments[i] + " .lv1_fl_img_box2 a").not(".floor_hb_" + arguments[i] + " .lv1_fl_img_box2 .ff_banner a");
+            for (var j = 0; j < main_ads.length; j++) {
+                var index = j > 8 ? j + 1 : "0" + (j + 1);
+                main_ads.eq(j).addClass("level_" + currentPageId + "_f" + arguments[i] + "_" + index);
+            }
+            var banner_ads = $(".floor_hb_" + arguments[i] + " .lv1_fl_img_box2 .ff_banner a");
+            for (var j = 0; j < banner_ads.length; j++) {
+                var index = j > 8 ? j + 1 : "0" + (j + 1);
+                banner_ads.eq(j).addClass("level_" + currentPageId + "_f" + arguments[i] + "_banner_" + index);
+            }
+            var bottom_ads = $(".floor_hb_" + arguments[i] + " .lv1_fl_bottom a");
+            for (var j = 0; j < bottom_ads.length; j++) {
+                var index = j > 8 ? j + 1 : "0" + (j + 1);
+                bottom_ads.eq(j).addClass("level_" + currentPageId + "_f" + arguments[i] + "_bottom_" + index);
+            }
+        }
+    }
+
+    function addAdsClassNameForDoubleBanner() {
+        for (var i = 0; i < arguments.length; i++) {
+            var main_ads = $(".floor_hb_" + arguments[i] + " .lv1_fl_img_box2 a").not(".floor_hb_" + arguments[i] + " .lv1_fl_img_box2 .ff_banner a");
+            for (var j = 0; j < main_ads.length; j++) {
+                var index = j > 8 ? j + 1 : "0" + (j + 1);
+                main_ads.eq(j).addClass("level_" + currentPageId + "_f" + arguments[i] + "_" + index);
+            }
+            var banner_ads = $(".floor_hb_" + arguments[i] + " .lv1_fl_img_box2 .ff_banner a");
+            for (var j = 0; j < banner_ads.length; j++) {
+                var index = Math.floor(j / 2) > 8 ? Math.floor(j / 2) + 1 : "0" + (Math.floor(j / 2) + 1);
+                banner_ads.eq(j).addClass("level_" + currentPageId + "_f" + arguments[i] + "_banner" + (Math.ceil(j % 2) + 1) + "_" + index);
+            }
+            var bottom_ads = $(".floor_hb_" + arguments[i] + " .lv1_fl_bottom a");
+            for (var j = 0; j < bottom_ads.length; j++) {
+                var index = j > 8 ? j + 1 : "0" + (j + 1);
+                bottom_ads.eq(j).addClass("level_" + currentPageId + "_f" + arguments[i] + "_bottom_" + index);
+            }
+        }
+    }
+
+    addAdsClassNameForCenterBanner();
+    addAdsClassNameForCenterBannerRight();
+    addAdsClassNameForMaybeLike();
+    addAdsClassNameForNew();
+    addAdsClassNameForOneBanner(1, 3, 4, 5);
+    addAdsClassNameForDoubleBanner(2, 6, 7, 8);
+
+
+
+
+});*/
+

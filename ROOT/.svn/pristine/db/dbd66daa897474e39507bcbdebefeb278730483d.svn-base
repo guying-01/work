@@ -1,0 +1,170 @@
+<#-- 加载通用变量定义 -->
+<#include "/common/common_var_definds.ftl" />
+<#macro render data>
+<#escape x as x>
+<input type="hidden" value="${message!''}" id="message"></input>
+<#if responseString??>
+${responseString!""}
+<#else>
+
+<div class="wrapper sure_order_wrapper">
+	<div class="line"></div>
+  	<div class="submit_order_t">
+		<a onclick="javascript :history.go(-1);"></a>
+		<span>确认订单支付信息</span>
+	</div>
+  <div class="line"></div>
+  <#if totalOrderList?? &&totalOrderList?size gt 0>
+    <#list totalOrderList as totalOrder>
+        <div class="totalItem totalItem2">
+        	<p class="caigou-title">采购单号:<span>${totalOrder[0].totalOrderId!''}</span></p>
+            <#if Session.user.memberType ?? && (Session.user.memberType == "member_head" || Session.user.memberType == "member_master")>
+        	<div class="previlageShow_box">
+        		 <p class="previlageShow1">采购商店名：${totalOrder[0].odBuyerName!''}</p> 
+	             <p class="previlageShow1">采购商身份码：${totalOrder[0].odPassportNo!''}</p> 
+	             <p class="previlageShow1">采购商账号类别：${totalOrder[0].odMemberType!''}</p>
+        	</div>
+          
+            </#if>
+            <#list totalOrder as item>
+	            <div class="sure_info_box">
+	            	<div class="orderItem">
+                    <p>订单编号：${item.id!''}</p>
+	            	<p>店铺名称：${item.storeName!''}</p>
+                    <input type="hidden" class="orderId" name="orderId" id="orderId_${item_index}" class="dm-no-auto-clear" value="${item.id!}"></input>
+                    <p>企业名称：${item.sellerShowName!''}</p>
+	            	<p id="${item.id}_payMoney">订单实付：${((item.payMoney)!0)?string("0.00")}元</p>
+                    </div>
+	            </div>
+             </#list>
+        <!--<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table-line">
+            <tr class=" table_bgA">
+                <th width="25%">订单号</th>
+                <th width="25%">店铺名称</th>
+                <th width="25%">企业名称</th>
+                <th width="25%">订单实付(元)</th>
+            </tr>
+            <#list totalOrder as item>
+                <tr id="tr_${item.id}" class="orderItem">
+                    <td>${item.id!''}</td>
+                    <td>${item.storeName!''}</td>
+                    <td>${item.sellerShowName!''}</td>
+                    <td id="${item.id}_payMoney">￥${((item.payMoney)!0)?string("0.00")}</td>
+                </tr>
+            </#list>
+        </table>-->
+            <h4 class="totalid ff_h4" style="display: none">采购单号:<span class="totalOrderId">${orderList[0].totalOrderId!''}</span></h4>
+
+        </div>
+    </#list>
+  </#if>
+  <#--<table width="1000" border="0" cellspacing="0" cellpadding="0" class="table-line m-t-20">-->
+    <#--<tr class=" table_bgA">-->
+      <#--<th width="250">订单号</th>-->
+      <#--<th width="250">店铺名称</th>-->
+      <#--<th width="250">企业名称</th>-->
+      <#--<th>订单实付（元）</th>-->
+      <#--&lt;#&ndash;<th>采购单号</th>&ndash;&gt;-->
+    <#--</tr>-->
+
+    <#--<#if orderList?? &&orderList?size gt 0>-->
+    	<#--<#assign orderSize = orderList?size>-->
+    	<#--<input type="hidden" id="orderSize" value="${orderSize}"></input>-->
+    <#--<#list orderList as items>-->
+    <#--<tr id="tr_${items.id}" >-->
+      <#--<input type="hidden" name="orderId" id="orderId_${items_index}" class="dm-no-auto-clear" value="${items.id!}"></input>-->
+      <#--<td>${items.id!''}</td>-->
+      <#--<td>${items.storeName!''}</td>-->
+      <#--<td>${items.sellerShowName!''}</td>-->
+      <#--<td id="${items.id}_payMoney">${((items.payMoney)!0)?string("0.00")}</td>-->
+       <#--&lt;#&ndash; <td>${items.totalOrderId!''}</td> &ndash;&gt;-->
+    <#--</tr>-->
+    <#--</#list>   -->
+    <#--<#else>-->
+    <#--<tr>无订单详情</tr>-->
+	<#--</#if>-->
+
+    <#--<tr>-->
+      <#--<td colspan="4"  style="text-align:right; padding-right:20px;">支付（元）：-->
+      <#--<strong class="font-color-b" style="font-size:22px;" id="sumTotal">${(saleaser!0)?string("0.00")}</strong></td>-->
+    <#--</tr>-->
+  <#--</table>-->
+
+
+    <div class="choosePayment" id="choosePayment" checkflag="">
+  <h2 class="titH">选择付款方式</h2>
+  <div class="bank m-b-20">
+    <#--<#if payChannelDicList?? && payChannelDicList?size gt 0>
+    <#assign payChannelDicListSize = payChannelDicList?size>
+    	<input type="hidden" id="payChannelDicListSize" value="${payChannelDicListSize}"></input>
+    <ul class="bor-b">
+    <#list payChannelDicList as payChannel>
+    <#if payChannel.isOther?? && payChannel.isOther == 1>
+      <li>
+        <input name="RadioGroup" type="radio" class="dm-no-auto-clear" id="paymentChannelId_${payChannel_index}" value="${payChannel.id}" checked/>
+        <img src="${payChannel.iconPath!}" width="160" height="44" /></li>
+    </#if>
+    </#list>
+    <div class="clear"></div>
+    </ul>
+  &lt;#&ndash;
+  <ul class="m-t-20 bor-b">
+    <#list payChannelDicList as payChannel>
+    <#if payChannel.isOther?? && payChannel.isOther == 0>
+      <li>
+        <input name="RadioGroup" type="radio" id="" class="dm-no-auto-clear" value="${payChannel.id}"/>
+        <img src="${payChannel.iconPath!''}" width="160" height="44" /></li>
+    </#if>
+    </#list> 
+    <div class="clear"></div>
+  </ul> &ndash;&gt;
+
+  </#if>-->
+        <div id="pay_balance" class="my_clear" onclick="choosePay(this);" checkflag="00">
+            <span><img src="${resources}/img/order/icon_payBalance.png"></span><p>余额支付</p><i></i>
+        </div>
+        <div id="pay_weixin" class="my_clear" onclick="choosePay(this);" checkflag="10">
+            <span><img src="${resources}/img/order/icon_payWeixin.png"></span><p>微信支付</p><i></i>
+        </div>
+      <input name="state" id="state" type="hidden">
+  </div>
+    </div>
+  <div class="total_price_box">
+      <#if memberType?? && (memberType == "member_branch" || memberType =="member_servant")>
+          <a href="javascript:void(0)"  class="big-button cx1" style="background: #b7b7b7;">请等待主账号支付</a>
+       <#elseif Session.user.memberTypeSpecial?? && Session.user.memberTypeSpecial ==true>
+        <a href="javascript:void(0)" onclick="dopaySwitch(this)" class="big-button cx1">立即支付</a>
+      <#else >
+          <a href="javascript:void(0)" onclick="dopaySwitch(this)" class="big-button cx1">立即支付</a>
+      </#if>
+
+        <div class="total_price">
+        	<span>总计(元)：￥</span><span style=" color: #db0401 !important;font-weight: bold;">${(saleaser!0)?string("0.00")}</span>
+        </div>
+  </div>
+
+    <#if memberType?? && (memberType == "member_branch" || memberType =="member_servant")>
+    <#elseif Session.user.memberTypeSpecial?? && Session.user.memberTypeSpecial ==true>
+        <div class="tips">
+            <span style="color:red;font-size:0.22rem">【${Session.user.buyerName!''}】：请点击“立即支付”按钮，以完成订单交易。您拥有特批支付权限，不进行银行实际支付，将会线下财务结账处理。</span>
+        </div>
+    </#if>
+</div>
+<div class="submitFill"></div>
+<div class="pop_up cx20" style="display:none;">
+  <div class="pop_up_A pop_up_B"style="width: 5rem;height:2.3rem!important;margin-left: -2.5rem!important;margin-top:-1.15rem!important;border-radius: 0.25rem;">
+    <h2 style="padding:0 0.15rem;height: 0.5rem;line-height: 0.5rem;font-size: 0.26rem;border-top-left-radius: 0.25rem;border-top-right-radius: 0.25rem;">
+        订单付款进行中
+    </h2>
+    <div class="pop_bg" style="border-top-left-radius: 0;border-top-right-radius: 0;">
+    <div class="order-note">
+      <p>请您在完成付款后选择：</p>
+      <P>如果 <strong style="color: black;">付款成功</strong> 您可以查看 <b><a href="javascript:void(0);" onclick="toOrderDetail()" class="shut" style="color: #f88c0e;">我的采购单</a></b></P>
+      <P>如果 <strong style="color: black;">付款失败</strong> 您可以到 <b><a href="/order/toStoreHouse.jhtml" class="shut" style="color: #f88c0e;">我的仓库</a></b> 中重新加入购物车，再次支付</P>
+    </div>
+    </div>
+  </div>
+</div>
+</#if>
+</#escape>
+</#macro>

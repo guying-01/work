@@ -1,0 +1,83 @@
+<#--店铺首页-->
+	<#include "/common/common_var_definds.ftl" />
+	<#include "/basepage/store/default/hb_templates/store_hb_templates.ftl" />
+	<#import "/basepage/store/default/common/zizhi_slider.ftl" as zizhi/>
+	<#import "/basepage/store/default/common/dangan_slider.ftl" as dangan/>
+	<!DOCTYPE html>
+	<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>饭饭1080直采平台</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+		<script type="text/javascript">
+			var deviceWidth = document.documentElement.clientWidth;
+			if(deviceWidth > 768) {
+				deviceWidth = 768;
+			}
+			document.documentElement.style.fontSize = deviceWidth / 6.4 + 'px';
+		</script>
+		<#import "/basepage/store/default/common/common_link.ftl" as link/>
+		<#import "/basepage/store/default/common/common_script.ftl" as script/>
+		<#import "/basepage/store/default/common/common_header_top.ftl" as top/>
+		<#import "/basepage/store/default/common/common_header_searchbox_default.ftl" as searchBox/>
+		<#import "/basepage/store/default/common/common_footer.ftl" as footerNoTab/>
+		<#import "/basepage/seller/seller_header_search.ftl" as sellerSearch/>
+		<@link.render />
+		<!--导入共通样式-->
+		<@script.render />
+		<!--导入共通脚本-->
+		<link rel="stylesheet" href="${resources}/basepage/seller/css/store.css" type="text/css">
+		<script src="${resources}/basepage/seller/js/store_common_head_load.js"></script>
+        <script src="${resources}/basepage/seller/js/staticStore.js"></script>
+		<script src="${resources}/basepage/seller/js/store_dynamics.js"></script>
+		<script src="${resources}/basepage/seller/js/sp_getAboutImg.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<div id="pageInfo" store_id="${storeId!''}" store_template_code="${storeTemplateCode!''}" page_id="${storeTemplateCode!''}" style="display: none"></div>
+		<!--此处是头部开始-->
+		<div class="top">
+			<@top.render />
+			<div class="store_search_box">
+				<@searchBox.render />
+				<#--导入search_box-->
+			</div>
+		</div>
+		<!--此处是头部结束-->
+		<!--网页头部&导航开始-->
+		<div id="sp_hd_1"></div>
+		<div id="sp_hd_2"></div>
+		<@sellerSearch.render />
+		<div id="ff_tab_box">
+			<div class="ff_tab_content">
+				<div class="ff-tab-title">
+					<img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /> <span>商家介绍</span>
+				</div>
+				<div class="ff-tab-con-detail">
+					<p>大连香洲庄园葡萄酒公司隶属于大连香洲集团，公司创建于2000年，香洲庄园座落于辽南地区的瓦房店西南部香洲田园城的“东旺山谷”，位于世界酿酒葡萄黄金种植纬度的北纬39度26分的我国环渤海湾产区。这里群山环抱，风景优美，无任何污染，具有独特的局地气候条件。</p>
+                    <p>东旺山谷的香洲葡萄园，年平均气温为10℃，最高气温为30℃，最低气温为-18℃左右,年降雨量为570毫米，平均日照总数2850小时，无霜期180天。土壤属于砂壤土，PH值⒏0，昼夜温差相对较大，在秋季葡萄成熟季节，晴天少雨，光照强，这样的气候条件有利于葡萄糖份、芳香物质和酚类物质的积累。原来的酿酒葡萄种植园面积只有近1000亩，为了酿造高品质的干红葡萄酒，严格控制葡萄亩产量，最多每亩不超过600公斤，由于葡萄产量从法国引进了世界名种酿酒葡萄有：蛇龙珠、赤霞珠、梅鹿辄、西拉、黑比诺、霞多丽、雷司令、白玉霓等酿酒葡萄。</p>
+                    <p>果香，以黑色小浆果香为主，入口柔顺，有良好细腻的单宁结构，酒体饱满完整，有层次，余味悠长，风格独特。香洲庄园蛇龙珠干红在2005年宁夏银川国内葡萄酒专家暗评中，受到国家级评委的一致好评，认为瓦房店地区种植蛇龙珠葡萄酿造的干红酒，是很有发展前景的品种。</p>
+				</div>
+			</div>
+			<div class="ff_tab_content only_book_content_zizhi">
+				<div class="ff-tab-title">
+					<img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /><span>商家资质</span> 
+				</div>
+				<div class="ff-tab-con-detail">
+					<@zizhi.render />
+				</div>
+			</div>
+			<div class="ff_tab_content">
+				<div class="ff-tab-title">
+					<img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /> <span>商家活动</span>
+
+				</div>
+				<div class="ff-tab-con-detail">敬请期待</div>
+			</div>
+		</div>
+		<@footerNoTab.render />
+	</body>
+
+	</html>

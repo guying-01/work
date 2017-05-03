@@ -1,0 +1,25 @@
+<#include "/common/common_var_definds.ftl" />
+<#macro render>
+	<div class="footer-tab">
+		<a class="footer-tab-item tab-item1" href="/order/toStoreHouse.jhtml">
+			<i></i>
+			<p>我的仓库</p>
+        </a>
+		<a class="footer-tab-item tab-item2" href="/nav/category_pic.jhtml">
+			<i></i>
+			<p>全部商品</p>
+		</a>
+		<a class="footer-tab-item tab-item3" href="/">
+			<i></i>
+			<p>饭饭首页</p>
+		</a>
+		<a class="footer-tab-item tab-item4" href="/sc/toList.jhtml">
+				<i></i>
+				<p>购物车</p>
+		</a>
+		<a class="footer-tab-item tab-item5" href="/member/index.jhtml">
+            <i></i>
+            <p>我的饭饭</p>
+		</a>
+	</div>
+</#macro>

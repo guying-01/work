@@ -1,0 +1,208 @@
+/**
+ * @新奇特怪页
+ * Created by zyc on 2017/2/21.
+ */
+$(function (){
+    /*模板*/
+    // activity01区域模板
+    function template_activity01() {
+        /*****
+         {{#each this}}
+         <div class="contentRight-List">
+         <div class="contentRight-List-Left">
+         <div class="contentRight-List-img">
+         <a href="/fsgd/{{adsInfo.goodsId}}.jhtml?lv3Id=${level3!''}"  class="item_pic" title="{{goods.name}}">
+         <img class="lazy" src="{{adsInfo.advertPic}}" alt="{{goods.name}}"/>
+         </a>
+         </div>
+         <a class="goodsCollect" goods_id="{{goods.id}}" store_id="{{goods.storeId}}"><img class="lazy" src="/resources/basepage/store/default/list_pages/img/collect32.jpg" />
+         <p>收藏</p>
+         </a>
+         <a class="addShoppingCar" amount="1" goodsId="{{goods.id}}" goodsName="{{goods.name}}" itemId="{{item_id}}" itemName=" {{item_name}}" pic="{{item_pic}}" storeId=" {{store_id}}" storeName="{{store_name}}"><img class="lazy" src="/resources/basepage/store/default/list_pages/img/shoppingcar.jpg" />
+         <p>加入购物车</p>
+         </a>
+         </div>
+         <a  href="/fsgd/{{goods.id}}.jhtml?lv3Id=${level3!''}">
+         <div class="contentRight-List-Right">
+         <table cellspacing="0" cellpadding="0" class="contentRight-List-Right-table">
+         <tr>
+         <td class="goodsDecoration">品名</td>
+         <td class="goodsDecoration2" title="{{goods.name}}">{{goods.name}}</td>
+         </tr>
+         <tr>
+         <td class="goodsDecoration">生产企业</td>
+         <td class="goodsDecoration2" title="{{goods.manufacturer}}">{{goods.manufacturer}}</td>
+         </tr>
+         <tr>
+         <td class="goodsDecoration">饭饭单价</td>
+         <td class="goodsDecoration1" title="{{itemInfoList.[0].salesPrice}}">{{itemInfoList.[0].salesPrice}}</td>
+         <td class="goodsDecoration">规格</td>
+         <td class="goodsDecoration1" title="{{itemInfoList.[0].attrValue1}}">{{itemInfoList.[0].attrValue1}}</td>
+         </tr>
+         <tr>
+         <td class="goodsDecoration">产地</td>
+         <td class="goodsDecoration1" title="{{goods.placeOfProduction}}">{{goods.placeOfProduction}}</td>
+         <td class="goodsDecoration">送达时间</td>
+         <td class="goodsDecoration1">
+          <img style="width: 0.8rem;height: 0.4rem;margin-top: 0.04rem;" src="{{deliverTime searchInfo.data.dataList.[0].prepare_goods_day  searchInfo.data.dataList.[0].prepare_goods_day}}"/>
+         </td>
+         </tr>
+         <tr>
+         <td class="goodsDecoration">本日活动</td>
+         <td class="goodsDecoration2" title="{{promotion}}">新奇特怪</td>
+         </tr>
+         <tr>
+         <td class="goodsDecoration">产品描述</td>
+         <td class="goodsDecoration2" title="{{goods.description}}">{{goods.description}}</td>
+         </tr>
+
+         <tr>
+         <td class="goodsDecoration">供应区域</td>
+         <td class="goodsDecoration1" title="">全市</td>
+         <td class="goodsDecoration">商品等级</td>
+         <td class="goodsDecoration1" title="{{item_level_name}}">{{item_level_name}}</td>
+         </tr>
+         </table>
+         </div>
+         </a>
+         </div>
+         {{/each}}
+         *****/
+
+    }
+    /*索引+1的Helper*/
+    Handlebars.registerHelper('increases', function(person) {
+        return ++person;
+    });
+    Handlebars.registerHelper({
+        deliverTime: function (day,time) {
+            if (time) {
+                time = time.split(":")[0]
+            }
+            else {
+                //备货时间不存在
+            }
+            var result = "";
+            if ("2" == day) {
+                if (time < 12) {
+                    result = "/resources/basepage/store/default/common_img/deliver_time_01.png";
+                } else {
+                    result = "/resources/basepage/store/default/common_img/deliver_time_02.png";
+                }
+            } else if ("3" == day) {
+                result = "/resources/basepage/store/default/common_img/deliver_time_03.png";
+            }
+            return result;
+        }
+    });
+    var template_activity01 = cutTemplateWrap(template_activity01); //解析activity模板
+    /*
+     *
+     * 回调数据加载
+     * */
+    function activityLoad(data) {
+        /* activity01加载 */
+        var activity01 = new loadRange({
+            template: template_activity01,
+            data: data,
+            datachild: "activity01",
+            title: null,
+            html: $(".activity01")
+        });
+    }
+
+    /**
+     * 如果加载activity一致可以用此方法加载
+     * */
+    function loadRange(obj) {
+
+        var html_template = loadHandlebarsTemplate(obj.template, obj.data[obj.datachild]); //编译activity模板
+        try {
+            if (obj.title != undefined || obj.title != false || obj.title != null) {
+//              obj.title.html(data.rangeList[obj.datachild].name);  //对activity标题赋值
+            }
+        } catch (e) {console.log(e);}
+        obj.html.html(html_template); //将activity内容加入页面
+    }
+
+    /**
+     * 广告位加载
+     * Created by WW on 2017/2/21.
+     */
+    var ajaxRetrieval = {
+        serData: {
+            type: 'index',
+            serialId: 'strangeThing',
+            // rangeId: 'activity'
+        },
+        /*动态数据获取*/
+        ajax: function() {
+            var that = this;
+            $.ajax({
+                    url: '/fsajax/getAdsPic.ajax',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: this.serData
+                })
+                .done(function(data) {
+                    console.log(data)
+                    that.docData(data);
+                })
+                .fail(function() {
+                    console.log("error");
+                })
+        },
+        /*数据获取成功追加至页面*/
+        docData: function(data) {
+            var dataObject = new Object();
+            for(var i in data) {
+                var obj = data[i];
+                var key = obj.adsInfo.rangeId;
+                if (Object.prototype.toString.call(dataObject[key]) == '[object Array]') {
+                    dataObject[key].push(obj);
+                } else {
+                    dataObject[key] = new Array();
+                    dataObject[key].push(obj);
+                }
+            }
+            activityLoad(dataObject);
+            favStore();
+        },
+        // 获取商品销量
+        result: function(sales) {
+            $.post("/gd/findGoodsTransactionCount.ajax", {
+                "goodsId": sales.adsInfo.goodsId
+            }, function(data2) {
+                $('.' + sales.adsInfo.elementId + ' .rq_gb_sales').text(data2.result + '件');
+            });
+        }
+    }
+    ajaxRetrieval.ajax();
+
+
+    /**
+     * 收藏商品事件绑定
+     * Created by WW on 2016/10/12.
+     */
+    function favStore() {
+        $(".goodsCollect").click(function(){
+            var goodsId = $(this).attr("goods_id");
+            var storeId = $(this).attr("store_id");
+            $.ww.getLoginStatus(function () {
+                var success = function (data) {
+                    if (data.success) {
+                        jsAlert("收藏成功");
+                    } else {
+                        jsAlert(data.message);
+                    }
+                };
+                var request = {"goodsId": goodsId, "storeId": storeId};
+                //API:"/fav/addToGdFav.ajax"
+                requestDataWithAJAX("/fav/addToGdFav.ajax", "post", true, {"success": success, data: request});
+            }, function () {
+                location.href = "/toLogin.jhtml";
+            });
+        })
+    };
+
+});

@@ -1,0 +1,93 @@
+<#--店铺首页-->
+	<#include "/common/common_var_definds.ftl" />
+	<#include "/basepage/store/default/hb_templates/store_hb_templates.ftl" />
+	<#import "/basepage/store/default/common/zizhi_slider.ftl" as zizhi/>
+	<#import "/basepage/store/default/common/dangan_slider.ftl" as dangan/>
+	<!DOCTYPE html>
+	<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>饭饭1080直采平台</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+		<script type="text/javascript">
+			var deviceWidth = document.documentElement.clientWidth;
+			if(deviceWidth > 768) {
+				deviceWidth = 768;
+			}
+			document.documentElement.style.fontSize = deviceWidth / 6.4 + 'px';
+		</script>
+		<#import "/basepage/store/default/common/common_link.ftl" as link/>
+		<#import "/basepage/store/default/common/common_script.ftl" as script/>
+		<#import "/basepage/store/default/common/common_header_top.ftl" as top/>
+		<#import "/basepage/store/default/common/common_header_searchbox_default.ftl" as searchBox/>
+		<#import "/basepage/store/default/common/common_footer.ftl" as footerNoTab/>
+		<#import "/basepage/seller/seller_header_search.ftl" as sellerSearch/>
+		<@link.render />
+		<!--导入共通样式-->
+		<@script.render />
+		<!--导入共通脚本-->
+		<link rel="stylesheet" href="${resources}/basepage/seller/css/store.css" type="text/css">
+		<script src="${resources}/basepage/seller/js/store_common_head_load.js"></script>
+        <script src="${resources}/basepage/seller/js/staticStore.js"></script>
+		<script src="${resources}/basepage/seller/js/store_dynamics.js"></script>
+		<script src="${resources}/basepage/seller/js/sp_getAboutImg.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<div id="pageInfo" store_id="${storeId!''}" store_template_code="${storeTemplateCode!''}" page_id="${storeTemplateCode!''}" style="display: none"></div>
+		<!--此处是头部开始-->
+		<div class="top">
+			<@top.render />
+			<div class="store_search_box">
+				<@searchBox.render />
+				<#--导入search_box-->
+			</div>
+		</div>
+		<!--此处是头部结束-->
+		<!--网页头部&导航开始-->
+		<div id="sp_hd_1"></div>
+		<div id="sp_hd_2"></div>
+		<@sellerSearch.render />
+		<div id="ff_tab_box">
+			<div class="ff_tab_content">
+				<div class="ff-tab-title">
+					<img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /> <span>商家介绍</span>
+				</div>
+				<div class="ff-tab-con-detail">
+        <p>大连军绿绿色蔬菜科技发展有限公司是一个集设施蔬菜绿色生产技术开发和进行绿色蔬菜规模化生产为一体的实体公司。
+</p>
+<p> 公司于2012年创建，初创团队主要由五名部队退休、退役的老军人和两名从事农业技术的专业人员组成。公司的宗旨是：通过对设施蔬菜绿色生产技术的研发、实践、推广，取得成功后，能确实为普通城乡市民提供既能放心享用，又能吃得起的绿色蔬菜，从而为社会贡献余热，体现人生价值。 这一宗旨和创意，首先就得到了大连市农委、瓦房店市农发局等主管部门以及相关领导的重视，并及时地给予了指导和关注。</p>
+<p> 自2012年开始，公司在两市主管部门、农业科技推广中心以及大连工业大学、交通大学专家的帮助指导下，经历了近三年时间，先后在良农基地、瓦房店老虎屯镇大四川村、元台镇利兴村等七、八个乡镇村进行200余亩温室大棚的绿色蔬菜综合生产技术的研发、试验、示范、推广，不断取得成功，并研发定型了以使用生物有机肥、雷电灭菌增肥、农药降残三项组合技术，生产符合国家1A级标准的绿色蔬菜，达到预期目的。</p>
+<p>公司主要种植的中农26黄瓜、科粒纳朝研粉王西红柿、765绿把茄子、37-79尖椒、亮夹芸豆，经多次抽样检验，均达到国家1A级绿色蔬菜标准。这几种蔬菜不但品相好、口感好，且产量并不低于使用化肥生产蔬菜的产量，受到种植户的普遍认可和接受，其产品更是受到商家和消费者的一致好评。正如食用者的话说：“又尝到了那个年代的老味儿”，“西红柿是那个年代（无化肥）的西红柿味儿，黄瓜是那个年代的黄瓜味儿”！
+</p>
+<p> 由于公司设施蔬菜绿色生产综合技术的成功研发，以及示范、推广，并于2014年顺利地通过了瓦房店市农发局组织的专家技术成果认定，建议广泛推广应用。同时公司也因此获得了政府科技成果奖，奖金15万元。</p>
+<p> 为加速推广绿色蔬菜生产技术，扩大种植面积，以便生产出更多更好的让普通老百姓都能吃上放心的军绿绿色蔬菜，同时也能让更多的蔬菜种植户分享公司科技成果，公司在广泛听取专家意见和广大种植户呼声的基础上，从2015年起在已有技术的基础上，又进行了一些改进和调整。除保留生物有机肥替代化肥，雷电灭菌增肥等技术，又增加了以生物农药替代化学农药，以及植物生长灯等技术作为第二代设施蔬菜综合生产技术，简称（2+3）技术，投入生产实践。这一技术的进一步完善和成功，又一次为公司赢得了两级市组织的专家成果认定，并再一次获得政府的科研成果奖，奖金15万元。</p>
+<p> 目前，公司除了继续在瓦房店范围大力推广绿色蔬菜生产技术，同时更加注重公司自身绿色蔬菜生产示范基地的管理。不仅要起到示范的作用，更要不断扩大生产经营，增加蔬菜品种和产品产量。作为军绿绿色蔬菜面向合作伙伴、合作经销商以及广大消费者的窗口，将基地以及公司下属各生产合作社生产的军绿品牌的优质绿色蔬菜提供给市场和用户。值得一提的是，截止到目前，公司仍然本着最初的创业宗旨，不忘初心，依然以普通蔬菜的优惠价格对外销售。真诚欢迎有意同我公司合作的商家惠顾，真诚希望广大消费者优先选择军绿绿色蔬菜产品，从中受益！</p>
+                   
+
+				</div>
+			</div>
+			<div class="ff_tab_content only_book_content_zizhi">
+				<div class="ff-tab-title">
+					<img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /><span>商家资质</span>
+				</div>
+				<div class="ff-tab-con-detail">
+					<@zizhi.render />
+				</div>
+			</div>
+
+			<div class="ff_tab_content">
+				<div class="ff-tab-title">
+					<img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /> <span>商家活动</span>
+
+				</div>
+				<div class="ff-tab-con-detail">敬请期待</div>
+			</div>
+
+		</div>
+		<@footerNoTab.render />
+	</body>
+
+	</html>

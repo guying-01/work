@@ -1,0 +1,51 @@
+﻿<#include "/common/common_var_definds.ftl" />
+<#macro render>
+<script type="text/javascript" src="${resources}/js/common/pager.js"></script>
+<script type="text/javascript" src="${resources}/js/common/tab.js"></script>
+<script type="text/javascript" src="${resources}/js/lib/jquery/jquery.dataTables.js"></script>
+<script type="text/javascript" src="${resources}/js/lib/jquery/dataTables.bootstrap.js"></script>
+<script type="text/javascript" src="${resources}/js/lib/jquery/dt-operation-commons.js"></script>
+<script type="text/javascript" src="${resources}/js/lib/jquery/jquery.blockUI.min.js"></script> 
+<script type="text/javascript" src="${resources}/js/lib/jquery/jquery.validate.min.js"></script>
+<script type="text/javascript" src="${resources}/js/lib/handlebars/handlebars-v2.0.0.js"></script>
+<script type="text/javascript" src="${resources}/js/lib/plupload/moxie.js"></script>
+<script type="text/javascript" src="${resources}/js/lib/plupload/plupload.dev.js"></script>
+
+<script type="text/javascript" src="${resources}/js/lib/date/laydate.js"></script>
+
+<script type="text/javascript">
+$('document').ready(function() {
+	let gy=new requestData()
+	gy.getData(10)
+});
+	class requestData{
+		constructor(length){
+           this.length=length
+		}
+		getData(){
+			requestData.mainAccountRequest()
+            requestData.sonAccountRequest()
+        }
+		static mainAccountRequest(){
+			$.post('findMemberList1.ajax',{start:0,length:length}, function (data) {
+				let dataG=data.data
+				let template=Handlebars.compile($("#main-account").html())
+				let templateHtml=template(dataG)
+				$(".main-account").html(templateHtml)
+            })
+		}
+        static sonAccountRequest(){
+            $.post('findMemberList2.ajax',{start:0,length:length}, function (data) {
+                let dataG=data.data
+                let template=Handlebars.compile($("#son-account").html())
+                let templateHtml=template(dataG)
+                $(".son-account").html(templateHtml)
+            })
+        }
+
+
+
+	}
+
+</script>
+</#macro>

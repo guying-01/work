@@ -1,0 +1,241 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+	    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/cache	http://www.springframework.org/schema/cache/spring-cache-3.2.xsd
+	    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
+
+    <context:component-scan base-package="cn.com.fan1080.shop.webstore.model"/>
+    
+    <bean id="noCacheManager" class="org.springframework.cache.support.NoOpCacheManager" />
+    <bean id="parentCacheManager" class="cn.com.fan1080.shop.webstore.model.cache.CodisCacheManager" abstract="true" />
+    
+    <bean id="codisCacheMonitor" class="cn.com.fan1080.shop.webstore.model.cache.CodisCacheMonitor">
+    	<property name="limitCount" value="${shop.cache.codisCacheMonitor.limitCount}" />
+    </bean>
+    
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+		<property name="maxIdle" value="${shop.cache.jedisPoolConfig.maxIdle}" />
+		<property name="maxTotal" value="${shop.cache.jedisPoolConfig.maxTotal}" />
+		<property name="maxWaitMillis" value="${shop.cache.jedisPoolConfig.maxWaitMillis}" />
+		<property name="testOnBorrow" value="${shop.cache.jedisPoolConfig.testOnBorrow}" />
+		<property name="testOnReturn" value="${shop.cache.jedisPoolConfig.testOnReturn}" />
+		<property name="minIdle" value="${shop.cache.jedisPoolConfig.minIdle}" />
+	</bean>
+	
+	<bean id="codisCacheConnect" class="cn.com.fan1080.shop.webstore.model.cache.CodisCacheConnect" init-method="initJedis" destroy-method="closeJedis">
+		<property name="zkAddr" value="${shop.cache.codis.zkAddr}" />
+		<property name="zkProxyDir" value="${shop.cache.codis.zkProxyDir}" />
+		<property name="zkSessionTimeoutMs" value="${shop.cache.codis.zkSessionTimeoutMs}" />
+		<property name="jedisAuth" value="${shop.cache.codis.jedis.auth}" />
+		<property name="jedisPoolConfig" ref="jedisPoolConfig" />
+		<property name="cacheMonitor" ref="codisCacheMonitor" />
+	</bean>
+    
+    <bean id="parentCacheImpl" class="cn.com.fan1080.shop.webstore.model.cache.CodisCache" abstract="true">
+		<property name="keySerializer">
+			<bean class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
+		</property>
+		<property name="valueSerializer">
+			<bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"/>
+		</property>
+		<property name="projectName" value="${shop.cache.codis.projectName}" />
+		<property name="isExpire" value="${shop.cache.codis.isExpire}" />
+		<property name="expireSecond" value="${shop.cache.codis.expireSecond}" />
+		<property name="codisConnect" ref="codisCacheConnect" />
+		<property name="cacheMonitor" ref="codisCacheMonitor" />
+	</bean>
+
+	<bean id="codisKeyGenertor" class="cn.com.fan1080.shop.webstore.model.cache.CodisKeyGenertor" />
+
+    <!-- 配置缓存 -->    
+    <bean id="codisCacheManager" parent="parentCacheManager">
+		<property name="caches" >
+			<set>
+				<ref bean="fsBasePageModelChIm"/>
+				<ref bean="fsSellerTemplateModelChIm"/>
+				<ref bean="wstoreSgStoreGoodsCategoryModelChIm"/>
+				<ref bean="wstoreStoreApplyIntoModelChIm"/>
+				<ref bean="wstoreGoodsSearchModelChIm"/>
+				<ref bean="wstoreSgStoreModelChIm"/>
+				<ref bean="wstoreDictionaryModelChIm"/>
+				<ref bean="wstoreMessageModelChIm"/>
+				<ref bean="fSSwitchModelChIm"/>
+				<ref bean="wstoreSgGoodsRecordModelChIm"/>
+				<ref bean="wstoreSgGoodsScoreModelChIm"/>
+				<ref bean="wstoreSgGoodsModelChIm"/>
+			</set>
+		</property>
+	</bean>
+	
+	<!-- 首页数据接口 -->
+	<bean id="fsBasePageModelChIm" parent="parentCacheImpl"  >
+		<property name="name" value="FSBasePageModel" />
+	</bean>
+	
+	<cache:advice id="fsBasePageModelCacheAdvice" cache-manager="${shop.cache.codis.cacheManager}" key-generator="codisKeyGenertor">
+		<cache:caching cache="FSBasePageModel">
+		    <cache:cacheable method="findGoodsMallCategoryListByParent"/>
+		    <cache:cacheable method="findGoodsCategoryListByParent"/>
+		    <cache:cacheable method="getAdsPicInfo"/>
+		    <cache:cacheable method="findDictionaryByDicType"/>
+		    <cache:cacheable method="getStoreInfoByStoreId"/>
+		    <cache:cacheable method="getStoreTemplateElement"/>
+		    <cache:cacheable method="getSellerTemplateElement"/>
+		</cache:caching>
+	</cache:advice>
+	
+	<!-- Seller模板 -->
+	<bean id="fsSellerTemplateModelChIm" parent="parentCacheImpl"  >
+		<property name="name" value="FSSellerTemplateModel" />
+	</bean>
+	
+	<cache:advice id="fsSellerTemplateModelCacheAdvice" cache-manager="${shop.cache.codis.cacheManager}" key-generator="codisKeyGenertor">
+		<cache:caching cache="FSSellerTemplateModel">
+		    <cache:cacheable method="findStoreGoodsCategoryByStoreTemplateCode"/>
+		</cache:caching>
+	</cache:advice>
+	
+	<!-- 商铺商品分类 -->
+	<bean id="wstoreSgStoreGoodsCategoryModelChIm" parent="parentCacheImpl"  >
+		<property name="name" value="WstoreSgStoreGoodsCategoryModel" />
+	</bean>
+	
+	<cache:advice id="wstoreSgStoreGoodsCategoryModelCacheAdvice" cache-manager="${shop.cache.codis.cacheManager}" key-generator="codisKeyGenertor">
+		<cache:caching cache="WstoreSgStoreGoodsCategoryModel">
+		    <cache:cacheable method="findStoreGoodsCategoryListByStoreId"/>
+		</cache:caching>
+	</cache:advice>
+	
+	<!-- 商铺信息 -->
+	<bean id="wstoreStoreApplyIntoModelChIm" parent="parentCacheImpl"  >
+		<property name="name" value="WstoreStoreApplyIntoModel" />
+	</bean>
+	
+	<cache:advice id="wstoreStoreApplyIntoModelCacheAdvice" cache-manager="${shop.cache.codis.cacheManager}" key-generator="codisKeyGenertor">
+		<cache:caching cache="WstoreStoreApplyIntoModel">
+		    <cache:cacheable method="getStoreInfoByStoreId"/>
+		    <cache:cacheable method="getAllStorePromotionGoods"/>
+		</cache:caching>
+	</cache:advice>
+	
+	<!-- 搜索商品 -->
+	<bean id="wstoreGoodsSearchModelChIm" parent="parentCacheImpl"  >
+		<property name="name" value="WstoreGoodsSearchModel" />
+	</bean>
+	
+	<cache:advice id="wstoreGoodsSearchModelCacheAdvice" cache-manager="${shop.cache.codis.cacheManager}" key-generator="codisKeyGenertor">
+		<cache:caching cache="WstoreGoodsSearchModel">
+		    <cache:cacheable method="findHotWords"/>
+		</cache:caching>
+	</cache:advice>
+	
+	<!-- 查看商家信息 -->
+	<bean id="wstoreSgStoreModelChIm" parent="parentCacheImpl"  >
+		<property name="name" value="WstoreSgStoreModel" />
+	</bean>
+	
+	<cache:advice id="wstoreSgStoreModelCacheAdvice" cache-manager="${shop.cache.codis.cacheManager}" key-generator="codisKeyGenertor">
+		<cache:caching cache="WstoreSgStoreModel">
+		    <cache:cacheable method="findStoreById"/>
+		</cache:caching>
+	</cache:advice>
+
+	<!-- 查看商家信息 -->
+	<bean id="wstoreDictionaryModelChIm" parent="parentCacheImpl"  >
+		<property name="name" value="WstoreDictionaryModel" />
+	</bean>
+	
+	<cache:advice id="wstoreDictionaryModelCacheAdvice" cache-manager="${shop.cache.codis.cacheManager}" key-generator="codisKeyGenertor">
+		<cache:caching cache="WstoreDictionaryModel">
+		    <cache:cacheable method="findDictionaryByDicType"/>
+		    <cache:cacheable method="findDictionaryByDicTypeAndCode"/>
+		    <cache:cacheable method="dictionaryVoList2Map"/>
+		</cache:caching>
+	</cache:advice>
+	
+	<!-- 商家消息信息 -->
+	<bean id="wstoreMessageModelChIm" parent="parentCacheImpl"  >
+		<property name="name" value="WstoreMessageModel" />
+	</bean>
+	
+	<cache:advice id="wstoreMessageModelCacheAdvice" cache-manager="${shop.cache.codis.cacheManager}" key-generator="codisKeyGenertor">
+		<cache:caching cache="WstoreMessageModel">
+		    <cache:cacheable method="findMessageTemplateType"/>
+		</cache:caching>
+	</cache:advice>
+	
+	<!-- 开关model -->
+	<bean id="fSSwitchModelChIm" parent="parentCacheImpl"  >
+		<property name="name" value="FSSwitchModel" />
+	</bean>
+	
+	<cache:advice id="fSSwitchModelCacheAdvice" cache-manager="${shop.cache.codis.cacheManager}" key-generator="codisKeyGenertor">
+		<cache:caching cache="FSSwitchModel">
+		    <cache:cacheable method="isRegularPriceShow"/>
+		    <cache:cacheable method="isOrderByContractNo"/>
+		</cache:caching>
+	</cache:advice>
+	
+	<!-- 销售记录相关信息 -->
+	<bean id="wstoreSgGoodsRecordModelChIm" parent="parentCacheImpl"  >
+		<property name="name" value="WstoreSgGoodsRecordModel" />
+	</bean>
+	
+	<cache:advice id="wstoreSgGoodsRecordModelCacheAdvice" cache-manager="${shop.cache.codis.cacheManager}" key-generator="codisKeyGenertor">
+		<cache:caching cache="WstoreSgGoodsRecordModel">
+		    <cache:cacheable method="findTransactionRecordCount"/>
+		</cache:caching>
+	</cache:advice>
+	
+	<!-- 商品评价model -->
+	<bean id="wstoreSgGoodsScoreModelChIm" parent="parentCacheImpl"  >
+		<property name="name" value="WstoreSgGoodsScoreModel" />
+	</bean>
+	
+	<cache:advice id="wstoreSgGoodsScoreModelCacheAdvice" cache-manager="${shop.cache.codis.cacheManager}" key-generator="codisKeyGenertor">
+		<cache:caching cache="WstoreSgGoodsScoreModel">
+		    <cache:cacheable method="findGoodsScoreNum"/>
+		    <cache:cacheable method="findGoodsScore"/>
+		    <cache:cacheable method="findScoreTagListByGoodsId"/>
+		    <cache:cacheable method="findGoodsCountByConditions"/>
+		</cache:caching>
+	</cache:advice>
+	
+	<!-- 商品model -->
+	<bean id="wstoreSgGoodsModelChIm" parent="parentCacheImpl"  >
+		<property name="name" value="WstoreSgGoodsModel" />
+	</bean>
+	
+	<cache:advice id="wstoreSgGoodsModelCacheAdvice" cache-manager="${shop.cache.codis.cacheManager}" key-generator="codisKeyGenertor">
+		<cache:caching cache="WstoreSgGoodsModel">
+		    <cache:cacheable method="findGoodsFavoriteListByGoodsId"/>
+		    <cache:cacheable method="findItemListByGoodsId4Cache00"/>
+		    <cache:cacheable method="findItemListByGoodsId4Cache02"/>
+		    <cache:cacheable method="findItemListByGoodsId"/>
+		    <cache:cacheable method="getSgItemTimeVo"/>
+		</cache:caching>
+	</cache:advice>
+
+	<!-- AOP 配置 -->
+	<aop:config proxy-target-class="true">
+		<aop:advisor advice-ref="fsBasePageModelCacheAdvice" pointcut="execution(* cn.com.fan1080.shop.webstore.model.FSBasePageModel.*(..))" />
+		<aop:advisor advice-ref="fsSellerTemplateModelCacheAdvice" pointcut="execution(* cn.com.fan1080.shop.webstore.model.FSSellerTemplateModel.*(..))" />
+		<aop:advisor advice-ref="wstoreSgStoreGoodsCategoryModelCacheAdvice" pointcut="execution(* cn.com.fan1080.shop.webstore.model.WstoreSgStoreGoodsCategoryModel.*(..))" />
+		<aop:advisor advice-ref="wstoreStoreApplyIntoModelCacheAdvice" pointcut="execution(* cn.com.fan1080.shop.webstore.model.WstoreStoreApplyIntoModel.*(..))" />
+		<aop:advisor advice-ref="wstoreGoodsSearchModelCacheAdvice" pointcut="execution(* cn.com.fan1080.shop.webstore.model.WstoreGoodsSearchModel.*(..))" />
+		<aop:advisor advice-ref="wstoreSgStoreModelCacheAdvice" pointcut="execution(* cn.com.fan1080.shop.webstore.model.WstoreSgStoreModel.*(..))" />
+		<aop:advisor advice-ref="wstoreDictionaryModelCacheAdvice" pointcut="execution(* cn.com.fan1080.shop.webstore.model.WstoreDictionaryModel.*(..))" />
+		<aop:advisor advice-ref="wstoreMessageModelCacheAdvice" pointcut="execution(* cn.com.fan1080.shop.webstore.model.WstoreMessageModel.*(..))" />
+		<aop:advisor advice-ref="fSSwitchModelCacheAdvice" pointcut="execution(* cn.com.fan1080.shop.webstore.model.FSSwitchModel.*(..))" />
+		<aop:advisor advice-ref="wstoreSgGoodsRecordModelCacheAdvice" pointcut="execution(* cn.com.fan1080.shop.webstore.model.WstoreSgGoodsRecordModel.*(..))" />
+		<aop:advisor advice-ref="wstoreSgGoodsScoreModelCacheAdvice" pointcut="execution(* cn.com.fan1080.shop.webstore.model.WstoreSgGoodsScoreModel.*(..))" />
+		<aop:advisor advice-ref="wstoreSgGoodsModelCacheAdvice" pointcut="execution(* cn.com.fan1080.shop.webstore.model.WstoreSgGoodsModel.*(..))" />
+	</aop:config>
+</beans>

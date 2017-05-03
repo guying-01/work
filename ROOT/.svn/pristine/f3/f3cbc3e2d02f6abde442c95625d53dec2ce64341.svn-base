@@ -1,0 +1,153 @@
+<#include "/common/common_var_definds.ftl" />
+<#import "/basepage/store/default/common/common_script.ftl" as script/>
+<!DOCTYPE html>
+<html>
+<#--微信公众号【关于饭饭】微场景页面-->
+<head lang="en">
+    <title>饭饭1080°直采平台</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <script type="text/javascript">
+        var deviceWidth = document.documentElement.clientWidth;
+        if(deviceWidth>768){
+            deviceWidth=768;
+        }
+        document.documentElement.style.fontSize = deviceWidth / 6.4 + 'px';
+    </script>
+<@script.render />
+    <!--导入共通脚本-->
+    <link href="${resources}/basepage/store/default/promotion/css/swiper.css" rel="stylesheet" type="text/css">
+    <script src="${resources}/basepage/store/default/promotion/js/vendor.min.js"></script>
+    <script src="${resources}/basepage/store/default/promotion/js/swiper.js"></script>
+    <script src="${resources}/basepage/store/default/promotion/js/bundle.min.js"></script>
+    <!--此处是动态数据绑定函数-->
+</head>
+<style>
+    html,body{
+        height: 100%;
+        margin: 0!important;
+    }
+    .swiper-container {
+        height: 100%;
+    }
+    .swiper-container .swiper-slide {
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+    }
+    .swiper-container .swiper-slide img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+    #music_bt{
+        position: fixed;
+        top:0.2rem;
+        right: 0.2rem;
+        background-size: cover;
+        width: 0.7rem;
+        height: 0.7rem;
+        z-index: 1;
+        border-radius: 1.5rem;
+    }
+    .m_play{
+        background: url("${resources}/basepage/store/default/promotion/img/about_passage/play.png") no-repeat top center;
+        border: 2px solid #507f17;
+    }
+    .m_stop{
+        background: url("${resources}/basepage/store/default/promotion/img/about_passage/stop.png") no-repeat top center;
+        border: 2px solid #707271;
+    }
+</style>
+<body>
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide  swiper-slide0">
+            <img src="${resources}/basepage/store/default/promotion/img/about_passage/1.jpg" class="first-top">
+        </div>
+        <div class="swiper-slide swiper-slide1"><img src="${resources}/basepage/store/default/promotion/img/about_passage/2.jpg" ></div>
+        <div class="swiper-slide swiper-slide2"><img src="${resources}/basepage/store/default/promotion/img/about_passage/3.jpg" ></div>
+        <div class="swiper-slide swiper-slide3"><img src="${resources}/basepage/store/default/promotion/img/about_passage/4.jpg" ></div>
+        <div class="swiper-slide swiper-slide4"><img src="${resources}/basepage/store/default/promotion/img/about_passage/5.jpg" ></div>
+        <div class="swiper-slide swiper-slide5"><img src="${resources}/basepage/store/default/promotion/img/about_passage/6.jpg" ></div>
+        <div class="swiper-slide swiper-slide6"><img src="${resources}/basepage/store/default/promotion/img/about_passage/7.jpg" ></div>
+        <div class="swiper-slide swiper-slide7"><img src="${resources}/basepage/store/default/promotion/img/about_passage/8.jpg" ></div>
+        <div class="swiper-slide swiper-slide8"><img src="${resources}/basepage/store/default/promotion/img/about_passage/9.jpg" ></div>
+        <div class="swiper-slide swiper-slide9"><img src="${resources}/basepage/store/default/promotion/img/about_passage/10.jpg" ></div>
+        <div class="swiper-slide swiper-slide10"><img src="${resources}/basepage/store/default/promotion/img/about_passage/11.jpg" ></div>
+        <div class="swiper-slide swiper-slide11"><img src="${resources}/basepage/store/default/promotion/img/about_passage/12.jpg" ></div>
+        <div class="swiper-slide swiper-slide12"><img src="${resources}/basepage/store/default/promotion/img/about_passage/13.jpg" ></div>
+        <div class="swiper-slide swiper-slide13"><img src="${resources}/basepage/store/default/promotion/img/about_passage/14.jpg" ></div>
+        <div class="swiper-slide swiper-slide14"><img src="${resources}/basepage/store/default/promotion/img/about_passage/15.jpg" ></div>
+        <div class="swiper-slide swiper-slide15"><img src="${resources}/basepage/store/default/promotion/img/about_passage/16.jpg" ></div>
+        <div class="swiper-slide swiper-slide16"><img src="${resources}/basepage/store/default/promotion/img/about_passage/17.jpg" ></div>
+        <div class="swiper-slide swiper-slide17"><img src="${resources}/basepage/store/default/promotion/img/about_passage/18.jpg" ></div>
+        <div class="swiper-slide swiper-slide18"><img src="${resources}/basepage/store/default/promotion/img/about_passage/19.jpg" ></div>
+        <div class="swiper-slide swiper-slide19"><img src="${resources}/basepage/store/default/promotion/img/about_passage/20.jpg" ></div>
+        <div class="swiper-slide swiper-slide20"><img src="${resources}/basepage/store/default/promotion/img/about_passage/21.jpg" ></div>
+        <div class="swiper-slide swiper-slide21"><img src="${resources}/basepage/store/default/promotion/img/about_passage/22.jpg" ></div>
+        <div class="swiper-slide swiper-slide22"><img src="${resources}/basepage/store/default/promotion/img/about_passage/23.jpg" ></div>
+        <div class="swiper-slide swiper-slide23"><img src="${resources}/basepage/store/default/promotion/img/about_passage/24.jpg" ></div>
+        <div class="swiper-slide swiper-slide24"><img src="${resources}/basepage/store/default/promotion/img/about_passage/25.jpg" ></div>
+        <div class="swiper-slide swiper-slide25"><img src="${resources}/basepage/store/default/promotion/img/about_passage/26.jpg" ></div>
+        <div class="swiper-slide swiper-slide26"><img src="${resources}/basepage/store/default/promotion/img/about_passage/27.jpg" ></div>
+        <div class="swiper-slide swiper-slide27"><img src="${resources}/basepage/store/default/promotion/img/about_passage/28.jpg" ></div>
+        <div class="swiper-slide swiper-slide28"><img src="${resources}/basepage/store/default/promotion/img/about_passage/29.jpg" ></div>
+        <div class="swiper-slide swiper-slide29"><img src="${resources}/basepage/store/default/promotion/img/about_passage/30.jpg" ></div>
+        <div class="swiper-slide swiper-slide30"><img src="${resources}/basepage/store/default/promotion/img/about_passage/31.jpg" ></div>
+        <div class="swiper-slide swiper-slide31"><img src="${resources}/basepage/store/default/promotion/img/about_passage/32.jpg" ></div>
+        <div class="swiper-slide swiper-slide32"><img src="${resources}/basepage/store/default/promotion/img/about_passage/33.jpg" ></div>
+        <div class="swiper-slide swiper-slide33"><img src="${resources}/basepage/store/default/promotion/img/about_passage/34.jpg" ></div>
+        <div class="swiper-slide swiper-slide34"><img src="${resources}/basepage/store/default/promotion/img/about_passage/35.jpg" ></div>
+        <div class="swiper-slide swiper-slide35"><img src="${resources}/basepage/store/default/promotion/img/about_passage/36.jpg" ></div>
+        <div class="swiper-slide swiper-slide36"><img src="${resources}/basepage/store/default/promotion/img/about_passage/37.jpg" ></div>
+        <div class="swiper-slide swiper-slide37"><img src="${resources}/basepage/store/default/promotion/img/about_passage/38.jpg" ></div>
+        <div class="swiper-slide swiper-slide38"><img src="${resources}/basepage/store/default/promotion/img/about_passage/39.jpg" ></div>
+        <div class="swiper-slide swiper-slide39"><img src="${resources}/basepage/store/default/promotion/img/about_passage/40.jpg" ></div>
+        <div class="swiper-slide swiper-slide40"><img src="${resources}/basepage/store/default/promotion/img/about_passage/41.jpg" ></div>
+        <div class="swiper-slide swiper-slide41"><img src="${resources}/basepage/store/default/promotion/img/about_passage/42.jpg" ></div>
+        <div class="swiper-slide swiper-slide42"><img src="${resources}/basepage/store/default/promotion/img/about_passage/43.jpg" ></div>
+        <div class="swiper-slide swiper-slide43"><img src="${resources}/basepage/store/default/promotion/img/about_passage/44.jpg" ></div>
+        <div class="swiper-slide swiper-slide44"><img src="${resources}/basepage/store/default/promotion/img/about_passage/45.jpg" ></div>
+        <div class="swiper-slide swiper-slide45"><img src="${resources}/basepage/store/default/promotion/img/about_passage/46.jpg" ></div>
+        <div class="swiper-slide swiper-slide46"><img src="${resources}/basepage/store/default/promotion/img/about_passage/47.jpg" ></div>
+        <div class="swiper-slide swiper-slide47"><img src="${resources}/basepage/store/default/promotion/img/about_passage/48.jpg" ></div>
+        <div class="swiper-slide swiper-slide48"><img src="${resources}/basepage/store/default/promotion/img/about_passage/49.jpg" ></div>
+        <div class="swiper-slide swiper-slide49"><img src="${resources}/basepage/store/default/promotion/img/about_passage/50.jpg" ></div>
+        <div class="swiper-slide swiper-slide50"><img src="${resources}/basepage/store/default/promotion/img/about_passage/51.jpg" ></div>
+        <div class="swiper-slide swiper-slide51"><img src="${resources}/basepage/store/default/promotion/img/about_passage/52.jpg" ></div>
+        <div class="swiper-slide swiper-slide52"><img src="${resources}/basepage/store/default/promotion/img/about_passage/53.jpg" ></div>
+        <div class="swiper-slide swiper-slide53"><img src="${resources}/basepage/store/default/promotion/img/about_passage/54.jpg" ></div>
+        <div class="swiper-slide swiper-slide54"><img src="${resources}/basepage/store/default/promotion/img/about_passage/55.jpg" ></div>
+        <div class="swiper-slide swiper-slide55"><img src="${resources}/basepage/store/default/promotion/img/about_passage/56.jpg" ></div>
+        <div class="swiper-slide swiper-slide56"><img src="${resources}/basepage/store/default/promotion/img/about_passage/57.jpg" ></div>
+        <div class="swiper-slide swiper-slide57"><img src="${resources}/basepage/store/default/promotion/img/about_passage/58.jpg" ></div>
+        <div class="swiper-slide swiper-slide58"><img src="${resources}/basepage/store/default/promotion/img/about_passage/59.jpg" ></div>
+        <div class="swiper-slide swiper-slide59"><img src="${resources}/basepage/store/default/promotion/img/about_passage/60.jpg" ></div>
+        <div class="swiper-slide swiper-slide60"><img src="${resources}/basepage/store/default/promotion/img/about_passage/61.jpg" ></div>
+        <div class="swiper-slide swiper-slide61"><img src="${resources}/basepage/store/default/promotion/img/about_passage/62.jpg" ></div>
+        <div class="swiper-slide swiper-slide62"><img src="${resources}/basepage/store/default/promotion/img/about_passage/63.jpg" ></div>
+        <div class="swiper-slide swiper-slide63"><img src="${resources}/basepage/store/default/promotion/img/about_passage/64.jpg" ></div>
+        <div class="swiper-slide swiper-slide64"><img src="${resources}/basepage/store/default/promotion/img/about_passage/65.jpg" ></div>
+        <div class="swiper-slide swiper-slide65"><img src="${resources}/basepage/store/default/promotion/img/about_passage/66.jpg" ></div>
+        <div class="swiper-slide swiper-slide66"><img src="${resources}/basepage/store/default/promotion/img/about_passage/67.jpg" ></div>
+    </div>
+</div>
+<audio id="audio" src="${resources}/basepage/store/default/promotion/MP3/music.mp3"  loop="loop" autoplay="autoplay" ></audio>
+<div id="music_bt" class="m_play"></div>
+<script>
+    $("#music_bt").click(function () {
+        $(this).toggleClass('m_stop');
+        if($("#audio").attr('class')){
+            audio.play();
+        }
+        else {
+            audio.pause();
+        }
+        $("#audio").toggleClass('stop');
+    })
+</script>
+</body>
+</html>
+<#--<script src="${resources}/basepage/store/default/promotion/js/swiper.js"></script>-->
+

@@ -1,0 +1,114 @@
+<div class="nav" dm-container="mallNav"></div>
+<script id="mall-nav-tl" type="text/x-handlebars-template">
+<div class="wrapper">
+	 <ul>
+	 	
+		{{#each hot_goods}}
+		{{#if label}}<li><a href="{{url}}" title="{{label}}">{{shortLabel}}</a></li>{{/if}}
+		{{/each}}
+	 </ul>
+	
+</div>
+</script>
+<script type="text/javascript">
+/** 初始化检索 **/
+(function($){
+	if(!$.dm){
+		$.dm={};
+	}
+	if(!$.dm.widget){
+		$.dm.widget={};
+	}
+	$.dm.widget.mallNav=function(){
+		var init=function(options){
+			var pageDesignOptions = {pageId:"page0001",subSystemId:"00"};
+			var pageId = "page0001";
+			var subSystemId = "00";
+		
+			var container = options["container"] || "";
+			var range = options["range"] || {};
+			var order = range["orders"] || "";
+			data = range["rangeData"] || {};
+			data["order"]  = order || "";
+			
+			var memberClass = options["memberClass"] || "";
+			loadMallNav(container,data,memberClass);
+		};
+		
+		var loadMallNav = function(container,rangeData,memberClass){
+		try{
+			if(container){
+				container = container + " ";
+			}
+			var nav_selector = container+"[dm-container='mallNav']";
+			$_nav = $(nav_selector);
+			if(memberClass){
+				$_nav.addClass(memberClass);
+			}
+			var navCount = 0;
+			for(var i=1;i<=10;i++){
+				var navName = rangeData["hot_goods"+i];
+				if(navName){
+					navCount++;
+				}
+			}
+			if(navCount==0){
+				navCount = 1;
+			}
+			var allNavWordCount = 5*10;//每个导航5个字， 最多10个导航
+			var allNavWordWidth = 70*10;//每个导航宽度最多70PX   最大700
+			var oneNavWordCount = allNavWordCount / 10;
+			var oneNavWordWidth = allNavWordWidth / 10;
+			var oneNavWordHeight = 50;//高度
+			var hotGoods=[];
+			if(rangeData["hot_goods"]){
+				//变换为数组
+				try{
+					hotGoods=JSON.parse(rangeData["hot_goods"]);
+				}catch(ex){
+				}
+			}
+			
+			//裁剪超长文字
+			for(var i = 0; i < hotGoods.length; i++){
+				var navitem = hotGoods[i];
+				if(navitem && navitem['label']){
+					if(navitem['label'].length > oneNavWordCount){
+						navitem['shortLabel'] = navitem['label'].substr(0,oneNavWordCount-1) + "...";
+					}else{
+						navitem['shortLabel'] = navitem['label'];
+					}
+				}
+			}
+			
+			rangeData["hot_goods"]=hotGoods;
+			
+			// 编译文本成handerbars对象
+			// 模板
+			var nav_tl = $("#mall-nav-tl").html();
+			var nav_template=Handlebars.compile(nav_tl);
+			var nav_html=nav_template(rangeData);
+			
+			// 选择栏位节点
+			// 查找要插入html的节点
+			// 将编译好的html加载到当前页面上
+			$_nav.html(nav_html);
+			$(container+".nav ul li a").css("padding","0 10px");
+			$(container+".nav ul li a").css("text-align","center");
+			$(container+".nav ul li a").css("overflow","hidden");
+			$(container+".nav ul li a").css("width",oneNavWordWidth+"px");
+			$(container+".nav ul li a").css("height",oneNavWordHeight+"px");
+			
+		}catch(ex){
+			console.log(ex);
+		}
+	}
+		
+		var api={
+			init:init
+		};
+		
+		return api;
+	};
+})(jQuery);
+</script>

@@ -1,0 +1,15 @@
+a:hover{
+    text-decoration: none;
+}
+.cheap_top{
+    width: 100%;
+    height: 3rem;
+    background: url(../img/cheap/cheapBanner.jpg) no-repeat center center;
+    background-size: cover;
+}
+.cheap_con{
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+

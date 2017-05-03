@@ -1,0 +1,96 @@
+<#--店铺首页-->
+	<#include "/common/common_var_definds.ftl" />
+	<#include "/basepage/store/default/hb_templates/store_hb_templates.ftl" />
+	<#import "/basepage/store/default/common/zizhi_slider.ftl" as zizhi/>
+	<#import "/basepage/store/default/common/dangan_slider.ftl" as dangan/>
+	<!DOCTYPE html>
+	<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>饭饭1080直采平台</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+		<script type="text/javascript">
+			var deviceWidth = document.documentElement.clientWidth;
+			if(deviceWidth > 768) {
+				deviceWidth = 768;
+			}
+			document.documentElement.style.fontSize = deviceWidth / 6.4 + 'px';
+		</script>
+		<#import "/basepage/store/default/common/common_link.ftl" as link/>
+		<#import "/basepage/store/default/common/common_script.ftl" as script/>
+		<#import "/basepage/store/default/common/common_header_top.ftl" as top/>
+		<#import "/basepage/store/default/common/common_header_searchbox_default.ftl" as searchBox/>
+		<#import "/basepage/store/default/common/common_footer.ftl" as footerNoTab/>
+		<#import "/basepage/seller/seller_header_search.ftl" as sellerSearch/>
+		<@link.render />
+		<!--导入共通样式-->
+		<@script.render />
+		<!--导入共通脚本-->
+		<link rel="stylesheet" href="${resources}/basepage/seller/css/store.css" type="text/css">
+		<script src="${resources}/basepage/seller/js/store_common_head_load.js"></script>
+        <script src="${resources}/basepage/seller/js/staticStore.js"></script>
+		<script src="${resources}/basepage/seller/js/store_dynamics.js"></script>
+		<script src="${resources}/basepage/seller/js/sp_getAboutImg.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<div id="pageInfo" store_id="${storeId!''}" store_template_code="${storeTemplateCode!''}" page_id="${storeTemplateCode!''}" style="display: none"></div>
+		<!--此处是头部开始-->
+		<div class="top">
+			<@top.render />
+			<div class="store_search_box">
+				<@searchBox.render />
+				<#--导入search_box-->
+			</div>
+		</div>
+		<!--此处是头部结束-->
+		<!--网页头部&导航开始-->
+		<div id="sp_hd_1"></div>
+		<div id="sp_hd_2"></div>
+		<@sellerSearch.render />
+		<div id="ff_tab_box">
+			<div class="ff_tab_content">
+				<div class="ff-tab-title">
+					<img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /> <span>商家介绍</span>
+				</div>
+				<div class="ff-tab-con-detail">
+                        <p style="text-align: center;text-indent: 0;">大连华恩有限公司</p>
+                        <p>公司简介
+                        </p>
+                        <p>大连华恩有限公司始建于1993年，是中国第一家获认证专业从事有机产品的种植、加工和出口的外向型企业，连续获得了OCIA、ECOCERT、IBD、BAC、KOSHER、FOFCC等国际、国内权威认证机构的认证认可。总部位于环境清新、交通便利的港口城市大连，占地面积达33600平方米。公司先后在黑龙江省、吉林省、辽宁省、内蒙古地区建立了管理完善的有机农场，拥有多套行业领先的现代化生产设备。</p>
+                        <p>经营范围</p>
+                        <p>公司目前经营的产品包括有机粮谷类，有机豆类，有机籽仁类，有机坚果类，有机油类，有机饲料等30多个品种。营销网络遍布全球20多个国家和地区，并享有美誉。</p>
+                        <p>质量控制</p>
+                        <p>公司始终把质量作为企业生存之本。严格的质量控制体系和追溯体系充分保证了产品品质。严格按照HACCP及有机认证规程进行各项操作，充分利用内部质量监控体系和产品追溯体系对所有产品进行监督管理。</p>
+                        <p>全新品牌</p>
+                        <p>2011年，大连华恩有限公司面向国内市场推出全新品牌---丰禾万家，主营各种有机杂粮、有机蔬菜、有机坚果、有机罐头等产品。本着“提供最可信赖的有机食品，培养健康的饮食习惯”的宗旨，“丰禾万家”为国内有机市场注入了全新活力。</p>
+                        <p>发展目标</p>
+                        <p>长期作为世界有机产品领域的一员和可持续发展农业的先锋，我们坚持利用已有的经验、学识、能力推广有机食品，为人类健康做贡献。大连华恩有限公司凭借“农场-仓储-加工-贸易”完善的产业链；以严格的质量标准为依托；本着城市可靠、持续发展的经营方针；不断创新发展、开发新产品、开拓新市场、完善新供应链；在社会各界的帮助和扶持下，坚持不懈、孜孜以求；必将为消费者提供最可信赖的有机盛宴。</p>
+                        <p>大连华恩有限公司分别在辽宁、吉林、黑龙江、内蒙古等粮食丰收区建有多个有机农场，总有机种植面积达6万公顷。每个农场建立时都严格地理位置及周边环境进行考察和检验；充分考虑光照、水源、土壤等生长因素；不采用基因工程；以生态、无污染、可持续发展为指导方针；根据基地的地理纬度、土壤特征及生物多样性，种植、养护与其最相适宜的农作物品种，通过桔杆还田、品种轮作、生态种植等方法生产品质最为优良的有机产品。
+                            我公司在各个农场建有有机加工厂和仓储库。统一的存储可有效避免货物混合污染，加工厂也可以直接对产品进行清选、脱壳，降低了深加工前的运输成本，减轻了对环境的污染。我司大连有机加工厂具有更广泛的功能，拥有先进的有机油、粕、颗粒饲料加工车间和顶级的有机大豆、有机籽仁、有机杂粮等生产线，专门加工来自华恩有机农场的有机产品。所有加工厂在卫生、操作、流程、安全、人员管理上，严格遵照有机标准。不同有机产品单独加工，分区储存，完全杜绝混合、污染。有效保证了产品加工品质。
+                        </p>
+
+				</div>
+			</div>
+			<div class="ff_tab_content only_book_content_zizhi">
+				<div class="ff-tab-title">
+					<img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /><span>商家资质</span> 
+				</div>
+				<div class="ff-tab-con-detail">
+					<@zizhi.render />
+				</div>
+			</div>
+			<div class="ff_tab_content">
+				<div class="ff-tab-title">
+					<img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /> <span>商家活动</span>
+
+				</div>
+				<div class="ff-tab-con-detail">敬请期待</div>
+			</div>
+		</div>
+		<@footerNoTab.render />
+	</body>
+
+	</html>

@@ -1,0 +1,206 @@
+
+    .cashBox{
+        width: 100%;
+        height: auto;
+        overflow: hidden;
+        padding: 0.1rem 0.2rem;
+        box-sizing: border-box;
+    }
+    .cashTitle{
+        text-align: center;
+        font-size: 0.26rem;
+    }
+    .cashTitle .goBack{
+        top:0.11rem;
+    }
+    .cashBox #accountbalance{
+        float: left;
+        height: 0.45rem;
+        line-height: 0.45rem;
+        margin-left: 0.15rem;
+    }
+    .cashBox .cash-add{
+        width: 100%;
+        float: left;
+        margin-top: 0.2rem;
+    }
+    .cashBox .cash-add span{
+        float: left;
+        width: 1.3rem;
+        text-align: right;
+        height: 0.45rem;
+        line-height: 0.45rem;
+    }
+    .cashBox .cash-add span i{
+    }
+    .cashBox .cash-add input{
+        float: left;
+        margin-left: 0.15rem;
+        width: 150px;
+    }
+    .cashBox .text_A{
+        width: auto;
+    }
+    .cashBox .m-l-10{
+        height: 0.45rem;
+        line-height: 0.45rem;
+    }
+    .cashBox #bankAccount{
+        height: 0.45rem;
+        line-height: 0.45rem;
+        margin-left: 0.15rem;
+    }
+    .cashBox .cash-add .phoneNum{
+        height: 0.45rem;
+        line-height: 0.45rem;
+        margin-left: 0.15rem;
+        text-align: left;
+    }
+    .cashBox .forgetPsw{
+        float: right;
+        height: 0.45rem;
+        line-height: 0.45rem;
+        margin-left: 0.2rem;
+        text-align: center;
+    }
+    .cashBox #send_message{
+        float: left;
+        margin-left: 0.3rem;
+    }
+    .cashBox #withDrawCash{
+        margin: auto;
+    }
+    .cashBox1 .cash-add span{
+        width: 1.6rem;
+    }
+    /*cashAccount start*/
+    .cashAccountBox{
+        border-bottom: 0.01rem solid #eee;
+    }
+    .cashAccountBox .everyCashAccount{
+        width: 100%;
+        height:auto;
+        border-top: 0.01rem solid #eee;
+        box-sizing: border-box;
+        padding-bottom: 0.1rem;
+    }
+    .cashAccountBox .everyCashAccount .line{
+        padding: 0.05rem 0.3rem;
+    }
+    .cashAccountBox .everyCashAccount .line strong{
+        font-size: 0.24rem;
+        font-weight: 600;
+    }
+    .cashAccountBox .everyCashAccount .line span{
+        font-size: 0.24rem;
+    }
+    .cashAccountBox .everyCashAccount .line:nth-of-type(1){
+        background: #f5f5f5;
+        padding-bottom: 0.15rem;
+    }
+    .cashAccountBox .everyCashAccount .line1 span a{
+        box-sizing: border-box;
+        border: 0.01rem solid #f88c0e;
+        padding: 0 0.1rem;
+    }
+    .cashAccountFill{
+        height: 0.87rem;
+        float: left;
+        width: 100%;
+    }
+    form{
+        overflow: hidden;
+        float: left;
+    }
+    .content-right{
+        background: #fff;
+    }
+    .cashBoxx .cash-add span{
+        width: 2rem;
+    }
+    .cashBoxx .left{
+        float: none!important;
+        display: inline-block;
+        margin-bottom: 0.1rem;
+    }
+    .cashBoxx .left:nth-of-type(1){
+        margin-left: 0.07rem;
+    }
+    .cashBoxx .left:nth-of-type(3){
+        margin-left: 1.97rem;
+    }
+    .cashBoxx .small-button{
+        float: right;
+        margin-right: 0.2rem;
+        padding: 0.1rem 0.4rem;
+    }
+    .cashBoxxx .cash-add span{
+        width: 1.9rem;
+    }
+    .cashBoxxx .left{
+        float: none!important;
+        display: inline-block;
+        margin-bottom: 0.1rem;
+    }
+    .cashBoxxx .left:nth-of-type(1){
+        margin-left: 0.07rem;
+    }
+    .cashBoxxx .left:nth-of-type(3){
+        margin-left: 1.88rem;
+    }
+    .cashBoxxx .small-button{
+        float: left;
+        margin-left: 2.05rem;
+        padding: 0.1rem 0.4rem;
+    }
+    .cashBoxxx .shut{
+    }
+    /*cashAccount end*/
+}
+
+@media screen and (max-width: 330px){
+    .cashBox .cash-add span{
+        width: 1.5rem;
+    }
+    .cashBox .forgetPsw{
+        margin-left: 0;
+    }
+    .cashBox1 .cash-add span{
+        width: 1.9rem;
+    }
+    .cashBoxx .cash-add span{
+        width: 2.4rem;
+    }
+    .cashBoxx .left{
+        float: none!important;
+        display: inline-block;
+        margin-bottom: 0.1rem;
+    }
+    .cashBoxx .left:nth-of-type(1){
+        margin-left: 0.07rem;
+    }
+    .cashBoxx .left:nth-of-type(3){
+        margin-left: 1.97rem;
+    }
+    .cashBoxx .m-l-10{
+        height: 0.5rem;
+        line-height: 0.5rem;
+    }
+    .cashBoxxx .cash-add span{
+        width: 2.4rem;
+    }
+    .cashBoxxx .left{
+        float: none!important;
+        display: inline-block;
+        margin-bottom: 0.1rem;
+    }
+    .cashBoxxx .left:nth-of-type(1){
+        margin-left: 0.07rem;
+    }
+    .cashBoxxx .left:nth-of-type(3){
+        margin-left: 1.97rem;
+    }
+    .cashBoxxx .m-l-10{
+        height: 0.5rem;
+        line-height: 0.5rem;
+    }

@@ -1,0 +1,92 @@
+<#--店铺首页-->
+	<#include "/common/common_var_definds.ftl" />
+	<#include "/basepage/store/default/hb_templates/store_hb_templates.ftl" />
+	<#import "/basepage/store/default/common/zizhi_slider.ftl" as zizhi/>
+	<#import "/basepage/store/default/common/dangan_slider.ftl" as dangan/>
+	<!DOCTYPE html>
+	<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>饭饭1080直采平台</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+		<script type="text/javascript">
+			var deviceWidth = document.documentElement.clientWidth;
+			if(deviceWidth > 768) {
+				deviceWidth = 768;
+			}
+			document.documentElement.style.fontSize = deviceWidth / 6.4 + 'px';
+		</script>
+		<#import "/basepage/store/default/common/common_link.ftl" as link/>
+		<#import "/basepage/store/default/common/common_script.ftl" as script/>
+		<#import "/basepage/store/default/common/common_header_top.ftl" as top/>
+		<#import "/basepage/store/default/common/common_header_searchbox_default.ftl" as searchBox/>
+		<#import "/basepage/store/default/common/common_footer.ftl" as footerNoTab/>
+		<#import "/basepage/seller/seller_header_search.ftl" as sellerSearch/>
+		<@link.render />
+		<!--导入共通样式-->
+		<@script.render />
+		<!--导入共通脚本-->
+		<link rel="stylesheet" href="${resources}/basepage/seller/css/store.css" type="text/css">
+		<script src="${resources}/basepage/seller/js/store_common_head_load.js"></script>
+		<script src="${resources}/basepage/seller/js/store_dynamics.js"></script>
+		<script src="${resources}/basepage/seller/js/sp_getAboutImg.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<div id="pageInfo" store_id="${storeId!''}" store_template_code="${storeTemplateCode!''}" page_id="${storeTemplateCode!''}" style="display: none"></div>
+		<!--此处是头部开始-->
+		<div class="top">
+			<@top.render />
+			<div class="store_search_box">
+				<@searchBox.render />
+				<#--导入search_box-->
+			</div>
+		</div>
+		<!--此处是头部结束-->
+		<!--网页头部&导航开始-->
+		<div id="sp_hd_1"></div>
+		<div id="sp_hd_2"></div>
+		<@sellerSearch.render />
+		<div id="ff_tab_box">
+			<div class="ff_tab_content">
+				<div class="ff-tab-title">
+					<img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /> <span>商家介绍</span>
+				</div>
+				<div class="ff-tab-con-detail">
+        <p>
+                            在商家把利益至上的今天，食品安全、转基因、铬超标等一系列问题给人类健康带来了太大的危害，韩兆波——农村走出去的大学生，阔别了学校，辞去了工作岗位。带着所有人羡慕的眼光走出去，又带着所有质疑的声音返回家乡。赚多少钱，他打心眼里没有想过，为的就是将这份健康，这份责任带给更多原本属于他的人们。同时还能否找回那个沟通中不掺杂任何利益的笑。人与人还能回到淳朴的世界！我要做的，我能做的就是摸着我胸前的这份良心，上对得起我的父母，下对得起任意一个买家，为更多寻找它的人提供纯正健康的五常大米！可以说800家大米，400个味道。我约束不了其他人，我只能做好我自己。
+                        </p>
+                        <p>
+                            五常市言行信果水稻种植专业合作社成立于2016年08月，注册资本100万。位于五常市卫国乡保家村十二户屯。五常市言行信果水稻种植专业合作社致力
+                        </p>
+
+                        <p>
+                            于组织本社成员开展水稻种植；组织采购、供应成员所需的生产资料；提供本社成员间水稻种植产品的运输、贮藏、销售等服务；开展与水稻种植经营有关的技术培训、技术交流和信息咨询服务。该社成立以来积极开展水稻新品种引进改良推广工作。提高农户科学种田水平，不仅带动本地区农业发展，而且促进外地农业快速发展。该社利用集种植、流通为一体的平台，积极开展活动，外联大市场，内联种植大户，并且建立水稻交易市场。常邀省农科院有关专业技术人员到合作社为社员授课。利用广播、电视、网络等媒体向外界发布水稻种植的供求信息。积极进行品种改良，聘请专业人士实施水稻品种改良科研项目，使当地的水稻在产量和质量上实现飞跃式发展。
+                        </p>
+
+				</div>
+			</div>
+			<div class="ff_tab_content only_book_content_zizhi">
+				<div class="ff-tab-title">
+					<img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /><span>商家资质</span>
+				</div>
+				<div class="ff-tab-con-detail">
+					<@zizhi.render />
+				</div>
+			</div>
+
+			<div class="ff_tab_content">
+				<div class="ff-tab-title">
+					<img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /> <span>商家活动</span>
+
+				</div>
+				<div class="ff-tab-con-detail">敬请期待</div>
+			</div>
+
+		</div>
+		<@footerNoTab.render />
+	</body>
+
+	</html>

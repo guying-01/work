@@ -1,0 +1,84 @@
+<#--店铺首页-->
+	<#include "/common/common_var_definds.ftl" />
+	<#include "/basepage/store/default/hb_templates/store_hb_templates.ftl" />
+	<#import "/basepage/store/default/common/zizhi_slider.ftl" as zizhi/>
+	<#import "/basepage/store/default/common/dangan_slider.ftl" as dangan/>
+	<!DOCTYPE html>
+	<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>饭饭1080直采平台</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+		<script type="text/javascript">
+			var deviceWidth = document.documentElement.clientWidth;
+			if(deviceWidth > 768) {
+				deviceWidth = 768;
+			}
+			document.documentElement.style.fontSize = deviceWidth / 6.4 + 'px';
+		</script>
+		<#import "/basepage/store/default/common/common_link.ftl" as link/>
+		<#import "/basepage/store/default/common/common_script.ftl" as script/>
+		<#import "/basepage/store/default/common/common_header_top.ftl" as top/>
+		<#import "/basepage/store/default/common/common_header_searchbox_default.ftl" as searchBox/>
+		<#import "/basepage/store/default/common/common_footer.ftl" as footerNoTab/>
+		<#import "/basepage/seller/seller_header_search.ftl" as sellerSearch/>
+		<@link.render />
+		<!--导入共通样式-->
+		<@script.render />
+		<!--导入共通脚本-->
+		<link rel="stylesheet" href="${resources}/basepage/seller/css/store.css" type="text/css">
+		<script src="${resources}/basepage/seller/js/store_common_head_load.js"></script>
+        <script src="${resources}/basepage/seller/js/staticStore.js"></script>
+		<script src="${resources}/basepage/seller/js/store_dynamics.js"></script>
+		<script src="${resources}/basepage/seller/js/sp_getAboutImg.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<div id="pageInfo" store_id="${storeId!''}" store_template_code="${storeTemplateCode!''}" page_id="${storeTemplateCode!''}" style="display: none"></div>
+		<!--此处是头部开始-->
+		<div class="top">
+			<@top.render />
+			<div class="store_search_box">
+				<@searchBox.render />
+				<#--导入search_box-->
+			</div>
+		</div>
+		<!--此处是头部结束-->
+		<!--网页头部&导航开始-->
+		<div id="sp_hd_1"></div>
+		<div id="sp_hd_2"></div>
+		<@sellerSearch.render />
+		<div id="ff_tab_box">
+			<div class="ff_tab_content">
+				<div class="ff-tab-title">
+					<img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /> <span>商家介绍</span>
+				</div>
+				<div class="ff-tab-con-detail">
+                        <p style="text-align: center;text-indent: 0;">企业简介</p>
+                        <p>黑龙江•大兴安岭富林山野珍品科技开发有限责任公司，是黑龙江省林业龙头企业，大兴安岭地区农业绿色食品龙头企业，黑龙江省高新技术企业。公司始建于2001年，是以大兴安岭林区纯天然、无污染的食用菌、野生蓝莓等浆果为主要原料，运用现代食品加工高新技术进行林下资源、绿色有机食品精深加工的民营科技型企业。公司实收资本3618万元，资产总额8576万元，其中固定资产5650万元。厂区占地面积20028㎡，建筑面积8900㎡。蓝莓车间有蓝莓、红豆等小浆果饮料、蓝莓果干、蓝莓果糕、蓝莓果糖、蓝莓固体饮料等生产线。食用菌车间有挑选车间、清洗车间、压缩车间、微波灭菌车间、包装车间；公司生产研发设备完善配套。冷冻车间浆果冷冻生产能力达1200吨。工厂化、标准化食用菌基地的食用菌袋（二级菌、三级菌）年生产能力达8000万袋，公司设立了食用菌合作社、食用菌协会，蓝莓协会；公司通过了ISO9001：2005质量体系认证。25款产品被中绿华夏有机食品认证中心认证为有机食品。区分不同规格、高中低档蓝莓、食用菌系列产品已达208款，生产能力已达3800吨。公司始建以来先后被国家农业部授予全面质量达标企业，被国家工商总局评为全国“守合同重信用单位，“永富”商标被黑龙江省工商局评为“黑龙江省著名商标” 、“永富”产品被黑龙江省质量技术监督局评为“黑龙江省名牌产品”，信用等级获得省级AA+级，本公司银行信用等级AA+级，被黑龙江省中小企业协会评为诚信企业等诸多奖项。公司获得国家知识产权局受理发明专利6项、授权发明专利2项、授权外观专利10项，获得省部级科技成果、新产品鉴定8项；2008年度公司已成为出口企业。公司建立了立体的营销模式，构建外延充分的产销互补的经营架构。现已在哈尔滨、长春、沈阳、天津、北京、上海、大连、深圳、广州、义乌、杭州等地建立销售网点158个。富林公司的勃勃生机，为绿色产业集团化发展奠定了坚实基础。</p>
+                        <p>富林富了一座山，兴了一片林，富了一方民，带动了产业群。富林公司欢迎社会各界有识之士惠顾，并愿与业内精英本着双赢的原则，共同开发大兴安岭取之不尽、用之不竭的绿色资源，为打造绿色、有机、健康、安全的食品而奋斗。</p>
+				</div>
+			</div>
+			<div class="ff_tab_content only_book_content_zizhi">
+				<div class="ff-tab-title">
+					<img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /><span>商家资质</span> 
+
+				</div>
+				<div class="ff-tab-con-detail">
+					<@zizhi.render />
+				</div>
+			</div>
+			<div class="ff_tab_content">
+				<div class="ff-tab-title">
+					<img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /> <span>商家活动</span>
+
+				</div>
+				<div class="ff-tab-con-detail">敬请期待</div>
+			</div>
+		</div>
+		<@footerNoTab.render />
+	</body>
+
+	</html>

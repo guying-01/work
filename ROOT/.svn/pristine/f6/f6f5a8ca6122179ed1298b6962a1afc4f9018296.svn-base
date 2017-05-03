@@ -1,0 +1,84 @@
+<#--店铺首页-->
+<#include "/common/common_var_definds.ftl" />
+<#include "/basepage/store/default/hb_templates/store_hb_templates.ftl" />
+<#import "/basepage/store/default/common/zizhi_slider.ftl" as zizhi/>
+<#import "/basepage/store/default/common/dangan_slider.ftl" as dangan/>
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>饭饭1080°直采平台</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <script type="text/javascript">
+        var deviceWidth = document.documentElement.clientWidth;
+        if(deviceWidth > 768) {
+            deviceWidth = 768;
+        }
+        document.documentElement.style.fontSize = deviceWidth / 6.4 + 'px';
+    </script>
+<#import "/basepage/store/default/common/common_link.ftl" as link/>
+<#import "/basepage/store/default/common/common_script.ftl" as script/>
+<#import "/basepage/store/default/common/common_header_bar.ftl" as header_bar/>
+<#import "/basepage/store/default/common/common_header_searchbox_default.ftl" as searchBox/>
+<#import "/basepage/store/default/common/common_footer.ftl" as footerNoTab/>
+<#import "/basepage/seller/seller_header_search.ftl" as sellerSearch/>
+<@link.render />
+    <!--导入共通样式-->
+<@script.render />
+    <!--导入共通脚本-->
+    <link rel="stylesheet" href="${resources}/basepage/seller/css/store.css" type="text/css">
+    <script src="${resources}/basepage/seller/js/store_common_head_load.js"></script>
+    <script src="${resources}/basepage/seller/js/staticStore.js"></script>
+    <script src="${resources}/basepage/seller/js/store_dynamics.js"></script>
+    <script src="${resources}/basepage/seller/js/sp_getAboutImg.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+<div id="pageInfo" store_id="${storeId!''}" store_template_code="${storeTemplateCode!''}" page_id="${storeTemplateCode!''}" style="display: none"></div>
+<!--此处是头部开始-->
+<div class="top"><@header_bar.render "商铺",""/></div>
+<!--此处是头部结束-->
+<!--网页头部&导航开始-->
+<div id="sp_hd_1"></div>
+<div id="sp_hd_2"></div>
+<@sellerSearch.render />
+<div id="ff_tab_box">
+    <div class="ff_tab_content">
+        <div class="ff-tab-title">
+            <img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /> <span>商家介绍</span>
+        </div>
+        <div class="ff-tab-con-detail">
+            <p>
+                大连隆茂峰实业有限公司主要经营澳溪山泉水，澳溪牌饮用水公司是100%本土注册资本和经营的西澳大利亚公司；在过去的12年里，其一直在为澳洲人民供应优质的天然泉水。
+            </p>
+            <p>
+                泉水的生成旅程从一滴从西澳大利亚的Darling山脉悬崖生成的雨水开始，经过岩层的自然过滤，同时吸收天然的矿物质和元素。经过上百年的自然积累，最初的的雨滴在Darling山脉的地下汇集，保存。纯净、原始、未污染的天然泉水是大自然给予的最可口的饮品。西澳大利亚独特的天然过滤过程定义了澳溪的口感。澳溪牌饮用水利用先进的微过滤系统对最高品质的天然泉水进行收集、运输和装瓶，使自然母亲的恩赐近于完美。
+            </p>
+            <p>
+                澳溪牌饮用水日以继夜地在西澳大利亚的先进工厂里生产矿泉水。工厂有50名员工，每天生产14万瓶水。 澳溪牌饮用水的生产是高产量，高质量；利用其资源和设备，现在已经扩大为全球供货。
+                健康的饮用水是健康生活方式关键的一部分。澳溪牌饮用水的任务就是提供任何人都能享用的，不含氟化物和污染物的，干净、安全、健康的饮用水。澳溪牌饮用水的水源在西澳大利亚的珀斯地区的达林山脉，是公认的世界上最纯净的天然水源。经过微过滤，所有在天然矿泉里的颗粒都被滤除掉，以确保其卓越的质量、纯度和口感。您身体70%是水分；如果你看重有品质的瓶装水，澳溪牌饮用水是您来自地下低层的首选。
+            </p>
+        </div>
+    </div>
+    <div class="ff_tab_content only_book_content_zizhi">
+        <div class="ff-tab-title">
+            <img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /><span>商家资质</span>
+        </div>
+        <div class="ff-tab-con-detail">
+        <@zizhi.render />
+        </div>
+    </div>
+    <div class="ff_tab_content">
+        <div class="ff-tab-title">
+            <img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /> <span>商家活动</span>
+
+        </div>
+        <div class="ff-tab-con-detail">敬请期待</div>
+    </div>
+</div>
+<@footerNoTab.render />
+</body>
+
+</html>

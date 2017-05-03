@@ -1,0 +1,555 @@
+/**
+ * 商品展示页面动态数据绑定函数
+ * Created by WW on 2016/9/1.
+ */
+
+
+
+$(function () {
+
+    var keyword = $("#pageInfo").attr("keyword");   //获取关键字;
+    var storeId = $("#pageInfo").attr("storeId");   //获取商铺id;
+    var isOrderByContractNo = $("#pageInfo").attr("isOrderByContractNo");   //获取当前页面默认排序方式的标识;
+    var params = {};
+
+    $('.loginShut').click(function () {
+        $('.bgBlack').hide();
+        $('#login_popUp').hide();
+        $('.loginError').hide();
+    });
+    // 登录
+    $("#btnSubmit").click(function () {
+        var flag = true;
+        var userName = $("#userName").val();
+        var password = $("#password").val();
+        if (userName.length == 0) {
+            $("#usere_1").show().css("display", "block");
+            $("#usere_1").siblings(".loginError").hide();
+            flag = false;
+        } else {
+            $(".form #userName").siblings(".loginError").hide()
+        }
+        if (password.length == 0) {
+            $("#pwde").show().css("display", "block");
+            $(".form #password").addClass("redborder");
+            flag = false;
+        } else {
+            $(".form #password").siblings(".loginError").hide();
+        }
+        if (!flag) {
+            return flag;
+        }
+        $("#password").val($.md5($("#password").val()));
+        var successResponse = function (data) {
+            if (!data.success) {
+                if (data.code == "userName_passWord_isNull") {
+                    if (data.data.username == null || data.data.username == "") {
+                        $("#usere_1").show().css("display", "block");
+                    }
+                    if (data.data.password == null || data.data.password == "") {
+                        $("#pwde").show().css("display", "block");
+                    }
+                }
+                //else if (data.code == "infoCaptcha_isError") {
+                //    $("#captchaWrong").show();
+                //    refreshCaptcha("");
+                //}
+                else if (data.code == "userName_passWord_isError") {
+                    $("#usere_2").show().css("display", "block");
+                } else if (data.code == "userLock_isError") {
+                    $("#usere_3").show().css("display", "block");
+                }
+            } else {
+                // location.reload();
+                jsAlert('登录成功');
+                $('.bgBlack').hide();
+                $('#login_popUp').hide();
+                $('.loginError').hide();
+            }
+
+        };
+        requestDataWithAJAX("/doLogin.ajax", "post", true, {"data": $("#loginForm").serialize(), "success": successResponse});
+    });
+
+
+
+    /**
+     * 商品展示页面内容加载
+     * Created by WW on 2016/09/06.
+     */
+    function getGoodsList(n) {
+        //默认请求参数
+        if(!n){
+            n=1
+        }
+        if(localStorage.browsePage==''){
+            localStorage.browsePage=1;
+            n=1;
+        }
+        else{
+            n=JSON.parse(localStorage.browsePage);
+
+        }
+        var list_params = {"pageRows": 20*n, "pageStart": 1, /*"shiftCount": 3,*/ "filterQueryMap": {}, "searchText": keyword, "sorts": {}, "queryOption": {"catCondItems": true, "condItems": true, "sort": true, "price": false}, "queryData": {}};
+        var success = function (result) {
+            var data = JSON.parse(result).data;
+            var dataL=data.dataList.length;
+            $(window).scroll(function () {
+                    localStorage.scrollTop=$(window).scrollTop()
+                }
+            )
+            var top=localStorage.scrollTop;
+            setTimeout(function () {
+                $(window).scrollTop(top)
+            },500)
+            if(dataL<20*n){
+                $(".orderMoreBox").text("没有更多了")
+            }
+            if (data != undefined && data.pagerMap != undefined) {
+                getGoodsListMain(data);
+                getGoodsListPage(n);
+                $(".orderMoreBox").show()
+            }
+            else if(dataL==undefined){
+                $(".orderMoreBox").hide()
+            }
+        };
+        //获得url中排序方式
+        /*if (params.sorts == undefined || params.sorts == "" || params.sorts == "default") {
+            if (isOrderByContractNo == "true") {
+                /!*list_params.sorts.contract_code = "asc";*!/
+                list_params.sorts = {};
+            } else {
+                list_params.sorts = {};
+            }
+        } else {
+            list_params.sorts[params.sorts] = params[params.sorts];
+        }*/
+        list_params["minPrice"] = params["minPrice"] != undefined ? params["minPrice"] : "0";    //价格区间_最低价格
+        list_params["maxPrice"] = params["maxPrice"] != undefined ? params["maxPrice"] : "*";    //价格区间_最高价格
+        if (list_params["minPrice"] != "" && list_params["maxPrice"] != "") {
+            list_params.filterQueryMap["item_sales_min_price_mall"] = ["[" + list_params["minPrice"] + " TO " + list_params["maxPrice"] + "]"]; //添加价格区间参数
+        }
+        list_params.pageStart = (params.page = (params.page != undefined & params.page > 0) ? params.page : 1); //当前页码
+        if (storeId) {
+            list_params.filterQueryMap.store_id = [storeId];
+        }
+        //if (list_params.pageStart == 1) {
+        //    top3ListAds();
+        //} else {
+        $("#contentRight-ListWrap-ads").html("");
+        //}
+        var data = {"condition": JSON.stringify(list_params)};
+        //API:"/fsajax/goodsSearch.ajax"
+        requestDataWithAJAX("/fsajax/goodsSearch.ajax", "post", true, {"success": success, "data": data});
+    }
+
+    getGoodsList(1);
+
+    /**
+     * 商品展示列表加载
+     * Created by WW on 2016/09/08.
+     */
+    function getGoodsListMain(data) {
+        Handlebars.registerHelper({
+        showPrice: function (data) {
+                if (data != undefined && !isNaN(data)) {
+                    return $.ww.formatDecimal(data, 2);
+                } else {
+                    return "￥0.00";
+                }
+            },
+            deliverTime: function (day, time) {
+                if(time){
+                    time=time.split(":")[0]
+                }
+                else{
+                    //备货时间不存在
+                }
+                var result = "";
+                if ("2" == day) {
+                    if (time <12) {
+                        result = "/resources/basepage/store/default/common_img/deliver_time_01.png";
+                    } else {
+                        result = "/resources/basepage/store/default/common_img/deliver_time_02.png";
+                    }
+                } else if ("3" == day) {
+                    result = "/resources/basepage/store/default/common_img/deliver_time_03.png";
+                }
+                return result;
+            }
+        });
+        if (data.dataList.length == 0) {
+          jsAlert ('抱歉！没有该商品');
+        }
+        var list_goodsList_main = $("#list_goodsList_main").html();
+        var html = loadHandlebarsTemplate(list_goodsList_main, data);
+        $("#contentRight-ListWrap").css("background", 0);
+        $("#contentRight-ListWrap-main").html(html);  //加载到html中
+        $(".goodsCollect").on("click", favStore);
+        $(".addShoppingCar").on("click", addShoppingCar);
+        $("img.lazy").lazyload({effect: "fadeIn", threshold: 180});
+        com_star(data);
+    }
+
+    /**
+     * 收藏商品事件绑定
+     * Created by WW on 2016/10/12.
+     */
+    function favStore() {
+        var goodsId = $(this).attr("goods_id");
+        var storeId = $(this).attr("store_id");
+        $.ww.getLoginStatus(function () {
+            var success = function (data) {
+                if (data.success) {
+                    jsAlert("收藏成功");
+                } else {
+                    jsAlert(data.message);
+                }
+            };
+            var request = {"goodsId": goodsId, "storeId": storeId};
+            //API:"/fav/addToGdFav.ajax"
+            requestDataWithAJAX("/fav/addToGdFav.ajax", "post", true, {"success": success, data: request});
+        }, function () {
+            // location.href = "/toLogin.jhtml";
+            $('.bgBlack').show();
+            $("#login_popUp").fadeIn();
+        });
+    };
+
+    /**
+     * 收藏商品事件绑定
+     * Created by WW on 2016/10/12.
+     */
+    function addShoppingCar() {
+        var amount = $(this).attr("amount");
+        var goodsId = $(this).attr("goodsId");
+        var goodsName = $(this).attr("goodsName");
+        var itemId = $(this).attr("itemId");
+        var itemName = $(this).attr("itemName");
+        var pic = $(this).attr("pic");
+        var storeId = $(this).attr("storeId");
+        var storeName = $(this).attr("storeName");
+        $.ww.getLoginStatus(function () {
+            var url = "/sc/addSc.ajax";
+            var params = {};
+            params["amount"] = amount;
+            params["goodsId"] = goodsId;
+            params["goodsName"] = goodsName;
+            params["itemId"] = itemId;
+            params["itemName"] = itemName;
+            params["pic"] = pic;
+            params["storeId"] = storeId;
+            params["storeName"] = storeName;
+            var success = function (data) {
+                if (data.success) {
+                    jsAlert("加入购物车成功");
+                    already_login();    //重新加载顶部购物车
+                } else {
+                    jsAlert(data.message);
+                }
+            };
+            requestDataWithAJAX(url, "post", true, {data: params, success: success});
+        }, function () {
+            // location.href = "/toLogin.jhtml";
+            $('.bgBlack').show();
+            $("#login_popUp").fadeIn();
+        });
+    };
+
+
+//排序功能事件绑定
+    $("#contentRight-nav .left .btn_sort").on("click", function () {
+        $(this).siblings().find("u").removeClass("sorting_bot");
+        //初始化参数
+        delete params.sorts;
+        delete params.sales_amount;
+        delete params.item_sales_min_price_mall;
+        delete params.sales_score;
+        delete params.goods_create_date;
+        //初始化排序
+        $(this).siblings().attr("order", "desc");
+        $(this).siblings("[name='search_sort_default']").removeAttr("order");
+        //按键绑定
+        switch ($(this).attr("name")) {
+            case "search_sort_default":
+                params["sorts"] = "default";
+                break;
+            case "search_sort_sales":
+                params["sorts"] = "sales_amount";
+                if ($(this).attr("order") == "asc") {
+                    $(this).attr("order", "desc");
+                    $(this)[0].lastChild.className = "";
+                } else {
+                    $(this).attr("order", "asc");
+                    $(this)[0].lastChild.className = "sorting_bot";
+                }
+                params["sales_amount"] = $(this).attr("order");
+                break;
+            case "search_sort_price":
+                params["sorts"] = "item_sales_min_price_mall";
+                if ($(this).attr("order") == "asc") {
+                    $(this).attr("order", "desc");
+                    $(this)[0].lastChild.className = "";
+                } else {
+                    $(this).attr("order", "asc");
+                    $(this)[0].lastChild.className = "sorting_bot";
+                }
+                params["item_sales_min_price_mall"] = $(this).attr("order");
+                break;
+            case "search_sort_popularity":
+                params["sorts"] = "sales_score";
+                if ($(this).attr("order") == "asc") {
+                    $(this).attr("order", "desc");
+                    $(this)[0].lastChild.className = "";
+                } else {
+                    $(this).attr("order", "asc");
+                    $(this)[0].lastChild.className = "sorting_bot";
+                }
+                params["sales_score"] = $(this).attr("order");
+                break;
+            case "search_sort_new":
+                params["sorts"] = "goods_create_date";
+                if ($(this).attr("order") == "asc") {
+                    $(this).attr("order", "desc");
+                    $(this)[0].lastChild.className = "";
+                } else {
+                    $(this).attr("order", "asc");
+                    $(this)[0].lastChild.className = "sorting_bot";
+                }
+                params["goods_create_date"] = $(this).attr("order");
+                break;
+        }
+        $(this).siblings().removeClass("sorting_foc");
+        $(this).addClass("sorting_foc");
+        getGoodsList();
+    });
+
+    /**
+     * 价格区间筛选
+     * Created by WW on 2016/09/11.
+     */
+    $("#contentRight-nav .left .small-button").on("click", function () {
+        //初始化参数
+        delete params.minPrice;
+        delete params.maxPrice;
+        //按键绑定
+        params.minPrice = $("#contentRight-nav .left .price_min").val() != "" ? $("#contentRight-nav .left .price_min").val() : "0";
+        params.maxPrice = $("#contentRight-nav .left .price_max").val() != "" ? $("#contentRight-nav .left .price_max").val() : "*";
+        getGoodsList();
+    });
+
+    /**
+     * 商品页码加载
+     * Created by WW on 2016/09/08.
+     */
+    //function getGoodsListPage(data) {
+    //    var gridWidth = 0;  //页码格子计数
+    //    $("#goods_count").html(data.rows_total != undefined ? data.rows_total : "0");    //商品总数赋值
+    //    Handlebars.registerHelper({
+    //        allPages: function (item) {
+    //            var count = Math.ceil(item.rows_total / 20);
+    //            return isNaN(count) ? "1" : count;
+    //        },
+    //        showPages: function (item) {
+    //            var page_total = Math.ceil(item.rows_total / 20);
+    //            var result = "";
+    //            //前一页按钮
+    //            if (item.page_num > 1) {
+    //                result += "<li id='preview_page' style='visibility: visible'>&lt;上一页</li>";
+    //                gridWidth += 78;
+    //            } else {
+    //                result += "<li style='cursor: default;'>&lt;上一页</li>";
+    //                gridWidth += 78;
+    //            }
+    //            //"1"按钮 + "..."按钮
+    //            if (item.page_num > 3) {
+    //                result += "<li class='list_pageList'>1</li>";
+    //                gridWidth += 50;
+    //                if (item.page_num > 4) {
+    //                    result += "<li id='numberEtc' style='cursor:default;'>...</li>";
+    //                    gridWidth += 40;
+    //                }
+    //            }
+    //            //"页码"按钮3
+    //            for (var i = item.page_num - 2; i <= parseInt(item.page_num) + 2; i++) {
+    //                if (i > 0 && i <= page_total) {
+    //                    result += "<li class='list_pageList'>" + i + "</li>";
+    //                    gridWidth += 50;
+    //                }
+    //            }
+    //            //"..."按钮 + "末页"按钮
+    //            if (page_total - item.page_num > 2) {
+    //                if (page_total - item.page_num > 3) {
+    //                    result += "<li id='numberEtc' style='cursor:default;'>...</li>";
+    //                    gridWidth += 40;
+    //                }
+    //                result += "<li class='list_pageList'>" + page_total + "</li>";
+    //                gridWidth += 50;
+    //            }
+    //            //"下一页"按钮
+    //            if (item.page_num < page_total) {
+    //                result += "<li id='next_page' style='visibility: visible'>下一页&gt;</li>";
+    //                gridWidth += 78;
+    //            } else {
+    //                result += "<li style='cursor: default;'>下一页&gt;</li>";
+    //                gridWidth += 78;
+    //            }
+    //            return new Handlebars.SafeString(result);
+    //        }
+    //    });
+    //    var list_goodsList_page = $("#list_goodsList_page").html();
+    //    var html = loadHandlebarsTemplate(list_goodsList_page, data);
+    //    $("#pageNumberRightWrap").html(html);  //加载到html中
+    //    //为加载出来的页码绑定点击事件
+    //    $("#pageNumberRightWrap>ul .list_pageList").each(function () {
+    //        $(this).on("click", function () {
+    //            $.extend(params, {"page": $(this).text()});
+    //            getGoodsList();
+    //        })
+    //    });
+    //    //当前页面的页码添加效果
+    //    $("#pageNumberRightWrap>ul .list_pageList").each(function () {
+    //        if (params.page == $(this).text()) {
+    //            $(this).attr("id", "firstPage");
+    //        }
+    //    });
+    //    //前一页跳转功能函数
+    //    $("#preview_page").on("click", function () {
+    //        params.page--;
+    //        getGoodsList();
+    //    });
+    //    //下一页跳转功能函数
+    //    $("#next_page").on("click", function () {
+    //        params.page++;
+    //        getGoodsList();
+    //    });
+    //    //页码跳转输入框赋值
+    //    $("#selectPage_text").attr("value", params.page);
+    //    //页面跳转功能函数
+    //    $("#selectPage_confirm").on("click", function () {
+    //        var page_total = Math.ceil(data.rows_total / 20);
+    //        params.page = $("#selectPage_text").val() > page_total ? page_total : $("#selectPage_text").val();
+    //        getGoodsList();
+    //    });
+    //    //页码居中
+    //    var temp = 60 + gridWidth + 140 + 2; //计算宽度
+    //    $("#pageNumberRightWrap").width(temp);
+    //}
+
+    ///**
+    // * 背景图片请求并加载
+    // * Created by WW on 2016/10/08.
+    // */
+    //(function () {
+    //    var success = function (data) {
+    //        if (data != undefined && data != "[]") {
+    //            data = JSON.parse(data);
+    //            $(".bg_img_box_1>img").attr("src", data[0].adsInfo.advertPic);
+    //        }
+    //    };
+    //    var data = {"advertId": "list_" + lv3_id + "_list_bg_01"};
+    //    requestDataWithAJAX("/fsajax/getAdsPic.ajax", "post", true, {"success": success, "data": data});
+    //})();
+    function getGoodsListPage(data) {
+        //点击加载更多函数
+        $(".orderMore").off("click");
+        $(".orderMore").on("click", function () {
+            if($(this).text()=="没有更多商品了"){
+                return;
+            }
+            data++;
+            localStorage.browsePage=JSON.stringify(data);
+            getGoodsList(data);
+        });
+    }
+    /**
+     * 一闪一闪亮晶晶，口碑说要五个星
+     * Created by kuban on 2016/09/24.
+     */
+    function com_star(data) {
+        var my_data = data.dataList;
+        $(".contentRight-List").each(function () {
+            var if_star = $(this).find("#list_star_bg").length;
+            if (if_star > 0) {
+                var star_html = "";
+                var j = $(this).index();
+                var len = Math.ceil(my_data[j].star_num * 2);
+                /*不到0.5的算0.5，大于0.5的算1*/
+                for (var i = 0; i < len; i++) {
+                    star_html += "<li></li>"
+                }
+                $(this).find(".star_box ul").append(star_html);
+            }
+        })
+    }
+});
+
+// 登录
+
+
+
+
+
+//$(function () {
+//    //热卖推荐广告位
+//    (function () {
+//        var success = function (data) {
+//            data = JSON.parse(data);
+//            if (data != undefined && data.length != 0 && data != "[]") {
+//                for (var i in data) {
+//                    $("." + data[i].adsInfo.advertId + " a").attr("href", data[i].adsInfo.goodsLink);
+//                    $("." + data[i].adsInfo.advertId).find(".topAd-img img").attr("src", data[i].adsInfo.advertPic);
+//                    var jsonInfo = data[i].adsInfo.jsonInfo ? JSON.parse(data[i].adsInfo.jsonInfo) : {"goodsName": "", "goodsPrice": ""};
+//                    $("." + data[i].adsInfo.advertId).find(".topAd-text>a").text(jsonInfo.goodsName);
+//                    $("." + data[i].adsInfo.advertId).find(".topAd-text>a").attr("title", jsonInfo.goodsName);
+//                    $("." + data[i].adsInfo.advertId).find(".topAd-text>span").text("￥" + jsonInfo.goodsPrice);
+//                    $("." + data[i].adsInfo.advertId).find(".topAd-text>span").attr("title", "￥" + jsonInfo.goodsPrice);
+//                }
+//            }
+//        };
+//        var data = {"type": "list", "serialId": lv3_id, "rangeId": "remaituijian"};
+//        requestDataWithAJAX("/fsajax/getAdsPic.ajax", "post", true, {"success": success, "data": data});
+//    })();
+//    //饭饭热卖广告位
+//    (function () {
+//        var success = function (data) {
+//            data = JSON.parse(data);
+//            if (data != undefined && data.length != 0 && data != "[]") {
+//                for (var i in data) {
+//                    $("." + data[i].adsInfo.advertId + " a").attr("href", data[i].adsInfo.goodsLink);
+//                    $("." + data[i].adsInfo.advertId).find(".fanfan-hotsales-img img").attr("src", data[i].adsInfo.advertPic);
+//                    var jsonInfo = data[i].adsInfo.jsonInfo ? JSON.parse(data[i].adsInfo.jsonInfo) : {"goodsName": "", "goodsPrice": ""};
+//                    $("." + data[i].adsInfo.advertId).find(".fanfan-hotsales-text>a").text(jsonInfo.goodsName);
+//                    $("." + data[i].adsInfo.advertId).find(".fanfan-hotsales-text>a").attr("title", jsonInfo.goodsName);
+//                    $("." + data[i].adsInfo.advertId).find(".fanfan-hotsales-text>.fanfan-hotsales-price").text("￥" + jsonInfo.goodsPrice);
+//                    $("." + data[i].adsInfo.advertId).find(".fanfan-hotsales-text>.fanfan-hotsales-price").attr("title", "￥" + jsonInfo.goodsPrice);
+//                }
+//            }
+//        };
+//        var data = {"type": "list", "serialId": lv3_id, "rangeId": "fanfanremai"};
+//        requestDataWithAJAX("/fsajax/getAdsPic.ajax", "post", true, {"success": success, "data": data});
+//    })();
+//    //商品精选广告位
+//    (function () {
+//        var success = function (data) {
+//            data = JSON.parse(data);
+//            if (data != undefined && data.length != 0 && data != "[]") {
+//                for (var i in data) {
+//                    $("." + data[i].adsInfo.advertId + " a").attr("href", data[i].adsInfo.goodsLink);
+//                    $("." + data[i].adsInfo.advertId).find(".choicenessContentList-img img").attr("src", data[i].adsInfo.advertPic);
+//                    var jsonInfo = data[i].adsInfo.jsonInfo ? JSON.parse(data[i].adsInfo.jsonInfo) : {"goodsName": "", "goodsPrice": ""};
+//                    $("." + data[i].adsInfo.advertId).find(".choicenessContentList-text>a").text(jsonInfo.goodsName);
+//                    $("." + data[i].adsInfo.advertId).find(".choicenessContentList-text>a").attr("title", jsonInfo.goodsName);
+//                    $("." + data[i].adsInfo.advertId).find(".choicenessContentList-price").text("￥" + jsonInfo.goodsPrice);
+//                    $("." + data[i].adsInfo.advertId).find(".choicenessContentList-price").attr("title", "￥" + jsonInfo.goodsPrice);
+//                    $.post("/gd/findGoodsTransactionCount.ajax", {"goodsId": data[i].adsInfo.goodsId}, function (data2) {
+//                        $("." + data[i].adsInfo.advertId).find(".choicenessContentList-salse").text("销量：" + data2.result);
+//                    });
+//                }
+//            }
+//        };
+//        var data = {"type": "list", "serialId": lv3_id, "rangeId": "shangpinjingxuan"};
+//        requestDataWithAJAX("/fsajax/getAdsPic.ajax", "post", true, {"success": success, "data": data});
+//    })();
+//});

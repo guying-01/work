@@ -1,0 +1,83 @@
+<#-- 加载通用变量定义 -->
+<#include "/common/common_var_definds.ftl" />
+<#import "/basepage/store/default/common/common_scroll_top.ftl" as scrollTop/>
+<#macro render data>
+<#escape x as x?html>
+	<@scrollTop.render />
+	<style type="text/css">
+		.content-right{
+			margin-bottom: 0.87rem;
+		}
+		
+		.nullA:after{
+			content: '.';
+			clear: both;
+			visibility: hidden;
+			height: 0;
+			display: block;
+		}
+		.nullA img{
+			width:0.51rem ;
+			height: 0.43rem;
+			margin-top: 0.2rem!important;
+		}
+		.nullA div.left{
+			width: auto;
+		}
+		.nullA p,.nullA a{
+			font-size: 0.24rem!important;
+		}
+		.nullA div.left p{
+			line-height: 0.4rem;
+		}
+		.nullA{
+			width: 5rem;margin: 0 auto;padding:0.5rem 0;height: auto;
+		}
+	</style>
+  <div id="JKDiva_0" class="member-list-tab member-list-tab2">
+    <div class="collection" dm-container="fav-gd" dm-data="goods">
+<#-- 商品收藏列表 开始 -->
+ 
+<#-- 商品收藏列表 结束 -->
+    </div>
+    <div class="clear p-b-20"></div>
+  </div>
+ 
+<script id="fav-gd-tl" type="text/x-handlebars-template">
+	<div class="collection-goods fav_gds" dm-container="fav-gd-item" dm-data="{{id}}">
+	  <a dm-actor="fav-gd-del" dm-data="{{id}}" class="delete" title="删除">删除</a>
+	  <a href="${ctx}/fsgd/{{goodsId}}.jhtml" class="goods_pic"><img src="{{goodsPic}}"/></a>
+		<div class="goodsRight">
+            <h3><a href="${ctx}/fsgd/{{goodsId}}.jhtml" class="produce fav_gsName" title="">{{goodsName}}</a></h3>
+            {{#if isEnabled}}
+            <p class="goodsprice fav_gsPrice"><strong><b>￥</b>{{salesPrice}} </strong><#--<u>￥{{marketPrice}}</u>--></p>
+            {{else}}
+            <p class="goodsprice">该商品已失效</p>\
+            {{/if}}
+            <a class="btn-g" href="${ctx}/fsgd/{{goodsId}}.jhtml">查看详情</a>
+		</div>
+
+
+            <div class="circle-gy" onclick="jChoose(this)">
+			</div>
+        <div class="select">
+            <ul>
+                <li id="selectAll" onclick="selectAll()">全选</li>
+                <li id="delete" onclick="del()">删除</li>
+            </ul>
+        </div>
+	</div>
+</script>
+
+<script id="fav-not-tl" type="text/x-handlebars-template">
+<div class="nullA"><img src="${resources}/img/member/null2.png" class="left m-t-5">
+        <div class="left">
+            <P>你还没收藏过{{itemName}}哦~~~</P>
+            <P>去 <a href="${ctx}/index.jhtml">随便逛逛</a>吧，看看有没有喜欢的~</P>
+          </div>
+        </div>
+
+<div class="clear p-b-20"></div>
+</script>
+</#escape>
+</#macro>

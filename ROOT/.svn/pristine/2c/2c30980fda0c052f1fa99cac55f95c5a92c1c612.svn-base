@@ -1,0 +1,47 @@
+<#assign ctx = rc.contextPath,resources = ctx + "/resources">
+<#--引入左边个人信息导航栏-->
+<#macro render data>
+<#escape x as x?html>
+<form action="${ctx}/member/updatePassword.jhtml" id="passwordsForm" name="passwordsForm" method="post">
+<input type="hidden" name="token" value="${(token)!''}"/>
+<input type="hidden" id="userCode" name="userCode" value="${(user.userCode)!''}"/>
+<input id="pwStrength" name="pwStrength" type="hidden" value="1"/>
+    <div class="member-list-tab" >
+        <h2 class="member-tit modify"> <a href="#" onclick="javascript :history.go(-1);"></a><i>&nbsp;</i>修改登录密码</h2>
+      <div class="progress_three progress_B">
+          <div class="coverColor"></div>
+        <p class="progress_textA">验证身份</p>
+        <p class="progress_textB font-color-b">重置密码</p>
+        <p class="progress_textC">完成</p>
+      </div>
+      <div class=" note-password">登录密码由6-16位字符，支持字母、数字及'_'组合。为了您的账号安全，密码不可与账户名称相同。</div>
+      <div class="orderdedetail orderDetail-gy">
+<input id="input_idForupdatePasswords" name="idForupdatePasswords" value="${(user.id)!''}" type="hidden">
+        <div class="information-line"><span class="linespan width100" style="text-align: center">当前密码：</span>
+          <label class="errorwrong" id="currPwdWrong" style="display:none;"><u ></u><i></i>当前密码不正确</label>
+<input name="passwordsShow" id="passwordsShow" type="password" class="text_A changePwdText" placeholder="请输入当前登录密码" onchange="validCurrentPwd()" maxlength="16" />
+        <input name="passwords" id="passwords" type="hidden"/>
+        </div>
+        <div class="information-line"><span class="linespan width100" style="text-align: center">新密码：</span>
+         <#-- <label class="errorwrong" id="pwdrule" style="display:none;"><u ></u><i></i>密码格式不正确</label>-->
+          <#--<label class="errorprompt" style="left:260px;top:-20px;"><u ></u><i></i>密码强度不足，建议设置更高强度的密码</label>-->
+          <input id="newPasswordsShow" name="newPasswordsShow" onKeyUp="pwdStrongCheck(this.value)" type="password" class="text_A changePwdText" placeholder="请输入新的登录密码" />
+          <input name="newPasswords" id="newPasswords" type="hidden"/>
+          <div class="bg_red left degree" style="display:none;" id="pwdStren4" >强</div>
+          <div class="bg_yellow left degree" id="pwdStren3" style="display:none; margin-left: 1rem">中</div>
+          <div class="bg_green left degree" id="pwdStren2" style="display:none;">弱</div>
+
+        </div>
+        <div class="information-line"><span class="linespan width100" style="text-align: center">确认密码：</span>
+          <#--<label class="errorwrong"><u ></u><i></i>两次密码输入不一致</label>-->
+          <input type="password" class="text_A changePwdText" value="" id="twoPasswordsShow" name="twoPasswordsShow" maxlength="16"  placeholder="再次输入新密码"/>
+          <input name="twoPasswords" id="twoPasswords" type="hidden"/>
+        </div>
+        <div  class="bottom-button p-t-40"><a href="javascript:void(0);" class="big-button" onClick="savePasswords()" >下一步</a></div>
+      </div>
+    </div>
+    
+<div class="clear"></div>
+</form>
+</#escape>
+</#macro>

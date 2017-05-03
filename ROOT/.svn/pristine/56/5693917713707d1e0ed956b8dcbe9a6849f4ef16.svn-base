@@ -1,0 +1,499 @@
+	function insertRadio(doms,value){
+		$(doms).each(function(){
+			if($(this).val()==value)
+			{
+				$(this).attr("checked",true);
+				return false;
+			}
+		})
+	}
+	$(document).ready(function(){
+		initDeliveryMap();
+	    
+		//初始化生日
+		var birthYear= $("[name='year']").attr("dm-value");
+		var birthMonth= $("[name='month']").attr("dm-value");
+		var birthDay= $("[name='day']").attr("dm-value");
+	
+		if(birthYear != ""){
+			$("#year").val(birthYear);
+			$("#year").change();
+		}
+		if(birthMonth != ""){
+			$("#month").val(birthMonth);
+		}
+		if(birthDay != ""){
+			$("#day").val(birthDay);
+		}
+		//判斷显示哪一个tab页面
+		//var memImg = '${(memImg)!""}';
+		var memImg = $("#memImg").val();
+		if(memImg != "" && 'updateHeaderImg' == memImg){
+			ChangeDiv('1','JKDiva_',1);
+			$("#tabDiv_1").addClass("on");
+			$("#tabDiv_0").removeClass("on");
+		}
+		//表单验证
+		$("#userForm").validate({
+			errorClass:"errorwrong",
+	        rules: {
+	        	showName:{
+	        		required:true,
+	        		maxlength: 10
+				}
+			},
+			messages:{
+				showName:{
+					required:"<u></u><i></i>请输入昵称",
+					maxlength:"<u></u><i></i>长度不超过10个字符"
+				}
+			}
+	    });
+		jQuery.validator.addMethod("isHabitationChecked", function() {   
+			var check1 = validate($("#habi_nation"));
+			return check1}, "请选择居住地");
+		jQuery.validator.addMethod("isHomeTownChecked", function() {   
+			var check1 = validate($("#town_nation"));
+			return check1}, "请选择家乡");
+		
+		
+		
+	
+		callService('/member/getMessagePoint.ajax',"",
+			{	async : false,
+				callSuccess:function(data){
+			if(data=="1")
+				$(".add-point").css("display","none");
+			else
+				$(".add-point").css("display","block");
+		}})
+
+
+
+	});
+
+
+
+	function saveUser(){
+		if($("#userForm").valid()){
+			$.dm.block($(".content-right"));
+			var fm = $("#userForm").serialize();
+			// var fm = $("#userForm").serializeArray();
+			var shopPicArr = new Array()
+			$("#itemImgShop").find("li img").each(function (idex,item) {
+				var shoppicurl = $(item).attr("src");
+				shopPicArr.push(shoppicurl);
+			})
+			var shopPic = shopPicArr.join(",");
+			// $.extend(fm,{"shopPic":shopPic});
+			fm+="&shopPic=" + shopPic;
+
+			var qualityPicArr = new Array()
+			$("#itemImgQuality").find("li img").each(function (idex,item) {
+				var qualitypicurl = $(item).attr("src");
+				qualityPicArr.push(qualitypicurl);
+			})
+			var qualityPic = qualityPicArr.join(",");
+			// $.extend(fm,{"shopPic":shopPic});
+			fm+="&qualityPic=" + qualityPic;
+
+			var upNullFlag = false;
+			if(shopPic == null || shopPic == ""){
+				$("#addImg4Shop").closest("div").parent().prepend('<label class="errorwrong" style="display: block;">必须上传门店实景</label>');
+				upNullFlag = true;
+			}
+
+			if(qualityPic == null || qualityPic == ""){
+				$("#addImg4Quality").closest("div").parent().prepend('<label class="errorwrong" style="display: block;">必须上传资质证件</label>');
+				upNullFlag = true;
+			}
+			if(upNullFlag){
+				$.dm.unblock($(".content-right"));
+				return;
+			}
+
+			callService("/member/updateMemberDetailApply.ajax",fm,
+				  {callSuccess: function(msg){
+			      if(msg == '0'){
+			      		$("#submitbtn").html('<input type="button" class="big-button" style="background: grey" disabled="disabled" value="已 提 交"/>');
+			          jsAlert("已提交");
+			      }else{
+			          jsErrAlert("修改失败");
+			      }
+			      $.dm.unblock($(".content-right"));
+			   }});
+		}
+	}
+	var img_name;
+	var img_id="ccd";
+	//个人头像图片加载
+	$(document).ready(function() {
+		
+		initShopUpload();
+		initHeadUpload();
+		initQualityUpload();
+		scope_fun();
+		$("#addImg").click(function(){
+			
+		})
+		$(".shut").click(function(){
+			$(".cx4").fadeOut();
+		});
+		$(".bigimg_up div p").click(function () {
+			$(this).empty();
+			$(this).parent().parent(".bigimg_up").fadeOut();
+		})
+	});
+	function bigimg(obj){
+		var url = $(obj).parent().parent().children("img").attr("src");
+		$(".bigimg_up").find("p").append("<img src='"+url+"' width='800' height='800'>");
+		$(".bigimg_up").fadeIn();
+	}
+
+	//删除图片
+	function deleteimgorno(obj) {
+		jsConfirm("确认要将图片删除吗？");
+		selectimg = obj;
+		$('[dm-actor="confirm-message-ok"]').click(function(){
+			var uploadButton = $(selectimg).parents("ul.groupimg").siblings("a.required_img");
+			$(selectimg).parent().parent().remove();
+			// validateUploadImg(uploadButton);
+		});
+
+	}
+
+	function initShopUpload(){
+		var uploader = new plupload.Uploader({
+			browse_button : 'addImg4Shop',
+			url : '/member/addShopPic.ajax',
+			filters: {
+				mime_types : [ //只允许上传图片类型
+					{ title : "Image files", extensions : system_vars.upload_file_types_imgs }
+				],
+				max_file_size : system_vars.upload_max_size_3m, //最大只能上传2M的文件
+			},
+			multi_selection:false
+		});
+		uploader.init(); //初始化
+		uploader.bind('FilesAdded',function(uploader,files){
+			if($("#itemImgShop li").length >= 8){
+				jsErrAlert("上传门店实景图片的张数不能超过8张");
+				return;
+			}
+			uploader.start(); //开始上传
+		});
+		uploader.bind('Error',function(uploader,errObject){
+			if(errObject.code == '-600'){
+				jsErrAlert("上传文件的大小不能超过2M");
+			}
+			if(errObject.code == '-601'){
+				jsErrAlert("上传文件的类型只能是jpg,gif,png,bmp");
+			}
+		});
+		uploader.bind('FileUploaded',function(uploader,file,responseObject){
+			var data=JSON.parse(responseObject.response);
+			if(data.result)
+			{
+				var valueName = uploader.settings.value_name;
+				var imgstr = "<li id='a'><img src='"+data.content+"' width='800' height='800' />"
+					+"<div class='goodsoperation'><span title='放大' class='bigimg' onclick='bigimg(this)'>放大</span><span title='删除' class='goodsdelete'  onclick='deleteimgorno(this)'><font color='red'>删除</font></span></div>"
+					+"</li>";
+				$(uploader.settings.browse_button).parent().parent().find($("#itemImgShop")).append(imgstr);
+			}else{
+				jsAlert(data.content);
+			}
+		});
+	}
+
+	function initQualityUpload(){
+		var uploader = new plupload.Uploader({
+			browse_button : 'addImg4Quality',
+			url : '/member/addShopPic.ajax',
+			filters: {
+				mime_types : [ //只允许上传图片类型
+					{ title : "Image files", extensions : system_vars.upload_file_types_imgs }
+				],
+				max_file_size : system_vars.upload_max_size_3m, //最大只能上传2M的文件
+			},
+			multi_selection:false
+		});
+		uploader.init(); //初始化
+		uploader.bind('FilesAdded',function(uploader,files){
+			if($("#itemImgQuality li").length >= 8){
+				jsErrAlert("上传资质图片的张数不能超过8张");
+				return;
+			}
+			uploader.start(); //开始上传
+		});
+		uploader.bind('Error',function(uploader,errObject){
+			if(errObject.code == '-600'){
+				jsErrAlert("上传文件的大小不能超过2M");
+			}
+			if(errObject.code == '-601'){
+				jsErrAlert("上传文件的类型只能是jpg,gif,png,bmp");
+			}
+		});
+		uploader.bind('FileUploaded',function(uploader,file,responseObject){
+			var data=JSON.parse(responseObject.response);
+			if(data.result)
+			{
+				var valueName = uploader.settings.value_name;
+				var imgstr = "<li id='a'><img src='"+data.content+"' width='800' height='800' />"
+					+"<div class='goodsoperation'><span title='放大' class='bigimg' onclick='bigimg(this)'>放大</span><span title='删除' class='goodsdelete'  onclick='deleteimgorno(this)'><font color='red'>删除</font></span></div>"
+					+"</li>";
+				$(uploader.settings.browse_button).parent().parent().find($("#itemImgQuality")).append(imgstr);
+			}else{
+				jsAlert(data.content);
+			}
+		});
+	}
+
+	function initHeadUpload(){
+		var uploader = new plupload.Uploader({
+			browse_button : 'addImg',
+			url : '/member/addMemberHeaderPic.ajax',
+			filters: {
+				mime_types : [ //只允许上传图片类型
+					{ title : "Image files", extensions : system_vars.upload_file_types_imgs }
+				],
+				max_file_size : system_vars.upload_max_size_3m, //最大只能上传2M的文件
+			},
+			multi_selection:false
+		});
+		uploader.init(); //初始化
+		uploader.bind('FilesAdded',function(uploader,files){
+			uploader.start(); //开始上传
+		});
+		uploader.bind('Error',function(uploader,errObject){
+			if(errObject.code == '-600'){
+				jsErrAlert("上传文件的大小不能超过2M");
+			}
+			if(errObject.code == '-601'){
+				jsErrAlert("上传文件的类型只能是jpg,gif,png,bmp");
+			}
+		});
+		uploader.bind('FileUploaded',function(uploader,file,responseObject){
+			var data=JSON.parse(responseObject.response);
+			if(data.result)
+			{
+				if(!($.browser.msie && $.browser.version.indexOf('9') >= 0)){
+					jcrop_api.destroy();
+				}
+				$("#hidden_input").val(data.content);
+				img_name=data.content;
+				$("#target").remove();
+				var imageUrl = '<img id="target" src='+data.content+' alt="头像预览:" />';
+				var imageMin = '<img src='+data.content+' class="jcrop-preview" alt="Preview" />';
+				$("[dm-container='previewImg']").append(imageUrl);
+
+				$(".headerHide").hide();
+				$(".cx4").fadeOut();
+				var str='<div class="preview-pane preview-pane';
+				var str1='"></div>';
+				for(var i=1;i<4;i++)
+				{
+					$("#preview_pane_span").append(str+i+str1);
+				}
+				$(".preview-pane1").append(imageMin);
+				$(".preview-pane2").append(imageMin);
+				$(".preview-pane3").append(imageMin);
+				var arr=[160,60,30];
+				for(var i=1;i<3;i++)
+				{
+					$(".preview-pane"+i).attr("title",arr[i-1]);
+				}
+				scope_fun();
+			}else{
+				jsAlert(data.content);
+			}
+		});
+	}
+
+
+	//个人头像上传
+	function load(){
+		if(!!$(":file").val()){
+			$("#upload_pop").ajaxSubmit({
+				success:function(data){
+					jcrop_api.destroy();
+					$("#hidden_input").val(data);
+					$("#target").remove();
+					var imageUrl = '<img id="target" src='+data+' alt="头像预览:" />';
+					var imageMin = '<img src='+data+' class="jcrop-preview" alt="Preview" />';
+					$("[dm-container='previewImg']").append(imageUrl);
+
+					$(".headerHide").hide();
+					$(".cx4").fadeOut();
+					var str='<div class="preview-pane preview-pane';
+					var str1='"></div>';
+					for(var i=1;i<4;i++)
+					{
+						$("#preview_pane_span").append(str+i+str1);
+					} 
+					$(".preview-pane1").append(imageMin);
+					$(".preview-pane2").append(imageMin);
+					$(".preview-pane3").append(imageMin);
+					var arr=[160,60,30];
+					for(var i=1;i<3;i++)
+					{
+						$(".preview-pane"+i).attr("title",arr[i-1]);
+					}
+					scope_fun();
+				}
+			});
+		}
+	}
+	//更新头像
+	function saveHeader(){
+		var url=$("#hidden_input").val();
+		if(!!url)
+		{
+			$.dm.block($(".content-right"));
+			var data=jcrop_api.tellScaled();
+			data.url=url;
+			data.fileName=img_name;
+			data.panelW=$('.jcrop-holder').width();
+			data.panelH=$('.jcrop-holder').height();
+			callService("/member/addMemberHeaderPic.ajax",data,{callSuccess: function(msg){
+					      if(msg != ''){
+					          jsAlert("更新头像成功",{
+					        	  callback:function(){
+						        	  ChangeDiv('0','JKDiva_',2)
+						        	  $('.on').removeClass('on');
+						        	  $('#tabDiv_0').addClass('on');
+						        	  $('#userDetailHeaderImg').attr('src',msg);
+						          }});
+					      }else{
+					          jsErrAlert("更新头像失败");
+					      }
+					      $.dm.unblock($(".content-right"));
+			}});
+		}else{
+			jsErrAlert("请选择需要修改的图片");
+		}
+	}
+
+	// 重写ChangeDiv的方法，对应上传图片时不能选择文件的问题。
+	function ChangeDiv(divId,divName,zDivCount){ 
+		for(i=0;i<=zDivCount;i++){ 
+			try{
+				document.getElementById(divName+i).style.display="none"; 
+			}catch(ex){}
+			//将所有的层都隐藏 
+		} 
+		try{
+			document.getElementById(divName+divId).style.display="block"; 
+		}catch(ex){}
+		//显示当前层
+		if(divId == 1 && $.browser.msie && $.browser.version.indexOf('10') < 0){
+			var uploader = new plupload.Uploader({
+				browse_button : 'addImg',
+				url : '/member/addMemberHeaderPic.ajax',
+				filters: {
+					  mime_types : [ //只允许上传图片类型
+					    { title : "Image files", extensions : system_vars.upload_file_types_imgs }
+					  ],
+					  max_file_size : system_vars.upload_max_size_3m, //最大只能上传2M的文件
+					},
+			multi_selection:false
+			});
+			uploader.init(); //初始化
+			uploader.bind('FilesAdded',function(uploader,files){
+				uploader.start(); //开始上传
+			});
+			uploader.bind('Error',function(uploader,errObject){
+				if(errObject.code == '-600'){
+			     	jsErrAlert("上传文件的大小不能超过2M");
+				}
+				if(errObject.code == '-601'){
+			     	jsErrAlert("上传文件的类型只能是jpg,gif,png,bmp");
+				}
+			});
+			uploader.bind('FileUploaded',function(uploader,file,responseObject){
+					var data=JSON.parse(responseObject.response);
+					if(data.result)
+					{
+						jcrop_api.destroy();
+						$("#hidden_input").val(data.content);
+						img_name=data.content;
+						$("#target").remove();
+						var imageUrl = '<img id="target" src='+data.content+' alt="头像预览:" />';
+						var imageMin = '<img src='+data.content+' class="jcrop-preview" alt="Preview" />';
+						$("[dm-container='previewImg']").append(imageUrl);
+			
+						$(".headerHide").hide();
+						$(".cx4").fadeOut();
+						var str='<div class="preview-pane preview-pane';
+						var str1='"></div>';
+						for(var i=1;i<4;i++)
+						{
+							$("#preview_pane_span").append(str+i+str1);
+						} 
+						$(".preview-pane1").append(imageMin);
+						$(".preview-pane2").append(imageMin);
+						$(".preview-pane3").append(imageMin);
+						var arr=[160,60,30];
+						for(var i=1;i<3;i++)
+						{
+							$(".preview-pane"+i).attr("title",arr[i-1]);
+						}
+						scope_fun();
+					}else{
+						jsAlert(data.content);
+					}
+			});
+		}
+	} 
+	
+	function submitDetail()
+	{
+		callService('/member/updateMemberData.ajax',$("#detailForm").serializeArray(),
+			{	async : false,
+				callSuccess:function(data){
+			if(data=="0"){
+				jsAlert("修改成功");
+				//隐藏完善资料送积分模块
+				$(".add-point").css("display","none");
+			}	
+			else
+				jsErrAlert("修改失败");
+		}})
+	}
+
+	function birthday(){
+		
+
+	}
+	
+	
+	function initDeliveryMap(){
+		var longitude = 121.598394;
+		var latitude = 38.931696;
+		var zoom = 10;
+		if($("#btype").val() != ""){
+			var deliveryLongitude = $("#userDetail\\.deliveryLongitude").val();
+			var deliveryLatitude = $("#userDetail\\.deliveryLatitude").val();
+			longitude = (deliveryLongitude != "" ? parseFloat(deliveryLongitude) : longitude);
+			latitude = (deliveryLatitude != "" ? parseFloat(deliveryLatitude) : latitude);
+			zoom = 15;
+		}
+		initBaiduMap(longitude,latitude,zoom);
+	};
+
+	function initBaiduMap(longitude,latitude,zoom){
+		var map = new BMap.Map("baiduMap",{enableMapClick: false});
+		var point = new BMap.Point(longitude, latitude);
+		map.centerAndZoom(point, zoom);
+		var marker = new BMap.Marker(new BMap.Point(longitude, latitude)); 
+		map.addOverlay(marker); 
+		map.enableScrollWheelZoom();
+		map.panTo(new BMap.Point(longitude, latitude));
+	};
+
+	function resetBaiduMap(){
+		var deliveryLongitude = $("#smMemberDetailInfoApplyVo\\.deliveryLongitude").val();
+		var deliveryLatitude = $("#smMemberDetailInfoApplyVo\\.deliveryLatitude").val();
+		
+
+		initBaiduMap(parseFloat(deliveryLongitude),parseFloat(deliveryLatitude),15);
+	};

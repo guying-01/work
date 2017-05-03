@@ -1,0 +1,88 @@
+$(document).ready(function() {
+	// 点击"收藏的店铺"
+	/*
+	 * $("ul.tabT li[favorite-store]").click(function(){ findStoreFavorite();
+	 * });
+	 */
+	$("#storeLi").click(function() {
+		findStoreFavorite();
+	});
+	// 点击"删除"，就是那个垃圾桶图标
+	$("[dm-actor='fav-sto-del']").live('click', function() {
+		var id = $(this).attr('dm-data');
+		jsConfirm('确定删除吗？', {
+			callback : function(result) {
+				if (result) {
+					callService('/mf/deleteStoreFavorite.ajax', {
+						id : id
+					}, {
+						callSuccess : function(data) {
+							if (data == "default") {
+								jsErrAlert("请求失败,请联系管理员");
+							} else {
+								findStoreFavorite();
+								if ($("#tool").dmLoadToolBar) {
+									$("#tool").dmLoadToolBar({
+										"type" : "html"
+									});
+								}
+								if ($(".topnav").dmHeaderBar) {
+									$(".topnav").dmHeaderBar({
+										"type" : "replaceWith"
+									});
+								}
+							}
+						}
+					});
+				}
+			}
+		});
+
+	})
+});
+// 查询用户收藏的店铺
+function findStoreFavorite() {
+	callService('/mf/findStoreFavorite.ajax', '', {
+		callSuccess : function(data) {
+			var handleStr = $("#fav-st-tl").html();// 根据上边script标签的ID获得字符串
+			var handleObj = Handlebars.compile(handleStr);// 把这个字符串转换成handlebars对象
+			var strHtml = handleObj(data);// handlebars对象里放数据，转换成字符串,data是ajax请求回来的数据
+			if ($.trim(strHtml) == '' || strHtml == null) {
+				handleStr = $("#not-favorite").html()
+				handleObj = Handlebars.compile(handleStr);// 把这个字符串转换成handlebars对象
+				strHtml = handleObj(data.reverse());
+			}
+			$("[dm-data='store']").html(strHtml);
+
+		}
+	});
+}
+
+// 添加到收藏店铺
+function addStoreFavorite() {
+	$.dm.getLogStatus(function(data) {
+		if (data == null) {
+			location.href = '/toLogin.jhtml';
+		} else {
+			callService('/mf/addSgMemberStoreFavorite.ajax', {
+				storeId : storeId
+			}, {
+				callSuccess : function(data) {
+					if (!data.success) {
+						$.dm.unblock();
+						jsErrAlert(data.message);
+					} else {
+						if (data.success) {
+							jsAlert("收藏成功");
+						} else {
+							$.dm.unblock();
+							jsErrAlert(data.message);
+						}
+					}
+				}
+			});
+		}
+	});
+}
+
+

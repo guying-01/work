@@ -1,0 +1,1300 @@
+@charset "utf-8";
+/* CSS Document */
+/*订单筛选*/
+.order-serch {
+	margin: 0 auto;
+	padding: 30px 0 30px 0;
+	width: 950px;
+}
+.order-serch strong {
+	display: block;
+	margin-left: 20px;
+	float: left;
+	font-weight: lighter;
+	line-height: 25px;
+}
+.order-serch input {
+	float: left;
+	width: 130px;
+}
+.order-serch span {
+	display: block;
+	padding: 0 5px;
+	float: left;
+	line-height: 25px;
+}
+.order-serch select {
+	display: block;
+	margin-right: 10px;
+	float: left;
+}
+/*全选*/
+.allselect {
+	margin: 0 auto;
+	padding:0 20px 20px 20px;
+	clear: both;
+	height: 30px;
+
+}
+.allselect input {
+	display: block;
+	margin: 9px 5px 0 0;
+	float: left;
+}
+.allselect span {
+	display: block;
+	margin-right: 10px;
+	float: left;
+	line-height: 30px;
+}
+/*推荐商品*/
+.goods {
+	display: block;
+	margin:25px 0 0 11px;
+	float: left;
+	width: 184px;
+	height: 275px;
+	border: solid 1px #e1e1e1;
+}
+.goods img {
+	display: block;
+	margin: 0 auto;
+	width: 160px;
+	height: 200px;
+}
+.goods h3 {
+	margin: 0 auto 10px auto;
+	width: 170px;
+	max-height:40px;
+	overflow:hidden;
+	font-weight: lighter;
+	line-height: 20px;
+	word-wrap:break-word;
+}
+.goods:hover .goodsoperation {
+	display: block;
+}
+/*.goodsprice {
+	margin: 0 auto;
+	width: 170px;
+	height: 25px;
+}*/
+.goodsprice strong {
+	/*font-size: 14px;*/
+	color: #ca1d3f;
+	/*line-height: 25px;*/
+}
+.goodsprice a {
+	line-height: 25px;
+}
+/*订单详情*/
+.payment-page {
+	padding-bottom: 45px;
+}
+/*订单状态*/
+.orderdedetail {
+	position: relative;
+}
+
+.orderdedetail h3 {
+	overflow: hidden;
+	word-wrap: break-word;
+	line-height: 0.5rem;
+	font-size: 0.23rem;
+	text-indent: 0.08rem;
+}
+.orderdedetail h3 a:hover {
+	color: #ff8b0e
+}
+.order-status p {
+	display: block;
+	height: 30px;
+
+	line-height: 30px;
+}
+.order-status p i {
+	padding: 5px;
+	background: url(../../img/common/ico3.png) no-repeat 0 -159px;
+}
+.order-status p span {
+	display: block;
+	float: left;
+}
+.order-status p a {
+	display: block;
+	margin-left: 5px;
+	float: left;
+	color: #ff8b0e;
+}
+/*物流信息*/
+.logistics-empty {
+	margin: 20px auto;
+	font-size: 18px;
+	color: #ff8b0e;
+	text-align: center;
+}
+.order-logistics li {
+	min-height: 30px;
+	line-height: 30px;
+}
+.order-logistics li span, .order-logistics li strong {
+	display: block;
+	float: left;
+	font-weight: lighter;
+
+}
+.order-logistics li .left {
+	width: 800px;
+
+}
+/*订单信息*/
+.order-information {
+}
+.order-information li {
+	display: block;
+	float: left;
+	width: 300px;
+	min-height: 30px;
+
+	line-height: 30px;
+}
+.order-information .float-no {
+	clear: both;
+	width: auto;
+}
+/*商品清单*/
+.goodslist {
+	display: none;
+	margin: 0 auto 20px auto;
+	width: 900px;
+}
+.anclose-button {
+	height: 15px;
+	background: #fff3f3;
+}
+.anclose-button p {
+	display: block;
+	margin: 0 auto;
+	width: 50px;
+	height: 15px;
+	background: url(../../img/common/ico01.png) -106px -49px;
+	cursor: pointer;
+}
+.active-anclose-p {
+	background: url(../../img/common/ico01.png) -106px -102px !important;
+}
+.table-tit {
+	padding: 7px 0;
+	height: 20px;
+	border: solid 1px #e1e1e1;
+	text-align: center;
+	line-height: 20px;
+}
+.table-tit span {
+	display: block;
+	float: left;
+	width: 95px;
+	text-align: center;
+}
+.order-tab {
+	margin: 0 auto;
+	border-left: solid 1px #e1e1e1;border-bottom: solid 1px #e1e1e1;
+	border-right: solid 1px #e1e1e1;
+}
+.table-produce {
+	padding: 10px 0;
+	height: 52px;
+	overflow: hidden;
+	border-top: solid 1px #e1e1e1;
+}
+.table-produce p {
+	display: block;
+	float: left;
+	max-width: 3rem;
+	margin-top: 0.1rem;
+}
+.table-produce p .left {
+	width: 290px;
+	text-align: left !important
+}
+.table-produce p strong {
+	display: block;
+	float: left;
+	font-weight: lighter;
+}
+.table-produce p span {
+	display: block;
+	float: left;
+	height: 52px;
+	overflow: hidden;
+}
+.table-produce p span img {
+	width: 50px;
+	height: 50px;
+	border: solid 1px #e1e1e1;
+}
+.table-message {
+	margin: 0 auto;
+	width: 900px;
+}
+.table-message p span {
+	display: block;
+	width: 90px;
+
+	text-align: center;
+	line-height: 30px;
+}
+.order-sum {
+	display: block;
+	margin-right: 30px;
+	float: right;
+	overflow: hidden;
+}
+.order-sum ul li {
+	height: 30px;
+	line-height: 30px;
+}
+.order-sum ul li span{
+	text-align:right;
+}
+.order-sum ul li span, .order-sum ul li strong {
+	display: block;
+	font-family:"Microsoft Yahei";
+	float: left;
+
+}
+.order-sum ul li .font-color-d {
+	font-size: 20px;
+}
+.display-name {
+	height: 30px;
+	line-height: 30px;
+}
+.display-name input {
+	margin: 9px 5px 0 0;
+}
+
+/*退款管理*/
+.information-line {
+	padding-top: 0.2rem;
+	clear: both;
+    overflow: hidden;
+}
+.information-line .inputVrif {
+	float: right;
+	margin-right: 2.6rem;
+	margin-top: 0.1rem;
+}
+
+.information-line .forgetPwdNum {
+	float: right;
+	margin-right: 1.23rem;
+	margin-top: 0.1rem;
+	font-size: 0.22rem;
+}
+.information-line .pwdStren123 {
+	margin-top: 0.2rem;
+	font-size: 0.22rem;
+}
+.information-line .insertNew {
+	padding: 0.1rem;
+	display: inline-block;
+	font-size: 0.22rem;
+	border: 0.01rem solid #ddd;
+}
+.errorwrong {
+	font-size: 0.22rem;
+}
+.information-line .phoneNum {
+	margin-top: 0.2rem;
+}
+.information-line .bindPhone {
+	display: inline-block;
+}
+.information-line .changePwdText {
+	display: inline-block;
+	box-sizing: border-box;
+	font-size: 0.22rem;
+}
+.information-line .changeQusText {
+	float: right;
+	margin-right: 1.55rem;
+	margin-top: 0.1rem;
+}
+.information-line .linespan {
+    display:inline-block;
+    padding-left: 0.37rem;
+    color: #3f3f3f;
+    line-height: 0.6rem;
+    font-size: 0.23rem;
+    font-weight: bold;
+    width: 2.2rem;
+}
+.information-line .change{
+}
+.orderdedetail .typeRej {
+	width: 1.2rem;
+}
+.information-line .member-haed {
+    position: relative;
+    float: right;
+    margin-right: 2.44rem;
+}
+
+.information-line .member-haed img {
+    position: absolute;
+    top: -0.18rem;
+    left: -0.38rem;
+}
+.information-line .member-haed a {
+	top: -0.18rem;
+	left: -0.4rem;
+	line-height: 1.2rem;
+}
+
+.information-line .linespan em {
+	color: red;
+	padding-right: 0.03rem;
+}
+.information-line p {
+	min-height: 0.5rem;
+    line-height: 0.5rem;
+    font-size: 0.25rem;
+    float: right;
+    border: 1px solid #dcdcdc;
+    margin-right: 0.9rem;
+    width: 2.7rem;
+    text-align: center;
+}
+.information-line .telPhone{
+	margin-right: 1.43rem;
+	text-align: left;
+	box-sizing: border-box;
+	padding-left: 0.1rem;
+}
+.forfetPwdCheckMes{
+	margin-left: 2.22rem;
+	margin-top: 0.4rem;
+}
+.findMyPassWord{
+	padding-top: 0.6rem;
+}
+.information-line .phoneNum p {
+	height: 0.2rem;
+}
+.information-line .rej {
+	width: 2rem;
+	float: right;
+	margin-right: 2.73rem;
+	height: 0.4rem;
+	margin-top: 0.1rem;
+}
+.information-line .userPhoneNum {
+	line-height: 0.4rem;
+	font-size: 0.2rem;
+	margin-right: 2.15rem;
+	margin-top: 0.1rem;
+	border: 0;
+	text-align: left;
+}
+
+.information-line .showPics a {
+    display: inline-block;
+    height: 0.3rem;
+    width: 0.3rem;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    margin-top: 0.3rem;
+    margin-right: 0.1rem;
+}
+.information-line .showPics-gy a{
+	font-size: 0.3rem;
+	text-align: center;
+	line-height: 0.3rem;
+	font-weight: bold;
+}
+.information-line .groupImgDiv {
+    width: 1.9rem;
+    display: inline-block;
+    vertical-align: middle;
+    overflow: hidden;
+    height: 0.9rem;
+    position: relative;
+
+}
+.information-line .groupImgDiv .itemImgShop {
+    padding-top: 0;
+    width: 100rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+}
+.information-line .groupImgDiv .itemImgShop li{
+    height: 0.85rem;
+    border: 0.04rem solid #dddddd;
+    width: 0.85rem;
+    margin-right: 0.08rem;
+}
+.information-line .groupImgDiv .itemImgShop li img {
+    width: 0.85rem;
+    height: 0.85rem;
+}
+.information-line .groupimg {
+
+}
+.information-line p img {
+	width: 100px;
+	height: 50px;
+	cursor: pointer;
+}
+.information-line p em {
+	display: block;
+	margin: 0 10px 0 5px;
+	float: left;
+}
+.information-note {
+	width: 80%;
+	height: auto;
+	margin: 0.2rem auto 0;
+	font-size: 0.22rem;
+}
+#second {
+	font-size: 0.22rem;
+}
+#send_failed{
+	text-align: center;
+}
+#send_timeout{
+	text-align: center;
+}
+#JKDiva_0 .content {
+    width: 2.5rem;
+    height: 1rem;
+    background: #DDE;
+    border: 1px solid #eee;
+    margin-left: 1.7rem;
+    margin-top: 0.2rem;
+}
+#JKDiva_0 .content p {
+    font-size: 0.2rem;
+    line-height: 0.25rem;
+    padding-top: 0.15rem;
+    padding-left: 0.2rem;
+}
+.bottom-button {
+	margin: 0 auto;
+	clear: both;
+	width: 80%;
+	height: 1rem;
+	 text-align:center;
+	 margin-top: 0.4rem;
+}
+.refundsuccess {
+	background: url(../../img/common/greyrefund.png) no-repeat center #fff5f5;
+}
+.information-line .radio {
+	margin: 8px 5px 0 0;*margin:4px 0px 0 0;
+}
+/*收货地址*/
+.Shipping-address {
+	margin: 20px auto 0 auto;  width:956px;
+}
+.Shipping-address h2 {
+
+	height: 40px;
+	border: solid 1px #ececec;
+	text-align: center;
+	line-height: 40px;
+}
+.Shipping-address h2 span {
+	display: block;
+	padding: 0 5px;
+	float: left;
+	width:96px;
+	font-weight: lighter;
+	text-align: center;
+}
+.Shipping-address-con {
+	padding: 7px 0;
+	min-height: 20px;
+	border-bottom: solid 1px #ececec;
+}
+.Shipping-address-con p {
+	display: block;
+	float: left;
+	padding: 0 5px;
+	width:96px;
+
+	text-align: center;
+	line-height: 20px;
+}
+.Shipping-address-con .width200 {
+	text-align: left;
+}
+/*默认地址*/
+.defaultadress {
+	background: url(../../img/common/defaultadress.png) no-repeat center #f5f5f5;
+}
+/*退货商品*/
+.ReturnGoods {
+	background: url(../../img/common/ReturnGoods.png) no-repeat center #e6e6e6;
+}
+/*退款商品*/
+.RefundGoods {
+	background: url(../../img/common/RefundGoods.png) no-repeat center #dde3da;
+}
+
+/*增加收货地址*/
+.add_adress {
+	position: relative;
+	margin: 0 auto;
+	clear: both;
+	width: 650px;
+	min-height: 35px;
+}
+.add_adress span {
+	display: block;
+	padding-right: 5px;
+	float: left;
+	width: 100px;
+	text-align: right;
+	line-height: 30px;
+}
+.add_adress span  em{ color:red;}
+.add_adress .errorwrong_r{ position: relative; float:left; margin-left:20px;}
+.add_adress .textarea_A {
+	margin-bottom: 10px;
+}
+.add_adress strong {
+	display: block;
+	padding: 0 5px;
+	float: left;
+	font-weight: lighter;
+	line-height: 30px;
+}
+.add_adress .errorwrong, .add_adress .errorcorrect {
+	top: -25px;
+	left: 105px;
+}
+.order h4 {
+	margin: 20px auto 0 auto;
+	padding: 0 10px;
+	width: 1080px;
+	height: 40px;
+	border-bottom: solid 1px #e1e1e1;
+	font-size: 12px;
+
+	line-height: 40px;
+}
+.order h4 a {
+	display: block;
+	float: left;
+}
+.order h4 strong {
+	display: block;
+	float: left;
+	margin-right: 10px;
+	font-weight: lighter;
+}
+/*修改密码*/
+.note-password {
+	margin: 0 auto;
+	border-bottom: dashed 1px #e1e1e1;
+	line-height: 0.4rem;
+	padding: 0 0.4rem;
+	padding-bottom: 0.1rem;
+	margin-top: 0.1rem;
+	font-size: 0.22rem;
+}
+.phone-verify {
+	margin-top: 0.2rem;
+	padding-top: 0.2rem;
+	border-top: dashed 1px #e1e1e1;
+}
+.email-verify {
+	display: none;
+	margin-top: 10px;
+	padding-top: 10px;
+	border-top: dashed 1px #e1e1e1;
+}
+.answear-verify {
+	display: none;
+	margin-top: 10px;
+	padding-top: 10px;
+	border-top: dashed 1px #e1e1e1;
+}
+/*积分管理*/
+.font-red {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 20px;
+	font-weight: bold;
+	color: red;
+}
+.font-green {
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 20px;
+	color: #090;
+}
+.font-gray {
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 20px;
+	color: #666;
+}
+
+/*退款申请*/
+
+/*退款商品*/
+.refund-goods {
+	position: absolute;
+	top: 0;
+	right: 10px;
+	width: 225px;
+}
+.refund-goods img {
+	display: block;
+	float: left;
+	width: 60px;
+	height: 60px;
+	border: solid 1px #e1e1e1;
+}
+.refund-goods p {
+	display: block;
+	padding-left: 10px;
+	float: left;
+	width: 150px;
+}
+.refund-goods p a {
+	display: block;
+	margin-bottom:5px;
+	height:36px;
+	overflow:hidden;
+	line-height: 18px;
+	word-wrap:break-word;
+}
+/*卡券管理*/
+.sorting {
+	margin: 30px 0;
+	padding: 0px 10px;
+	height: 35px;
+	border: solid 1px #e1e1e1;
+	background: #f3f3f3;
+	font-size: 14px;
+	font-weight: lighter;
+}
+.sorting a, .sorting span {
+	display: block;
+	padding: 0 10px;
+	float: left;
+	font-size: 14px;
+	line-height: 35px;
+}
+.sorting .text_A {
+	margin-top: 6px;
+	height: 20px;
+}
+.sorting a u{
+	display: block;
+	padding-left: 6px;
+	float: left;
+	width: 9px;
+	height: 35px;
+	background: url(../../img/common/ico11.png) no-repeat 6px -127px;
+}
+.sorting_bot {
+	background: url(../../img/common/ico11.png) no-repeat 6px -97px !important;
+}
+.sorting a i {
+	display: block;
+	float: left;
+	font-size: 14px;
+	line-height: 35px;
+}
+.member-coupons {
+	position: relative;
+	display: block;
+	margin: 0 0 20px 20px;
+	float: left;
+	width: 300px;
+	height: 135px;
+	background: #f0f0f0;
+}
+.member-coupons h2 {
+	position: relative;
+	display: block;
+	width: 300px;
+	height: 35px;
+	font-size: 14px;
+	font-weight: lighter;
+	line-height: 35px;
+}
+.member-coupons h2 i {
+	padding: 0 15px;
+	background: url(../../img/common/icon10.png) no-repeat 8px -150px;
+}
+.member-coupons h2 span {
+	position: absolute;
+	display: block;
+	top: 5px;
+	right: 5px;
+	width: 15px;
+	height: 25px;
+	background: url(../../img/common/ico8.png) no-repeat -157px -228px;
+	cursor: pointer;
+}
+.member-coupons .coupons {
+	width: 280px;
+	height: 90px;
+	padding: 5px 10px;
+}
+.member-coupons .coupons-infor {
+	position: absolute;
+	top: 9px;
+	right: 10px;
+	width: 200px;
+	height: 90px;
+}
+.member-coupons .coupons-infor p {
+	color: #fff;
+	text-align: right;
+	line-height: 20px;
+}
+.member-coupons .coupons i {
+	left: 0px;
+	width: 300px;
+	height: 6px;
+}
+.member-coupons .coupons-top-black {
+	top: -3px;
+	background: url(../../img/common/coupons.png) center -12px repeat-x;
+}
+.member-coupons .coupons-bottom-black {
+	position: absolute;
+	z-index: 10000;
+	display: block;
+	bottom: -3px;
+	left: 0px;
+	width: 300px;
+	height: 6px;
+	background: url(../../img/common/coupons.png) center -12px repeat-x;
+}
+.member-coupons h3 {
+	display: block;
+	padding-left: 10px;
+	height: 35px;
+	font-size: 14px;
+	font-weight: lighter;
+	color: #f89b4e;
+	line-height: 35px;
+}
+.member-coupons .shuffling {
+	position: relative;
+	margin-left: 15px;
+	width: 270px;
+	height: 120px;
+}
+.member-coupons .shuffling-goods {
+	position: relative;
+	width: 270px;
+	height: 120px;
+	overflow: hidden;
+}
+.member-coupons .shuffling-goods ul {
+	width: 100000px;
+}
+.member-coupons .shuffling-goods ul li {
+	position: relative;
+	display: block;
+	float: left;
+	width: 90px;
+	height: 120px;
+	text-align: center;
+}
+.member-coupons .shuffling-goods ul li span {
+	display: block;
+	margin-right: 10px;
+	color: red;
+	text-align: right;
+	line-height: 20px;
+}
+.member-coupons .shuffling-goods ul li img {
+	width: 80px;
+	height: 80px;
+	border: solid 1px #e1e1e1;
+}
+.member-coupons .shuffling-goods ul li p {
+	position: absolute;
+	display: none;
+	top: 0px;
+	left: 4px;
+	padding: 5px;
+	width: 72px;
+	height: 72px;
+	background: url(../../img/common/pngb.png) repeat;
+	text-align: left;
+	line-height: 20px;
+}
+.member-coupons .shuffling-goods ul li:hover p {
+	display: block;
+}
+.member-coupons .shuffling-left {
+	position: absolute;
+	z-index: 1000;
+	display: block;
+	top: 30px;
+	left: -13px;
+	width: 14px;
+	height: 26px;
+	background: url(../../img/common/icon10.png) no-repeat -238px 0;
+	cursor: pointer;
+}
+.member-coupons .shuffling-right {
+	position: absolute;
+	z-index: 1000;
+	display: block;
+	top: 30px;
+	right: -13px;
+	width: 14px;
+	height: 26px;
+	background: url(../../img/common/icon10.png) no-repeat -285px 0;
+	cursor: pointer;
+}
+.member-coupons .coupons-price strong {
+	font-size: 50px;
+}
+/*评价*/
+.evaluation_list  h3{ font-weight:lighter;word-break:break-all;}
+
+
+.m-box {
+	margin-left: 10px;
+	width: 420px;
+
+}
+
+.m-box h4 a,.m-box h4 {
+	font-weight: normal;
+	font-size: 14px;
+	line-height: 18px;
+}
+.button {
+	display: block;
+	float: left !important;
+	cursor: pointer;
+}
+.goodimg {
+	float: left;
+	border: #ddd 1px solid;
+}
+.information-line .linespans {
+	display: block;
+	float: left;
+	padding-right: 10px;
+	width: 70px;
+	text-align: right;
+	line-height: 30px;
+}
+.information-line .m_edP_nb{
+	border: none;
+	line-height: 0.6rem;
+	text-align: left;
+}
+#userDetailHeaderImg{
+	border-radius: 1.5rem;
+}
+.target-demo {
+	display: block;
+	margin-top: 5px;
+	float: left;
+}
+.function-hint {
+	display: none;
+}
+/*安全设置*/
+.box {
+	clear: both;
+	height: 0.6rem;
+	line-height: 0.6rem;
+	padding-left: 0.1rem;
+}
+.boxBig {
+	position: relative;
+	margin: 0.1rem auto 0 auto;
+	padding-bottom: 0.15rem;
+	border-bottom: #dddddd 1px dashed;
+}
+.little {
+	display: block;
+	float: left;
+	padding: 0;
+	text-align: left;
+	line-height: 0.6rem ;
+	color: #000;
+}
+.boxBig p {
+	line-height: 0.3rem;
+	padding-left: 0.1rem;
+}
+.boxBig .box .safeLevel {
+	margin-top: 0.15rem;
+	margin-left: 0.05rem;
+}
+.boxBig .right {
+	position: absolute;
+	top: 0.15rem;
+	right: 0;
+}
+.bg-i-r {
+	margin: 0.12rem 0.05rem;
+	float: left;
+	width: 0.4rem;
+	height: 0.35rem;
+	background: url(../../img/common/ico01.png) no-repeat -213px -320px;
+}
+.bg-i {
+	margin: 5px;
+	float: left;
+	width: 29px;
+	height: 20px;
+	background: url(../../img/common/ico01.png) no-repeat -268px -319px;
+}
+#target {
+    width: 0.35rem;!important;
+    height: 0.35rem;!important;
+}
+.jcrop-holder {
+    width:5.5rem;!important;
+    height: 5.5rem;!important;
+}
+.member-list-tab .modify  a{
+	font-size: 0.3rem;
+	background: url(../../img/member/goBack.png) no-repeat center center;
+	display: inline-block;
+	height: 0.35rem;
+	width: 0.35rem;
+	background-size: contain;
+	position: absolute;
+	top: 50%;
+	margin-top: -0.175rem;
+	left: 0.1rem;
+
+}
+/*mobile part start*/
+    .contactBox{
+		width: 100%;
+		padding: 0.1rem 0.2rem;
+		box-sizing: border-box;
+		padding-top: 0.3rem;
+	}
+	.contactBox p{
+		width: 100%;
+		padding: 0.05rem 0;
+		font-size: 0.3rem;
+		color: #000;
+		text-align: center;
+	}
+
+	.goods{
+		width: 100%;
+		margin: 0;
+		overflow: hidden;
+		height: 2rem;
+		position: relative;
+		left:0;
+		top:0;
+	}
+	.box .font-color-c{
+		margin-left: 0.05rem;
+	}
+	.goods img{
+		width: 1.6rem;
+		height:1.6rem;
+		position: absolute;
+		left:0.6rem;
+		top:0.2rem;
+	}
+	/*.goodsprice{
+		position: absolute;
+		bottom:0.3rem;
+		left:2.5rem;
+	}*/
+	.goodsName-g{
+		max-width: 3rem;
+	}
+	.goods h3{
+		position: absolute;
+		left: 2.5rem;
+		top:0.5rem;
+	}
+	.goodsName_g{
+		max-width: 3rem;
+	}
+	/*myOrder  part start*/
+	.member-list .mobileMyOrderTabt li{
+		width: 25%;
+		height: 100%;
+	}
+    .myOrderTitle{
+		width: 100%;
+		font-size: 0.3rem;
+		line-height: 0.8rem;
+		background: none;
+		border-bottom: 0;
+		height: 0.8rem;
+		display: block;
+		text-align: center;
+		font-weight: bold;;
+		color: black;
+		position: relative;
+	}
+	.myOrderTitle a {
+		display: inline-block;
+		height: 0.5rem;
+		width: 0.35rem;
+		background: url(../../img/member/goBack.png) no-repeat center center;
+		background-size: contain;
+		position: absolute;
+		left: 0.2rem;
+		top: 0.06rem;
+	}
+	.orderListFill{
+		height: 0.87rem;
+		background: #fff;
+	}
+	.boxBig .right{
+		right:0.1rem;
+	}
+	.bottom{
+		display: none;
+	}
+	.orderState{
+		font-size: 20px;
+		position: absolute;
+		z-index: 9999;
+		top:0;
+		right: 0;
+	}
+	.everyOrderList .mobileOrderState{
+		position: relative;
+		border: none;
+		width: 4.2rem;
+		float: left;
+		margin-bottom: 0.1rem;
+		font-size: 0.22rem;
+		color: #ee0000;
+	}
+	.everyOrderList .categoryName {
+		width: 4.2rem;
+		float: left;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		margin-bottom: 0.1rem;
+	}
+	.price_num_box{
+		width: 4.2rem;
+		float: left;
+		margin-bottom: 0.1rem;
+	}
+	.price_num_box	.orderPrice{
+		float: left;
+	}
+	.price_num_box	.orderAmount{
+		float:right;
+	}
+	.everyOrderList .mobileOrderState{
+		width:4.2rem
+		float: left;
+	}
+	.order_state_btn{
+		display: block;
+		float: left;
+		height: 0.4rem;
+		line-height: 0.4rem;
+		padding:0 0.1rem;
+		color: #f88c0e;
+		border:1px solid #f88c0e;
+		margin-right: 0.1rem;
+		border-radius: 0.1rem;
+		font-size: 0.22rem;
+	}
+	.everyOrderList .mobileOrderDo .font-color-c{
+		/*position: absolute;*/
+		border: none;
+		/*right: 0.4rem;
+		bottom:0.2rem;*/
+		height: 0.4rem;
+		line-height: 0.4rem;
+		border: 1px solid #f88c0e;
+		border-radius: 0.05rem;
+		text-align: center;
+		padding: 0 0.1rem;
+	}
+	.orderBox .addShopCar{
+		width: 100%;
+		overflow: hidden;
+		box-sizing: border-box;
+	}
+	.orderBox .addShopCar .big-button{
+		border-radius: 0.1rem;
+		margin-bottom: 0.05rem;
+
+	}
+	/*.everyOrderList .orderPrice{
+		bottom:0.8rem;
+	}
+	.everyOrderList .orderAmount{
+		bottom:0.8rem;
+	}*/
+	.everyOrderList .mobileOrderState .font-color-c{
+		position: absolute;
+		left: -2rem;
+		display: block;
+		top:1.45rem;
+		height: 0.4rem;
+		line-height: 0.4rem;
+		border-radius: 0.05rem;
+		border: 1px solid #f88c0e;
+		text-align: center;
+		padding: 0 0.1rem;
+	}
+	.orderListMore{
+		margin-top: 0.5rem;
+		font-size: 0.26rem;
+		text-align: center;
+	}
+	#JKDiva_0 .content{
+		width: 3rem;
+	}
+	.od_info{
+		width: 100%;
+		/*float: left;
+		padding: 0.05rem 0.2rem;*/
+		box-sizing: border-box;
+	}
+	/*myOrder  part end*/
+
+
+	.everyOrderList .mobileOrderState .font-color-c{
+		left:-2.4rem;
+	}
+    .information-line .changeQusText{
+		display: inline-block;
+		float: none;
+		margin-right: 0;
+		font-size: 0.22rem;
+	}
+	.checkAuthFill{
+		width: 100%;
+		height: 1rem;
+	}
+	.send-msg-gy{
+		background: #f88c0e;
+		color: #fff;
+		padding: 0.08rem 0.2rem;
+		letter-spacing: 0.03rem;
+		margin-top: 0.2rem;
+		display: inline-block;
+	}
+	.information-line-gy{
+		width: 100%;
+		height: auto;
+		overflow: hidden;
+		padding: 0.1rem 0.2rem;
+		box-sizing: border-box;
+		font-size: 0.25rem;
+	}
+	.information-line-gy label{
+		display: block!important;
+		width: 100%!important;
+		height: auto;
+	}
+	.information-line-gy label#newPassword1-error{
+		display: inline-block!important;
+		width: auto!important;
+		border:1px solid #ffb7c1;
+		line-height: 0.35rem;
+		padding: 0.05rem;
+		color: #f8425c;
+		margin-left: 0.05rem;
+	}
+	.wrap-g{
+		display: block;
+		width: 100%;
+		height: auto;
+		text-align: center;
+	}
+	.label-g{
+		margin-top: 0.1rem;
+		display: inline-block;
+		margin-left:25%;
+		border:1px solid #ffb7c1;
+		line-height: 0.35rem;
+		padding: 0.05rem;
+		color: #f8425c;
+	}
+	.input-g{
+		display: inline-block;
+		min-width: 2rem;
+		border: solid 1px #ddd;
+		line-height: 0.35rem;
+		margin: 0!important;
+		padding: 0.05rem!important;
+		font-size: 0.25rem;
+	}
+	.information-line-gy .linespan{
+		font-size: 0.23rem;
+		color: #3f3f3f;
+		font-weight: 600;
+		width: 24%;
+		display: inline-block;
+		text-align: right;
+	}
+	.information-line-gy select{
+        margin: 0;
+		box-sizing: border-box;
+		font-size: 0.22rem;
+	}
+	.information-line-gy .telPhone{
+		border:0.01rem solid #ddd;
+		display: inline-block;
+		padding: 0.06rem;
+		font-size: 0.23rem;
+	}
+	.information-line-gy.findMyPassWord {
+		padding-top: 0.3rem;
+	}
+	.information-line-gy .forfetPwdCheckMes{
+		margin-left: 25%;
+		height: auto;
+		width: auto;
+		line-height: normal;
+		float: left;
+	}
+
+/*mobile part end*/
+
+.everyOrderList .goods_pic{
+	display: block;
+	float: left;
+	margin-right: 0.2rem;
+}
+.everyOrderList:after{
+	content: '.';
+	clear: both;
+	visibility: hidden;
+	height: 0;
+	display: block;
+}
+.no_more_order{
+	font-size: 0.25rem;
+	color: #b7b7b7;
+	background: #fff;
+	border-top: 1px solid #dcdcdc;
+	margin-top: 0;
+	padding-top: 0.5rem;
+	border-radius: 0;
+	width: 100%;
+}

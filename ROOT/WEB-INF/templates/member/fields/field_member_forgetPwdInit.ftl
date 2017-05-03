@@ -1,0 +1,25 @@
+<#include "/common/common_var_definds.ftl" />
+<#macro render data>
+<#escape x as x?html>
+	<div class="member-list-tab" >
+      <h2 class="member-tit modify"> <a href="javascript:void(0);" onclick="javascript :history.go(-1);"></a><i>&nbsp;</i>找回登录密码</h2>
+      <div class="progress_four progress_A">
+			<div class="coverColor_A"></div>
+        <p class="progress_textA progress_four_A font-color-b" >输入用户名</p>
+        <p class="progress_textB progress_four_B">验证身份</p>
+        <p class="progress_textC progress_four_C">设置新密码</p>
+        <p class="progress_textD progress_four_D">完成</p>
+      </div>
+      <div class="orderdedetail">
+	      <form id="next_form" action="${ctx}/forget/findUserInfo.jhtml" method="post">
+	          <div class="information-line-gy">
+        		<span class="linespan">用户名：</span>
+	          <input id="userCode" name="userCode" type="text" class="input-g" placeholder="请输入用户名">
+	        </div>
+	      </form>
+	        <div class="bottom-button p-t-40" ><a href="javascript:void(0);" onclick="$('#next_form').submit();" class="big-button">下一步</a></div>
+	    </div>
+	  </div>
+
+</#escape>
+</#macro>

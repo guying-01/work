@@ -1,0 +1,15 @@
+/*天上掉馅饼开始*/
+.banner{
+    width: 100%;
+    height:3rem;
+    background: url("../img/pie/banner.jpg") no-repeat center center;
+    background-size: cover;
+}
+.container{
+    width: 100%;
+    background: #fd8222;
+    overflow: hidden;
+}
+
+
+/*天上掉馅饼结束*/

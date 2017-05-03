@@ -1,0 +1,161 @@
+<#include "/common/common_var_definds.ftl" />
+<div class="content_pingtaifuwu" style="height: 100%;">
+    <div class="content_pingtaifuwu_box mobileProductGy" style="height: 100%;margin-bottom: 50px;">
+        <div class="content_peisong_top">
+            <div class="content_title">
+                <a href="/"><i></i></a>
+                <span>饭饭活动专区</span>
+            </div>
+        </div>
+        <div class="content_head_2">
+            <ul style="overflow: hidden">
+                <li><a href="/about/about_platform.jhtml?name=网上营销工具" class="text_head"><p>网上营销工具</p></a></li>
+                <li class="about_on"><a href="/about/about_platform_1.jhtml?name=线下推广工具" class="text_head"><p>线下推广工具</p></a></li>
+                <li><a href="/about/about_platform_2.jhtml?name=电子推广工具" class="text_head"><p>电子推广工具</p></a></li>
+                <li><a href="/about/about_platform_3.jhtml?name=软性工具" class="text_head"><p>软性工具</p></a></li>
+                <li><a href="/about/about_platform_4.jhtml?name=影响力工具" class="text_head"><p>影响力工具</p></a></li>
+                <li> <a href="/about/about_platform_5.jhtml?name=流量工具" class="text_head"><p>流量工具</p></a></li>
+                <li> <a href="/about/about_platform_6.jhtml?name=金融工具" class="text_head"><p>金融工具</p></a></li>
+                <li> <a href="/about/about_platform_7.jhtml?name=服务工具" class="text_head"><p>服务工具</p></a></li>
+                <li> <a href="/about/about_platform_8.jhtml?name=数据工具" class="text_head"><p>数据工具</p></a></li>
+            </ul>
+        </div>
+        <div class="content_text_peisong2 content_text_pingtaifuwu" style="height: 100%;">
+
+            <p class="text_title1">中小规模采购会</p>
+            <p class="text_top_1">
+                工具说明
+            </p>
+            <p>
+                为了让采购商享受更好的价格优势，供应商提高品牌知名度和商品销量，我们会把采购商和供应商组织起来，进行线下集中采购。采购商买得省心，供应商卖得舒心。
+            </p>
+
+            <p class="text_title1">新菜试吃会</p>
+            <p class="text_top_1">
+                工具说明
+            </p>
+            <p>
+                供应商提供食材及菜谱，饭饭直采平台邀请专业大厨进行新菜烹饪，并邀请采购商进行新菜试吃体验。一方面可以让目标客户体验到产品的品质，另一方面，沟通感情，拉近关系，推动食材的销售及菜谱的转让。
+            </p>
+
+            <p class="text_title1">集采交易</p>
+            <p class="text_top_1">
+                工具说明
+            </p>
+            <p>
+                饭饭直采平台定期发布不同主题的集采活动，采购商通过平台了解参加活动的品牌、商品，集合对这个主题有意向的采购商，一起报名参加活动。到达指定的集合现场，争取更多优惠和增值服务。
+            </p>
+            <p>集采的好处：省时、省心、省力、省钱</p>
+            <p>1.价格低于产品市场零售价；</p>
+            <p>2.产品的质量和服务能够得到有效的保证，买的放心，省心，用的放心。</p>
+            <p>3.在购买的同时，可以省下其他方面的开支；用最少的钱享受最优的服务。</p>
+            <p>4.集中采购，节约时间成本。</p>
+
+            <p class="text_title1">研讨会</p>
+            <p class="text_top_1">
+                工具说明
+            </p>
+            <p>
+                饭饭直采平台会不定期的组织采购商、供应商单独或共同进行研讨，针对特别具体问题展开公平、公开的讨论，实现观念交流分享，并商议对策和形成相关决议。
+            </p>
+
+            <p class="text_title1">中远期货交易</p>
+            <p class="text_top_1">
+                工具说明
+            </p>
+            <p>
+                由供应商、采购商协商制定的、规定在将来某一特定的时间交割一定数量和质量商品的标准化合约。
+            </p>
+            <p>
+                为将来某个时间段（可以是一星期、一个月、三个月之后，甚至一年之后）交割商品而签订订购合同、协议等，具有市场性、契约性、预期性和风险性，订单中规定产品收购数量、质量和最低保护价，使双方享有相应的权利、义务和约束力，不能单方面毁约。
+                合同、协议可以转让，买卖。
+            </p>
+
+            <p class="text_title1">现货挂牌</p>
+            <p class="text_top_1">
+                工具说明
+            </p>
+            <p>
+                是指在饭饭直采平台组织下，供应商将供需商品的品牌、规格等主要属性和交货时间、数量、价格等信息对外发布信息，由符合资格的采购商提出接受该信息的申请，按照“时间优先”原则成交并签订购销合同，按合同约定进行实物交收。
+            </p>
+
+            <p class="text_title1">各种展会</p>
+            <p class="text_top_1">
+                工具说明
+            </p>
+            <p>
+                饭饭直采平台会不定期的邀请供应商参加饭饭直采平台组织的餐饮行业展会，可以为各供应商带来更广阔的人脉资源、把握市场最新发展动态、寻觅商机、推广产品、提高品牌知名度等益处。
+            </p>
+
+            <p class="text_title1">团定会</p>
+            <p class="text_top_1">
+                工具说明
+            </p>
+            <p>
+                饭饭直采平台定期组织有同样产品购买意愿的采购商，以“团购”的形式，向供应商提出购买意愿，平台协助采购商选择质优价廉的供应商，保证产品质量的同时，得以使采购商获得最大的价格实惠。
+            </p>
+
+            <p class="text_title1">产品推介会</p>
+            <p class="text_top_1">
+                工具说明
+            </p>
+            <p>
+                供应商希望在线下推广产品，饭饭直采平台会通过采购数据统计，召集有购买该产品习惯的采购商举行产品推介会，帮助供应商推广产品，提高供应商知名度及产品销量。
+            </p>
+
+            <p class="text_title1">代理采购</p>
+            <p class="text_top_1">
+                工具说明
+            </p>
+            <p>
+                饭饭直采平台推出的代理采购服务，是一种新型的商品采购模式，具有廉价、高效、快捷的特点。
+            </p>
+            <p>
+                饭饭直采平台有丰富的供应商资源，平台会根据采购商提出的要求，选择符合需求的供应商作为供货方，最大程度的为采购商节约采购成本；为了保证商品的质量，供应商入驻平台，严审入驻资质。为了向采购商提供更快捷的物流配送服务，饭饭直采平台打造的是自建仓储、配送的业务模式。采购过程做到“公开”、“透明”，坚决杜绝采购中的腐败问题。
+            </p>
+
+            <p class="text_title1">招标交易</p>
+            <p class="text_top_1">
+                工具说明
+            </p>
+            <p>
+                采购商可以通过饭饭直采平台发出招标公告或投标邀请书，说明招标的商品、数量、规格、质量要求、供应商资格要求等；供应商在规定的时间、地点按照一定的程序进行投标的行为。
+            </p>
+            <p>
+                对于采购商来说，通过招标公告择善而从，可以节约成本或投资，降低造价，缩短交货期，确保商品质量，促进经济效益的提高。
+            </p>
+
+            <p class="text_title1">新品品鉴会</p>
+            <p class="text_top_1">
+                工具说明
+            </p>
+            <p>
+                供应商推出新的产品或食材，饭饭直采平台会通过采购数据统计，召集有购买该同类产品记录的采购商举行新品品鉴会，帮助供应商推广新产品，打造新商品知名度及产品销量。
+            </p>
+
+            <p class="text_title1">竞价拍卖</p>
+            <p class="text_top_1">
+                工具说明
+            </p>
+            <p>
+                竞价拍卖是指供应商向饭饭直采平台提出申请，将拟出售商品的详细资料提交给平台，通过平台预先公告后，挂牌报价，确定商品拍卖的具体时间。
+            </p>
+            <p>
+                采购商自主加价，在约定交易时间内，无人继续加价后，商品拍卖结束，以最高买价成交，双方通过签订购销合同并进行实物交收。
+            </p>
+
+            <p class="text_title1">撮合交易</p>
+            <p class="text_top_1">
+                工具说明
+            </p>
+            <p>
+                撮合交易是指采购商或供应商向饭饭直采平台发布需求，平台负责寻找其他的采购商或供应商，来响应需求、完成交易的过程。交易可以按照价格优先、时间优先原则确定双方成交价格，并生成交易合同，按交易定单指定的仓储分拣中心进行实物交割。
+            </p>
+            <p>
+                饭饭直采平台做为完全独立的第三方，对交易过程进行监督；保障各方的利益不受损害。
+            </p>
+
+        </div>
+        <div class="bg_img_box"></div>
+    </div>
+</div>

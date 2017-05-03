@@ -1,0 +1,242 @@
+<#include "/common/common_var_definds.ftl" />
+<style>
+    #header_top ul li{
+        line-height: 0.5rem;
+    }
+    .iconTitle{
+        width: 100%;
+        height: 0.8rem;
+        background: #c91623;
+        color: #fff;
+        font-size: 0.3rem;
+        font-weight: 700;
+        text-align: center;
+        line-height: 0.8rem;
+        letter-spacing: 0.1rem;
+    }
+    .meaning_title{
+        border-bottom: 0.01rem solid #bbbbbb;
+        overflow: hidden;
+        width: 100%;
+        box-sizing: border-box;
+        border-top: 0.01rem solid #bbbbbb;
+    }
+    .meaning_title span{
+        display: inline-block;
+        text-align: center;
+        line-height: 0.6rem;
+        color: #666;
+        font-weight: bold;
+        float: left;
+        box-sizing: border-box;
+    }
+    .meaning_title span:nth-child(1){
+        width: 15%;
+    }
+    .meaning_title span:nth-child(2){
+        width: 30%;
+        border-left:0.01rem solid #bbb;
+        border-right:0.01rem solid #bbb;
+
+    }
+    .meaning_title span:nth-child(3) {
+        width: 55%;
+    }
+    .sign {
+        overflow: hidden;
+        border-bottom: 0.01rem solid #bbbbbb;
+    }
+    .sign span{
+        text-align: center;
+        color: #666;
+        font-size: 0.25rem;
+        padding: 0.05rem 0;
+        box-sizing: border-box;
+        float: left;
+        height: 0.8rem;
+    }
+    .sign span:nth-child(1){
+        width: 15%;
+        padding-top: 0.15rem;
+    }
+    .sign span:nth-child(1) img {
+        width: 0.45rem;
+    }
+    .sign span:nth-child(2){
+        width: 30%;
+        border-left:0.01rem solid #bbb;
+        border-right:0.01rem solid #bbb;
+        line-height: 0.7rem;
+    }
+    .sign span:nth-child(3){
+        width: 55%;
+        display:block;
+        padding-right: 0.05rem;
+        padding-left: 0.05rem;
+    }
+    .signG{
+        line-height: 0.7rem;
+    }
+
+</style>
+<div class="iconTitle">平台符号的意义</div>
+<div class="meaning_title">
+    <span>符号</span>
+    <span>说明</span>
+    <span>符号意义</span>
+</div>
+<div class="main">
+    <div class="sign">
+        <span class="sign1 sign2"><img src="${resources}/basepage/store/default/about_pages/img/m_1.png" /></span><span class="sign2">巨便宜商城</span><span class="sign2 signG">天天低价，畅享无忧</span>
+    </div>
+    <div class="sign">
+        <span class="sign1"><img src="${resources}/basepage/store/default/about_pages/img/m_2.png" /></span><span>清仓甩卖</span><span>全场清仓、价格超低、一件不留</span>
+    </div>
+    <div class="sign">
+        <span class="sign1"><img src="${resources}/basepage/store/default/about_pages/img/m_3.png" /></span><span>天上掉馅饼</span><span class="signG">送你惊喜、大奖不停</span>
+    </div>
+    <div class="sign">
+        <span class="sign1"><img src="${resources}/basepage/store/default/about_pages/img/m_4.png" /></span><span>新奇特怪</span><span>新、奇、特、怪的商品，祝您生意红火</span>
+    </div>
+    <div class="sign">
+        <span class="sign1"><img src="${resources}/basepage/store/default/about_pages/img/m_5.png" /></span><span>365主题活动</span><span>每日不一样的主题活动，使您采购成本更低</span>
+    </div>
+    <div class="sign">
+        <span class="sign1"><img src="${resources}/basepage/store/default/about_pages/img/m_6.png" /></span><span>饭饭头条</span><span class="signG">餐饮老板关心的才是饭饭头条</span>
+    </div>
+    <div class="sign">
+        <span class="sign1"><img src="${resources}/basepage/store/default/about_pages/img/m_7.png" /></span><span>免费试吃</span><span class="signG">免费尝鲜，霸王餐来了</span>
+    </div>
+    <div class="sign">
+        <span class="sign1"><img src="${resources}/basepage/store/default/about_pages/img/m_8.png" /></span><span>买就赠</span><span class="signG">您来买，我就赠</span>
+    </div>
+    <div class="sign">
+        <span class="sign1"><img src="${resources}/basepage/store/default/about_pages/img/m_9.png" /></span><span>优惠券</span><span class="signG">领券购物更优惠</span>
+    </div>
+    <div class="sign">
+        <span class="sign1"><img src="${resources}/basepage/store/default/about_pages/img/m_10.png" /></span><span>秒杀</span><span>惠品多多，限时抢购，秒到手软</span>
+    </div>
+    <div class="sign">
+        <span class="sign1"><img src="${resources}/basepage/store/default/about_pages/img/m_11.png" /></span><span>减满</span><span class="signG">满额立减，多买多优惠</span>
+    </div>
+    <div class="sign">
+        <span class="sign1"><img src="${resources}/basepage/store/default/about_pages/img/m_12.png" /></span><span>打折</span><span class="signG">限时限量折扣</span>
+    </div>
+    <div class="sign">
+        <span class="sign1"><img src="${resources}/basepage/store/default/about_pages/img/m_13.png" /></span><span>积分</span><span class="signG">购物攒积分</span>
+    </div>
+    <div class="sign">
+        <span class="sign1"><img src="${resources}/basepage/store/default/about_pages/img/m_14.png" /></span><span>抽奖</span><span class="signG">幸运大抽奖，好礼送不停</span>
+    </div>
+    <div class="sign">
+        <span class="sign1"><img src="${resources}/basepage/store/default/about_pages/img/m_15.png" /></span><span>疯抢晚八点</span><span>每晚22:00-22:20，抢购不超过原价七折的商品</span>
+    </div>
+    <div class="sign">
+        <span class="sign1"><img src="${resources}/basepage/store/default/about_pages/img/m_16.png" /></span><span>饭饭网博会</span><span class="signG">生鲜商品交易展区</span>
+    </div>
+    <div class="sign">
+        <span class="sign1"><img src="${resources}/basepage/store/default/about_pages/img/m_17.png" /></span><span>各种展会</span><span>每年组织多场地面活动，让采供双方面对面了解和对接</span>
+    </div>
+    <div class="sign">
+        <span class="sign1"><img src="${resources}/basepage/store/default/about_pages/img/m_18.png" /></span><span>研讨会</span><span class="signG">帮助餐饮老板提升行业认识</span>
+    </div>
+    <div class="sign">
+        <span class="sign1"><img src="${resources}/basepage/store/default/about_pages/img/m_19.png" /></span><span>中小规模采购会</span><span>中小规模邀约采/供需求对接会议</span>
+    </div>
+    <div class="sign">
+        <span class="sign1"><img src="${resources}/basepage/store/default/about_pages/img/m_20.png" /></span><span>产品推介会</span><span>供应商以会议形式将产品推介给采购商</span>
+    </div>
+    <div class="sign">
+        <span class="sign1"><img src="${resources}/basepage/store/default/about_pages/img/m_21.png" /></span><span>团定会</span><span class="signG">团体订货会议</span>
+    </div>
+    <div class="sign">
+        <span class="sign1"><img src="${resources}/basepage/store/default/about_pages/img/m_22.png" /></span><span>新品品鉴会</span><span class="signG">供应商新品品尝鉴别会</span>
+    </div>
+    <div class="sign">
+        <span class="sign1"><img src="${resources}/basepage/store/default/about_pages/img/m_23.png" /></span><span>新菜试吃会</span><span>供应商的新菜邀约采购商免费试吃</span>
+    </div>
+    <div class="sign">
+        <span class="sign1"><img src="${resources}/basepage/store/default/about_pages/img/m_24.png" /></span><span>现货挂牌</span><span class="signG">大宗品牌挂牌现货交易</span>
+    </div>
+    <div class="sign">
+        <span class="sign1"><img src="${resources}/basepage/store/default/about_pages/img/m_25.png" /></span><span>中远期期货交易</span><span>以电商平台交易的中远期预期商品</span>
+    </div>
+    <div class="sign">
+        <span class="sign1"><img src="${resources}/basepage/store/default/about_pages/img/m_26.png" /></span><span>代理采购</span><span>厂家制定经销商，帮厂家直接采购</span>
+    </div>
+    <div class="sign">
+        <span class="sign1"><img src="${resources}/basepage/store/default/about_pages/img/m_27.png" /></span><span>竞价拍卖</span><span>时限内最高买价成交，买卖双方签订购销合同饼交割实物</span>
+    </div>
+    <div class="sign">
+        <span class="sign1"><img src="${resources}/basepage/store/default/about_pages/img/m_28.png" /></span><span>集采交易</span><span class="signG">集中采购，分批配送</span>
+    </div>
+    <div class="sign">
+        <span class="sign1"><img src="${resources}/basepage/store/default/about_pages/img/m_29.png" /></span><span>招标交易</span><span class="signG">通过招投标方式发起交易</span>
+    </div>
+    <div class="sign">
+        <span class="sign1"><img src="${resources}/basepage/store/default/about_pages/img/m_30.png" /></span><span>撮合交易</span><span class="signG">帮您卖，帮您买，公开，透明</span>
+    </div>
+    <div class="sign">
+        <span class="sign1"><img src="${resources}/basepage/store/default/about_pages/img/m_31.png" /></span><span>饭饭淘(微淘)</span><span>平台编辑商品信息，可以发送到第三方平台</span>
+    </div>
+    <div class="sign">
+        <span class="sign1"><img src="${resources}/basepage/store/default/about_pages/img/m_32.png" /></span><span>分享有礼</span><span>评价并分享到朋友圈、微博时返还优惠券、赠与积分</span>
+    </div>
+    <div class="sign">
+        <span class="sign1"><img src="${resources}/basepage/store/default/about_pages/img/m_33.png" /></span><span>大供应商</span><span class="signG">饭饭平台大供应商</span>
+    </div>
+    <div class="sign">
+        <span class="sign1"><img src="${resources}/basepage/store/default/about_pages/img/m_34.png" /></span><span>股权级供应商</span><span class="signG">饭饭平台股权级供应商</span>
+    </div>
+    <div class="sign">
+        <span class="sign1"><img src="${resources}/basepage/store/default/about_pages/img/m_35.png" /></span><span>强强联手供应商</span><span class="signG">饭饭平台强强联手供应商</span>
+    </div>
+    <div class="sign">
+        <span class="sign1"><img src="${resources}/basepage/store/default/about_pages/img/m_36.png" /></span><span>合作共赢供应商</span><span class="signG">饭饭平台合作共赢供应商</span>
+    </div>
+    <div class="sign">
+        <span class="sign1"><img src="${resources}/basepage/store/default/about_pages/img/m_37.png" /></span><span>亲密会员供应商</span><span class="signG">饭饭平台亲密会员供应商</span>
+    </div>
+    <div class="sign">
+        <span class="sign1"><img src="${resources}/basepage/store/default/about_pages/img/m_38.png" /></span><span>10小时内早晨送达</span><span class="signG">订单支付后第二天早晨送达</span>
+    </div>
+    <div class="sign">
+        <span class="sign1"><img src="${resources}/basepage/store/default/about_pages/img/m_39.png" /></span><span>第二天下午送达</span><span class="signG"> 订单支付后第二天下午送达</span>
+    </div>
+    <div class="sign">
+        <span class="sign1"><img src="${resources}/basepage/store/default/about_pages/img/m_40.png" /></span><span>36小时内早晨送达</span><span class="signG">订单支付后第三天早晨送达</span>
+    </div>
+    <div class="sign">
+        <span class="sign1"><img src="${resources}/basepage/store/default/about_pages/img/m_41.png" /></span><span>本地小船海鲜</span><span>各港口小船靠岸动态，实时掌握</span>
+    </div>
+    <div class="sign">
+        <span class="sign1"><img src="${resources}/basepage/store/default/about_pages/img/m_42.png" /></span><span>野生</span><span class="signG">纯天然野生</span>
+    </div>
+    <div class="sign">
+        <span class="sign1"><img src="${resources}/basepage/store/default/about_pages/img/m_43.png" /></span><span>养殖</span><span class="signG">人工养殖</span>
+    </div>
+    <div class="sign">
+        <span class="sign1"><img src="${resources}/basepage/store/default/about_pages/img/m_44.png" /></span><span>鲜活</span><span class="signG">送到鲜活</span>
+    </div>
+</div>
+<script type="text/javascript">
+//    var arr=[];
+//    var maxNum='0px';
+//    let allEle=$(".sign span");
+//    allEle.each(function (i,v) {
+//        arr.push($(this).css('height'))
+//    })
+//    getMax(arr);
+//    function getMax(arr){
+//        arr.forEach(function(v,i){
+//            if(arr[i]>maxNum){
+//                maxNum=arr[i]
+//            }
+//            else{
+//                return
+//            }
+//        })
+//    }
+//    $('.sign span').css('height',maxNum)
+//    $('.sign span:nth-of-type(2n)').css('line-height',maxNum)
+</script>

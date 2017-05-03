@@ -1,0 +1,66 @@
+$(document).ready(function () {
+  var area=$(".search_link")
+//var hiddenpt=$(".hiddenSearchBox")
+//var close=$(".hiddenSearchBox .searchClose")
+if ($('.search_box').length != 0) {
+
+  var top = $('.search_box').offset().top;
+  var height=$(".search_box").height()
+  $(document).scroll(function () {
+    var scroll = $(window).scrollTop();
+    if (top <= scroll) {
+       $('.search_box').css({
+         'position': 'fixed',
+         'top': '0',
+         'z-index': '999'
+       })
+//    hiddenpt.css({"position":"absolute","top":height})
+    }else {
+      $('.search_box').css({
+        'position': 'absolute',
+        'z-index': '999'
+
+      })
+//     hiddenpt.css({"position":"fixed","top":top+height})
+    }
+  })
+}
+
+
+
+  area.on("touchstart",function(){
+    //hiddenpt.show()
+  })
+  area.on("focus",function(){
+  	$(this).val("");
+  })
+//close.on("touchstart",function(){
+//  $(this).parent(".searchBar").parent(".hiddenSearchBox").hide()
+//})
+  $(".search_box  .btn").on("touchstart", function () {
+    var keyword = html_encode($(".search_box  .searchContent").val().replace(new RegExp("(onclick|onfocus|<|>)+","g"),""));
+    location.href = "/FSgoodsSearch.jhtml?from=gd-search&keyword=" + encodeURIComponent(keyword);
+    localStorage.browsePage='';
+    localStorage.scrollTop='';
+  });
+
+  function getSessionName() {
+    $.ajax({
+      type: 'post',
+      url: '/loginStatus/getLoginStatus.ajax',
+      success: function (data) {
+        if(data.data.userCode != "") {
+          $('.login_link').html("我的饭饭");
+          $('.login_link').parent('a').attr('href','/member/index.jhtml')
+        }
+      },
+      error: function () {
+        jsAlert('登录失败;');
+      }
+
+    })
+  }
+  getSessionName();
+
+
+})

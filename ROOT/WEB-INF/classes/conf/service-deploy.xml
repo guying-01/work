@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+            http://code.alibabatech.com/schema/dubbo
+            http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<dubbo:application name="shop-store-web" />
+	<dubbo:registry address="${prop.registry.address}" />
+	<dubbo:consumer id="defaultWebServiceConsumer" filter="webServiceConsumerFilter,traceConsumerFilter" />
+
+	<!-- 声明所有API引用 -->
+	<dubbo:reference id="basicAreaApi" interface="cn.com.fan1080.shop.basic.api.BasicAreaApi" lazy="true"
+		retries="0" timeout="30000" />
+
+	<dubbo:reference id="memberApi" interface="cn.com.fan1080.shop.member.api.MemberApi" lazy="true"
+		retries="0" timeout="30000" />
+	<dubbo:reference id="memberDetailInfoApi" interface="cn.com.fan1080.shop.member.api.MemberDetailInfoApi"
+		lazy="true" retries="0" timeout="30000" />
+	<dubbo:reference id="orderApi" interface="cn.com.fan1080.shop.order.api.OrderApi" lazy="true" retries="0"
+		timeout="30000" />
+	<dubbo:reference id="orderShippingInfoApi" interface="cn.com.fan1080.shop.order.api.OrderShippingInfoApi"
+		lazy="true" retries="0" timeout="30000" />
+	<dubbo:reference id="payBillApi" interface="cn.com.fan1080.shop.order.api.PayBillApi" lazy="true"
+		retries="0" timeout="30000" />
+	<dubbo:reference id="orderDetailApi" interface="cn.com.fan1080.shop.order.api.OrderDetailApi" lazy="true"
+		retries="0" timeout="30000" />
+	<dubbo:reference id="orderTrackApi" interface="cn.com.fan1080.shop.order.api.OrderTrackApi" lazy="true"
+		retries="0" timeout="30000" />
+	<dubbo:reference id="memberAddressApi" interface="cn.com.fan1080.shop.member.api.MemberAddressApi"
+		lazy="true" retries="0" timeout="30000" />
+	<dubbo:reference id="payChannelDicApi" interface="cn.com.fan1080.shop.order.api.PayChannelDicApi"
+		lazy="true" retries="0" timeout="30000" />
+	<dubbo:reference id="basicDictionaryApi" interface="cn.com.fan1080.shop.basic.api.BasicDictionaryApi"
+		lazy="true" retries="0" timeout="30000" />
+	<dubbo:reference id="sellerApi" interface="cn.com.fan1080.shop.seller.api.SellerApi" lazy="true"
+		retries="0" timeout="30000" />
+	<dubbo:reference id="sellerStoreGradeApi" interface="cn.com.fan1080.shop.seller.api.SellerStoreGradeApi"
+		lazy="true" retries="0" timeout="30000" />
+	<dubbo:reference id="memberGoodsFavoriteApi" interface="cn.com.fan1080.shop.member.api.MemberGoodsFavoriteApi"
+		lazy="true" retries="0" timeout="30000" />
+	<dubbo:reference id="memberCouponApi" interface="cn.com.fan1080.shop.member.api.MemberCouponApi" lazy="true"
+		retries="0" timeout="30000" />
+	<dubbo:reference id="sellerStoreApi" interface="cn.com.fan1080.shop.seller.api.SellerStoreApi" lazy="true"
+		retries="0" timeout="30000" />
+	<dubbo:reference id="saScoreApi" interface="cn.com.fan1080.shop.saleafter.api.SaScoreApi" lazy="true"
+		retries="0" timeout="30000" />
+	<dubbo:reference id="saScoreHistoryApi" interface="cn.com.fan1080.shop.saleafter.api.SaScoreHistoryApi"
+		lazy="true" retries="0" timeout="30000" />
+	<dubbo:reference id="saScorePictureApi" interface="cn.com.fan1080.shop.saleafter.api.SaScorePictureApi"
+		lazy="true" retries="0" timeout="30000" />
+	<!--<dubbo:reference id="memberPointsApi" interface="cn.com.fan1080.shop.member.api.MemberPointsApi" lazy="true"-->
+		<!--retries="0" timeout="30000" />-->
+	<dubbo:reference id="seGoodsSearchEngineApi" interface="cn.com.fan1080.shop.searchengine.api.SeGoodsSearchEngineApi"
+		lazy="true" retries="0" timeout="30000" />
+	<dubbo:reference id="sellerCarriageDetailApi" interface="cn.com.fan1080.shop.seller.api.SellerCarriageDetailApi"
+		lazy="true" retries="0" timeout="30000" />
+	<dubbo:reference id="sellerCarriageTemplateApi" interface="cn.com.fan1080.shop.seller.api.SellerCarriageTemplateApi"
+		lazy="true" retries="0" timeout="30000" />
+	<dubbo:reference id="saReturnOrderApi" interface="cn.com.fan1080.shop.saleafter.api.SaReturnOrderApi"
+		lazy="true" retries="0" timeout="30000" />
+	<dubbo:reference id="notifyMessageApi" interface="cn.com.fan1080.shop.notify.api.NotifyMessageApi"
+		lazy="true" retries="0" timeout="30000" />
+	<dubbo:reference id="saReturnPictureApi" interface="cn.com.fan1080.shop.saleafter.api.SaReturnPictureApi"
+		lazy="true" retries="0" timeout="30000" />
+	<dubbo:reference id="saReturnHistoryApi" interface="cn.com.fan1080.shop.saleafter.api.SaReturnHistoryApi"
+		lazy="true" retries="0" timeout="30000" />
+	<dubbo:reference id="pdPageDesignApi" interface="cn.com.fan1080.shop.pagedesign.api.PdPageDesignApi"
+		lazy="true" retries="0" timeout="30000" />
+	<dubbo:reference id="memberResourceApi" interface="cn.com.fan1080.shop.member.api.MemberResourceApi"
+		lazy="true" retries="0" timeout="30000" />
+	<dubbo:reference id="sellerStoreGoodsCategoryApi" interface="cn.com.fan1080.shop.seller.api.SellerStoreGoodsCategoryApi"
+		lazy="true" retries="0" timeout="30000" />
+	<dubbo:reference id="memberStoreFavoriteApi" interface="cn.com.fan1080.shop.member.api.MemberStoreFavoriteApi"
+		lazy="true" retries="0" timeout="30000" />
+	<dubbo:reference id="orderShippingBillApi" interface="cn.com.fan1080.shop.order.api.OrderShippingBillApi"
+		lazy="true" retries="0" timeout="30000" />
+	<dubbo:reference id="activityCouponApi" interface="cn.com.fan1080.shop.activity.api.ActivityCouponApi"
+		lazy="true" retries="0" timeout="30000" />
+	<dubbo:reference id="basicShippingCompanyApi" interface="cn.com.fan1080.shop.basic.api.BasicShippingCompanyApi"
+		lazy="true" retries="0" timeout="30000" />
+	<dubbo:reference id="sellerStoreInfoApi" interface="cn.com.fan1080.shop.seller.api.SellerStoreInfoApi"
+		lazy="true" retries="0" timeout="30000" />
+	<dubbo:reference id="sellerStoreEnterProtocolApi" interface="cn.com.fan1080.shop.seller.api.SellerStoreEnterProtocolApi"
+		lazy="true" retries="0" timeout="30000" />
+	<dubbo:reference id="sellerStoreEnterProtocolApplyHistoryApi" interface="cn.com.fan1080.shop.seller.api.SellerStoreEnterProtocolApplyHistoryApi"
+		lazy="true" retries="0" timeout="30000" />
+	<dubbo:reference id="orderVirtualMoneyDetailApi" interface="cn.com.fan1080.shop.order.api.OrderVirtualMoneyDetailApi"
+		lazy="true" retries="0" timeout="30000" />
+	<dubbo:reference id="memberBrowseHistoryApi" interface="cn.com.fan1080.shop.member.api.MemberBrowseHistoryApi"
+		lazy="true" retries="0" timeout="30000" />
+<!-- 	<dubbo:reference id="sellerBusinessLicenceApi" interface="cn.com.fan1080.shop.seller.api.SellerBusinessLicenceApi"
+		lazy="true" retries="0" timeout="30000" /> -->
+	
+	<dubbo:reference id="orderActivityMapApi" interface="cn.com.fan1080.shop.order.api.OrderActivityMapApi"
+		lazy="true" retries="0" timeout="30000" />
+	<dubbo:reference id="seHotWordsApi" interface="cn.com.fan1080.shop.searchengine.api.SeHotWordsApi"
+		lazy="true" retries="0" timeout="30000" />
+	
+   	<dubbo:reference id="memberAuthCodeApi" interface="cn.com.fan1080.shop.member.api.MemberAuthCodeApi"
+		lazy="true" retries="0" timeout="30000" />
+	<dubbo:reference id="sellerStoreCarriageTemplateMapApi" interface="cn.com.fan1080.shop.seller.api.SellerStoreCarriageTemplateMapApi"
+		lazy="true" retries="0" timeout="30000" />
+	<dubbo:reference id="memberLogonHistoryApi" interface="cn.com.fan1080.shop.member.api.MemberLogonHistoryApi"
+		lazy="true" retries="0" timeout="30000" />
+		
+	<!-- 追加begin -->
+	<dubbo:reference id="sgScShopcartApi" interface="cn.com.fan1080.shop.shopcart.api.SgScShopcartApi" lazy="true"
+		retries="0" timeout="30000" />
+	
+	<dubbo:reference id="sgMemberGoodsFavoriteApi" interface="cn.com.fan1080.shop.member.api.SgMemberGoodsFavoriteApi" lazy="true"
+		retries="0" timeout="30000" />
+	
+	<dubbo:reference id="sgMemberBrowseHistoryApi" interface="cn.com.fan1080.shop.member.api.SgMemberBrowseHistoryApi" lazy="true"
+		retries="0" timeout="30000" />
+	
+	<dubbo:reference id="sgMemberStoreFavoriteApi" interface="cn.com.fan1080.shop.member.api.SgMemberStoreFavoriteApi" lazy="true"
+		retries="0" timeout="30000" />
+		
+	<dubbo:reference id="sgItemPriceApi" interface="cn.com.fan1080.shop.goods.api.SgItemPriceApi" lazy="true"
+		retries="0" timeout="30000" />
+	<dubbo:reference id="sgGoodsApi" interface="cn.com.fan1080.shop.goods.api.SgGoodsApi" lazy="true" 
+    	retries="0" timeout="30000" /> 
+	<dubbo:reference id="sgItemApi" interface="cn.com.fan1080.shop.goods.api.SgItemApi" lazy="true" 
+    	retries="0" timeout="30000" /> 
+	<dubbo:reference id="sgItemPictureApi" interface="cn.com.fan1080.shop.goods.api.SgItemPictureApi" lazy="true" 
+    	retries="0" timeout="30000" /> 
+	<dubbo:reference id="sgItemStockApi" interface="cn.com.fan1080.shop.goods.api.SgItemStockApi" lazy="true" 
+    	retries="0" timeout="30000" />
+    <!--<dubbo:reference id="memberPointsHistoryApi" interface="cn.com.fan1080.shop.member.api.MemberPointsHistoryApi" lazy="true" -->
+    	<!--retries="0" timeout="30000" />  -->
+	<!-- 追加结束 -->
+	<dubbo:reference id="sgMemberApi" interface="cn.com.fan1080.shop.member.api.SgMemberApi" lazy="true"
+		retries="0" timeout="30000" />	
+		
+	<!-- 帮助中心 开始-->
+	<dubbo:reference id="pdSpdHelpCenterContentApi" interface="cn.com.fan1080.shop.pagedesign.api.PdSpdHelpCenterContentApi" lazy="true"
+	retries="0" timeout="30000" />
+	<!-- 帮助中心 结束 -->
+	<dubbo:reference id="spCouponApi" interface="cn.com.fan1080.shop.promotion.api.SpCouponApi" lazy="true"
+		retries="0" timeout="30000" />	
+	
+	<!--积分微服务-->
+	<dubbo:reference id="smPointsApi" interface="cn.com.fan1080.shop.member.api.SmPointsApi" lazy="true"
+		retries="0" timeout="30000" />
+	<dubbo:reference id="smPointsDetailApi" interface="cn.com.fan1080.shop.member.api.SmPointsDetailApi" lazy="true"
+					 retries="0" timeout="30000" />
+	<dubbo:reference id="spCouponIssueApi" interface="cn.com.fan1080.shop.promotion.api.SpCouponIssueApi" lazy="true"
+		retries="0" timeout="30000" />
+	<dubbo:reference id="spCouponCategoryApi" interface="cn.com.fan1080.shop.promotion.api.SpCouponCategoryApi" lazy="true"
+		retries="0" timeout="30000" />
+	<dubbo:reference id="soCouponTrackApi" interface="cn.com.fan1080.shop.order.api.SoCouponTrackApi" lazy="true"
+		retries="0" timeout="30000" />
+	<dubbo:reference id="soPointsTrackApi" interface="cn.com.fan1080.shop.order.api.SoPointsTrackApi" lazy="true"
+		retries="0" timeout="30000" />
+	<dubbo:reference id="soPromotionTrackApi" interface="cn.com.fan1080.shop.order.api.SoPromotionTrackApi" lazy="true"
+		retries="0" timeout="30000" />
+		
+<!-- 客服信息 begin -->
+	<dubbo:reference id="sellerStoreCustomServiceApi" interface="cn.com.fan1080.shop.seller.api.SellerStoreCustomServiceApi" lazy="true"
+		retries="0" timeout="30000" />
+	<!-- 客服信息 end -->
+	
+	
+	<dubbo:reference id="smCashAccountApi" interface="cn.com.fan1080.shop.member.api.SmCashAccountApi" lazy="true"
+		retries="0" timeout="30000" />
+	<dubbo:reference id="smCashRecordApi" interface="cn.com.fan1080.shop.member.api.SmCashRecordApi" lazy="true"
+		retries="0" timeout="30000" />
+	<dubbo:reference id="smWdPwApi" interface="cn.com.fan1080.shop.member.api.SmWdPwApi" lazy="true"
+		retries="0" timeout="30000" />
+		
+	<dubbo:reference id="SsaScoreCountApi" interface="cn.com.fan1080.shop.saleafter.api.SsaScoreCountApi" lazy="true"
+	retries="0" timeout="30000" />
+	
+	<dubbo:reference id="SsaStoreScoreAverageApi" interface="cn.com.fan1080.shop.member.api.SsaStoreScoreAverageApi" lazy="true"
+	retries="0" timeout="30000" />
+	
+	<dubbo:reference id="sysUrlWhiteListApi" interface="cn.com.fan1080.shop.system.api.SysUrlWhiteListApi" lazy="true" retries="0" timeout="30000" />
+	<dubbo:reference id="sysUrlBlackListApi" interface="cn.com.fan1080.shop.system.api.SysUrlBlackListApi" lazy="true" retries="0" timeout="30000" />
+
+	<dubbo:reference id="basBankApi" interface="cn.com.fan1080.shop.basic.api.BasBankApi" lazy="true" retries="0" timeout="30000" />
+	<dubbo:reference id="basBankSubBranchApi" interface="cn.com.fan1080.shop.basic.api.BasBankSubBranchApi" lazy="true" retries="0" timeout="30000" />
+	<dubbo:reference id="basicAreaApi" interface="cn.com.fan1080.shop.basic.api.BasicAreaApi" lazy="true" retries="0" timeout="30000" />
+</beans>

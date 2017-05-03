@@ -1,0 +1,109 @@
+<#--店铺首页-->
+<#include "/common/common_var_definds.ftl" />
+<#include "/basepage/store/default/hb_templates/store_hb_templates.ftl" />
+<#import "/basepage/store/default/common/zizhi_slider.ftl" as zizhi/>
+<#import "/basepage/store/default/common/dangan_slider.ftl" as dangan/>
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>饭饭1080°直采平台</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <script type="text/javascript">
+        var deviceWidth = document.documentElement.clientWidth;
+        if (deviceWidth > 768) {
+            deviceWidth = 768;
+        }
+        document.documentElement.style.fontSize = deviceWidth / 6.4 + 'px';
+    </script>
+<#import "/basepage/store/default/common/common_link.ftl" as link/>
+<#import "/basepage/store/default/common/common_script.ftl" as script/>
+<#import "/basepage/store/default/common/common_header_bar.ftl" as header_bar/>
+<#import "/basepage/store/default/common/common_header_searchbox_default.ftl" as searchBox/>
+<#import "/basepage/store/default/common/common_footer.ftl" as footerNoTab/>
+<#import "/basepage/seller/seller_header_search.ftl" as sellerSearch/>
+<@link.render />
+    <!--导入共通样式-->
+<@script.render />
+    <!--导入共通脚本-->
+    <link rel="stylesheet" href="${resources}/basepage/seller/css/store.css" type="text/css">
+    <script src="${resources}/basepage/seller/js/store_common_head_load.js"></script>
+    <script src="${resources}/basepage/seller/js/staticStore.js"></script>
+    <script src="${resources}/basepage/seller/js/store_dynamics.js"></script>
+    <script src="${resources}/basepage/seller/js/sp_getAboutImg.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+<div id="pageInfo" store_id="${storeId!''}" store_template_code="${storeTemplateCode!''}"
+     page_id="${storeTemplateCode!''}" style="display: none"></div>
+<!--此处是头部开始-->
+<div class="top">
+<@header_bar.render '商铺',''/>
+    <div class="store_search_box">
+    <@searchBox.render />
+				<#--导入search_box-->
+    </div>
+</div>
+<!--此处是头部结束-->
+<!--网页头部&导航开始-->
+<div id="sp_hd_1"></div>
+<div id="sp_hd_2"></div>
+<@sellerSearch.render />
+<div id="ff_tab_box">
+    <div class="ff_tab_content">
+        <div class="ff-tab-title">
+            <img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg"/> <span>商家介绍</span>
+        </div>
+        <div class="ff-tab-con-detail">
+            <p>
+                一、简介
+            </p>
+            <p>
+                金易集团成立于1993年，至今已24年，拥有员工近500人，旗下公司：大连金易达饮品有限公司，大连金易商业管理有限公司，辽宁金易跨境电子商务有限公司，辽宁酒苑电子商务有限公司，沈阳金易得饮品有限公司，金易葡佳酿进口酒连锁品鉴中心，酒苑商城酒类直供连锁超市，控股公司有沈阳金香汇三宝粥店连锁酒店，锦江之星宾馆，由你做主现代连锁火锅酒店，辽宁兴达金属钢网厂等十几家公司企业。金易集团始于大连，立足全国，放眼世界，专注于进口酒的业务，以及国外酒庄运作业务，通过酒类的国外直采，与全球十多个国家的酒庄上千款品种建立业务往来。精选高性价比优质进口葡萄酒，进口啤酒，烈酒等酒类产品，为整个中国大陆市场提供服务。
+            <p>
+                二、品牌基础：</p>
+            <p>1.24年成功酒水行业经验。</p>
+            <p>2.7年连锁管理经验。</p>
+            <p>3.7大职能部门为核心的系统性优势。</p>
+            <p>4.年销售额100增长。</p>
+            <p>5.成就东北地区行业领导者地位。</p>
+            <p>公司规模：旗下共拥有多种运营业态，金易葡佳酿进口酒品鉴中心，酒苑商城酒类直供连锁超市，网上商城，战略合作配送商，现代连锁火锅酒店，金香汇三宝连锁粥店，钢网厂，大连保税区进口酒品鉴中心旗舰店等等。酒类零售现已于国内拥有近30家直营零售店（点）。2020年成长为覆盖全国31个省级行政区，全国销售网点达100家。连锁火锅酒店实现连锁30家，连锁三宝粥店实现连锁30家。</p>
+            <p>商业模式：</p>
+            <p>1.品类丰富，足以傲视同侪。</p>
+            <p>2.多元体验，尽享购物乐趣。我们不仅卖酒，也出售生活方式，我们依托自有终端，精确制定采购计划，与多家国际酒庄和酒商建立了长期的合作关系。</p>
+            <p>三、集团支持</p>
+            <p>1.供应链支持。公司总部负责所有国内外一线名酒商品采购，价格低，品类多。产品主要以进口葡萄酒，进口啤酒等为主。</p>
+            <p>2.专业培训支持。公司总部组建市场团队，专门针对门店销售，管理，陈列，导购，礼仪，促销，系统操作，风险控制进行专业培训。</p>
+            <p>3.市场帮扶。公司总部策划团队每月为一个档期的促销活动商品选择，定期主题策划活动等相关支持，以及市场团队不定期开展巡店，市场推广，督导等工作，帮助门店快速发展壮大，快速发展门店会员提高销售。</p>
+            <p>4.系统支持。装修风格、工作制服、广告宣传、氛围营造、收银系统、监控设备、、运营系统等支持。</p>
+            <p>5.平台支持。公司总部依托集团跨境电子商务平台。实现线上线下一体化的真正O2O模式，在线上除拥有官方电子商城，400购物热线，微商城等。</p>
+            <img src="${resources}/basepage/seller/img/${storeId!''}/img01.jpg" style="width: 100%;padding-top: 0.1rem">
+            <img src="${resources}/basepage/seller/img/${storeId!''}/img02.jpg" style="width: 100%;padding-top: 0.1rem">
+            <img src="${resources}/basepage/seller/img/${storeId!''}/img03.jpg" style="width: 100%;padding-top: 0.1rem">
+            <img src="${resources}/basepage/seller/img/${storeId!''}/img04.jpg" style="width: 100%;padding-top: 0.1rem">
+            <img src="${resources}/basepage/seller/img/${storeId!''}/img05.jpg" style="width: 100%;padding-top: 0.1rem">
+            <img src="${resources}/basepage/seller/img/${storeId!''}/img06.jpg" style="width: 100%;padding-top: 0.1rem">
+        </div>
+    </div>
+    <div class="ff_tab_content only_book_content_zizhi">
+        <div class="ff-tab-title">
+            <img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg"/><span>商家资质</span>
+        </div>
+        <div class="ff-tab-con-detail">
+        <@zizhi.render />
+        </div>
+    </div>
+    <div class="ff_tab_content">
+        <div class="ff-tab-title">
+            <img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg"/> <span>商家活动</span>
+
+        </div>
+        <div class="ff-tab-con-detail">敬请期待</div>
+    </div>
+</div>
+<@footerNoTab.render />
+</body>
+
+</html>

@@ -1,0 +1,9 @@
+/*活动页面秒杀开始*/
+.banner{
+    width: 100%;
+    height:3rem;
+    background: url("../img/seckill/banner.jpg") no-repeat center center;
+    background-size: cover;
+}
+
+/*活动页面秒杀结束*/

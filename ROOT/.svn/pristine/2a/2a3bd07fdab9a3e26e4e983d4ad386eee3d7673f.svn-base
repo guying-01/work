@@ -1,0 +1,19 @@
+<#assign ctx = rc.contextPath,resources = ctx + "/resources">
+<#macro render data>
+<#escape x as x?html>
+<div class="member-list-tab" >
+    <h2 class="member-tit modify"> <a href="#" onclick="javascript :history.go(-1);"></a><i>&nbsp;</i>修改登录密码</h2>
+  <div class="progress_three progress_C">
+      <div class="coverColor"></div>
+    <p class="progress_textA">验证身份</p>
+    <p class="progress_textB">重置密码</p>
+    <p class="progress_textC font-color-b">完成</p>
+  </div>
+  <div class="web-note m-a">
+    <h2>您的登录密码修改成功，请牢记新的密码</h2>
+    <P>您可以<a href="javascript:void(0);" class="font-color-c" onclick="$.dm.jumpTo('${ctx}/toLogin.jhtml',{'url':'/index.jhtml'})"> 立即登录 </a> 或 <a href="${ctx}/index.jhtml" class="font-color-c">前往商城首页</a></P>
+  </div>
+</div>
+    
+</#escape>
+</#macro>

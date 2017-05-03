@@ -1,0 +1,72 @@
+#mainMsg {
+  width: 100%;
+  background: #fe7b05;
+  padding-bottom: 0.3rem;
+}
+#mainMsg .main {
+  width: 6rem;
+  margin: 0 auto;
+  padding-top: 0.3rem;
+}
+#mainMsg .main .contact_msg {
+  height: 6.5rem;
+    width: 5rem;
+    margin-left: 0.64rem;
+    background: url(../img/seller_contact/aboutUs.png) no-repeat center center;
+    background-size: 100% 100%;
+    margin-bottom: 0.3rem;
+}
+#mainMsg .main .addr span{
+    font-size: 0.25rem;
+    color: white;
+    display: block;
+    height: 0.5rem;
+    line-height: 0.4rem;
+    width: 5rem;
+    margin-left: 0.5rem;
+}
+#mainMsg .main .addr {
+  margin-left: 0.1rem;
+}
+#mainMsg .main .addr .wechat {
+      position: relative;
+}
+#mainMsg .main .addr .wechat .twoCode {
+  top: 0;
+  left: 1.7rem;
+  display:  block;
+  height: 1rem;
+  width: 1rem;
+  position: absolute;
+  background:  url(/resources/basepage/store/default/level_pages/img/fflv2_img/ff_wx_code.jpg) no-repeat center center;
+	background-size: 100%;
+}
+#mainMsg .main .addr span p {
+  width: 3.4rem;
+  background: white;
+  border-radius: 5rem;
+  color: #fe7b05;
+  font-size: 0.23rem;
+  text-align: center;
+  font-weight: bold;
+  float: right;
+  margin-right: 0.2rem;
+}
+#mainMsg .main .addr .my_addr {
+  height: 1rem;
+}
+#mainMsg .main .addr .my_addr .my_addr_2 {
+  margin-top: 0.1rem;
+}
+#mapContainer{
+	width: 4.38rem;
+	height: 4.38rem;
+}
+#wrap {
+  margin-top: 0.8rem;
+  margin-left: 0.8rem;
+}
+.my-map .icon{ background: url(http://lbs.amap.com/console/public/show/marker.png) no-repeat ;}
+.my-map .icon-flg{ height: 32px; width: 29px;}
+.my-map .icon-flg-red{ backgroundPosition: -65px -5px ;}
+.amap-container{height: 100%;}

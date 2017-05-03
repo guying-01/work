@@ -1,0 +1,111 @@
+function getGoodsList() {
+    //默认请求参数
+    var list_params = {"pageRows": 20, "pageStart": 1, "filterQueryMap": {}, "searchText": "", "sorts": {}, "minPrice": "", "maxPrice": "", "queryOption": {"catCondItems": true, "condItems": true, "sort": true, "price": false}, "queryData": {}};
+    var success = function (result) {
+        var data = JSON.parse(result).data;
+        if (data != undefined && data.pagerMap != undefined) {
+            getGoodsListMain(data);
+            // getGoodsListPage(data.pagerMap);
+            $("#contentRight-nav").show()
+        }
+        else{
+            $("#contentRight-nav").hide()
+        }
+    };
+    list_params.latestFlag = 0;
+    //获得url中排序方式
+
+    list_params["minPrice"] = params["minPrice"] != undefined ? params["minPrice"] : "0";    //价格区间_最低价格
+    list_params["maxPrice"] = params["maxPrice"] != undefined ? params["maxPrice"] : "*";    //价格区间_最高价格
+    if (list_params["minPrice"] != "" && list_params["maxPrice"] != "") {
+        list_params.filterQueryMap["item_sales_min_price_mall"] = ["[" + list_params["minPrice"] + " TO " + list_params["maxPrice"] + "]"]; //添加价格区间参数
+    }
+    list_params.pageStart = (params.page = (params.page != undefined & params.page > 0) ? params.page : 1); //当前页码
+    var data = {"condition": JSON.stringify(list_params)};
+    //API:"/fsajax/goodsSearch.ajax"
+    requestDataWithAJAX("/fsajax/goodsSearch.ajax", "post", true, {"success": success, "data": data});
+}
+
+getGoodsList();
+/**
+ * 商品展示列表加载
+ * Created by WW on 2016/09/08.
+ */
+function getGoodsListMain(data) {
+    Handlebars.registerHelper({
+        showPrice: function (data) {
+            if (data != undefined && !isNaN(data)) {
+                return $.ww.formatDecimal(data, 2);
+            } else {
+                return "请登录";
+            }
+        }
+    });
+    var list_goodsList_main = $("#list_goodsList_main").html();
+    var html = loadHandlebarsTemplate(list_goodsList_main, data);
+    $("#contentRight-ListWrap").css("background", 0);
+    $("#contentRight-ListWrap-main").html(html);  //加载到html中
+    // $(".collectHeart a").on("click", favStore);
+    // $(".addShoppingCar a").on("click", addShoppingCar);
+    $("img.lazy").lazyload({effect: "fadeIn", threshold: 180});
+    // com_star(data);
+}
+
+$('.loginShut').click(function () {
+    $('.bgBlack').hide();
+    $('#login_popUp').hide();
+    $('.loginError').hide();
+});
+// 登录
+$("#btnSubmit").click(function () {
+    var flag = true;
+    var userName = $("#userName").val();
+    var password = $("#password").val();
+    if (userName.length == 0) {
+        $("#usere_1").show().css("display", "block");
+        $("#usere_1").siblings(".loginError").hide();
+        flag = false;
+    } else {
+        $(".form #userName").siblings(".loginError").hide()
+    }
+    if (password.length == 0) {
+        $("#pwde").show().css("display", "block");
+        $(".form #password").addClass("redborder");
+        flag = false;
+    } else {
+        $(".form #password").siblings(".loginError").hide();
+    }
+    if (!flag) {
+        return flag;
+    }
+    $("#password").val($.md5($("#password").val()));
+    var successResponse = function (data) {
+        if (!data.success) {
+            if (data.code == "userName_passWord_isNull") {
+                if (data.data.username == null || data.data.username == "") {
+                    $("#usere_1").show().css("display", "block");
+                }
+                if (data.data.password == null || data.data.password == "") {
+                    $("#pwde").show().css("display", "block");
+                }
+            }
+            //else if (data.code == "infoCaptcha_isError") {
+            //    $("#captchaWrong").show();
+            //    refreshCaptcha("");
+            //}
+            else if (data.code == "userName_passWord_isError") {
+                $("#usere_2").show().css("display", "block");
+            } else if (data.code == "userLock_isError") {
+                $("#usere_3").show().css("display", "block");
+            }
+        } else {
+            // location.reload();
+            jsAlert('登录成功');
+            $('.bgBlack').hide();
+            $('#login_popUp').hide();
+            $('.loginError').hide();
+        }
+
+    };
+    requestDataWithAJAX("/doLogin.ajax", "post", true, {"data": $("#loginForm").serialize(), "success": successResponse});
+});

@@ -1,0 +1,8 @@
+/*天上掉馅饼开始*/
+.banner{
+    width: 100%;
+    height:3rem;
+    background: url("../img/pie/banner.jpg") no-repeat center center;
+    background-size: cover;
+}
+/*天上掉馅饼结束*/

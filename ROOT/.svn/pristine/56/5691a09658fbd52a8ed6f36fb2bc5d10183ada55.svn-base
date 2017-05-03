@@ -1,0 +1,192 @@
+.banner {
+  width: 100%;
+  height: 2.5rem;
+}
+.banner  .title {
+  height: 2.5rem;
+  width: 100%;
+  background: url('../img/remaibangdan/hotSell.png') no-repeat center center;
+  background-size: 100%;
+}
+.banner .time {
+  height: 0.5rem;
+  line-height: 0.5rem;
+  background: #fbc21b;
+  margin-top: -0.03rem;
+}
+.banner .time span {
+  float: right;
+  margin-right: 1.1rem;
+}
+
+.banner .time strong {
+  font-size: 0.24rem;
+  font-weight: bold;
+  margin-left: 0.9rem;
+}
+.banner .time p {
+  width: 2.4rem;;
+  display: inline-block;
+  margin-left: 0.1rem;
+}
+.banner .time #minute {
+  display: inline-block;
+  padding: 0 0.04rem;
+}
+.banner .time #second {
+  display: inline-block;
+  padding: 0 0.04rem;
+}
+.titleList {
+}
+.titleList .firstList {
+  height: 0.8rem;
+  border-bottom: 0.05rem solid #f6b003;
+  box-sizing: border-box;
+  padding: 0.1rem;
+  width: 100%;
+}
+.titleList ul {
+  overflow: hidden;
+  border-bottom: 0.02rem solid #d6d6da;
+  display: none;
+}
+.titleList ul li {
+  float: left;
+  text-align: center;
+  border-bottom: 1px solid #d6d6da;
+  border-left: 1px solid #d6d6da;
+}
+.titleList ul .clicked {
+  background: url('../img/remaibangdan/clickShow.png') no-repeat center center;
+  background-size: contain;
+  background-position-x: 0.95rem;
+}
+.titleList ul li:nth-child(4n+1) {
+  border-left: none;
+}
+.titleList ul li:nth-last-child(1) {
+  border-right: 1px solid #d6d6da;
+  border-bottom: none;
+}
+.titleList ul li a {
+  display: block;
+  width: 1.583rem;
+  color: #999999;
+  line-height: 0.5rem;
+  font-size: 0.24rem;
+}
+.titleList .firstList span {
+  display: inline-block;
+  background: url('../img/remaibangdan/titleBg.png') no-repeat center center;
+  background-size: contain;
+  text-align: center;
+  color: white;
+  width: 24%;
+  padding: 0.1rem 0.2rem;
+  box-sizing: border-box;
+  line-height: normal;
+  font-size: 0.24rem;
+  float: left;
+  margin-right: 1%;
+}
+.goodsList {
+  overflow: hidden;
+  padding-bottom: 0.4rem;
+  width: 100%;
+  padding: 0.1rem;
+  box-sizing: border-box;
+}
+.goodsList .eachGood {
+  width: 49%;
+  float: left;
+  position: relative;
+  border: 0.01rem solid darkorange;
+  margin-right: 1%;
+  margin-bottom: 0.2rem;
+  padding: 0.1rem;
+  box-sizing: border-box;
+  left: 0;
+  top:0;
+  height: 4.3rem;
+}
+.goodsList .eachGood .eachGoodA {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top:0;
+  z-index: 1;
+}
+.goodsList .eachGood .goodPic img {
+  width: 2.8rem;
+  height: 2.8rem;
+}
+
+.goodsList .eachGood .goodTitle {
+  padding: 0 0.08rem;
+  font-weight: bold;
+  color: black;
+  font-size: 0.25rem;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp:1;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-break: break-all;
+  height: 0.4rem;
+}
+.goodsList .eachGood .goodTip {
+  padding-left: 0.09rem;
+  color: red;
+  font-size: 0.23rem;
+  font-weight: bold;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp:1;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-break: break-all;
+  height: 0.3rem;
+  line-height: 0.3rem;
+}
+.goodsList .eachGood .oldPrice {
+  color: #898989;
+  display: block;
+  line-height: 0.4rem;
+  padding-left: 0.09rem;
+}
+.goodsList .eachGood .oldPrice em {
+  text-decoration: line-through;
+  padding-left: 0.1rem;
+}
+.goodsList .eachGood .nowPrice {
+  color: red;
+  font-weight: bold;
+  overflow: hidden;
+  padding: 0.1rem;
+  box-sizing: border-box;
+  display: block;
+  height: 0.6rem;
+}
+.goodsList .eachGood .nowPrice:after{
+  content: '';
+  display: block;
+  clear: both;
+}
+.goodsList .eachGood .nowPrice em {
+  font-style: normal;
+  float: left;
+  font-size: 0.26rem;
+  max-width: 60%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.goodsList .eachGood .nowPrice  a {
+  background: #d01202;
+  color: white;
+  text-align: center;
+  float: right;
+  font-size: 0.2rem;
+  padding: 0.05rem;
+}

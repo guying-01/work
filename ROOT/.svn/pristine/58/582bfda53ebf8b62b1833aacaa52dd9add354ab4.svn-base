@@ -1,0 +1,147 @@
+<#include "/common/common_var_definds.ftl" />
+
+<#macro render data>
+	<#escape x as x?html>
+    <style>
+        .small-button {
+            margin-left: 0.1rem;
+        }
+        .information-line {
+            overflow: hidden;
+            margin-top: 0.4rem;
+        }
+
+        .information-line input {
+            width: 50%;
+            float: right;
+            margin-right: 0.65rem;
+        }
+        #submitForm {
+            background: #fff;
+        }
+        .linespan {
+            width: 28%;
+            font-size: 0.25rem;
+            line-height: 0.55rem;
+            padding-left: 0.2rem;
+            display: inline-block;
+            text-align: right;
+        }
+        .linespan em {
+            color: red;
+            padding-right: 0.03rem;
+        }
+        .bottom-button {
+            overflow: hidden;
+            background: #fff;
+        }
+        .big-button {
+            float: left;
+            margin-left: 2.5rem;
+            margin-top: 0.2rem;
+        }
+        #showMobile {
+            padding-left: 0.4rem;
+        }
+        .error {
+            padding: 0.05rem !important;
+            margin-bottom: 0.1rem;
+        }
+        #sendSmsAgainCountdownDiv {
+            display: block;
+            padding-left: 2rem;
+            line-height: 0.5rem;
+        }
+        label.error {
+            top: 0.1rem;
+            left: 38%;
+        }
+        .member-tit {
+            background: #fff;
+            overflow: hidden;
+        }
+        .member-tit i {
+            background: url("${resources}/img/member/goBack.png") no-repeat center center;
+            display: inline-block;
+            width: 5%;
+            height: 100%;
+            float: left;
+            background-size: contain;
+            margin: 0;
+            padding: 0;
+            margin-left: 0.2rem;
+        }
+        .member-tit span {
+            text-align: center;
+            display: inline-block;
+            width: 83%;
+            height: 100%;
+            float: left;
+            font-size: 0.3rem;
+        }
+        #editFormDiv {
+            padding-top: 0.1rem;
+            background: #fff;
+            padding-bottom: 2rem;
+        }
+        #smCashAccount {
+            margin-left: 0.4rem;
+        }
+    </style>
+    <h2 class="member-tit">
+        <i onClick="javascript :history.back(-1);"></i><span>提现</span>
+    </h2>
+
+    <div id="editFormDiv">
+      <form id="editForm">
+        <input id="id" name="id" type="hidden"/>
+        <input id="mobile" name="mobile" type="hidden" value="${lrMobile!''}"/>
+        <div class="information-into">
+          <div class="information-line">
+            <span class="linespan">可用余额：</span>
+            <input id="accountBalance" name="accountBalance" type="text" class="text_A required" value="${balance!''}"  disabled="disabled" />
+          </div>
+          <div class="information-line">
+            <span class="linespan"><em>*</em>提现金额：</span>
+            <input id="cashAmount" name="cashAmount" type="text" class="text_A  required" onkeyup="this.value=formatCashAmount(this.value)" maxlength="10" cashAmountCheck="true"/>
+          </div>
+          <div class="information-line">
+            <span class="linespan"><em>*</em>交易账户名：</span>
+            <#list smCashAccountFormList as item>
+              <input id="tempAccount" name="tempAccount" type="text" class="text_A left required" disabled="disabled" value="${item.accountName}"/>
+            </#list>
+            <select style="display:none" name="smCashAccount" id="smCashAccount" class="">
+              <#list smCashAccountFormList as item>
+                <option value="${item.id}" account="${item.bankAccount}" >${item.accountName}</option>
+              </#list>
+            </select>
+          </div>
+          <div class="information-line">
+            <span class="linespan"><em>*</em>交易账号：</span>
+            <input id="smCashAccountAccount" name="smCashAccountAccount" type="text" class="text_A  required" disabled="disabled" />
+          </div>
+          <div class="information-line">
+            <span class="linespan">手机号码：</span>
+            <span id="showMobile"></span>
+            <a href="javascript:void(0);" id="sendSmsVerificationCodeBtn" class="small-button">发送验证码</a>
+            <span id="sendSmsAgainCountdownDiv" style="display:none">
+              <span id="sendSmsAgainCountdownSecond"></span>秒后可再次发送验证码短信
+            </span>
+          </div>
+          <div class="information-line">
+            <span class="linespan"><em>*</em>验证码：</span>
+            <input id="verificationCode" name="verificationCode" type="text" class="text_A  required" minlength="6" maxlength="6" onkeyup="this.value=this.value.replace(/\s/gi,'')" placeholder="请输入验证码" verificationCodeCheck="true"/>
+          </div>
+          <div class="information-line">
+            <span class="linespan"><em>*</em>提现密码：</span>
+            <input id="password" name="password" type="password" class="text_A required" onkeyup="this.value=this.value.replace(/\s/gi,'')"/>
+            <span style="display: block;margin-left: 75%;margin-top: 0.1rem;float: left;"><a class="font-color-b" href="/memberWithdrawCash/toMemberWithdrawCashPassword.jhtml">忘记密码？</a></span>
+          </div>
+          <div class="bottom-button">
+            <a href="javascript:void(0);" id="submitBtn" class="big-button" >提现</a>
+          </div>
+        </div>
+      </form>
+    </div>
+	</#escape>
+</#macro> 

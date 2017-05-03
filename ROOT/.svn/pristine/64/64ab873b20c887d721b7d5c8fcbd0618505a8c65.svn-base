@@ -1,0 +1,83 @@
+<#--店铺首页-->
+	<#include "/common/common_var_definds.ftl" />
+	<#include "/basepage/store/default/hb_templates/store_hb_templates.ftl" />
+	<#import "/basepage/store/default/common/zizhi_slider.ftl" as zizhi/>
+	<#import "/basepage/store/default/common/dangan_slider.ftl" as dangan/>
+	<!DOCTYPE html>
+	<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>饭饭1080°直采平台</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+		<script type="text/javascript">
+			var deviceWidth = document.documentElement.clientWidth;
+			if(deviceWidth > 768) {
+				deviceWidth = 768;
+			}
+			document.documentElement.style.fontSize = deviceWidth / 6.4 + 'px';
+		</script>
+		<#import "/basepage/store/default/common/common_link.ftl" as link/>
+		<#import "/basepage/store/default/common/common_script.ftl" as script/>
+		<#import "/basepage/store/default/common/common_header_bar.ftl" as header_bar/>
+		<#import "/basepage/store/default/common/common_header_searchbox_default.ftl" as searchBox/>
+		<#import "/basepage/store/default/common/common_footer.ftl" as footerNoTab/>
+		<#import "/basepage/seller/seller_header_search.ftl" as sellerSearch/>
+		<@link.render />
+		<!--导入共通样式-->
+		<@script.render />
+		<!--导入共通脚本-->
+		<link rel="stylesheet" href="${resources}/basepage/seller/css/store.css" type="text/css">
+		<script src="${resources}/basepage/seller/js/store_common_head_load.js"></script>
+        <script src="${resources}/basepage/seller/js/staticStore.js"></script>
+		<script src="${resources}/basepage/seller/js/store_dynamics.js"></script>
+		<script src="${resources}/basepage/seller/js/sp_getAboutImg.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<div id="pageInfo" store_id="${storeId!''}" store_template_code="${storeTemplateCode!''}" page_id="${storeTemplateCode!''}" style="display: none"></div>
+		<!--此处是头部开始-->
+		<div class="top"><@header_bar.render "商铺",""/></div>
+		<!--此处是头部结束-->
+		<!--网页头部&导航开始-->
+		<div id="sp_hd_1"></div>
+		<div id="sp_hd_2"></div>
+		<@sellerSearch.render />
+		<div id="ff_tab_box">
+			<div class="ff_tab_content">
+				<div class="ff-tab-title">
+					<img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /> <span>商家介绍</span>
+				</div>
+				<div class="ff-tab-con-detail">
+        <p>辽宁绿立方实业发展有限公司，位于辽宁省新民市大民屯镇方巾牛村，距离沈阳30公里，距离高速公路10公里，交通位置便利。绿立方集团集农产品基地种植、订单收购、仓储、加工生产、物流、国际和国内贸易于一体，是辽宁省农业产业龙头企业，是国家级农产品出口示范区。</p>
+        <p>公司现设有冷冻加工厂，仓储库、基地部、贸易部、物流操作部、通关部以及报检部门。绿立方主要产品有辣椒系列（冷冻辣椒、鲜辣椒、辣椒粉、辣椒面、辣椒酱、辣椒碎），盐渍类（盐渍黄瓜、盐渍萝卜、盐渍山葱），新鲜蔬菜类（黄瓜、萝卜、白菜），各种调料等系列产品。公司研发力量雄厚，产品多次填补国内外空白；产品远销韩国、日本、泰国等东南亚国家及欧美国家和地区。</p>
+        <p>公司立足于国内外两个市场，坚持以"诚信为基础，品质为保证，创新为动力"的发展策略，肩负着振兴东北地区辣椒行业发展为使命，为加强辣椒在国际市场的竞争力，提升东北地区辣椒质量安全水平，在辽宁省出口办及辽宁省出入境检验检疫局的指导下，在沈阳市政府及沈阳市农委的大力支持下，创建了为成为国际辣椒交易集散中心的四大平台：加工交易平台、仓储冷链物流平台、蔬菜检测技术服务平台、融资担保平台。每个平台的搭建都严格按照行业发展标准、融入最新的国际理念。旨在打造以出口为核心、以内销为补充、以标准化生产基地为基础、以文化引领健康消费为宗旨，集加工交易、现代冷链物流、冷冻仓储中转、蔬菜检测、融资、辣椒基地建设功能与一体的国际辣椒交易中心。</p>
+        <p>公司拥有高素质的生产、管理、技术队伍，运用IS09001质量管理体系和HACCP进行科学管理，为国内外消费者提供优质、安全、卫生的一流产品和服务。</p>
+        <p>我们正以诚信、务实的品质，敬业、创新的作风，追求卓越，实现跨越式发展的精神，为打造百年品牌企业为努力！</p>
+
+
+				</div>
+			</div>
+			<div class="ff_tab_content only_book_content_zizhi">
+				<div class="ff-tab-title">
+					<img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /><span>商家资质</span>
+				</div>
+				<div class="ff-tab-con-detail">
+					<@zizhi.render />
+				</div>
+			</div>
+
+			<div class="ff_tab_content">
+				<div class="ff-tab-title">
+					<img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /> <span>商家活动</span>
+
+				</div>
+				<div class="ff-tab-con-detail">敬请期待</div>
+			</div>
+
+		</div>
+		<@footerNoTab.render />
+	</body>
+
+	</html>

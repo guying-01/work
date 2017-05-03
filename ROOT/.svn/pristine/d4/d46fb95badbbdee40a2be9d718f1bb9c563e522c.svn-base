@@ -1,0 +1,118 @@
+<div class="header" dm-container="header-search-container"></div>
+
+<script id="goods-search-tl" type="text/x-handlebars-template">
+<div class="header">
+  <div class="wrapper">
+	<h1 class="left"><a  href="/index.jhtml"><img src="/resources/img/common/logo.png" /></a></h1>
+	 <div class="topAnimate"><a id="leftLink" href="{{url1}}" target="_blank"><img id="leftImg"  src="{{ad_pic1}}" width="120" height="60"></a></div>
+    <div class="search">
+      <input name="searchWord" type="text" value="" dm-info="gd-search-word" class="dm-no-auto-clear" />
+      <p id="showInfo">商品名称/店铺名称</p>
+      <a href="javascript:void(0);" dm-actor="gd-search">搜 索</a>
+     </div>
+    <div class="hot-search">
+    	
+	</div>
+    <div class="headapp"><a id="rightLink" href="{{url2}}" target="_blank"><img id="rightImg" src="{{ad_pic2}}" width="240" height="100"></a></div>
+  </div>
+ </div>
+</script>
+
+<script type="text/javascript">
+/** 初始化检索 **/
+(function($){
+	if(!$.dm){
+		$.dm={};
+	}
+	if(!$.dm.widget){
+		$.dm.widget={};
+	}
+	$.dm.widget.goodsSearch=function(){
+		//调用单纯关键字搜索（search 关键字，from 数据来源）
+		var gdSearch=function(search,from){
+			location.href='/goodsSearch.jhtml?from='+from+'&s='+encodeURIComponent(search);
+		};	
+		
+		var init=function(options){
+		
+				var container = options["container"] || "";
+				var range = options["range"] || {};
+				var order = range["orders"] || "";
+				var data = range["rangeData"] || {};
+				data["order"]  = order;
+				
+				// 模板
+				var shop_banner_tl = $("#goods-search-tl").html();
+				// 将模板编译成handlerbars对象
+				var shop_banner_template = Handlebars.compile(shop_banner_tl);
+				var shop_banner_html = shop_banner_template(data);
+				if(container){
+					$(container+" .header").replaceWith(shop_banner_html);
+				}else{
+					$(".header").replaceWith(shop_banner_html);
+				}
+		
+			//取得参数
+			var urlParams=$.dm.getUrlParams();
+			if(urlParams['s'] && urlParams['s'] != ''){
+				$('.search').children('p').fadeOut();
+				$('[dm-info="gd-search-word"]').val(urlParams['s']);
+			}else{
+				$('.search').children('p').fadeIn();
+			}
+			//输入搜索关键词
+			$(document).on('keypress','[dm-info="gd-search-word"]', function(){
+				switch(event.keyCode) {
+				case 13:
+					gdSearch($('[dm-info="gd-search-word"]').val(), 'gd-search');
+					break;
+				default:
+					break;
+			  }		
+			});
+			$(document).on('click','[dm-actor="gd-search"]', function(){
+				var searchText=$('[dm-info="gd-search-word"]').val();
+ 
+				gdSearch(searchText, $(this).attr('dm-actor'));
+			});
+			//热门搜索
+			$(document).on('click','[dm-info="gd-hot-search-item"]', function(){
+				gdSearch($(this).attr('dm-data'), $(this).attr('dm-info'));
+			});
+		};
+		
+		var api={
+			init:init
+		};
+		
+		return api;
+	};
+	
+	$(document).on('focus','input:text', function(){
+		 $(this).siblings("p").fadeOut()
+	});
+	
+	$(document).on('blur','input', function(){
+		if ($(this).val().length == 0) {
+	        $(this).siblings("p").fadeIn()
+	    }
+	});
+})(jQuery);
+
+$(document).ready(function () {
+callService("/findHotWords.ajax",{},
+		{callSuccess:function(data) {
+			var htmlStr = '';
+			$.each(data, function(inx, val){
+				var content = '<a href="/goodsSearch.jhtml?from=gd-search&s='+val.content+'">'+val.content+'</a>';
+				if(inx != 0){
+					content = '&nbsp&nbsp' + content;
+				}
+				htmlStr += content;
+			})
+			$('.hot-search').append(htmlStr);
+		}}
+	);
+});
+
+</script>

@@ -1,0 +1,95 @@
+<#--店铺首页-->
+<#include "/common/common_var_definds.ftl" />
+<#include "/basepage/store/default/hb_templates/store_hb_templates.ftl" />
+<#import "/basepage/store/default/common/zizhi_slider.ftl" as zizhi/>
+<#import "/basepage/store/default/common/dangan_slider.ftl" as dangan/>
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>饭饭1080°直采平台</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <script type="text/javascript">
+        var deviceWidth = document.documentElement.clientWidth;
+        if(deviceWidth > 768) {
+            deviceWidth = 768;
+        }
+        document.documentElement.style.fontSize = deviceWidth / 6.4 + 'px';
+    </script>
+<#import "/basepage/store/default/common/common_link.ftl" as link/>
+<#import "/basepage/store/default/common/common_script.ftl" as script/>
+<#import "/basepage/store/default/common/common_header_top.ftl" as top/>
+<#import "/basepage/store/default/common/common_header_searchbox_default.ftl" as searchBox/>
+<#import "/basepage/store/default/common/common_footer.ftl" as footerNoTab/>
+<#import "/basepage/seller/seller_header_search.ftl" as sellerSearch/>
+<@link.render />
+    <!--导入共通样式-->
+<@script.render />
+    <!--导入共通脚本-->
+    <link rel="stylesheet" href="${resources}/basepage/seller/css/store.css" type="text/css">
+    <script src="${resources}/basepage/seller/js/store_common_head_load.js"></script>
+    <script src="${resources}/basepage/seller/js/staticStore.js"></script>
+    <script src="${resources}/basepage/seller/js/store_dynamics.js"></script>
+    <script src="${resources}/basepage/seller/js/sp_getAboutImg.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+<div id="pageInfo" store_id="${storeId!''}" store_template_code="${storeTemplateCode!''}" page_id="${storeTemplateCode!''}" style="display: none"></div>
+<!--此处是头部开始-->
+<div class="top">
+<@top.render />
+    <div class="store_search_box">
+    <@searchBox.render />
+				<#--导入search_box-->
+    </div>
+</div>
+<!--此处是头部结束-->
+<!--网页头部&导航开始-->
+<div id="sp_hd_1"></div>
+<div id="sp_hd_2"></div>
+<@sellerSearch.render />
+<div id="ff_tab_box">
+    <div class="ff_tab_content">
+        <div class="ff-tab-title">
+            <img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /> <span>商家介绍</span>
+        </div>
+        <div class="ff-tab-con-detail">
+            <p>
+                大连朝顺达华工有限公司是一家提供绿色环保能源及清洗配套
+                服务的新型企业，我们公司经营的醇基燃料是绿色环保的新兴能
+                源，可供食堂、酒店等单位做燃料。还有专门供锅炉使用的无污
+                染清洁醇基燃料。我们公司最新引进新一代的专业清洗机器人，
+                可为酒店、宾馆、食堂、医院、学校、工厂提供各种清洗服务：
+                (用专用清洗剂进行酒店后厨清洗、单位食堂清洗、厨房油烟罩
+                清洗、油烟管道清洗、排风机清洗、油烟净化器清洗、以及各种
+                大型油烟设备的清洗)。新引进中央空调清洗机可提供各种空调
+                系统的清洗等。
+            </p>
+            <p>
+                我们有专业的配送团队和专业的清洗施工队伍，愿为您提供优质
+                的服务。
+            </p>
+        </div>
+    </div>
+    <div class="ff_tab_content only_book_content_zizhi">
+        <div class="ff-tab-title">
+            <img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /><span>商家资质</span>
+        </div>
+        <div class="ff-tab-con-detail">
+        <@zizhi.render />
+        </div>
+    </div>
+    <div class="ff_tab_content">
+        <div class="ff-tab-title">
+            <img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /> <span>商家活动</span>
+
+        </div>
+        <div class="ff-tab-con-detail">敬请期待</div>
+    </div>
+</div>
+<@footerNoTab.render />
+</body>
+
+</html>

@@ -1,0 +1,139 @@
+/**=========================手机绑定====================================**/
+	//手机验证
+	$(document).ready(function(){
+		//验证手机
+		$("#isMobileForm").validate({
+			 errorClass:"errorwrong",
+			 rules:{
+				 mobile:{
+					 required:true,
+					 checkMobile:true,
+					 integer:true
+				 },
+				 authCode:{
+					 required:true
+				 }
+			 },
+			 messages:{
+				 mobile:{
+					 required:"请填写手机号码"
+				 },
+				 authCode:{
+					 required:"请输入正确的验证码"
+				 }
+			 }
+		});
+		jQuery.validator.addMethod("checkMobile", function(value, element) {    
+			      var length = value.length;    
+			      return jQuery.validator.prototype.optional(element) || (length == 11 && /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/.test(value));
+		    }, "<u></u><i></i>手机号码格式不正确");
+		
+		$("#mobile").val(mobile);
+		
+		//发送验证码
+		$("#send_msg").click(sendMobilMsg);
+		
+		//验证手机号码是否已经注册过了
+		$("#mobile").change(function(){
+			callService("/member/validateInputMobile.ajax",{'mobile':$("#mobile").val()},{callSuccess:function(status){
+				if(!status){
+					$("#errorExistMobile").show();
+					$("#send_msg").addClass('sendCode');
+					$("#send_msg").unbind("click");
+				}else if($("#timeshow").css("display")=="block"){
+					$("#errorExistMobile").hide();
+				}else{
+					$("#errorExistMobile").hide();
+					var events = $._data($("#send_msg")[0],"events");
+					if(!(events && events["click"])){
+						$("#send_msg").removeClass('sendCode');
+						$("#send_msg").bind("click", sendMobilMsg);
+					}
+				}
+			}});
+		});
+		
+		//显示错误信息
+		$('#isMobileForm em').html(errInfo);
+		
+		//验证手机号码是否已经改变
+		if(mobileChange != ''){
+			$("#errorMobile2").css("display", "inherit");
+		}else{
+			$("#errorMobile2").css("display", "none");
+		}
+		//验证手机号码是否已经注册过了
+		if(mobileErr != ''){
+			$("#errorExistMobile").css("display", "inherit");
+		}else{
+			$("#errorExistMobile").css("display", "none");
+		}
+	})
+
+	//发送手机验证码
+	function sendMobilMsg(){
+		var self=$(this);
+		var pageUrl="${pageUrl!''}";
+		if(!checkLen($("#mobile").val())){
+			$("#errorMobile1").css("display", "inherit");
+		}else{
+			$("#errorMobile1").css("display", "none");
+			callService("/member/sendMobileMessage.ajax",
+			{'pageUrl':"updateMobileAuthModel",'mobile': $("#mobile").val()},
+			{self:self,callSuccess:function(data){
+				if(data.result){
+					$("#token").val(data.token);
+					$("#pageUrl").val(data.pageUrl);
+					if(data.content==null){
+						$("#send_timeout").show();
+						showTime();
+					}else if(data.content==1){//已经发送了
+						showTime();
+						this.self.addClass('sendCode');
+						this.self.unbind("click");
+						$("#send_timeout").show();
+						$('#isMobileForm em').html("");
+					}
+				}else{
+					showTime();
+					$("#send_failed").css("display", "inherit");
+				}
+				if(data.show){
+			        alert(data.code);
+		        }
+			}});
+		}
+	}
+		
+	function showTime(){
+		var self=$("#send_msg");
+		self.addClass('sendCode');
+		self.unbind("click");
+		$("#timeshow").show();
+		$("#second").html('60');
+		var interval=setInterval(function(){
+			var second=$.trim($("#second").html());
+			if(second==0)
+			{
+				self.removeClass('sendCode');
+				self.bind("click", sendMobilMsg);
+				$("#timeshow").hide();
+				$("#send_failed").hide();
+				$("#send_timeout").hide();
+				clearInterval(interval);
+			}
+			$("#second").html(--second);
+		},1000);
+	}
+	
+	//点击下一步
+	function saveMobile(){
+		if($("#isMobileForm").valid()){
+			$.dm.block($(".content-right"));
+			$("#isMobileForm").submit();
+		}
+	}
+	
+	function checkLen(value){
+		return (value.length == 11 && (/^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/.test(value)));
+	}

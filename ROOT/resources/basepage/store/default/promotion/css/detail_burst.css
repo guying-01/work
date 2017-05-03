@@ -1,0 +1,5 @@
+.bannerBox{
+    background: url("../img/detail_burst/banner.png") no-repeat center center;
+    background-size: cover;
+    height: 2.5rem;
+}

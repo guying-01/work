@@ -1,0 +1,90 @@
+<script type="text/javascript">
+    Handlebars.registerHelper({
+        deliverTime: function (day,time) {
+            if (time) {
+                time = time.split(":")[0]
+            }
+            else {
+                //备货时间不存在
+            }
+            var result = "";
+            if ("2" == day) {
+                if (time < 12) {
+                    result = "/resources/basepage/store/default/common_img/deliver_time_01.png";
+                } else {
+                    result = "/resources/basepage/store/default/common_img/deliver_time_02.png";
+                }
+            } else if ("3" == day) {
+                result = "/resources/basepage/store/default/common_img/deliver_time_03.png";
+            }
+            return result;
+        },
+        increases:function(person) {
+        return ++person;
+        }
+    })
+</script>
+<script type="text/x-handlebars-template" id="template_goods">
+    {{#each this}}
+    {{#each this}}
+    <div class="contentRight-List">
+        <div class="contentRight-List-Left">
+            <div class="contentRight-List-img">
+                <a href="/fsgd/{{adsInfo.goodsId}}.jhtml?lv3Id=${level3!''}"  class="item_pic" title="{{goods.name}}">
+                    <img class="lazy" src="{{adsInfo.advertPic}}" alt="{{goods.name}}"/>
+                </a>
+            </div>
+            <a class="goodsCollect" goods_id="{{goods.id}}" store_id="{{goods.storeId}}"><img class="lazy" src="/resources/basepage/store/default/list_pages/img/collect32.jpg" />
+                <p>收藏</p>
+            </a>
+            <a class="addShoppingCar" amount="1" goodsId="{{goods.id}}" goodsName="{{goods.name}}" itemId="{{item_id}}" itemName=" {{item_name}}" pic="{{item_pic}}" storeId=" {{store_id}}" storeName="{{store_name}}"><img class="lazy" src="/resources/basepage/store/default/list_pages/img/shoppingcar.jpg" />
+                <p>加入购物车</p>
+            </a>
+        </div>
+        <a  href="/fsgd/{{goods.id}}.jhtml?lv3Id=${level3!''}">
+            <div class="contentRight-List-Right">
+                <table cellspacing="0" cellpadding="0" class="contentRight-List-Right-table">
+                    <tr>
+                        <td class="goodsDecoration">品名</td>
+                        <td class="goodsDecoration2" title="{{goods.name}}">{{goods.name}}</td>
+                    </tr>
+                    <tr>
+                        <td class="goodsDecoration">生产企业</td>
+                        <td class="goodsDecoration2" title="{{goods.manufacturer}}">{{goods.manufacturer}}</td>
+                    </tr>
+                    <tr>
+                        <td class="goodsDecoration">饭饭单价</td>
+                        <td class="goodsDecoration1" title="{{itemInfoList.[0].salesPrice}}">{{itemInfoList.[0].salesPrice}}</td>
+                        <td class="goodsDecoration">规格</td>
+                        <td class="goodsDecoration1" title="{{itemInfoList.[0].attrValue1}}">{{itemInfoList.[0].attrValue1}}</td>
+                    </tr>
+                    <tr>
+                        <td class="goodsDecoration">产地</td>
+                        <td class="goodsDecoration1" title="{{goods.placeOfProduction}}">{{goods.placeOfProduction}}</td>
+                        <td class="goodsDecoration">送达时间</td>
+                        <td class="goodsDecoration1">
+                            <img style="width: 0.8rem;height: 0.4rem;margin-top: 0.04rem;" src="{{deliverTime searchInfo.data.dataList.[0].prepare_goods_day  searchInfo.data.dataList.[0].prepare_goods_day}}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="goodsDecoration">本日活动</td>
+                        <td class="goodsDecoration2" title="{{promotion}}">新奇特怪</td>
+                    </tr>
+                    <tr>
+                        <td class="goodsDecoration">产品描述</td>
+                        <td class="goodsDecoration2" title="{{goods.description}}">{{goods.description}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="goodsDecoration">供应区域</td>
+                        <td class="goodsDecoration1" title="">全市</td>
+                        <td class="goodsDecoration">商品等级</td>
+                        <td class="goodsDecoration1" title="{{item_level_name}}">{{item_level_name}}</td>
+                    </tr>
+                </table>
+            </div>
+        </a>
+    </div>
+    {{/each}}
+    {{/each}}
+</script>

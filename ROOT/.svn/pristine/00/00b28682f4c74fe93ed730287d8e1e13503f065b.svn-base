@@ -1,0 +1,111 @@
+<div class="Related-products-div" dm-container="store-goods-search-container">
+</div>
+<script id="store-goods-search-tl" type="text/x-handlebars-template">
+<form dm-container="search-form">
+  <h2>店内搜索</h2>
+  <div class="search-products"><span>关键字：</span>
+    <input name="" type="text" class="text_A left" maxlength="20" style="width:130px; z-index:5" dm-info="store-gd-search-word" value="{{search}}"/>
+  </div>
+  <div class="search-products" style="position: relative;"><span>价 格：</span>
+    <input name="minPrice" type="text" class="text_A left" maxlength="8" style="width:55px; z-index:5" dm-info="store-gd-search-min-price" value="{{minPrice}}"/>
+    <em>-</em>
+    <input name="maxPrice" type="text" class="text_A left" maxlength="8" style="width:55px; z-index:5" dm-info="store-gd-search-max-price" value="{{maxPrice}}"/>
+  <label id="minPrice-error" class="error" for="minPrice" style="display:none; padding:1px 2px; position: absolute; left:47px; top:30px;"></label>
+  <label id="maxPrice-error" class="error" for="maxPrice" style="display:none; float: right; padding:1px 2px;position: absolute; right:-17px; top:30px;"></label>
+  </div>
+  
+  <div class="search-products-button"><a href="javascript:void(0);" class=" small-button" dm-actor="store-gd-search">搜索</a></div>
+</form>
+</script>
+<script type="text/javascript">
+
+/** 初始化检索 **/
+(function($){
+	if(!$.dm){
+		$.dm={};
+	}
+	if(!$.dm.widget){
+		$.dm.widget={};
+	}
+	
+	$.dm.widget.storeGoodsSearch=function(){
+		var storeGoodsSearch=function(datas,from,search,minPrice,maxPrice){
+			location.href='/st/'+datas.storeId+'/search.jhtml?from='+from+'&ss='+encodeURIComponent(search)+'&min='+minPrice+'&max='+maxPrice;
+		};
+		
+		var init=function(options){
+			
+			
+			var container = options["container"] || "";
+			
+			options.datas=options.datas||{};
+			var pathNames=$.dm.getPathNames();
+			var storeId=window.storeId||(pathNames.length>2?pathNames[pathNames.length-2]:'');
+			window.storeId=storeId;
+			var urlParams=$.dm.getUrlParams();
+			var datas={storeId:storeId,search:urlParams['ss'],minPrice:urlParams['min'],maxPrice:urlParams['max']};	
+ 
+			$.extend(datas,options.datas);
+			
+			//渲染页面
+			var template=Handlebars.compile($('#store-goods-search-tl').html());
+			var html=template(datas);
+			
+			if(container){
+				container = container+" ";
+				$(container+'[dm-container="store-goods-search-container"]').html(html);
+				$(container+'[dm-container="search-form"]').validate({
+	     			rules: {
+	    				minPrice: {money:true},
+	    	 			maxPrice: {money:true}
+		 				}
+					});
+				//设置按键动作
+				$(document).on('click',container+'[dm-actor="store-gd-search"]', function(){
+					if(!$(container+'[dm-container="search-form"]').valid()){
+						//未通过校验
+						return;
+					}
+					var search=$(container+'[dm-info="store-gd-search-word"]').val();
+					var minPrice=$(container+'[dm-info="store-gd-search-min-price"]').val();
+					var maxPrice=$(container+'[dm-info="store-gd-search-max-price"]').val();
+					var form=$(this).attr('dm-actor');
+
+					storeGoodsSearch(datas,form,search,minPrice,maxPrice);
+				});
+			}else{
+				$('[dm-container="store-goods-search-container"]').html(html);
+			
+				$('[dm-container="search-form"]').validate({
+	     			rules: {
+	    				minPrice: {money:true},
+	    	 			maxPrice: {money:true}
+		 				}
+					});
+				//设置按键动作
+				$(document).on('click','[dm-actor="store-gd-search"]', function(){
+					if(!$('[dm-container="search-form"]').valid()){
+						//未通过校验
+						return;
+					}
+					var search=$('[dm-info="store-gd-search-word"]').val();
+					var minPrice=$('[dm-info="store-gd-search-min-price"]').val();
+					var maxPrice=$('[dm-info="store-gd-search-max-price"]').val();
+					var form=$(this).attr('dm-actor');
+
+					storeGoodsSearch(datas,form,search,minPrice,maxPrice);
+				});
+			}
+			
+		};
+		
+		var api={
+			init:init
+		};
+		
+		return api;
+	};	
+})(jQuery);
+
+
+</script>

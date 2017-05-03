@@ -1,0 +1,48 @@
+﻿<#include "/common/common_var_definds.ftl" />
+<#macro render>
+<script type="text/javascript" src="${resources}/js/common/pager.js"></script>
+<script type="text/javascript" src="${resources}/js/common/tab.js"></script>
+<script type="text/javascript" src="${resources}/js/lib/jquery/jquery.dataTables.js"></script>
+<script type="text/javascript" src="${resources}/js/lib/jquery/dataTables.bootstrap.js"></script>
+<script type="text/javascript" src="${resources}/js/lib/jquery/dt-operation-commons.js"></script>
+<script type="text/javascript" src="${resources}/js/lib/jquery/jquery.blockUI.min.js"></script> 
+<script type="text/javascript" src="${resources}/js/lib/jquery/jquery.validate.min.js"></script>
+<script type="text/javascript" src="${resources}/js/lib/handlebars/handlebars-v2.0.0.js"></script>
+<script type="text/javascript" src="${resources}/js/lib/plupload/moxie.js"></script>
+<script type="text/javascript" src="${resources}/js/lib/plupload/plupload.dev.js"></script>
+
+<script type="text/javascript" src="${resources}/js/lib/date/laydate.js"></script>
+
+<script type="text/javascript">
+$('document').ready(function() {
+	let gy=new requestData(10)
+	gy.getData()
+});
+	class requestData{
+		constructor(length){
+           this.length=length
+        }
+        static rangeTemplate(ele,data){
+            let template=Handlebars.compile($("#"+ele).html())
+            let templateHtml=template(data)
+            $("."+ele).html(templateHtml)
+        }
+		getData(){
+            this.mainAccountRequest()
+            this.sonAccountRequest()
+        }
+		mainAccountRequest(){
+			$.post('findMemberList1.ajax',{start:0,length:this.length}, function (data) {
+                let dataG=data.data;
+                requestData.rangeTemplate('main-account',dataG)
+            })
+		}
+        sonAccountRequest(){
+            $.post('findMemberList2.ajax',{start:0,length:this.length}, function (data) {
+                let dataG=data.data;
+                requestData.rangeTemplate('son-account',dataG)
+            })
+        }
+	}
+</script>
+</#macro>

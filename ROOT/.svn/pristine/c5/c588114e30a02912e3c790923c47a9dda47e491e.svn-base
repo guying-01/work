@@ -1,0 +1,2519 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>饭饭1080°直采平台</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+		<script type="text/javascript">
+			var deviceWidth = document.documentElement.clientWidth;
+			if(deviceWidth>768){
+				deviceWidth=768;
+			}
+			document.documentElement.style.fontSize = deviceWidth / 6.4 + 'px';
+		</script>
+
+		<#include "/common/common_var_definds.ftl" />
+		<#import "/basepage/store/default/common/common_link.ftl" as link/>
+		<#import "/basepage/store/default/common/common_script.ftl" as script/>
+		<#import "/basepage/store/default/common/common_header_top.ftl" as top/>
+		<#import "/basepage/store/default/common/common_header_searchbox_default.ftl" as searchBox/>
+		<#import "/basepage/store/default/common/common_footer.ftl" as footer/>
+		<#import "/basepage/store/default/common/common_scroll_top.ftl" as scrollTop/>
+
+		<@link.render />
+		<!--导入共通样式-->
+		<@script.render />
+		<!--导入共通脚本-->
+		<link rel="stylesheet" type="text/css" href="${resources}/basepage/store/default/index/css/index.css" />
+		<script type="text/javascript" src="${resources}/basepage/store/default/index/js/index_dynamics.js"></script>
+	</head>
+
+	<body>
+		<div class="top">
+			<@top.render />
+			<#--导入header_top-->
+		</div>
+		<div class="banner">
+			<@searchBox.render />
+			<#--导入search_box-->
+		</div>
+		<div class="newPutGoods">
+			<a href='/promotion/newGoodsToday.jhtml'>
+				<div class="clickToSee"></div>
+		    </a>
+		</div>
+		<div class="yun_box">
+			<a href="/others/comingSoon_4th.jhtml" class="personnel"><img src="${resources}/basepage/store/default/index/img/yun1.png"></a>
+			<!--行业人才库-->
+			<a href="/others/comingSoon_4th.jhtml" class="base"><img src="${resources}/basepage/store/default/index/img/yun2.png"></a>
+			<!--行业培训基地-->
+			<a href="/others/comingSoon_2th.jhtml" class="service"><img src="${resources}/basepage/store/default/index/img/yun3.png"></a>
+			<!--金融服务大厅-->
+			<a href="/others/comingSoon_4th.jhtml" class="increment"><img src="${resources}/basepage/store/default/index/img/yun4.png"></a>
+			<!--行业增值服务-->
+			<a href="/others/comingSoon_3th.jhtml" class="activity"><img src="${resources}/basepage/store/default/index/img/yun5.png"></a>
+			<!--地面活动-->
+			<a href="/others/comingSoon_4th.jhtml" class="community"><img src="${resources}/basepage/store/default/index/img/yun6.png"></a>
+			<!--饭饭社区-->
+			<a href="/others/comingSoon_4th.jhtml" class="business"><img src="${resources}/basepage/store/default/index/img/yun7.png"></a>
+			<!--商机无限-->
+		</div>
+        <#--<div class="iconMeaning">
+            <a href='/about/about_iconMeaning.jhtml'>
+            </a>
+        </div>-->
+		<div class="ff_active">
+			<a href="/about/about_platform.jhtml?name=饭饭活动专区"></a>
+		</div>
+		<!--<div class="ff_market">
+			<img src="${resources}/basepage/store/default/index/img/ff_market.png" />
+		</div>-->
+		<div class="floor floor1">
+			<a class="floor_t" href="/page1/307_00000000000000237_gic.jhtml?name1=海鲜类">一号大厅 海鲜类</a>
+			<div class="gray_line"></div>
+			<div class="floor_con">
+				<div class="floor_pic">
+					<a href="/page2/307_00000000000000411_gic.jhtml?name2=进口海鲜&level1=307_00000000000000237_gic&name1=海鲜类">
+						<img src="${resources}/basepage/store/default/index/img/floor1_1.png" />
+						<p>进口海鲜</p>
+					</a>
+
+					<ul class="floor_con4">
+						<li>
+							<a href="/page2/307_00000000000000347_gic.jhtml?name2=鲜藻类&level1=307_00000000000000237_gic&name1=海鲜类">鲜藻类</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000000354_gic.jhtml?name2=加工藻类&level1=307_00000000000000237_gic&name1=海鲜类">加工藻类</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000000415_gic.jhtml?name2=海鲜礼盒&level1=307_00000000000000237_gic&name1=海鲜类">海鲜礼盒</a>
+						</li>
+					</ul>
+				</div>
+				<div class="shu_line"></div>
+				<ul class="floor_con1">
+					<li>
+						<a href="/page2/307_00000000000008857_gic.jhtml?name2=本地小船海鲜&level1=307_00000000000000237_gic&name1=海鲜类&type=special_page" style="color: #c91622;">本地小船海鲜</a>
+					</li>
+					<li>
+						<a href="/page2/307_00000000000000240_gic.jhtml?name2=活鲜鱼&level1=307_00000000000000237_gic&name1=海鲜类">活鲜鱼</a>
+					</li>
+					<li>
+						<a href="/page2/307_00000000000000247_gic.jhtml?name2=冰鲜鱼&level1=307_00000000000000237_gic&name1=海鲜类">冰鲜鱼</a>
+					</li>
+					<li>
+						<a href="/page2/307_00000000000000304_gic.jhtml?name2=活鲜蟹&level1=307_00000000000000237_gic&name1=海鲜类">活鲜蟹</a>
+					</li>
+					<li>
+						<a href="/page2/307_00000000000000313_gic.jhtml?name2=冰鲜蟹&level1=307_00000000000000237_gic&name1=海鲜类">冰鲜蟹 </a>
+					</li>
+
+					<li>
+						<a href="/page2/307_00000000000000266_gic.jhtml?name2=活鲜虾&level1=307_00000000000000237_gic&name1=海鲜类">活鲜虾</a>
+					</li>
+				</ul>
+				<ul class="floor_con2">
+					<li>
+						<a href="/page2/307_00000000000000300_gic.jhtml?name2=冰鲜虾&level1=307_00000000000000237_gic&name1=海鲜类">冰鲜虾</a>
+					</li>
+					<li>
+						<a href="/page2/307_00000000000000317_gic.jhtml?name2=软体活鲜&level1=307_00000000000000237_gic&name1=海鲜类">软体活鲜</a>
+					</li>
+					<li>
+						<a href="/page2/307_00000000000000321_gic.jhtml?name2=软体冰鲜&level1=307_00000000000000237_gic&name1=海鲜类">软体冰鲜</a>
+					</li>
+					<li>
+						<a href="/page2/307_00000000000000370_gic.jhtml?name2=应季海鲜&level1=307_00000000000000237_gic&name1=海鲜类">应季海鲜</a>
+					</li>
+					<li>
+						<a href="/page2/307_00000000000000412_gic.jhtml?name2=水发海鲜&level1=307_00000000000000237_gic&name1=海鲜类">水发海鲜</a>
+					</li>
+					<li>
+						<a href="/page2/307_00000000000000315_gic.jhtml?name2=活螺贝类&level1=307_00000000000000237_gic&name1=海鲜类">活螺贝类</a>
+					</li>
+				</ul>
+				<ul class="floor_con3 mr0" >
+					<li>
+						<a href="/page2/307_00000000000000416_gic.jhtml?name2=海鲜加工菜&level1=307_00000000000000237_gic&name1=海鲜类">海鲜加工菜</a>
+					</li>
+					<li>
+						<a href="/page2/307_00000000000000316_gic.jhtml?name2=冰鲜螺贝类&level1=307_00000000000000237_gic&name1=海鲜类">冰鲜螺贝类</a>
+					</li>
+					<li>
+						<a href="/page2/307_00000000000000361_gic.jhtml?name2=海鲜肉类&level1=307_00000000000000237_gic&name1=海鲜类">海鲜肉类</a>
+					</li>
+					<li>
+						<a href="/page2/307_00000000000000414_gic.jhtml?name2=半加工速冻海产品&level1=307_00000000000000237_gic&name1=海鲜类">
+							<p>半加工速冻海产品</p>
+						</a>
+					</li>
+                    <li>
+                        <a href="/page2/307_00000000000000418_gic.jhtml?name2=其他&level1=307_00000000000000237_gic&name1=海鲜类">其他</a>
+                    </li>
+				</ul>
+
+			</div>
+		</div>
+		<div class="gray_line"></div>
+		<div class="floor floor2" id="floor2">
+			<a class="floor_t" href="/page1/307_00000000000002491_gic.jhtml?name1=蔬菜类">二号大厅 蔬菜类</a>
+			<div class="gray_line"></div>
+			<div class="floor_con">
+				<div class="floor_pic">
+					<a href="/page2/307_00000000000002523_gic.jhtml?name2=鲜菇菌类&level1=307_00000000000002491_gic&name1=蔬菜类">
+						<img src="${resources}/basepage/store/default/index/img/floor2_1.png" />
+						<p>鲜菇菌类</p>
+					</a>
+
+					<ul class="floor_con3">
+						<li>
+							<a href="/page2/307_00000000000002530_gic.jhtml?name2=进口蔬菜&level1=307_00000000000002491_gic&name1=蔬菜类">进口蔬菜</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000002532_gic.jhtml?name2=有机蔬菜&level1=307_00000000000002491_gic&name1=蔬菜类">有机蔬菜</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000002529_gic.jhtml?name2=应季野菜&level1=307_00000000000002491_gic&name1=蔬菜类">应季野菜</a>
+						</li>
+					</ul>
+				</div>
+				<div class="shu_line"></div>
+				<ul class="floor_con1">
+					<li>
+						<a href="/page2/307_00000000000002518_gic.jhtml?name2=白菜甘蓝芥菜类&level1=307_00000000000002491_gic&name1=蔬菜类">白菜甘蓝芥菜类</a>
+					</li>
+					<li>
+						<a href="/page2/307_00000000000002495_gic.jhtml?name2=茄、果、椒类&level1=307_00000000000002491_gic&name1=蔬菜类">茄、果、椒类</a>
+					</li>
+
+					<li>
+						<a href="/page2/307_00000000000008118_gic.jhtml?name2=净菜切配菜&level1=307_00000000000002491_gic&name1=蔬菜类">净菜切配菜</a>
+					</li>
+					<li>
+						<a href="/page2/307_00000000000002496_gic.jhtml?name2=葱、姜、蒜&level1=307_00000000000002491_gic&name1=蔬菜类">葱、姜、蒜</a>
+					</li>
+					<li>
+						<a href="/page2/307_00000000000002527_gic.jhtml?name2=花菜类&level1=307_00000000000002491_gic&name1=蔬菜类">花菜类</a>
+					</li>
+					<li>
+						<a href="/page2/307_00000000000009087_gic.jhtml?name2=鲜花&level1=307_00000000000002491_gic&name1=蔬菜类">鲜花类</a>
+					</li>
+
+				</ul>
+				<div class="shu_line"></div>
+				<div class="floor2_pic_box">
+					<a class="floor_pic" href="/page2/307_00000000000002492_gic.jhtml?name2=根茎菜&level1=307_00000000000002491_gic&name1=蔬菜类">
+						<img src="${resources}/basepage/store/default/index/img/floor2_2.png" />
+						<p>根茎菜</p>
+					</a>
+					<img src="/resources/basepage/store/default/index/img/floor2_3.png" class="floor_pic_b" />
+				</div>
+
+				<ul class="floor_con2 mr0">
+					<li>
+						<a href="/page2/307_00000000000002521_gic.jhtml?name2=荚豆类&level1=307_00000000000002491_gic&name1=蔬菜类">荚豆类</a>
+					</li>
+					<li>
+						<a href="/page2/307_00000000000002497_gic.jhtml?name2=薯芋类&level1=307_00000000000002491_gic&name1=蔬菜类">薯芋类</a>
+					</li>
+					<li>
+						<a href="/page2/307_00000000000002525_gic.jhtml?name2=芽苗类&level1=307_00000000000002491_gic&name1=蔬菜类">芽苗类</a>
+					</li>
+					<li>
+						<a href="/page2/307_00000000000002517_gic.jhtml?name2=瓜菜类&level1=307_00000000000002491_gic&name1=蔬菜类">瓜菜类</a>
+					</li>
+					<li>
+						<a href="/page2/307_00000000000002515_gic.jhtml?name2=叶菜&level1=307_00000000000002491_gic&name1=蔬菜类">叶菜</a>
+					</li>
+					<li>
+						<a href="/page2/307_00000000000002534_gic.jhtml?name2=虫类&level1=307_00000000000002491_gic&name1=蔬菜类">虫类</a>
+					</li>
+
+				</ul>
+			</div>
+		</div>
+		<div class="gray_line"></div>
+		<div class="floor floor3" id="floor3">
+			<a class="floor_t" href="/page1/307_00000000000003559_gic.jhtml?name1=肉禽类">三号大厅 肉禽类</a>
+			<div class="gray_line"></div>
+			<div class="floor_con">
+				<ul class="floor_con1">
+					<li>
+						<a href="/page2/307_00000000000003560_gic.jhtml?name2=鲜猪肉&level1=307_00000000000003559_gic&name1=肉禽类">鲜猪肉</a>
+					</li>
+					<li>
+						<a href="/page2/307_00000000000003562_gic.jhtml?name2=冻猪肉&level1=307_00000000000003559_gic&name1=肉禽类">冻猪肉</a>
+					</li>
+					<li>
+						<a href="/page2/307_00000000000003579_gic.jhtml?name2=鲜狗肉&level1=307_00000000000003559_gic&name1=肉禽类">鲜狗肉</a>
+					</li>
+					<li>
+						<a href="/page2/307_00000000000003580_gic.jhtml?name2=冻狗肉&level1=307_00000000000003559_gic&name1=肉禽类">冻狗肉</a>
+					</li>
+					<li>
+						<a href="/page2/307_00000000000003564_gic.jhtml?name2=鲜牛肉&level1=307_00000000000003559_gic&name1=肉禽类">鲜牛肉</a>
+					</li>
+					<li>
+						<a href="/page2/307_00000000000003609_gic.jhtml?name2=其它&level1=307_00000000000003559_gic&name1=肉禽类">其它</a>
+					</li>
+				</ul>
+				<ul class="floor_con2">
+					<li>
+						<a href="/page2/307_00000000000003568_gic.jhtml?name2=冻羊肉&level1=307_00000000000003559_gic&name1=肉禽类">鲜羊肉</a>
+					</li>
+					<li>
+						<a href="/page2/307_00000000000003570_gic.jhtml?name2=冻羊肉&level1=307_00000000000003559_gic&name1=肉禽类">冻羊肉</a>
+					</li>
+					<li>
+						<a href="/page2/307_00000000000003572_gic.jhtml?name2=鲜鸡肉&level1=307_00000000000003559_gic&name1=肉禽类">鲜鸡肉</a>
+					</li>
+					<li>
+						<a href="/page2/307_00000000000003576_gic.jhtml?name2=冻鸡肉&level1=307_00000000000003559_gic&name1=肉禽类">冻鸡肉</a>
+					</li>
+					<li>
+						<a href="/page2/307_00000000000003588_gic.jhtml?name2=鲜鸭肉&level1=307_00000000000003559_gic&name1=肉禽类">鲜鸭肉</a>
+					</li>
+				</ul>
+				<div class="shu_line"></div>
+				<div class="floor_pic">
+					<a href="/page2/307_00000000000003608_gic.jhtml?name2=进口肉&level1=307_00000000000003559_gic&name1=肉禽类">
+						<img src="${resources}/basepage/store/default/index/img/floor3_1.png" />
+						<p>进口肉</p>
+					</a>
+
+					<ul class="floor_con5">
+						<li>
+							<a href="/page2/307_00000000000003567_gic.jhtml?name2=冻牛肉&level1=307_00000000000003559_gic&name1=肉禽类">冻牛肉</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000003589_gic.jhtml?name2=冻鸭肉&level1=307_00000000000003559_gic&name1=肉禽类">冻鸭肉</a>
+						</li>
+					</ul>
+				</div>
+				<div class="shu_line"></div>
+				<ul class="floor_con3">
+					<li>
+						<a href="/page2/307_00000000000003586_gic.jhtml?name2=鲜鸽子肉&level1=307_00000000000003559_gic&name1=肉禽类">鲜鸽子肉</a>
+					</li>
+					<li>
+						<a href="/page2/307_00000000000003587_gic.jhtml?name2=冻鸽子肉&level1=307_00000000000003559_gic&name1=肉禽类">冻鸽子肉</a>
+					</li>
+					<li>
+						<a href="/page2/307_00000000000003603_gic.jhtml?name2=鲜下货&level1=307_00000000000003559_gic&name1=肉禽类">鲜下货</a>
+					</li>
+					<li>
+						<a href="/page2/307_00000000000003605_gic.jhtml?name2=冻下货&level1=307_00000000000003559_gic&name1=肉禽类">冻下货</a>
+					</li>
+					<li>
+						<a href="/page2/307_00000000000003582_gic.jhtml?name2=鲜兔肉&level1=307_00000000000003559_gic&name1=肉禽类">鲜兔肉</a>
+					</li>
+					<li>
+						<a href="/page2/307_00000000000003583_gic.jhtml?name2=冻兔肉&level1=307_00000000000003559_gic&name1=肉禽类">冻兔肉</a>
+					</li>
+				</ul>
+				<ul class="floor_con4 mr0">
+					<li>
+						<a href="/page2/307_00000000000003595_gic.jhtml?name2=鲜鹿肉&level1=307_00000000000003559_gic&name1=肉禽类">鲜鹿肉</a>
+					</li>
+					<li>
+						<a href="/page2/307_00000000000003597_gic.jhtml?name2=冻鹿肉&level1=307_00000000000003559_gic&name1=肉禽类">冻鹿肉</a>
+					</li>
+					<li>
+						<a href="/page2/307_00000000000003591_gic.jhtml?name2=鲜鹅肉&level1=307_00000000000003559_gic&name1=肉禽类">鲜鹅肉</a>
+					</li>
+					<li>
+						<a href="/page2/307_00000000000003592_gic.jhtml?name2=冻鹅肉&level1=307_00000000000003559_gic&name1=肉禽类">冻鹅肉</a>
+					</li>
+					<li>
+						<a href="/page2/307_00000000000003598_gic.jhtml?name2=鲜驴肉&level1=307_00000000000003559_gic&name1=肉禽类">鲜驴肉</a>
+					</li>
+					<li>
+						<a href="/page2/307_00000000000003602_gic.jhtml?name2=冻驴肉&level1=307_00000000000003559_gic&name1=肉禽类">冻驴肉</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="gray_line"></div>
+		<div class="floor floor4">
+			<a class="floor_t" href="/page1/307_00000000000004244_gic.jhtml?name1=米面粮油">四号大厅 米面粮油</a>
+			<div class="gray_line"></div>
+			<div class="floor_con">
+				<div class="floor_con_top">
+					<div class="floor_pic">
+						<a href="/page2/307_00000000000004246_gic.jhtml?name2=米类&level1=307_00000000000004244_gic&name1=米面粮油">
+							<img src="${resources}/basepage/store/default/index/img/floor4_1.png" />
+							<p>米类</p>
+						</a>
+
+						<ul class="floor_con3">
+							<li>
+								<a href="/page2/307_00000000000004264_gic.jhtml?name2=食用调和油&level1=307_00000000000004244_gic&name1=米面粮油">食用调和油</a>
+							</li>
+						</ul>
+					</div>
+					<div class="shu_line"></div>
+					<ul class="floor_con1">
+						<li>
+							<a href="/page2/307_00000000000004266_gic.jhtml?name2=粮油加工产品&level1=307_00000000000004244_gic&name1=米面粮油">粮油加工产品</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000004269_gic.jhtml?name2=进口米面粮油&level1=307_00000000000004244_gic&name1=米面粮油">进口米面粮油</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000004261_gic.jhtml?name2=食用动物油&level1=307_00000000000004244_gic&name1=米面粮油">食用动物油</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000004260_gic.jhtml?name2=食用植物油&level1=307_00000000000004244_gic&name1=米面粮油">食用植物油</a>
+						</li>
+                        <li>
+                            <a href="/page2/307_00000000000009271_gic.jhtml?name2=糕点用油&level1=307_00000000000004244_gic&name1=米面粮油">糕点用油</a>
+                        </li>
+					</ul>
+					<ul class="floor_con2">
+						<li>
+							<a href="/page2/307_00000000000004257_gic.jhtml?name2=淀粉&level1=307_00000000000004244_gic&name1=米面粮油">淀粉</a>
+						</li>
+					</ul>
+					<div class="shu_line"></div>
+					<a class="floor_pic" href="/page2/307_00000000000004256_gic.jhtml?name2=面粉&level1=307_00000000000004244_gic&name1=米面粮油" style="margin-left: 0.005rem;">
+						<img src="${resources}/basepage/store/default/index/img/floor4_2.png" />
+						<p>面粉</p>
+					</a>
+					<a class="floor_pic" href="/page2/307_00000000000004252_gic.jhtml?name2=豆类&level1=307_00000000000004244_gic&name1=米面粮油">
+						<img src="${resources}/basepage/store/default/index/img/floor4_3.png" />
+						<p>豆类</p>
+					</a>
+					<ul class="floor_con4 mr0">
+						<li>
+							<a href="/page2/307_00000000000004249_gic.jhtml?name2=五谷杂粮&level1=307_00000000000004244_gic&name1=米面粮油">五谷杂粮</a>
+						</li>
+					</ul>
+                    <ul class="floor_con4 mr0" style="padding-left: 0.2rem;">
+                        <li>
+                            <a href="/page2/307_00000000000004274_gic.jhtml?name2=其它&level1=307_00000000000004244_gic&name1=米面粮油">其它</a>
+                        </li>
+                    </ul>
+				</div>
+				<div class="floor_con_bottom">
+					<a class="floor_advert" id="index_0_top_04_01">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+					<a class="floor_advert floor_advert2" id="index_0_top_04_02">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+					<a class="floor_advert" id="index_0_top_04_03">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="gray_line"></div>
+		<div class="floor floor5">
+			<a class="floor_t" href="/page1/307_00000000000005153_gic.jhtml?name1=水果类">五号大厅 水果类</a>
+			<div class="gray_line"></div>
+			<div class="floor_con">
+				<div class="floor_con_top">
+					<a class="floor_pic" href="/page2/307_00000000000005155_gic.jhtml?name2=瓜类水果&level1=307_00000000000005153_gic&name1=水果类">
+						<img src="${resources}/basepage/store/default/index/img/floor5_1.png" />
+						<p>瓜类水果</p>
+					</a>
+					<a class="floor_pic" href="/page2/307_00000000000005160_gic.jhtml?name2=柑橘类&level1=307_00000000000005153_gic&name1=水果类">
+						<img src="${resources}/basepage/store/default/index/img/floor5_2.png" />
+						<p>柑橘类</p>
+					</a>
+					<a class="floor_pic" href="/page2/307_00000000000005165_gic.jhtml?name2=进口水果&level1=307_00000000000005153_gic&name1=水果类">
+						<img src="${resources}/basepage/store/default/index/img/floor5_3.png" />
+						<p>进口水果</p>
+					</a>
+					<a class="floor_pic" href="/page2/307_00000000000005157_gic.jhtml?name2=仁果类&level1=307_00000000000005153_gic&name1=水果类">
+						<img src="${resources}/basepage/store/default/index/img/floor5_4.png" />
+						<p>仁果类</p>
+					</a>
+					<div class="shu_line"></div>
+					<ul class="floor_con1 mr0">
+						<li>
+							<a href="/page2/307_00000000000005164_gic.jhtml?name2=浆果及热带水果&level1=307_00000000000005153_gic&name1=水果类">浆果及热带水果</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000005158_gic.jhtml?name2=核果类&level1=307_00000000000005153_gic&name1=水果类">核果类</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000005162_gic.jhtml?name2=应季水果&level1=307_00000000000005153_gic&name1=水果类">应季水果</a>
+						</li>
+					</ul>
+				</div>
+
+				<div class="floor_con_bottom">
+					<a class="floor_advert" id="index_0_top_05_01">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+					<a class="floor_advert floor_advert2" id="index_0_top_05_02">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+					<a class="floor_advert" id="index_0_top_05_03">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="gray_line"></div>
+		<div class="floor floor6">
+			<a class="floor_t" href="/page1/307_00000000000004784_gic.jhtml?name1=豆、蛋、奶等">六号大厅 豆蛋奶及面食制品</a>
+			<div class="gray_line"></div>
+			<div class="floor_con">
+				<div class="floor_con_top">
+					<a class="floor_pic" href="/page2/307_00000000000004818_gic.jhtml?name2=鲜蛋类&level1=307_00000000000004784_gic&name1=豆、蛋、奶及面食制品">
+						<img src="${resources}/basepage/store/default/index/img/floor6_1.png" />
+						<p>鲜蛋类</p>
+					</a>
+					<div class="shu_line"></div>
+					<ul class="floor_con1">
+						<li>
+							<a href="/page2/307_00000000000004821_gic.jhtml?name2=加工蛋类&level1=307_00000000000004784_gic&name1=豆、蛋、奶及面食制品">加工蛋类</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000004812_gic.jhtml?name2=混合豆制品&level1=307_00000000000004784_gic&name1=豆、蛋、奶及面食制品">混合豆制品</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000004809_gic.jhtml?name2=绿豆制品&level1=307_00000000000004784_gic&name1=豆、蛋、奶及面食制品">绿豆制品</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000004808_gic.jhtml?name2=大豆制品&level1=307_00000000000004784_gic&name1=豆、蛋、奶及面食制品">大豆制品</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000004828_gic.jhtml?name2=干奶酪类&level1=307_00000000000004784_gic&name1=豆、蛋、奶及面食制品">干奶酪类</a>
+						</li>
+					</ul>
+					<ul class="floor_con2">
+						<li>
+							<a href="/page2/307_00000000000004858_gic.jhtml?name2=面皮类&level1=307_00000000000004784_gic&name1=豆、蛋、奶及面食制品">面皮类</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000004816_gic.jhtml?name2=拉皮类&level1=307_00000000000004784_gic&name1=豆、蛋、奶及面食制品">拉皮类</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000004847_gic.jhtml?name2=面条&level1=307_00000000000004784_gic&name1=豆、蛋、奶及面食制品">面条类</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000004851_gic.jhtml?name2=烘焙类&level1=307_00000000000004784_gic&name1=豆、蛋、奶及面食制品">烘焙类</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000004831_gic.jhtml?name2=乳品类&level1=307_00000000000004784_gic&name1=豆、蛋、奶及面食制品">乳品类</a>
+						</li>
+					</ul>
+					<div class="shu_line"></div>
+					<ul class="floor_con3">
+						<li>
+							<a href="/page2/307_00000000000004856_gic.jhtml?name2=油炸类&level1=307_00000000000004784_gic&name1=豆、蛋、奶及面食制品">油炸类</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000004844_gic.jhtml?name2=饼类&level1=307_00000000000004784_gic&name1=豆、蛋、奶及面食制品">饼类</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000004849_gic.jhtml?name2=馒头类&level1=307_00000000000004784_gic&name1=豆、蛋、奶及面食制品">馒头类</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000004834_gic.jhtml?name2=冰淇淋类&level1=307_00000000000004784_gic&name1=豆、蛋、奶及面食制品">冰淇淋类</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000004841_gic.jhtml?name2=其它奶类&level1=307_00000000000004784_gic&name1=豆、蛋、奶及面食制品">其他奶类</a>
+						</li>
+					</ul>
+					<ul class="floor_con4 mr0">
+						<li>
+							<a href="/page2/307_00000000000004826_gic.jhtml?name2=酸奶类&level1=307_00000000000004784_gic&name1=豆、蛋、奶及面食制品">酸奶类</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000004836_gic.jhtml?name2=奶粉类&level1=307_00000000000004784_gic&name1=豆、蛋、奶及面食制品">奶粉类</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000004838_gic.jhtml?name2=进口奶类&level1=307_00000000000004784_gic&name1=豆、蛋、奶及面食制品">进口奶类</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000004823_gic.jhtml?name2=鲜奶类&level1=307_00000000000004784_gic&name1=豆、蛋、奶及面食制品">鲜奶类</a>
+						</li>
+                        <li>
+                            <a href="/page2/307_00000000000004860_gic.jhtml?name2=其它类&level1=307_00000000000004784_gic&name1=豆、蛋、奶等">其他类</a>
+                        </li>
+					</ul>
+				</div>
+
+				<div class="floor_con_bottom">
+					<a class="floor_advert" id="index_0_top_06_01">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+					<a class="floor_advert floor_advert2" id="index_0_top_06_02">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+					<a class="floor_advert" id="index_0_top_06_03">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="gray_line"></div>
+		<div class="floor floor7">
+			<a class="floor_t" href="/page1/307_00000000000002298_gic.jhtml?name1=调料">七号大厅 调料、调味品</a>
+			<div class="gray_line"></div>
+			<div class="floor_con">
+				<div class="floor_con_top">
+					<ul class="floor_con1">
+						<li>
+							<a href="/page2/307_00000000000002299_gic.jhtml?name2=酱油、糖醋盐、味精&level1=307_00000000000002298_gic&name1=调料、调味品">酱油、糖醋盐、味精</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000007645_gic.jhtml?name2=天然香辛料和辣椒&level1=307_00000000000002298_gic&name1=调料、调味品">天然香辛料和辣椒</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000007822_gic.jhtml?name2=膏状、流体、汤类&level1=307_00000000000002298_gic&name1=调料、调味品">膏状、流体、汤类</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000007737_gic.jhtml?name2=调味油、油脂乳品&level1=307_00000000000002298_gic&name1=调料、调味品">调味油、油脂乳品</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000007370_gic.jhtml?name2=调味汁、烹调酒&level1=307_00000000000002298_gic&name1=调料、调味品">调味汁、烹调酒</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000007823_gic.jhtml?name2=罐头及袋装类&level1=307_00000000000002298_gic&name1=调料、调味品">罐头及袋装类</a>
+						</li>
+					</ul>
+					<div class="shu_line"></div>
+					<a class="floor_pic" href="/page2/307_00000000000007452_gic.jhtml?name2=调味酱&level1=307_00000000000002298_gic&name1=调料、调味品">
+						<img src="${resources}/basepage/store/default/index/img/floor7_1.png" />
+						<p>调味酱</p>
+					</a>
+					<div class="shu_line"></div>
+					<ul class="floor_con2 mr0">
+						<li>
+							<a href="/page2/307_00000000000007958_gic.jhtml?name2=西餐日韩餐调料类&level1=307_00000000000002298_gic&name1=调料、调味品">西餐日、韩餐调料类</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000007539_gic.jhtml?name2=粉、面、颗粒、晶体类&level1=307_00000000000002298_gic&name1=调料、调味品">粉、面、颗粒、晶体类</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000007762_gic.jhtml?name2=馅料、腌料、底料蘸料&level1=307_00000000000002298_gic&name1=调料、调味品">馅料、腌料、底料蘸料</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000007725_gic.jhtml?name2=果酱、果汁、沙拉类&level1=307_00000000000002298_gic&name1=调料、调味品">果酱、果汁、沙拉类</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000007724_gic.jhtml?name2=烘焙原辅料&level1=307_00000000000002298_gic&name1=调料、调味品">烘焙原辅料</a>
+						</li>
+                        <li>
+                            <a href="/page2/307_00000000000007821_gic.jhtml?name2=早餐食品&level1=307_00000000000002298_gic&name1=调料">早餐食品</a>
+                        </li>
+					</ul>
+				</div>
+
+				<div class="floor_con_bottom">
+					<a class="floor_advert" id="index_0_top_07_01">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+					<a class="floor_advert floor_advert2" id="index_0_top_07_02">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+					<a class="floor_advert" id="index_0_top_07_03">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="gray_line"></div>
+		<div class="floor floor8">
+			<a class="floor_t" href="/page1/307_00000000000001644_gic.jhtml?name1=干货类">八号大厅 干货类</a>
+			<div class="gray_line"></div>
+			<div class="floor_con">
+				<div class="floor_con_top">
+                    <ul class="floor_con1">
+						<li class="my_clear">
+                            <a class="floor_pic" href="/page2/307_00000000000001645_gic.jhtml?name2=海鲜干鱼类&level1=307_00000000000001644_gic&name1=干货类">
+                                <img src="${resources}/basepage/store/default/index/img/floor8_1.png" />
+                                <p>海鲜干鱼类</p>
+                            </a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000009446_gic.jhtml?name2=淡水干鱼类&level1=307_00000000000001644_gic&name1=干货类">淡水干鱼类</a>
+						</li>
+					</ul>
+
+					<div class="shu_line"></div>
+					<ul class="floor_con1">
+						<li>
+							<a href="/page2/307_00000000000001654_gic.jhtml?name2=蔬菜干货及粉条&level1=307_00000000000001644_gic&name1=干货类">蔬菜干货及粉条</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000001648_gic.jhtml?name2=海鲜干海藻类&level1=307_00000000000001644_gic&name1=干货类">海鲜干海藻类</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000001647_gic.jhtml?name2=海鲜干螺贝类&level1=307_00000000000001644_gic&name1=干货类">海鲜干螺贝类</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000001649_gic.jhtml?name2=海鲜干软体类&level1=307_00000000000001644_gic&name1=干货类">海鲜干软体类</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000001659_gic.jhtml?name2=高档珍品干货&level1=307_00000000000001644_gic&name1=干货类">高档珍品干货</a>
+						</li>
+
+					</ul>
+					<ul class="floor_con2">
+						<li>
+							<a href="/page2/307_00000000000001646_gic.jhtml?name2=海鲜干虾类&level1=307_00000000000001644_gic&name1=干货类">海鲜干虾类</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000001655_gic.jhtml?name2=豆制品干货&level1=307_00000000000001644_gic&name1=干货类">豆制品干货</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000001658_gic.jhtml?name2=肉类干货&level1=307_00000000000001644_gic&name1=干货类">肉类干货</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000001653_gic.jhtml?name2=菌类干货&level1=307_00000000000001644_gic&name1=干货类">菌类干货</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000001657_gic.jhtml?name2=坚果干货&level1=307_00000000000001644_gic&name1=干货类">坚果干货</a>
+						</li>
+					</ul>
+					<div class="shu_line"></div>
+					<ul class="floor_con3 mr0" style="margin-left: 0.2rem">
+
+						<li>
+							<a href="/page2/307_00000000000001656_gic.jhtml?name2=水果干货&level1=307_00000000000001644_gic&name1=干货类">水果干货</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000001651_gic.jhtml?name2=干笋类&level1=307_00000000000001644_gic&name1=干货类">干笋类</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000001650_gic.jhtml?name2=干花&level1=307_00000000000001644_gic&name1=干货类">干花</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000001652_gic.jhtml?name2=中药&level1=307_00000000000001644_gic&name1=干货类">中药</a>
+						</li>
+					</ul>
+				</div>
+
+				<div class="floor_con_bottom">
+					<a class="floor_advert" id="index_0_top_08_01">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+					<a class="floor_advert floor_advert2" id="index_0_top_08_02">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+					<a class="floor_advert" id="index_0_top_08_03">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="gray_line"></div>
+		<div class="floor floor9">
+			<a class="floor_t" href="/page1/307_00000000000000997_gic.jhtml?name1=熟食类">九号大厅 熟食类</a>
+			<div class="gray_line"></div>
+			<div class="floor_con">
+				<div class="floor_con_top">
+					<a class="floor_pic" href="/page2/307_00000000000000998_gic.jhtml?name2=猪肉熟食&level1=307_00000000000000997_gic&name1=熟食类">
+						<img src="${resources}/basepage/store/default/index/img/floor9_1.png" />
+						<p>猪肉熟食</p>
+					</a>
+					<div class="shu_line"></div>
+					<ul class="floor_con1">
+						<li>
+							<a href="/page2/307_00000000000001007_gic.jhtml?name2=鸭肉熟食&level1=307_00000000000000997_gic&name1=熟食类">鸭肉熟食</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000000999_gic.jhtml?name2=牛肉熟食&level1=307_00000000000000997_gic&name1=熟食类">牛肉熟食</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000001016_gic.jhtml?name2=蛋类熟食&level1=307_00000000000000997_gic&name1=熟食类">蛋类熟食</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000001009_gic.jhtml?name2=鹅肉熟食&level1=307_00000000000000997_gic&name1=熟食类">鹅肉熟食</a>
+						</li>
+
+					</ul>
+					<ul class="floor_con2">
+						<li>
+							<a href="/page2/307_00000000000001000_gic.jhtml?name2=羊肉熟食&level1=307_00000000000000997_gic&name1=熟食类">羊肉熟食</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000001003_gic.jhtml?name2=驴肉熟食&level1=307_00000000000000997_gic&name1=熟食类">驴肉熟食</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000001019_gic.jhtml?name2=鱼类熟食&level1=307_00000000000000997_gic&name1=熟食类">鱼类熟食</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000001028_gic.jhtml?name2=肠类熟食&level1=307_00000000000000997_gic&name1=熟食类">肠类熟食</a>
+						</li>
+					</ul>
+					<ul class="floor_con3">
+						<li>
+							<a href="/page2/307_00000000000001002_gic.jhtml?name2=狗肉熟食&level1=307_00000000000000997_gic&name1=熟食类">狗肉熟食</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000001021_gic.jhtml?name2=熟食下货&level1=307_00000000000000997_gic&name1=熟食类">熟食下货</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000001017_gic.jhtml?name2=丸子熟食&level1=307_00000000000000997_gic&name1=熟食类">丸子熟食</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000001025_gic.jhtml?name2=蔬菜熟食&level1=307_00000000000000997_gic&name1=熟食类">蔬菜熟食</a>
+						</li>
+					</ul>
+					<div class="shu_line"></div>
+					<ul class="floor_con4 mr0">
+						<li>
+							<a href="/page2/307_00000000000001011_gic.jhtml?name2=豆制品熟食&level1=307_00000000000000997_gic&name1=熟食类">豆制品熟食</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000001024_gic.jhtml?name2=熟食皮冻&level1=307_00000000000000997_gic&name1=熟食类">熟食皮冻</a>
+						</li>
+                        <li>
+                            <a href="/page2/307_00000000000001005_gic.jhtml?name2=鸡肉熟食&level1=307_00000000000000997_gic&name1=熟食类">鸡肉熟食</a>
+                        </li>
+						<li>
+							<a href="/page2/307_00000000000001030_gic.jhtml?name2=其它&level1=307_00000000000000997_gic&name1=熟食类">其它</a>
+						</li>
+					</ul>
+				</div>
+
+				<div class="floor_con_bottom">
+					<a class="floor_advert" id="index_0_top_09_01">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+					<a class="floor_advert floor_advert2" id="index_0_top_09_02">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+					<a class="floor_advert" id="index_0_top_09_03">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="gray_line"></div>
+		<div class="floor floor10">
+			<a class="floor_t" href="/page1/307_00000000000000691_gic.jhtml?name1=腌腊制品">十号大厅 腌腊制品及腌制小菜</a>
+			<div class="gray_line"></div>
+			<div class="floor_con">
+				<div class="floor_con_top">
+					<a class="floor_pic" href="/page2/307_00000000000000694_gic.jhtml?name2=腌腊肠类&level1=307_00000000000000691_gic&name1=腌腊制品及腌制小菜">
+						<img src="${resources}/basepage/store/default/index/img/floor10_1.png" />
+						<p>腌腊肠类</p>
+					</a>
+					<a class="floor_pic" href="/page2/307_00000000000000696_gic.jhtml?name2=腌腊肉类&level1=307_00000000000000691_gic&name1=腌腊制品及腌制小菜">
+						<img src="${resources}/basepage/store/default/index/img/floor10_2.png" />
+						<p>腌腊肉类</p>
+					</a>
+					<a class="floor_pic" href="/page2/307_00000000000000701_gic.jhtml?name2=咸菜类&level1=307_00000000000000691_gic&name1=腌腊制品及腌制小菜">
+						<img src="${resources}/basepage/store/default/index/img/floor10_3.png" />
+						<p>咸菜酸菜</p>
+					</a>
+					<a class="floor_pic" href="/page2/307_00000000000000700_gic.jhtml?name2=韩式泡菜类&level1=307_00000000000000691_gic&name1=腌腊制品及腌制小菜">
+						<img src="${resources}/basepage/store/default/index/img/floor10_4.png" />
+						<p>韩式泡菜类</p>
+					</a>
+					<div class="shu_line"></div>
+					<ul class="floor_con1 mr0">
+						<li>
+							<a href="/page2/307_00000000000000704_gic.jhtml?name2=包装小菜类&level1=307_00000000000000691_gic&name1=腌腊制品及腌制小菜">包装小菜类</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000000698_gic.jhtml?name2=腌制蛋类&level1=307_00000000000000691_gic&name1=腌腊制品及腌制小菜">腌制蛋类</a>
+						</li>
+
+					</ul>
+				</div>
+
+				<div class="floor_con_bottom">
+					<a class="floor_advert" id="index_0_top_10_01">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+					<a class="floor_advert floor_advert2" id="index_0_top_10_02">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+					<a class="floor_advert" id="index_0_top_10_03">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="gray_line"></div>
+		<div class="floor floor11">
+			<a class="floor_t" href="/page1/307_00000000000000249_gic.jhtml?name1=速冻食品">十一号大厅 半成品及速冻食品</a>
+			<div class="gray_line"></div>
+			<div class="floor_con">
+				<div class="floor_con_top">
+					<a class="floor_pic" href="/page2/307_00000000000000318_gic.jhtml?name2=豆制品&level1=307_00000000000000249_gic&name1=半成品及速冻食品">
+						<img src="${resources}/basepage/store/default/index/img/floor11_1.png" />
+						<p>豆制品</p>
+					</a>
+					<ul class="floor_con1">
+						<li>
+							<a href="/page2/307_00000000000000322_gic.jhtml?name2=海鲜及淡水鱼&level1=307_00000000000000249_gic&name1=半成品及速冻食品">海鲜及淡水鱼</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000000326_gic.jhtml?name2=面食点心&level1=307_00000000000000249_gic&name1=半成品及速冻食品">面食点心</a>
+						</li>
+                        <li>
+                            <a href="/page2/307_00000000000009333_gic.jhtml?name2=成品菜&level1=307_00000000000000249_gic&name1=速冻食品">成品菜</a>
+                        </li>
+						<li>
+							<a href="/page2/307_00000000000000342_gic.jhtml?name2=其它&level1=307_00000000000000249_gic&name1=半成品及速冻食品">其它</a>
+						</li>
+
+					</ul>
+					<ul class="floor_con2">
+						<li>
+							<a href="/page2/307_00000000000000333_gic.jhtml?name2=禽类&level1=307_00000000000000249_gic&name1=半成品及速冻食品">禽类</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000000314_gic.jhtml?name2=肉类&level1=307_00000000000000249_gic&name1=半成品及速冻食品">肉类</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000000323_gic.jhtml?name2=海藻&level1=307_00000000000000249_gic&name1=半成品及速冻食品">海藻</a>
+						</li>
+					</ul>
+					<div class="shu_line"></div>
+					<a class="floor_pic" href="/page2/307_00000000000000336_gic.jhtml?name2=丸子&level1=307_00000000000000249_gic&name1=半成品及速冻食品">
+						<img src="${resources}/basepage/store/default/index/img/floor11_2.png" />
+						<p>丸子</p>
+					</a>
+					<a class="floor_pic" href="/page2/307_00000000000000319_gic.jhtml?name2=蔬果类&level1=307_00000000000000249_gic&name1=半成品及速冻食品">
+						<img src="${resources}/basepage/store/default/index/img/floor11_3.png" />
+						<p>蔬果类</p>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="gray_line"></div>
+		<div class="floor floor12">
+			<a class="floor_t" href="/page1/307_00000000000002668_gic.jhtml?name1=养殖野味">十二号大厅 菌类、山珍 养殖型野味</a>
+			<div class="gray_line"></div>
+			<div class="floor_con">
+				<div class="floor_con_top">
+					<a class="floor_pic" href="/page2/307_00000000000002677_gic.jhtml?name2=新鲜菌菇&level1=307_00000000000002668_gic&name1=菌类、山珍、养殖型野味">
+						<img src="${resources}/basepage/store/default/index/img/floor12_1.png" />
+						<p>新鲜菌菇</p>
+					</a>
+
+					<a class="floor_pic" href="/page2/307_00000000000002673_gic.jhtml?name2=干菌&level1=307_00000000000002668_gic&name1=菌类、山珍、养殖型野味">
+						<img src="${resources}/basepage/store/default/index/img/floor12_2.png" />
+						<p>干菌</p>
+					</a>
+					<div class="shu_line"></div>
+					<ul class="floor_con1">
+						<li>
+							<a href="/page2/307_00000000000002684_gic.jhtml?name2=养殖型野味&level1=307_00000000000002668_gic&name1=菌类、山珍、养殖型野味">养殖型野味</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000002671_gic.jhtml?name2=水发菌&level1=307_00000000000002668_gic&name1=菌类、山珍、养殖型野味">水发菌</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000002679_gic.jhtml?name2=野生菌&level1=307_00000000000002668_gic&name1=菌类、山珍、养殖型野味">野生菌</a>
+						</li>
+					</ul>
+					<a class="floor_pic mr0" href="/page2/307_00000000000002681_gic.jhtml?name2=进口高档菌&level1=307_00000000000002668_gic&name1=菌类、山珍、养殖型野味">
+						<img src="${resources}/basepage/store/default/index/img/floor12_3.jpg" />
+						<p>进口高档菌</p>
+					</a>
+				</div>
+
+				<div class="floor_con_bottom">
+					<a class="floor_advert" id="index_0_top_12_01">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+					<a class="floor_advert floor_advert3" id="index_0_top_12_02">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+					<a class="floor_advert" id="index_0_top_12_03">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="gray_line"></div>
+		<div class="floor floor13">
+			<a class="floor_t" href="/others/comingSoon_2th.jhtml">十三号大厅 滋补药膳</a>
+			<div class="gray_line"></div>
+			<div class="floor_con">
+				<div class="floor_con_top">
+					<a class="floor_pic" href="/others/comingSoon_2th.jhtml">
+						<img src="${resources}/basepage/store/default/index/img/floor13_1.png" />
+						<p>菌类</p>
+					</a>
+					<a class="floor_pic" href="/others/comingSoon_2th.jhtml">
+						<img src="${resources}/basepage/store/default/index/img/floor13_2.png" />
+						<p>海珍类</p>
+					</a>
+					<a class="floor_pic" href="/others/comingSoon_2th.jhtml">
+						<img src="${resources}/basepage/store/default/index/img/floor13_3.png" />
+						<p>药材类</p>
+					</a>
+					<a class="floor_pic mr0" href="/others/comingSoon_2th.jhtml">
+						<img src="${resources}/basepage/store/default/index/img/floor13_4.png" />
+						<p>动物类</p>
+					</a>
+				</div>
+
+				<div class="floor_con_bottom">
+					<a class="floor_advert" id="index_0_top_13_01">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+					<a class="floor_advert floor_advert3" id="index_0_top_13_02">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+					<a class="floor_advert" id="index_0_top_13_03">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="gray_line"></div>
+		<div class="floor floor14">
+			<!-- <a class="floor_t" href="/page1/307_00000000000003414_gic.jhtml?name1=合成素食">十四号大厅 加工合成素食</a> -->
+			<a class="floor_t" href="/others/comingSoon_2th.jhtml">十四号大厅 加工合成素食</a>
+			<div class="gray_line"></div>
+			<div class="floor_con">
+				<div class="floor_con_top">
+					<div class="my_clear">
+                        <!-- <a class="floor_pic" href="/page2/307_00000000000003419_gic.jhtml?name2=面筋素食类&level1=307_00000000000003414_gic&name1=加工合成素食"> -->
+                        <a class="floor_pic" href="/others/comingSoon_2th.jhtml">
+                            <img src="${resources}/basepage/store/default/index/img/floor14_1.png" />
+                            <p>面筋素食类</p>
+                        </a>
+                        <!-- <a class="floor_pic" href="/page2/307_00000000000003426_gic.jhtml?name2=魔芋素食类&level1=307_00000000000003414_gic&name1=加工合成素食"> -->
+                        <a class="floor_pic" href="/others/comingSoon_2th.jhtml">
+                            <img src="${resources}/basepage/store/default/index/img/floor14_2.png" />
+                            <p>魔芋素食类</p>
+                        </a>
+                        <!-- <a class="floor_pic mr0" href="/page2/307_00000000000003423_gic.jhtml?name2=蛋白素食类&level1=307_00000000000003414_gic&name1=加工合成素食"> -->
+                        <a class="floor_pic mr0" href="/others/comingSoon_2th.jhtml">
+                            <img src="${resources}/basepage/store/default/index/img/floor14_3.png" />
+                            <p>蛋白素食类</p>
+                        </a>
+					</div>
+				</div>
+
+				<div class="floor_con_bottom">
+					<!-- <a class="floor_advert" id="index_0_top_14_02"> -->
+					<a class="floor_advert" id="index_0_top_14_01" href="/others/comingSoon_2th.jhtml">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+					<!-- <a class="floor_advert floor_advert3" id="index_0_top_14_03"> -->
+					<a class="floor_advert floor_advert3" id="index_0_top_14_02" href="/others/comingSoon_2th.jhtml">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+					<!-- <a class="floor_advert" id="index_0_top_14_04"> -->
+					<a class="floor_advert" id="index_0_top_14_03" href="/others/comingSoon_2th.jhtml">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="gray_line"></div>
+		<div class="floor floor15">
+			<a class="floor_t" href="/others/comingSoon_2th.jhtml">十五号大厅 淡水产品</a>
+			<div class="gray_line"></div>
+			<div class="floor_con">
+				<div class="floor_con_top">
+					<div class="floor_pic">
+						<a href="/others/comingSoon_2th.jhtml">
+							<img src="${resources}/basepage/store/default/index/img/floor15_1.png" />
+							<p>淡水河蟹</p>
+						</a>
+					</div>
+					<div class="shu_line"></div>
+					<ul class="floor_con1">
+						<li>
+							<a href="/others/comingSoon_2th.jhtml">冰鲜淡水两栖动物</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_2th.jhtml">活淡水两栖动物 </a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_2th.jhtml">活鲜淡水螺贝</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_2th.jhtml">淡水加工类</a>
+						</li>
+					</ul>
+					<ul class="floor_con2">
+						<li>
+							<a href="/others/comingSoon_2th.jhtml">冰鲜淡水鱼</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_2th.jhtml">活鲜淡水鱼</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_2th.jhtml">大闸蟹礼盒</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_2th.jhtml">淡水冰虾</a>
+						</li>
+					</ul>
+					<div class="shu_line"></div>
+					<ul class="floor_con3 mr0">
+						<li>
+							<a href="/others/comingSoon_2th.jhtml">淡水植物</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_2th.jhtml">淡水活虾</a>
+						</li>
+					</ul>
+				</div>
+				<div class="floor_con_bottom">
+					<a class="floor_advert" id="index_0_top_15_01">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+					<a class="floor_advert floor_advert2" id="index_0_top_15_02">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+					<a class="floor_advert" id="index_0_top_15_03">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="gray_line"></div>
+		<div class="floor floor16">
+			<a class="floor_t" href="/others/comingSoon_3th.jhtml">十六号大厅 活禽畜类</a>
+			<div class="gray_line"></div>
+			<div class="floor_con">
+				<div class="floor_con_top">
+					<a class="floor_pic" href="/others/comingSoon_3th.jhtml">
+						<img src="${resources}/basepage/store/default/index/img/floor16_1.png" />
+						<p>活猪</p>
+					</a>
+					<a class="floor_pic" href="/others/comingSoon_3th.jhtml">
+						<img src="${resources}/basepage/store/default/index/img/floor16_2.png" />
+						<p>活羊</p>
+					</a>
+					<a class="floor_pic" href="/others/comingSoon_3th.jhtml">
+						<img src="${resources}/basepage/store/default/index/img/floor16_3.png" />
+						<p>活鸡</p>
+					</a>
+					<a class="floor_pic" href="/others/comingSoon_3th.jhtml">
+						<img src="${resources}/basepage/store/default/index/img/floor16_4.png" />
+						<p>活鸭</p>
+					</a>
+					<div class="shu_line"></div>
+					<ul class="floor_con1 mr0">
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">
+								<p style="max-width: 1.5rem;">禽畜订购类 如牛马驴等</p>
+							</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">活鸽子</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">活鹅</a>
+						</li>
+					</ul>
+				</div>
+				<div class="floor_con_bottom">
+					<a class="floor_advert" id="index_0_top_16_01" href="/others/comingSoon_3th.jhtml">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+					<a class="floor_advert floor_advert2" id="index_0_top_16_02" href="/others/comingSoon_3th.jhtml">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+					<a class="floor_advert" id="index_0_top_16_03" href="/others/comingSoon_3th.jhtml">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="gray_line"></div>
+		<div class="floor floor17">
+			<a class="floor_t" href="/page1/307_00000000000004203_gic.jhtml?name1=酒水饮料">十七号大厅 酒水饮料</a>
+			<div class="gray_line"></div>
+			<div class="floor_con">
+				<div class="floor_con_top">
+					<a class="floor_pic floor_pic1" href="/page2/307_00000000000004228_gic.jhtml?name2=饮料&level1=307_00000000000004223_gic&name1=酒水饮料">
+						<img src="${resources}/basepage/store/default/index/img/floor17_1.png" />
+						<p>饮料</p>
+					</a>
+					<div class="shu_line"></div>
+					<ul class="floor_con1">
+						<li>
+							<a href="/page2/307_00000000000004226_gic.jhtml?name2=预调酒&level1=307_00000000000004223_gic&name1=酒水饮料">香槟及气泡酒</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000009442_gic.jhtml?name2=餐饮专用饮料&level1=307_00000000000004203_gic&name1=酒水饮料">餐饮专用饮料</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000004230_gic.jhtml?name2=瓶装饮用水&level1=307_00000000000004203_gic&name1=酒水饮料">饮用水类</a>
+						</li>
+                        <li>
+                            <a href="/page2/307_00000000000004221_gic.jhtml?name2=洋酒清酒&level1=307_00000000000004203_gic&name1=酒水饮料">洋酒清酒</a>
+                        </li>
+						<li>
+
+						</li>
+					</ul>
+					<ul class="floor_con2">
+
+						<li>
+                            <a href="/page2/307_00000000000004214_gic.jhtml?name2=黄酒&level1=307_00000000000004203_gic&name1=酒水饮料">黄酒</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000004218_gic.jhtml?name2=药酒&level1=307_00000000000004203_gic&name1=酒水饮料">药酒</a>
+						</li>
+						<li>
+							<a href="/page2/307_00000000000004224_gic.jhtml?name2=果酒&level1=307_00000000000004203_gic&name1=酒水饮料">果酒</a>
+						</li>
+                        <li>
+                            <a href="/page2/307_00000000000004206_gic.jhtml?name2=白酒&level1=307_00000000000004203_gic&name1=酒水饮料">白酒</a>
+                        </li>
+
+					</ul>
+					<div class="shu_line"></div>
+					<a class="floor_pic" href="/page2/307_00000000000004209_gic.jhtml?name2=啤酒&level1=307_00000000000004203_gic&name1=酒水饮料">
+						<img src="${resources}/basepage/store/default/index/img/floor17_2.png" />
+						<p style="padding-left: 0.1rem">啤酒</p>
+					</a>
+					<a class="floor_pic mr0" href="/page2/307_00000000000004212_gic.jhtml?name2=葡萄酒&level1=307_00000000000004203_gic&name1=酒水饮料">
+						<img src="${resources}/basepage/store/default/index/img/floor17_3.png" />
+						<p style="padding-left: 0.1rem">葡萄酒</p>
+					</a>
+                    <a class="floor_pic mt0" style="margin-top: 0" href="/page2/307_00000000000004216_gic.jhtml?name2=养生酒&level1=307_00000000000004203_gic&name1=酒水饮料">养生酒</a>
+				</div>
+				<div class="floor_con_bottom">
+					<a class="floor_advert" id="index_0_top_17_01">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+					<a class="floor_advert floor_advert2" id="index_0_top_17_02">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+					<a class="floor_advert" id="index_0_top_17_03">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="gray_line"></div>
+		<div class="floor floor18">
+			<a class="floor_t" href="/others/comingSoon_2th.jhtml">十八号大厅 副食及小食品</a>
+			<div class="gray_line"></div>
+			<div class="floor_con">
+                <ul class="floor_con0">
+					<li>
+                        <a class="floor_pic" href="/others/comingSoon_2th.jhtml">
+                            <img src="${resources}/basepage/store/default/index/img/floor18_1.png" />
+                            <p class="text-center">饼干</p>
+                        </a>
+					</li>
+                    <li>
+                        <a href="/others/comingSoon_2th.jhtml"><p class="text-center">罐头</p></a>
+                    </li>
+                </ul>
+				<div class="shu_line"></div>
+
+				<ul class="floor_con1">
+					<li>
+						<a href="/others/comingSoon_2th.jhtml">主食类速食</a>
+					</li>
+					<li>
+						<a href="/others/comingSoon_2th.jhtml">方便面速食</a>
+					</li>
+					<li>
+						<a href="/others/comingSoon_2th.jhtml">进口副食</a>
+					</li>
+					<li>
+						<a href="/fsst/101_00000000000000376_str/top.jhtml">蛋糕定制</a>
+					</li>
+				</ul>
+				<ul class="floor_con2">
+					<li>
+						<a href="/others/comingSoon_2th.jhtml">膨化食品</a>
+					</li>
+					<li>
+						<a href="/others/comingSoon_2th.jhtml">无糖食品</a>
+					</li>
+					<li>
+						<a href="/others/comingSoon_2th.jhtml">乳制品</a>
+					</li>
+					<li>
+						<a href="/others/comingSoon_2th.jhtml">豆制品</a>
+					</li>
+				</ul>
+				<div class="shu_line"></div>
+				<a class="floor_pic" href="/others/comingSoon_2th.jhtml">
+					<img src="${resources}/basepage/store/default/index/img/floor18_2.png" />
+					<p class="text-center">糖果</p>
+				</a>
+				<ul class="floor_con3">
+					<li>
+						<a href="/others/comingSoon_2th.jhtml">干果</a>
+					</li>
+					<li>
+						<a href="/others/comingSoon_2th.jhtml">食糖</a>
+					</li>
+					<li>
+						<a href="/others/comingSoon_2th.jhtml">茶叶</a>
+					</li>
+					<li>
+						<a href="/others/comingSoon_2th.jhtml">蜜饯</a>
+					</li>
+				</ul>
+				<ul class="floor_con4 mr0">
+					<li>
+						<a href="/others/comingSoon_2th.jhtml">肉类</a>
+					</li>
+					<li>
+						<a href="/others/comingSoon_2th.jhtml">海鲜</a>
+					</li>
+					<li>
+						<a href="/others/comingSoon_2th.jhtml">坚果</a>
+					</li>
+					<li>
+						<a href="/others/comingSoon_2th.jhtml">蔬菜</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="gray_line"></div>
+		<div class="floor floor19">
+			<a class="floor_t" href="/others/comingSoon_3th.jhtml">十九号大厅 火爆菜特区</a>
+			<div class="gray_line"></div>
+			<div class="floor_con">
+				<a class="floor_advert" id="index_0_top_19_01" href="/others/comingSoon_3th.jhtml">
+					<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+					<p style="color: #000;">特色食材</p>
+				</a>
+				<a class="floor_pic" href="/others/comingSoon_3th.jhtml">
+					<img src="${resources}/basepage/store/default/index/img/floor19_1.png" />
+					<p class="text-center">火锅</p>
+				</a>
+				<ul class="floor_con1 mr0">
+					<li>
+						<a href="/others/comingSoon_3th.jhtml">川菜</a>
+					</li>
+					<li>
+						<a href="/others/comingSoon_3th.jhtml">湘菜</a>
+					</li>
+					<li>
+						<a href="/others/comingSoon_3th.jhtml">烧烤</a>
+					</li>
+					<li>
+						<a href="/others/comingSoon_3th.jhtml">烤肉</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="gray_line"></div>
+		<div class="floor floor20">
+			<a class="floor_t" href="javascript:void(0);">二十号大厅 产地直供</a>
+			<div class="gray_line"></div>
+			<div class="floor_con">
+				<a class="floor_advert" id="index_0_top_20_01">
+					<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+					<p>￥999.99</p>
+				</a>
+                <a class="floor_pic" href="/page1/307_00000000000000374_gic.jhtml?name1=产地直供#tab0">
+                    <img src="${resources}/basepage/store/default/index/img/floor20_2.png" />
+                    <p class="text-center">瓦房店</p>
+                </a>
+                <a class="floor_pic floor_pic1" href="/page1/307_00000000000000374_gic.jhtml?name1=产地直供#tab1">
+                    <img src="${resources}/basepage/store/default/index/img/floor20_1.png" />
+                    <p class="text-center">庄河</p>
+                </a>
+				<#--<ul class="floor_con1 mr0">
+					&lt;#&ndash;<li>
+						<a href="/others/comingSoon_2th.jhtml">普兰店</a>
+					</li>
+					<li>
+						<a href="/others/comingSoon_2th.jhtml">长海县</a>
+					</li>&ndash;&gt;
+					<li>
+                        <a href="/page1/307_00000000000000374_gic.jhtml?name1=产地直供#tab1">庄河</a>
+					</li>
+					&lt;#&ndash;<li>
+						<a href="/others/comingSoon_2th.jhtml">旅顺</a>
+					</li>
+					<li>
+						<a href="/others/comingSoon_2th.jhtml">岫岩</a>
+					</li>
+					<li>
+						<a href="/others/comingSoon_2th.jhtml">东港</a>
+					</li>&ndash;&gt;
+				</ul>-->
+			</div>
+		</div>
+
+		<div class="gray_line"></div>
+		<div class="floor floor21">
+			<a class="floor_t" href="/page1/307_00000000000000379_gic.jhtml?name1=品牌厂家">二十一号大厅 品牌厂家</a>
+			<div class="gray_line"></div>
+			<div class="floor_con">
+				<div class="floor_con_top">
+					<a class="floor_logo" href="/fsst/101_00000000000000243_str/top.jhtml">
+						<img src="/resources/basepage/store/default/index/img/floor21_1.png" />
+						<p>山东九联</p>
+					</a>
+					<a class="floor_logo" href="/fsst/101_00000000000000275_str/top.jhtml">
+						<img src="/resources/basepage/store/default/index/img/floor21_2.png" />
+						<p>四川通威</p>
+					</a>
+					<a class="floor_logo" href="/fsst/101_00000000000000289_str/top.jhtml">
+						<img src="/resources/basepage/store/default/index/img/floor21_3.png" />
+						<p>燕京啤酒</p>
+					</a>
+					<a class="floor_logo" href="/fsst/101_00000000000000268_str/top.jhtml">
+						<img src="/resources/basepage/store/default/index/img/floor21_4.png" />
+						<p>武汉良之隆</p>
+					</a>
+					<a class="floor_logo" href="/fsst/101_00000000000000271_str/top.jhtml">
+						<img src="/resources/basepage/store/default/index/img/floor21_5.png" />
+						<p>修正药业</p>
+					</a>
+
+					<a class="floor_logo" href="/fsst/101_00000000000000298_str/top.jhtml">
+						<img src="/resources/basepage/store/default/index/img/floor21_6.png" />
+						<p>獐子岛</p>
+					</a>
+					<a class="floor_logo" href="/fsst/101_00000000000000213_str/top.jhtml">
+						<img src="/resources/basepage/store/default/index/img/floor21_7.jpg" />
+						<p>心乐乳业</p>
+					</a>
+					<a class="floor_logo" href="/fsst/101_00000000000000293_str/top.jhtml">
+						<img src="/resources/basepage/store/default/index/img/floor21_8.png" />
+						<p>哇哈哈</p>
+					</a>
+					<a class="floor_logo" href="/fsst/101_00000000000000346_str/top.jhtml">
+						<img src="/resources/basepage/store/default/index/img/floor21_9.png" />
+						<p>王致和</p>
+					</a>
+					<a class="floor_logo" href="/fsst/101_00000000000000401_str/top.jhtml">
+						<img src="/resources/basepage/store/default/index/img/floor21_10.png" />
+						<p>元宝</p>
+					</a>
+					<a class="floor_logo" href="/fsst/101_00000000000000292_str/top.jhtml">
+						<img src="/resources/basepage/store/default/index/img/floor21_11.png" />
+						<p>北大荒</p>
+					</a>
+					<a class="floor_logo" href="/fsst/101_00000000000000415_str/top.jhtml">
+						<img src="/resources/basepage/store/default/index/img/floor21_12.png" />
+						<p>可口可乐</p>
+					</a>
+					<a class="floor_logo" href="/fsst/101_00000000000000315_str/top.jhtml">
+						<img src="/resources/basepage/store/default/index/img/floor21_13.png" />
+						<p>中粮</p>
+					</a>
+					<a class="floor_logo" href="/fsst/101_00000000000000401_str/top.jhtml">
+						<img src="/resources/basepage/store/default/index/img/floor21_15.png" />
+						<p>金龙鱼</p>
+					</a>
+					<a class="floor_logo" href="/fsst/101_00000000000000258_str/top.jhtml">
+						<img src="/resources/basepage/store/default/index/img/floor21_16.jpg" />
+						<p>洪家鸡蛋</p>
+					</a>
+					<a class="floor_logo" href="/fsst/101_00000000000000404_str/top.jhtml">
+						<img src="/resources/basepage/store/default/index/img/floor21_17.png" />
+						<p>大连电视台</p>
+					</a>
+					<a class="floor_logo" href="/fsst/101_00000000000000399_str/top.jhtml">
+						<img src="/resources/basepage/store/default/index/img/floor21_18.jpg" />
+						<p>双汇</p>
+					</a>
+					<a class="floor_logo" href="/fsst/101_00000000000000346_str/top.jhtml">
+						<img src="/resources/basepage/store/default/index/img/floor21_19.jpg" />
+						<p>百年东古</p>
+                    </a>
+                    <a class="floor_logo" href="/fsst/101_00000000000000331_str/top.jhtml">
+                        <img src="/resources/basepage/store/default/index/img/floor21_14.jpg" />
+                        <p>正大食品</p>
+                    </a>
+                    <a class="floor_logo" href="####">
+						<img src="/resources/basepage/store/default/index/img/floor21_white.jpg" />
+						<p>虚位以待</p>
+					</a>
+
+				</div>
+				<div class="floor_con_bottom">
+					<a class="floor_advert" id="index_0_top_21_01">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+					<a class="floor_advert floor_advert2" id="index_0_top_21_02">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+					<a class="floor_advert" id="index_0_top_21_03">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="gray_line"></div>
+		<div class="floor floor22">
+			<a class="floor_t" href="/others/comingSoon_2th.jhtml">二十二号大厅 餐饮名店特色菜</a>
+			<div class="gray_line"></div>
+			<div class="floor_con">
+				<a class="floor_advert" id="index_0_top_22_01" href="/others/comingSoon_3th.jhtml">
+					<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+					<p>￥999.99</p>
+				</a>
+				<a class="floor_pic" href="/others/comingSoon_2th.jhtml">
+					<img src="${resources}/basepage/store/default/index/img/floor22_1.jpg" />
+					<p class="text-center">食国列传</p>
+				</a>
+				<img class="pic2" src="${resources}/basepage/store/default/index/img/floor22_2.jpg" />
+			</div>
+		</div>
+		<div class="gray_line"></div>
+		<div class="floor floor23">
+			<a class="floor_t" href="/others/comingSoon_3th.jhtml">二十三号大厅 全国特产</a>
+			<div class="gray_line"></div>
+			<div class="floor_con">
+				<div class="floor_con_top">
+					<div class="floor_con1">
+						<a href="/others/comingSoon_3th.jhtml">北京、</a>
+						<a href="/others/comingSoon_3th.jhtml">河南、</a>
+						<a href="/others/comingSoon_3th.jhtml">湖北、</a>
+						<a href="/others/comingSoon_3th.jhtml">湖南、</a>
+						<a href="/others/comingSoon_3th.jhtml">广东、</a>
+						<a href="/others/comingSoon_3th.jhtml">福建、</a>
+						<a href="/others/comingSoon_3th.jhtml">江西、</a>
+						<a href="/others/comingSoon_3th.jhtml">浙江、</a>
+						<a href="/others/comingSoon_3th.jhtml">安徽、</a>
+						<a href="/others/comingSoon_3th.jhtml">甘肃、</a>
+						<a href="/others/comingSoon_3th.jhtml">黑龙江、</a>
+						<a href="/others/comingSoon_3th.jhtml">山西、</a>
+						<a href="/others/comingSoon_3th.jhtml">陕西、</a>
+						<a href="/others/comingSoon_3th.jhtml">山东、</a>
+						<a href="/others/comingSoon_3th.jhtml">辽宁、</a>
+						<a href="/others/comingSoon_3th.jhtml">吉林、</a>
+						<a href="/others/comingSoon_3th.jhtml">四川、</a>
+						<a href="/others/comingSoon_3th.jhtml">贵州、</a>
+						<a href="/others/comingSoon_3th.jhtml">云南、</a>
+						<a href="/others/comingSoon_3th.jhtml">青海、</a>
+						<a href="/others/comingSoon_3th.jhtml">海南、</a>
+						<a href="/others/comingSoon_3th.jhtml">广西、</a>
+						<a href="/others/comingSoon_3th.jhtml">西藏、</a>
+						<a href="/others/comingSoon_3th.jhtml">新疆、</a>
+						<a href="/others/comingSoon_3th.jhtml">宁夏、</a>
+						<a href="/others/comingSoon_3th.jhtml">内蒙古、</a>
+						<a href="/others/comingSoon_3th.jhtml">河北、</a>
+						<a href="/others/comingSoon_3th.jhtml">天津、</a>
+						<a href="/others/comingSoon_3th.jhtml">重庆、</a>
+						<a href="/others/comingSoon_3th.jhtml">江苏、</a>
+						<a href="/others/comingSoon_3th.jhtml">台湾、</a>
+						<a href="/others/comingSoon_3th.jhtml">上海、</a>
+						<a href="/others/comingSoon_3th.jhtml">香港、</a>
+						<a href="/others/comingSoon_3th.jhtml">澳门</a>
+
+					</div>
+					<div class="floor_pic1"></div>
+				</div>
+				<div class="floor_con_bottom">
+					<a class="floor_advert" id="index_0_top_23_01" href="/others/comingSoon_3th.jhtml">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+					<a class="floor_advert floor_advert2" id="index_0_top_23_02" href="/others/comingSoon_3th.jhtml">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+					<a class="floor_advert" id="index_0_top_23_03" href="/others/comingSoon_3th.jhtml">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="gray_line"></div>
+		<div class="floor floor24">
+			<a class="floor_t" href="/others/comingSoon_4th.jhtml">二十四号大厅 装饰品及花卉</a>
+			<div class="gray_line"></div>
+			<div class="floor_con">
+				<div class="floor_con_top">
+					<ul class="floor_con1">
+						<li>
+							<a href="/others/comingSoon_4th.jhtml">艺术摆件</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_4th.jhtml">灯具</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_4th.jhtml">绿植</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_4th.jhtml">鲜花</a>
+						</li>
+					</ul>
+					<ul class="floor_con2">
+
+						<li>
+							<a href="/others/comingSoon_4th.jhtml">艺术案台</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_4th.jhtml">家具</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_4th.jhtml">铁艺</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_4th.jhtml">雕塑</a>
+						</li>
+					</ul>
+					<ul class="floor_con3">
+
+						<li>
+							<a href="/others/comingSoon_4th.jhtml">仿真花</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_4th.jhtml">布艺</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_4th.jhtml">土陶</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_4th.jhtml">饰品</a>
+						</li>
+					</ul>
+					<ul class="floor_con4 mr0">
+						<li>
+							<a href="/others/comingSoon_4th.jhtml" style="display: inline-block;width: 100%;text-align: center">画</a>
+						</li>
+						<div class="floor_pic1"></div>
+					</ul>
+
+				</div>
+				<div class="floor_con_bottom">
+					<a class="floor_advert" id="index_0_top_24_01" href="/others/comingSoon_4th.jhtml">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+					<a class="floor_advert floor_advert2" id="index_0_top_24_02" href="/others/comingSoon_4th.jhtml">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+                    <a class="floor_advert" id="index_0_top_24_03" href="/others/comingSoon_4th.jhtml">
+                        <img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+                        <p>￥999.99</p>
+                    </a>
+				</div>
+			</div>
+		</div>
+
+		<div class="gray_line"></div>
+		<div class="floor floor25">
+			<a class="floor_t" href="/others/comingSoon_4th.jhtml">二十五号大厅 土杂五金</a>
+			<div class="gray_line"></div>
+			<div class="floor_con">
+				<div class="floor_con_top">
+					<ul class="floor_con1">
+						<li>
+							<a href="/others/comingSoon_4th.jhtml">家庭装饰</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_4th.jhtml">机械部件</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_4th.jhtml">塑料</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_4th.jhtml">拉手</a>
+						</li>
+					</ul>
+					<ul class="floor_con2">
+
+						<li>
+							<a href="/others/comingSoon_4th.jhtml">建筑装饰</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_4th.jhtml">厨房家电</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_4th.jhtml">水暖五金</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_4th.jhtml"> 劳保制服</a>
+						</li>
+					</ul>
+					<ul class="floor_con3">
+
+						<li>
+							<a href="/others/comingSoon_4th.jhtml">卫浴五金</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_4th.jhtml">金属</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_4th.jhtml">网布</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_4th.jhtml">工具</a>
+						</li>
+					</ul>
+					<ul class="floor_con4 mr0">
+						<li>
+							<a href="/others/comingSoon_4th.jhtml">锁</a>
+						</li>
+						<div class="floor_pic1"></div>
+					</ul>
+				</div>
+				<div class="floor_con_bottom">
+					<a class="floor_advert" id="index_0_top_25_01" href="/others/comingSoon_4th.jhtml">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+					<a class="floor_advert floor_advert2" id="index_0_top_25_02" href="/others/comingSoon_4th.jhtml">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+                    <a class="floor_advert" id="index_0_top_25_03" href="/others/comingSoon_4th.jhtml">
+                        <img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+                        <p>￥999.99</p>
+                    </a>
+				</div>
+			</div>
+		</div>
+		<div class="gray_line"></div>
+		<div class="floor floor26">
+			<a class="floor_t" href="/others/comingSoon_3th.jhtml">二十六号大厅 厨房设备及厨具</a>
+			<div class="gray_line"></div>
+			<div class="floor_con">
+				<div class="floor_con_top">
+					<ul class="floor_con1">
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">排烟通风设备</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">炒锅勺铲笊篱</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">灶具炉具设备</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">厨房监控设备</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">制冷保温设备</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">机械类设备</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">海鲜保鲜盒</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">烧腊针叉勾</a>
+						</li>
+					</ul>
+					<ul class="floor_con2">
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">自助餐系列</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">面案用具</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">调味器皿</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">厨房耗材</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">炉具配件</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">调理设备</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">消毒设备</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">加热保温</a>
+						</li>
+					</ul>
+					<ul class="floor_con3">
+
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">洗涤设备</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">叉子剪刀</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">方盘码斗</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">烹饪锅具</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">电气设备</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">杂件</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">烘焙</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">砧板</a>
+						</li>
+					</ul>
+					<ul class="floor_con4 mr0">
+
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">烧烤</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">刀具</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">模具</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">盆钵</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">桶</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">秤</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="gray_line"></div>
+		<div class="floor floor27">
+			<a class="floor_t" href="/others/comingSoon_2th.jhtml">二十七号大厅 餐具及前厅用品</a>
+			<div class="gray_line"></div>
+			<div class="floor_con">
+				<div class="floor_con_top">
+					<ul class="floor_con1">
+						<li>
+							<a href="/others/comingSoon_2th.jhtml">寿司料理器具</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_2th.jhtml">异形餐具定制</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_2th.jhtml">自助餐系列</a>
+						</li>
+
+						<li>
+							<a href="/others/comingSoon_2th.jhtml">果盘果篮</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_2th.jhtml">调味器皿</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_2th.jhtml">锅仔明炉</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_2th.jhtml">筐篮盛器</a>
+						</li>
+                        <li>
+                            <a href="/others/comingSoon_2th.jhtml">咖啡器具</a>
+                        </li>
+					</ul>
+					<ul class="floor_con2">
+
+						<li>
+							<a href="/others/comingSoon_2th.jhtml">工作服装</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_2th.jhtml">石锅石板</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_2th.jhtml">桌椅板凳</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_2th.jhtml">托盘类</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_2th.jhtml">塑料袋</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_2th.jhtml">碗碟盘</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_2th.jhtml">布草类</a>
+						</li>
+                        <li>
+                            <a href="/others/comingSoon_2th.jhtml">水具</a>
+                        </li>
+					</ul>
+					<ul class="floor_con3">
+
+						<li>
+							<a href="/others/comingSoon_2th.jhtml">刀叉勺</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_2th.jhtml">备餐台</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_2th.jhtml">打包盒</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_2th.jhtml">茶具</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_2th.jhtml">盘饰</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_2th.jhtml">笼屉</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_2th.jhtml">餐车</a>
+						</li>
+
+					</ul>
+					<ul class="floor_con4">
+						<li>
+							<a href="/others/comingSoon_2th.jhtml">清洁用品</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_2th.jhtml">刺身盘</a>
+						</li>
+
+						<li>
+							<a href="/others/comingSoon_2th.jhtml">纸巾类</a>
+						</li>
+
+						<li>
+							<a href="/others/comingSoon_2th.jhtml">摆台盘</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_2th.jhtml">钟表</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_2th.jhtml">杂件</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_2th.jhtml">铁板</a>
+						</li>
+					</ul>
+					<ul class="floor_con5 mr0">
+
+						<li>
+							<a href="/others/comingSoon_2th.jhtml">筷子</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_2th.jhtml">展柜</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_2th.jhtml">砂煲</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_2th.jhtml">水壶</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_2th.jhtml">牙签</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_2th.jhtml">标牌</a>
+						</li>
+                        <li>
+                            <a href="/others/comingSoon_2th.jhtml">酒具</a>
+                        </li>
+
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="gray_line"></div>
+		<div class="floor floor28">
+			<a class="floor_t" href="/others/comingSoon_3th.jhtml">二十八号大厅 鱼缸及制冷设备</a>
+			<div class="gray_line"></div>
+			<div class="floor_con">
+				<div class="floor_con_top">
+					<ul class="floor_con1">
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">海鲜制冷机安装</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">循环水系统安装</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">增氧设备安装</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">海鲜池制作</a>
+						</li>
+					</ul>
+					<ul class="floor_con2">
+
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">海水鱼缸</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">装饰鱼缸</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">鱼缸维护</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">淡水鱼缸</a>
+						</li>
+					</ul>
+					<ul class="floor_con3 mr0">
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">消毒</a>
+						</li>
+						<div class="floor_pic1"></div>
+					</ul>
+				</div>
+				<div class="floor_con_bottom">
+					<a class="floor_advert" id="index_0_top_28_01" href="/others/comingSoon_3th.jhtml">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+					<a class="floor_advert floor_advert2" id="index_0_top_28_02" href="/others/comingSoon_3th.jhtml">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+                    <a class="floor_advert" id="index_0_top_28_03" href="/others/comingSoon_3th.jhtml">
+                        <img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+                        <p>￥999.99</p>
+                    </a>
+				</div>
+			</div>
+		</div>
+		<div class="gray_line"></div>
+		<div class="floor floor29">
+			<a class="floor_t" href="/others/comingSoon_3th.jhtml">二十九号大厅 回收类</a>
+			<div class="gray_line"></div>
+			<div class="floor_con">
+				<div class="floor_con_top">
+					<ul class="floor_con1">
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">纸箱/废纸</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">库存积压</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">二手家具</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">二手餐具</a>
+						</li>
+					</ul>
+					<ul class="floor_con2">
+
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">餐厨垃圾</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">家用电器</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">二手设备</a>
+						</li>
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">塑料</a>
+						</li>
+					</ul>
+					<div class="floor_pic1"></div>
+					<ul class="floor_con3 mr0">
+						<li>
+							<a href="/others/comingSoon_3th.jhtml">酒瓶</a>
+						</li>
+					</ul>
+				</div>
+				<div class="floor_con_bottom">
+					<a class="floor_advert" id="index_0_top_29_01" href="/others/comingSoon_3th.jhtml">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+					<a class="floor_advert floor_advert2" id="index_0_top_29_02" href="/others/comingSoon_3th.jhtml">
+						<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+						<p>￥999.99</p>
+					</a>
+                    <a class="floor_advert" id="index_0_top_29_03" href="/others/comingSoon_3th.jhtml">
+                        <img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+                        <p>￥999.99</p>
+                    </a>
+				</div>
+			</div>
+		</div>
+		<div class="gray_line"></div>
+		<div class="floor floor30">
+			<a class="floor_t" href="/others/comingSoon_2th.jhtml">三十号大厅 燃料类</a>
+			<div class="gray_line"></div>
+			<div class="floor_con">
+				<a class="floor_advert" id="index_0_top_30_01">
+					<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+					<p>￥999.99</p>
+				</a>
+				<a class="floor_pic" href="/others/comingSoon_2th.jhtml">
+					<img src="${resources}/basepage/store/default/index/img/floor30_1.png" />
+					<p class="text-center">木炭</p>
+				</a>
+				<ul class="floor_con1 mr0">
+					<li>
+						<a href="/others/comingSoon_2th.jhtml">固体</a>
+					</li>
+					<li>
+						<a href="/others/comingSoon_2th.jhtml">液体</a>
+					</li>
+					<li>
+						<a href="/others/comingSoon_2th.jhtml">气体</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="gray_line"></div>
+		<div class="floor floor31">
+			<a class="floor_t" href="/page1/307_00000000000002606_gic.jhtml?name1=维修保养#tab0">三十一号大厅 维修保养</a>
+			<div class="gray_line"></div>
+			<div class="floor_con">
+
+				<a class="floor_pic" href="/page1/307_00000000000002606_gic.jhtml?name1=维修保养#tab1">
+					<img src="/resources/basepage/store/default/index/img/floor31_1.jpg">
+					<p class="text-center">餐具</p>
+				</a>
+                <p class="long"><a href="/page1/307_00000000000002606_gic.jhtml?name1=维修保养#tab13">排烟罩油烟机清洗维修</a></p>
+				<p class="short"><a href="/page1/307_00000000000002606_gic.jhtml?name1=维修保养#tab0">电器</a></p>
+				<ul class="floor_con1">
+					<li>
+						<a href="/page1/307_00000000000002606_gic.jhtml?name1=维修保养#tab4">制冷设备</a>
+					</li>
+					<li>
+                        <a href="/page1/307_00000000000002606_gic.jhtml?name1=维修保养#tab7">万能工</a>
+
+					</li>
+					<li>
+						<a href="/page1/307_00000000000002606_gic.jhtml?name1=维修保养#tab3">地板</a>
+					</li>
+					<li>
+						<a href="/page1/307_00000000000002606_gic.jhtml?name1=维修保养#tab9">电子</a>
+					</li>
+				</ul>
+				<ul class="floor_con2">
+					<li>
+						<a href="/page1/307_00000000000002606_gic.jhtml?name1=维修保养#tab10">下水管道</a>
+					</li>
+					<li>
+						<a href="/page1/307_00000000000002606_gic.jhtml?name1=维修保养#tab8">炉具</a>
+					</li>
+					<li>
+						<a href="/page1/307_00000000000002606_gic.jhtml?name1=维修保养#tab5">水管</a>
+					</li>
+					<li>
+						<a href="/page1/307_00000000000002606_gic.jhtml?name1=维修保养#tab12">家具</a>
+					</li>
+				</ul>
+				<ul class="floor_con3 mr0">
+					<li>
+						<a href="/page1/307_00000000000002606_gic.jhtml?name1=维修保养#tab2">电梯</a>
+					</li>
+					<li>
+						<a href="/page1/307_00000000000002606_gic.jhtml?name1=维修保养#tab6">布草</a>
+					</li>
+					<li>
+						<a href="/page1/307_00000000000002606_gic.jhtml?name1=维修保养#tab11">机械</a>
+					</li>
+				</ul>
+
+			</div>
+			<div class="floor_con_bottom">
+				<a class="floor_advert" id="index_0_top_31_01">
+					<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+					<p>￥999.99</p>
+				</a>
+				<a class="floor_advert floor_advert2" id="index_0_top_31_02">
+					<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+					<p>￥999.99</p>
+				</a>
+				<a class="floor_advert" id="index_0_top_31_03">
+					<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+					<p>￥999.99</p>
+				</a>
+			</div>
+		</div>
+		<div class="gray_line"></div>
+		<div class="floor floor32">
+			<a class="floor_t" href="/others/comingSoon_2th.jhtml">三十二号大厅 酒店客房用品</a>
+			<div class="gray_line"></div>
+			<div class="floor_con">
+				<ul class="floor_con1">
+					<li>
+						<a href="/others/comingSoon_2th.jhtml">客房清洁用品</a>
+					</li>
+					<li>
+						<a href="/others/comingSoon_2th.jhtml">客房家具床上用品</a>
+					</li>
+					<li class="ad_img">
+						<a href="/others/comingSoon_2th.jhtml">客房卫浴用品</a>
+						<img src="${resources}/basepage/store/default/index/img/floor32_1.png" />
+					</li>
+					<li>
+						<a href="/others/comingSoon_2th.jhtml">客房电器用品</a>
+					</li>
+				</ul>
+				<ul class="floor_con2 mr0">
+					<li>
+						<a href="/others/comingSoon_2th.jhtml">客房餐饮用品</a>
+					</li>
+					<li>
+						<a href="/others/comingSoon_2th.jhtml">客房一次性用品</a>
+					</li>
+					<li>
+						<a href="/others/comingSoon_2th.jhtml">客房大堂用品</a>
+					</li>
+					<li>
+						<a href="/others/comingSoon_2th.jhtml">客房灯饰用品</a>
+					</li>
+				</ul>
+			</div>
+			<div class="floor_con_bottom">
+				<a class="floor_advert" id="index_0_top_32_01">
+					<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+					<p>￥999.99</p>
+				</a>
+				<a class="floor_advert floor_advert2" id="index_0_top_32_02">
+					<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+					<p>￥999.99</p>
+				</a>
+				<a class="floor_advert" id="index_0_top_32_03">
+					<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+					<p>￥999.99</p>
+				</a>
+			</div>
+		</div>
+		<div class="gray_line"></div>
+		<div class="floor floor33">
+			<a class="floor_t" href="/others/comingSoon_3th.jhtml">三十三号大厅 办公设备及用品</a>
+			<div class="gray_line"></div>
+			<div class="floor_con">
+				<ul class="floor_con1">
+					<li>
+						<a href="/others/comingSoon_3th.jhtml">书写用品</a>
+					</li>
+					<li>
+						<a href="/others/comingSoon_3th.jhtml">办公耗材</a>
+					</li>
+					<li>
+						<a href="/others/comingSoon_3th.jhtml">文件管理用品</a>
+					</li>
+					<li>
+						<a href="/others/comingSoon_3th.jhtml">办公设备及附件</a>
+					</li>
+				</ul>
+				<div class="floor_pic1"></div>
+				<ul class="floor_con2">
+					<li>
+						<a href="/others/comingSoon_3th.jhtml">笔记本</a>
+					</li>
+					<li>
+						<a href="/others/comingSoon_3th.jhtml">会议用品</a>
+					</li>
+					<li>
+						<a href="/others/comingSoon_3th.jhtml">财会档案用品</a>
+					</li>
+					<li>
+						<a href="/others/comingSoon_3th.jhtml">日杂劳保</a>
+					</li>
+				</ul>
+				<div class="floor_pic2"></div>
+				<ul class="floor_con3 mr0">
+					<li>
+						<a href="/others/comingSoon_3th.jhtml">办公纸张</a>
+					</li>
+					<li>
+						<a href="/others/comingSoon_3th.jhtml">电脑周边</a>
+					</li>
+					<li>
+						<a href="/others/comingSoon_3th.jhtml">办公辅助用品</a>
+					</li>
+					<li>
+						<a href=""></a>
+					</li>
+				</ul>
+				<div class="floor_pic3"></div>
+			</div>
+			<div class="floor_con_bottom">
+				<a class="floor_advert" id="index_0_top_33_01">
+					<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+					<p>￥999.99</p>
+				</a>
+				<a class="floor_advert floor_advert2" id="index_0_top_33_02">
+					<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+					<p>￥999.99</p>
+				</a>
+				<a class="floor_advert" id="index_0_top_33_03">
+					<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+					<p>￥999.99</p>
+				</a>
+			</div>
+		</div>
+		<div class="gray_line"></div>
+		<div class="floor floor34">
+			<a class="floor_t" href="/page1/307_00000000000000236_gic.jhtml?name1=酒店专业装修#tab0">三十四号大厅 酒店专业装修</a>
+			<div class="gray_line"></div>
+			<div class="floor_con">
+				<div class="floor_pic"></div>
+				<ul class="floor_con1">
+					<li>
+						<a href="/page1/307_00000000000000236_gic.jhtml?name1=酒店专业装修#tab11">整体装修</a>
+					</li>
+					<li>
+						<a href="/page1/307_00000000000000236_gic.jhtml?name1=酒店专业装修#tab4">墙体</a>
+					</li>
+					<li>
+						<a href="/page1/307_00000000000000236_gic.jhtml?name1=酒店专业装修#tab10">水电</a>
+					</li>
+					<li>
+						<a href="/page1/307_00000000000000236_gic.jhtml?name1=酒店专业装修#tab5">大厅</a>
+					</li>
+				</ul>
+				<ul class="floor_con2">
+					<li>
+						<a href="/page1/307_00000000000000236_gic.jhtml?name1=酒店专业装修#tab3">厨房</a>
+					</li>
+					<li>
+						<a href="/page1/307_00000000000000236_gic.jhtml?name1=酒店专业装修#tab8">吊顶</a>
+					</li>
+					<li>
+						<a href="/page1/307_00000000000000236_gic.jhtml?name1=酒店专业装修#tab2">通排风</a>
+					</li>
+					<li>
+						<a href="/page1/307_00000000000000236_gic.jhtml?name1=酒店专业装修#tab1">包房</a>
+					</li>
+				</ul>
+				<ul class="floor_con3 mr0">
+					<li>
+						<a href="/page1/307_00000000000000236_gic.jhtml?name1=酒店专业装修#tab6">卫浴</a>
+					</li>
+					<li>
+						<a href="/page1/307_00000000000000236_gic.jhtml?name1=酒店专业装修#tab9">门窗</a>
+					</li>
+					<li>
+						<a href="/page1/307_00000000000000236_gic.jhtml?name1=酒店专业装修#tab0">地面</a>
+					</li>
+					<li>
+						<a href="/page1/307_00000000000000236_gic.jhtml?name1=酒店专业装修#tab7">餐厅</a>
+					</li>
+				</ul>
+			</div>
+			<div class="floor_con_bottom">
+				<a class="floor_advert" id="index_0_top_34_01">
+					<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+					<p>￥999.99</p>
+				</a>
+				<a class="floor_advert floor_advert2" id="index_0_top_34_02">
+					<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+					<p>￥999.99</p>
+				</a>
+				<a class="floor_advert" id="index_0_top_34_03">
+					<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+					<p>￥999.99</p>
+				</a>
+			</div>
+		</div>
+
+		<div class="gray_line"></div>
+		<div class="floor floor35">
+			<a class="floor_t" href="/others/comingSoon_3th.jhtml">三十五号大厅 餐饮信息化建设</a>
+			<div class="gray_line"></div>
+			<div class="floor_con">
+				<div class="floor_pic1"></div>
+				<ul class="floor_con1">
+					<li>
+						<a href="/others/comingSoon_3th.jhtml">餐饮信息化耗材</a>
+					</li>
+					<li>
+						<a href="/others/comingSoon_3th.jhtml">网站微信制作</a>
+					</li>
+					<li>
+						<a href="/others/comingSoon_3th.jhtml">餐饮信息化咨询与服务</a>
+					</li>
+					<li>
+						<a href="/others/comingSoon_3th.jhtml">餐饮信息化硬件设备</a>
+					</li>
+				</ul>
+				<ul class="floor_con2">
+					<li>
+						<a href="/others/comingSoon_3th.jhtml">监控系统</a>
+					</li>
+					<li>
+						<a href="/others/comingSoon_3th.jhtml">点餐系统</a>
+					</li>
+					<li class="floor_pic2">
+						<img src="/resources/basepage/store/default/index/img/floor35_2.png" />
+					</li>
+				</ul>
+				<ul class="floor_con3">
+					<li>
+						<a href="/others/comingSoon_3th.jhtml">POS机系统</a>
+					</li>
+					<li>
+						<a href="/others/comingSoon_3th.jhtml">电子菜单</a>
+					</li>
+					<li>
+						<a href="/others/comingSoon_3th.jhtml">收银系统</a>
+					</li>
+					<li>
+						<a href="/others/comingSoon_3th.jhtml">财务管理系统</a>
+					</li>
+				</ul>
+				<div class="floor_pic3 mr0"><img src="/resources/basepage/store/default/index/img/floor35_3.png" /></div>
+			</div>
+			<div class="floor_con_bottom">
+				<a class="floor_advert" id="index_0_top_35_01">
+					<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+					<p>￥999.99</p>
+				</a>
+				<a class="floor_advert floor_advert2" id="index_0_top_35_02">
+					<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+					<p>￥999.99</p>
+				</a>
+				<a class="floor_advert" id="index_0_top_35_03">
+					<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+					<p>￥999.99</p>
+				</a>
+			</div>
+		</div>
+		<div class="gray_line"></div>
+		<div class="floor floor36">
+			<a class="floor_t" href="/others/comingSoon_3th.jhtml">三十六号大厅 门头及形象宣传</a>
+			<div class="gray_line"></div>
+			<div class="floor_con">
+				<div class="floor_pic1"></div>
+				<ul class="floor_con1">
+					<li>
+						<a href="/others/comingSoon_3th.jhtml">策划设计公司</a>
+					</li>
+					<li>
+						<a href="/others/comingSoon_3th.jhtml">安装制作公司</a>
+					</li>
+					<li>
+						<a href="/others/comingSoon_3th.jhtml">菜谱制作公司</a>
+					</li>
+					<li>
+						<a href="/others/comingSoon_3th.jhtml">推广宣传公司</a>
+					</li>
+				</ul>
+				<ul class="floor_con2">
+					<li>
+						<a href="/others/comingSoon_3th.jhtml">网络制作公司</a>
+					</li>
+					<li>
+						<a href="/others/comingSoon_3th.jhtml">视频动漫公司</a>
+					</li>
+					<li>
+						<a href="/others/comingSoon_3th.jhtml">门头专业公司</a>
+					</li>
+					<li>
+						<a href="/others/comingSoon_3th.jhtml">门头安装公司</a>
+					</li>
+				</ul>
+				<ul class="floor_con3 mr0">
+					<li>
+						<a href="/others/comingSoon_3th.jhtml">印刷公司</a>
+					</li>
+					<li class="floor_pic2">
+						<img src="/resources/basepage/store/default/index/img/floor36_2.png" />
+					</li>
+				</ul>
+			</div>
+			<div class="floor_con_bottom">
+				<a class="floor_advert" id="index_0_top_36_01">
+					<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+					<p>￥999.99</p>
+				</a>
+				<a class="floor_advert floor_advert2" id="index_0_top_36_02">
+					<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+					<p>￥999.99</p>
+				</a>
+				<a class="floor_advert" id="index_0_top_36_03">
+					<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+					<p>￥999.99</p>
+				</a>
+			</div>
+		</div>
+		<div class="gray_line"></div>
+		<div class="floor floor37">
+			<a class="floor_t" href="/page1/307_00000000000009135_gic.jhtml?name1=跨境产品">三十七号大厅 跨境电商进口免税产品</a>
+			<div class="gray_line"></div>
+			<div class="floor_con">
+                <a class="floor_advert" id="index_0_top_37_01">
+                    <img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+                    <p>￥999.99</p>
+                </a>
+                <a class="floor_advert floor_advert2" id="index_0_top_37_02">
+                    <img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+                    <p>￥999.99</p>
+                </a>
+                <a class="item" href="/page2/307_00000000000009136_gic.jhtml?name2=进口海鲜&level1=307_00000000000009135_gic&name1=跨境产品">
+                    <div class="floor_pic1"></div>
+                    <p>进口海鲜</p>
+                </a>
+			</div>
+			<#--<div class="floor_con_bottom">
+				<a class="floor_advert" id="index_0_top_37_01">
+					<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+					<p>￥999.99</p>
+				</a>
+				<a class="floor_advert floor_advert2" id="index_0_top_37_02">
+					<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+					<p>￥999.99</p>
+				</a>
+				<a class="floor_advert" id="index_0_top_37_03">
+					<img src="${resources}/basepage/store/default/index/img/floor_advert1.png" />
+					<p>￥999.99</p>
+				</a>
+			</div>-->
+
+		</div>
+		<!-----------------------此处为footer（楼层以下）-------------------->
+		<@footer.render />
+		<!--导入footer-->
+		<@scrollTop.render />
+	</body>
+
+</html>

@@ -1,0 +1,30 @@
+@charset "UTF-8";
+#berserkWrap{
+  width: 100%;
+  height: auto;
+  overflow: auto;
+}
+#berserkWrap .bannerBox{
+  height: 3rem;
+  background: url("../img/berserk/banner.jpg") no-repeat center center;
+  background-size: 100% 100%;
+}
+#berserkWrap .timeItem{
+  width: 100%;
+  height: auto;
+  overflow: auto;
+  padding: 0.1rem 0.15rem;
+  text-align: center;
+  box-sizing: border-box;
+}
+.left{
+  float: left;
+}
+.timeItem{
+  background: #fbc21b;
+}
+.timeItem strong{
+  font-weight: 500;
+  font-size: 0.35rem;
+  color:#b5191a ;
+}

@@ -1,0 +1,71 @@
+<#--一级类目页:餐饮名店特色菜 ID:307_00000000000000382_gic-->
+<#include "/common/common_var_definds.ftl" />
+<#include "/basepage/store/default/hb_templates/lv1_hb_templates.ftl" />
+<#import "/basepage/store/default/common/common_script.ftl" as script/>
+<#import "/basepage/store/default/common/common_link.ftl" as link/>
+<#import "/basepage/store/default/common/common_footer.ftl" as footer/>
+<#import "/basepage/store/default/common/common_header_bar.ftl" as header_bar/>
+<#import "/basepage/store/default/common/common_header_searchbox_default.ftl" as searchBox/>
+<#import "/basepage/store/default/common/common_praise_business.ftl" as praBus/>
+<#import "/basepage/store/default/common/common_scroll_top.ftl" as scrollTop/>
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="author" content="m.fan1080.com">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+
+    <title>饭饭1080°直采平台</title>
+<@link.render />    <!--导入共通样式-->
+<@script.render />  <!--导入共通脚本-->
+    <script type="text/javascript">
+        var deviceWidth = document.documentElement.clientWidth;
+        document.documentElement.style.fontSize = deviceWidth / 6.4 + 'px';
+    </script>
+    <link rel="stylesheet" href="${resources}/basepage/store/default/level_pages/css/fflv1_css/fflv1_css.css" type="text/css"><!--模板共通样式-->
+    <script type="text/javascript" src="${resources}/basepage/store/default/level_pages/js/fflv1_js/lv1_dynamics.js"></script><!--此处是动态数据绑定函数-->
+
+ <link rel="stylesheet" href="${resources}/basepage/store/default/common_css/praBus.css" type="text/css">
+<script src="${resources}/basepage/store/default/common_js/praBus.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+<div id="pageInfo_ww" currentPageId="${level1}" currentPageName="${name1}" currentPageRes="${resources}"></div><!--页面信息-->
+<@praBus.render />
+<!--此处是头部开始-->
+<div class="top">
+<@top.render />    <#--导入header_top-->
+    <div class="top_banner" style="height:0.73rem">
+    <@searchBox.render />    <#--导入search_box-->
+    </div>
+</div>
+<!--此处是头部结束-->
+
+<!--中部开始-->
+<div class="brand_main_box chandi_main_box h_main_box">
+    <div class="title">餐饮名店特色菜</div>
+    <div>
+        <div class="item_list"><#---->
+            <ul>
+                <li class="item">
+                    <a href="javascript:void(0);">
+                        <div class="brand_name">食国列传</div>
+                        <div class="in_box my_clear">
+                            <img src="${resources}/basepage/store/default/level_pages/img/fflv1_img/restaurant/restaurant_sglz.jpg">
+                            <div>业务领域：海鲜餐饮</div>
+                        </div>
+                        <p>进入商铺</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--中部结束-->
+<@footer.render />    <!--导入footer-->
+<@scrollTop.render />
+</body>
+</html>

@@ -1,0 +1,37 @@
+/**pie 2017-4-15*/
+$(function () {
+    let gy=new getData;
+    gy.start()
+})
+
+class getData{
+    constructor(){
+         this.adsParam={
+             type:'list',
+             rangeId:'goods_list',
+             serialId:'luckypie'
+         }
+    }
+    static rangeTemplate(ele,data){
+        let template=Handlebars.compile($('#'+ele).html());
+        let templateHtml=template(data);
+        $('.'+ele).html(templateHtml);
+    }
+    getTime(){
+        let time=new Date().Format('yyyy年MM月dd日')
+        $(".time").html(time)
+
+    }
+    rangeAds(){
+        $.post('/fsajax/getAdsPic.ajax',this.adsParam, function (data) {
+            let dataG=JSON.parse(data)
+            getData.rangeTemplate('rangeAds',dataG)
+        })
+
+    }
+    start(){
+     this.getTime()
+     this.rangeAds()
+    }
+
+}

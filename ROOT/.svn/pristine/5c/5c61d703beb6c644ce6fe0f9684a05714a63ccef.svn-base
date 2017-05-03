@@ -1,0 +1,32 @@
+<#include "/common/common_var_definds.ftl" />
+<#macro render data>
+<#escape x as x?html>
+
+<div class="member-list-tab" >
+    <h2 class="member-tit modify"> <a href="#" onclick="javascript :history.go(-1);"></a> <i>&nbsp;</i>设置安全邮箱</h2>
+  <div class="progress_three progress_B">
+      <div class="coverColor"></div>
+    <p class="progress_textA">验证身份</p>
+    <p class="progress_textB font-color-b">验证邮箱</p>
+    <p class="progress_textC">完成</p>
+  </div>
+  <form id="isMailForm" name="isMailForm" action="${ctx}/member/toSendMailInfoForLogin.jhtml" method="POST">
+  <input type="hidden" name="pageUrl" value="${(pageUrl)!''}"/>
+  <input type="hidden" name="authType" value="${(authType)!''}"/> 
+  <input type="hidden" name="token" value="${(token)!''}" />
+  <div class="orderdedetail">
+    <div class="information-line" style="padding: 0 0.37rem;"><span>您在设置或更换安全邮箱时，系统会向您设定的邮箱发送验证邮件，请登录邮箱并按照邮件中的提示操作，完成邮箱设置。</span> </div>
+    <div class="information-line-gy"><span class="linespan">邮箱地址 ：</span>
+      <input type="text" class="input-g changeQusText" value="" id="isMailAddress" name="mailAddress" />
+        <a href="javascript:void(0);" class=" small-button cx1" onClick="saveIsMail()" style="margin: 0.3rem 0rem 0.3rem 3.4rem;margin-right: 1.6rem;padding: 0.1rem 0.25rem;height: auto;line-height: normal">发送验证邮件</a>
+      <p id="isSendMail" style="display:none">邮件发送失败，请稍后再试</p></div>
+      <div class="information-note cx2 m-t-5" id="isMailth"> 邮件已发送到您的邮箱${(emailAddress)!''}，请按邮件中的提示操作，完成邮箱设置。 
+      <!-- <a href="javascript:void(0);" class="font-color-c">立即查收邮件</a> -->
+      </div>
+       </div>
+     
+  </div>
+  </form>
+</div>
+</#escape>
+</#macro>

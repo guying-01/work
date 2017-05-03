@@ -1,0 +1,134 @@
+<#include "/common/common_var_definds.ftl" />
+<#macro render>
+<div class="search_box">
+    <a href="/toLogin.jhtml"><div class="login_link">采购商登录</div></a>
+    <!--<div class="search_link">-->
+    	<!--<img src="${resources}/basepage/store/default/common_img/logo.png">-->
+    		<input class="searchContent search_link" placeholder="搜索商品/搜索商铺"></input>
+    <!--</div>-->
+	<div class="btn" ><i></i><span>搜索</span></div>
+    <!--<div class="hiddenSearchBox" style="display: none">
+        <div class="searchBar">
+            <div class="searchClose" >×</div><input class="searchContent" placeholder="这里是默认搜索内容"></input><div class="btn" >搜索</div>
+        </div>
+        <div class="recentSearch"><p>最近搜索</p><ul class="goods"><li>飞科剃须刀</li></ul></div>
+        <div class="hotSearch"><p>热门搜索</p><ul><li>妈妈鞋</li><li>妈妈鞋</li><li>妈妈鞋</li><li>妈妈鞋</li><li>妈妈鞋</li><li>妈妈鞋</li></ul></div>
+    </div>-->
+</div>
+<#--<div class="search_box">
+    <div class="search">
+        <div class="all-fenlei-wrap">
+        &lt;#&ndash;此处通过id="category_list_lv1"模板加载&ndash;&gt;
+        </div>
+        <div class="logo"><a href="/"><img src="${resources}/basepage/store/default/common_img/logo.png"></a></div>
+        <div class="search_input_box_out">
+            <#if level2??>
+                <#assign currentPageId = level2!''>
+            <#elseif level1??>
+                <#assign currentPageId = level1!''>
+            <#else>
+                <#assign currentPageId = 'search'>
+            </#if>
+            <div class="search_input_box_bottom">
+                <a style="cursor: default" class="search_${currentPageId}_01"></a>
+                <a style="cursor: default" class="search_${currentPageId}_02"></a>
+                <a style="cursor: default" class="search_${currentPageId}_03"></a>
+                <a style="cursor: default" class="search_${currentPageId}_04"></a>
+            </div>
+            <div class="search_input_box_in"><input type="text" class="search_input search_input_1" placeholder="鸦片鱼以及广告"/></div>
+            <input type="button" value="搜索" class="search_button search_button_1"/>
+            <div class="search_input_box_bottom">
+                <a style="cursor: default" class="xinpin search_${currentPageId}_05"></a>
+                <a style="cursor: default" class="search_${currentPageId}_06"></a>
+                <a style="cursor: default" class="search_${currentPageId}_07"></a>
+                <a style="cursor: default" class="search_${currentPageId}_08"></a>
+            </div>
+        </div>
+        <div class="shopping_cart">
+            <div class="shoping_cart_header">
+                <img src="${resources}/basepage/store/default/common_img/shopping_cart_img.jpg">
+                <a href="/sc/toList.jhtml">我的购物车</a>
+                >
+                <span class="numbSpan"></span>
+            </div>
+            <div class="shopping_cart_goods">
+                <div class="blankSpaceShopping_car">
+                    <div><img src="${resources}/basepage/store/default/common_img/shoppingcarSleep.jpg"></div>
+                    <div class="blankSpaceShopping_car_div2"><span>购物车中还没有商品</span></div>
+                </div>
+                <p class="titleP">最新加入的商品</p>
+                <ul class="shopping_cart_goods_sub">
+                &lt;#&ndash;此处有id=header_shopcar模板加载&ndash;&gt;
+                </ul>
+                <p class="footerP">
+                    共 <span class="numbSpan"></span> 件商品
+                    共计￥<span class="span2"></span>
+                    <a href="/sc/toList.jhtml">去购物车</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="fix_search">
+    <div class="my_clear">
+        <a href="/"><img src="${resources}/basepage/store/default/common_img/logo.png"></a>
+        <div class="search_input_box_out">
+            <div class="search_input_box_in">
+                <input type="text" class="search_input search_input_2" placeholder="鸦片鱼以及广告">
+            </div>
+            <input type="button" value="搜索" class="search_button search_button_2">
+        </div>
+    </div>
+</div>
+<script>
+    $(".search_input").val('${keyword!""}');
+    $(".search_button_1").on("click", function () {
+        var keyword = $(".search_input_1").val();
+        location.href = "/FSgoodsSearch.jhtml?from=gd-search&keyword=" + encodeURIComponent(keyword);
+    });
+    $(".search_input_1").keydown(function (event) {
+        if (event.keyCode == 13) {
+            var keyword = $(".search_input_1").val();
+            location.href = "/FSgoodsSearch.jhtml?from=gd-search&keyword=" + encodeURIComponent(keyword);
+        }
+    });
+    $(".search_input_1").on("blur", function () {
+        $(".search_input_2").val($(this).val());
+    });
+    $(".search_button_2").on("click", function (event) {
+        var keyword = $(".search_input_2").val();
+        location.href = "/FSgoodsSearch.jhtml?from=gd-search&keyword=" + encodeURIComponent(keyword);
+    });
+    $(".search_input_2").keydown(function (event) {
+        if (event.keyCode == 13) {
+            var keyword = $(".search_input_2").val();
+            location.href = "/FSgoodsSearch.jhtml?from=gd-search&keyword=" + encodeURIComponent(keyword);
+        }
+    });
+    $(".search_input_2").on("blur", function () {
+        $(".search_input_1").val($(this).val());
+    });
+    var success = function (data) {
+        data = JSON.parse(data);
+        if (data != undefined && data.length != 0 && data != "[]") {
+            for (var i in data) {
+                var selector = $("." + data[i].adsInfo.advertId);
+                selector.attr("href", data[i].adsInfo.goodsLink);
+                selector.css("cursor", "pointer");
+                var jsonInfo = data[i].adsInfo.jsonInfo ? JSON.parse(data[i].adsInfo.jsonInfo) : {"goodsName": ""};
+                selector.text(jsonInfo.goodsName);
+            }
+        }
+    };
+    var rangeId = "";
+        <#if level2??>
+        rangeId = "${level2!''}";
+        <#elseif level1??>
+        rangeId = "${level1!''}";
+        <#else>
+        rangeId = "search";
+        </#if>
+    var data = {"type": "search", "rangeId": rangeId};
+    $.post("/fsajax/getAdsPic.ajax", data, success);
+</script>-->
+</#macro>

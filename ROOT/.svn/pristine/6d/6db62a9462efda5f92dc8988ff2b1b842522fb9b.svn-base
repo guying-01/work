@@ -1,0 +1,181 @@
+@charset "utf-8";
+/* CSS Document */
+/*消息管理*/
+body {
+    background: none !important;
+}
+.function {
+    overflow: hidden;
+}
+#monthMsg3 {
+    color: #ca1d3f;
+    font-size: 0.22rem;
+}
+#allReadCode {
+    margin-top: 0.25rem;
+    margin-right: 0.2rem;
+}
+.list .tabT {
+    display: block;
+    border-bottom: solid 1px #ededed;
+    overflow: hidden;
+}
+.list .tabT li {
+    display: block;
+    float: left;
+    width: 25%;
+    text-align: center;
+    line-height: 0.55rem;
+}
+.list .tabT .on span {
+    border-top: solid 2px #db0401;
+    background: #fff !important;
+    font-weight: bold;
+    color: #db0401 !important;
+}
+.list .tabT li span {
+    display: block;
+    border-right: solid 1px #ededed;
+    border-top: solid 1px #ededed;
+    text-align: center;
+    cursor: pointer;
+    line-height: 0.55rem;
+    font-size: 0.3rem;
+}
+.mes-c-o {
+    padding-top: 5px;
+    height: 20px;
+    overflow: hidden;
+    line-height: 20px !important;
+}
+.mes-c-o u {
+    display: block;
+    display: block;
+    width: 15px;
+    line-height: 14px !important;
+    cursor: pointer;
+}
+.mes-o {
+    display: block;
+    margin-top: 5px;
+    float: right;
+    width: 31px;
+    height: 14px;
+    background: url(../../img/common/c_o.png) no-repeat 0 -20px;
+}
+.mes-c {
+    display: block;
+    margin-top: 5px;
+    float: right;
+    width: 31px;
+    height: 14px;
+    background: url(../../img/common/c_o.png) no-repeat;
+}
+/*消息中心*/
+.store-message {
+    position: relative;
+    margin: 0 20px 10px 20px;
+    padding: 10px 30px;
+    border-bottom: solid 1px #ddd;
+}
+.store-message h4 {
+    line-height: 30px;
+    cursor: pointer;
+}
+.store-message h4 span {
+    font-weight: lighter;
+}
+.store-message p {
+    display: none;
+    line-height: 25px;
+}
+.store-message i, .store-message u {
+    position: absolute;
+    display: block;
+    top: 17px;
+    width: 15px;
+    height: 15px;
+}
+.store-message i {
+    left: 10px;
+    background: url(../../img/common/ico01.png) no-repeat -158px -50px;
+}
+.message-left-a {
+    background: url(../../img/common/ico01.png) no-repeat -158px -106px !important;
+}
+.store-message u {
+    right: 0px;
+    background: url(../../img/common/ico01.png) no-repeat -105px -48px;
+}
+.message-right-a {
+    background: url(../../img/common/ico01.png) no-repeat -105px -102px!important;
+}
+
+/*mobile part start*/
+@media screen and (max-width: 768px){
+    .messageCenter{
+        overflow: hidden;
+        width: 100%;
+    }
+    .messageCenter .message{
+        width: 100%;
+        padding: 0.1rem 0.2rem;
+        display: -webkit-box;
+        box-sizing: border-box;
+        border-bottom: 0.01rem solid #ddd;
+        overflow: hidden;
+        font-size: 0.28rem;
+    }
+    .font-color-c{
+        margin-left: 0.02rem;
+    }
+    .message-gy{
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .message{
+
+    }
+    .assignMore{
+        width: 30%;
+        height: 0.6rem;
+        background: #db0401;
+        color: #fff;
+        line-height: 0.6rem;
+        text-align: center;
+        font-size: 0.23rem;
+        border-radius: 0.15rem;
+        letter-spacing: 0.02rem;
+        margin: 0 auto;
+        margin-top: 0.5rem;
+    }
+    .messageFill{
+        width: 100%;
+        height: 1rem;
+    }
+    .message.read{
+        color:#9e9e9e;
+        overflow: hidden;
+        position: relative;
+        left:0;
+        top:0;
+    }
+    .message.unread{
+        color: #db0401;
+    }
+    .message.unread a{
+        color: #f88c0e;
+        font-size: 0.22rem;
+    }
+    .message.unread .font-color-b{
+        color: #db0401!important;
+    }
+}
+
+
+
+
+
+
+
+/*mobile part end*/

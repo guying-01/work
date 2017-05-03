@@ -1,0 +1,32 @@
+// JavaScript Document
+function ChangeDiv(divId, divName, zDivCount) {
+    for (i = 0; i <= zDivCount; i++) {
+        try {
+            document.getElementById(divName + i).style.display = "none";
+        }
+        catch (ex) {
+            console.error(ex);
+        }
+    }
+    try {
+        document.getElementById(divName + divId).style.display = "block";
+    }
+    catch (ex) {
+        console.error(ex);
+    }
+}
+$(function(){
+$("ul.tabT li").click(function(){
+   //判断编辑按钮是否出现开始
+   if ($(this).children().html()=="收藏的店铺"){
+      $(".all").css("display","none")
+   }
+   else{
+      $(".all").css("display","block")
+   }
+   //判断编辑按钮是否出现end
+   $(this).addClass("on")
+    .siblings().removeClass("on");
+})
+})
+

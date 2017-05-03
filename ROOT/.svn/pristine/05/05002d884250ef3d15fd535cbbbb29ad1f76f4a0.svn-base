@@ -1,0 +1,88 @@
+<#--店铺首页-->
+<#include "/common/common_var_definds.ftl" />
+<#include "/basepage/store/default/hb_templates/store_hb_templates.ftl" />
+<#import "/basepage/store/default/common/zizhi_slider.ftl" as zizhi/>
+<#import "/basepage/store/default/common/dangan_slider.ftl" as dangan/>
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>饭饭1080直采平台</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <script type="text/javascript">
+        var deviceWidth = document.documentElement.clientWidth;
+        if(deviceWidth > 768) {
+            deviceWidth = 768;
+        }
+        document.documentElement.style.fontSize = deviceWidth / 6.4 + 'px';
+    </script>
+<#import "/basepage/store/default/common/common_link.ftl" as link/>
+<#import "/basepage/store/default/common/common_script.ftl" as script/>
+<#import "/basepage/store/default/common/common_header_top.ftl" as top/>
+<#import "/basepage/store/default/common/common_header_searchbox_default.ftl" as searchBox/>
+<#import "/basepage/store/default/common/common_footer.ftl" as footerNoTab/>
+<#import "/basepage/seller/seller_header_search.ftl" as sellerSearch/>
+<@link.render />
+    <!--导入共通样式-->
+<@script.render />
+    <!--导入共通脚本-->
+    <link rel="stylesheet" href="${resources}/basepage/seller/css/store.css" type="text/css">
+    <script src="${resources}/basepage/seller/js/store_common_head_load.js"></script>
+    <script src="${resources}/basepage/seller/js/staticStore.js"></script>
+    <script src="${resources}/basepage/seller/js/store_dynamics.js"></script>
+    <script src="${resources}/basepage/seller/js/sp_getAboutImg.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+<div id="pageInfo" store_id="${storeId!''}" store_template_code="${storeTemplateCode!''}" page_id="${storeTemplateCode!''}" style="display: none"></div>
+<!--此处是头部开始-->
+<div class="top">
+<@top.render />
+    <div class="store_search_box">
+    <@searchBox.render />
+				<#--导入search_box-->
+    </div>
+</div>
+<!--此处是头部结束-->
+<!--网页头部&导航开始-->
+<div id="sp_hd_1"></div>
+<div id="sp_hd_2"></div>
+<@sellerSearch.render />
+<div id="ff_tab_box">
+    <div class="ff_tab_content">
+        <div class="ff-tab-title">
+            <img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /> <span>商家介绍</span>
+        </div>
+        <div class="ff-tab-con-detail">
+            <p>吕梁野山坡食品有限责任公司是一个以沙棘、雪梨、红枣等果蔬产品综合研制、收购、生产、销售为主体的民营企业，。公司地处山西省吕梁市文水县开栅镇。紧邻307国道，距太汾高速公路开栅站900米，距太原火车站67公里，交通便利，物流畅通。</p>
+            <p>公司成立于2001年7月，秉承“团结、守法、奉献社会”理念，推进“专业化、产业化、规模化”的经营战略，不断向着知识型、专业型、国际化、大物流的发展目标迈进。</p>
+            <p>公司注册资金3000万元，现有资产12000万元，其中建筑面积26000多平方米，拥有员工近400名，其中科技工程人员39人，管理人员16人。</p>
+            <p>公司已形成“公司＋基地＋农户（合作社）”运作模式，和“产、加、销一条龙”，“科、农、工、贸一体化”的发展格局。是山西省农业产业化“513”工程入选企业、“山西省著名商标”企业、“山西省质量信誉AA级”企业、吕梁市高新技术企业和山西省农业标准化示范基地。</p>
+            <p>公司主要产品有沙棘原料、沙棘饮料、沙棘罐头、雪梨汁、蓝莓汁、红枣汁饮料等几十个品种，产品销售网络遍布全国各地。终端产品在本省保持90%以上的市场覆盖率。沙棘原汁等原料出口日本、韩国等地区。产品产销率达到100%。</p>
+            <p>“质量为本、创新求进”是我公司一贯坚持的经营理念，我们全力推进人才战略和品牌战略，率先在同行业中取得了ISO9001国际质量管理体系认证和HACCP质量体系认证。</p>
+            <p>公司建立了产权明晰、责权分明、管理科学、行为规范的运营机制，以及与市场经济相适应的现代化企业制度，全员团结一心、奋力拼搏、攻难克坚、稳步发展，正逐步进入了社会主义市场经济的快车道。</p>
+
+        </div>
+    </div>
+    <div class="ff_tab_content only_book_content_zizhi">
+        <div class="ff-tab-title">
+            <img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /><span>商家资质</span>
+        </div>
+        <div class="ff-tab-con-detail">
+        <@zizhi.render />
+        </div>
+    </div>
+    <div class="ff_tab_content">
+        <div class="ff-tab-title">
+            <img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /> <span>商家活动</span>
+
+        </div>
+        <div class="ff-tab-con-detail">敬请期待</div>
+    </div>
+</div>
+<@footerNoTab.render />
+</body>
+
+</html>

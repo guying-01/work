@@ -1,0 +1,456 @@
+<#--一级类目页:产地直供 ID:307_00000000000000374_gic-->
+<#include "/common/common_var_definds.ftl" />
+<#include "/basepage/store/default/hb_templates/lv1_hb_templates.ftl" />
+<#import "/basepage/store/default/common/common_script.ftl" as script/>
+<#import "/basepage/store/default/common/common_link.ftl" as link/>
+<#import "/basepage/store/default/common/common_footer.ftl" as footer/>
+<#import "/basepage/store/default/common/common_header_top.ftl" as top/>
+<#import "/basepage/store/default/common/common_header_searchbox_default.ftl" as searchBox/>
+<#import "/basepage/store/default/common/common_praise_business.ftl" as praBus/>
+<#import "/basepage/store/default/common/common_scroll_top.ftl" as scrollTop/>
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="author" content="m.fan1080.com">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+
+    <title>饭饭1080直采平台</title>
+<@link.render />    <!--导入共通样式-->
+<@script.render />  <!--导入共通脚本-->
+    <script type="text/javascript">
+        var deviceWidth = document.documentElement.clientWidth;
+        document.documentElement.style.fontSize = deviceWidth / 6.4 + 'px';
+    </script>
+    <link rel="stylesheet" href="${resources}/basepage/store/default/level_pages/css/fflv1_css/fflv1_css.css" type="text/css"><!--模板共通样式-->
+    <script type="text/javascript" src="${resources}/basepage/store/default/level_pages/js/fflv1_js/lv1_dynamics.js"></script><!--此处是动态数据绑定函数-->
+     <link rel="stylesheet" href="${resources}/basepage/store/default/common_css/praBus.css" type="text/css">
+<script src="${resources}/basepage/store/default/common_js/praBus.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+<div id="pageInfo_ww" currentPageId="${level1}" currentPageName="${name1}" currentPageRes="${resources}"></div><!--页面信息-->
+<@praBus.render />
+<!--此处是头部开始-->
+<div class="top">
+<@top.render />    <#--导入header_top-->
+    <div class="top_banner" style="height:0.73rem">
+    <@searchBox.render />    <#--导入search_box-->
+    </div>
+</div>
+<!--此处是头部结束-->
+
+<!--中部开始-->
+<div class="brand_main_box chandi_main_box">
+    <div class="title">产地直供</div>
+    <div class="category_list">
+        <ul class="my_clear">
+            <li onclick="change_tab(0)"><a href="/page1/307_00000000000000374_gic.jhtml?name1=产地直供#tab0">瓦房店</a></li>
+            <li onclick="change_tab(1)"><a href="/page1/307_00000000000000374_gic.jhtml?name1=产地直供#tab1">庄河</a></li>
+            <#--<li><a href="/others/comingSoon_2th.jhtml">普兰店</a></li>
+            <li><a href="/others/comingSoon_2th.jhtml">旅顺</a></li>
+            <li onclick="change_tab(4)"><a href="/others/comingSoon_2th.jhtml">长海县</a></li>
+            <li onclick="change_tab(5)"><a href="/others/comingSoon_2th.jhtml">东港</a></li>
+            <li onclick="change_tab(6)"><a href="/others/comingSoon_2th.jhtml">岫岩</a></li>-->
+        </ul>
+    </div>
+    <div>
+        <div class="item_list"><#--瓦房店-->
+            <ul>
+                <li class="item">
+                    <a href="/fsst/101_00000000000000204_str/top.jhtml">
+                        <div class="brand_name">早春生态农业发展（大连）有限公司</div>
+                        <div class="in_box my_clear">
+                            <img src="${resources}/basepage/store/default/level_pages/img/fflv1_img/origin/origin_zcst.jpg">
+                            <div>业务领域：水果、蔬菜、农作物种植</div>
+                        </div>
+                        <p>进入商铺</p>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="/fsst/101_00000000000000203_str/top.jhtml">
+                        <div class="brand_name">大连新庆果蔬专业合作社</div>
+                        <div class="in_box my_clear">
+                            <img src="${resources}/basepage/store/default/level_pages/img/fflv1_img/origin/origin_xqgs.jpg">
+                            <div>业务领域：水果类、蔬菜类、米面粮油、肉蛋奶、酒水饮料、海鲜类、罐装食品</div>
+                        </div>
+                        <p>进入商铺</p>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="/fsst/101_00000000000000291_str/top.jhtml">
+                        <div class="brand_name">大连凯隆食品有限公司</div>
+                        <div class="in_box my_clear">
+                            <img src="${resources}/basepage/store/default/level_pages/img/fflv1_img/origin/origin_klry.jpg">
+                            <div>业务领域：水果、蔬菜。</div>
+                        </div>
+                        <p>进入商铺</p>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="/fsst/101_00000000000000300_str/top.jhtml">
+                        <div class="brand_name">大连富彤生态农业有限公司</div>
+                        <div class="in_box my_clear">
+                            <img src="${resources}/basepage/store/default/level_pages/img/fflv1_img/origin/origin_ft.jpg">
+                            <div>业务领域：水果蔬菜、花卉草木种植、销售；果蔬采摘；水稻、大米加工及销售；海参、鱼养殖、销售</div>
+                        </div>
+                        <p>进入商铺</p>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="/fsst/101_00000000000000287_str/top.jhtml">
+                        <div class="brand_name">瓦房店鲜达农产品</div>
+                        <div class="in_box my_clear">
+                            <img src="${resources}/basepage/store/default/level_pages/img/fflv1_img/origin/origin_xd.jpg">
+                            <div>业务领域：水果、肉、蛋。</div>
+                        </div>
+                        <p>进入商铺</p>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="/fsst/101_00000000000000321_str/top.jhtml">
+                        <div class="brand_name">大连绿之源生态农场</div>
+                        <div class="in_box my_clear">
+                            <img src="${resources}/basepage/store/default/level_pages/img/fflv1_img/origin/origin_lzy.jpg">
+                            <div class="long">业务领域：鸡蛋</div>
+                        </div>
+                        <p>进入商铺</p>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="/fsst/101_00000000000000302_str/top.jhtml">
+                        <div class="brand_name">李家果园</div>
+                        <div class="in_box my_clear">
+                            <img src="${resources}/basepage/store/default/level_pages/img/fflv1_img/origin/origin_ljgy.jpg">
+                            <div>业务领域：樱桃、桃子</div>
+                        </div>
+                        <p>进入商铺</p>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="/fsst/101_00000000000000342_str/top.jhtml">
+                        <div class="brand_name">大连有锋农业科技发展有限公司</div>
+                        <div class="in_box my_clear">
+                            <img src="${resources}/basepage/store/default/level_pages/img/fflv1_img/origin/origin_yfny.jpg">
+                            <div>业务领域：食用菌种植、清洗包装加工、销售；食用菌收购</div>
+                        </div>
+                        <p>进入商铺</p>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="/fsst/101_00000000000000343_str/top.jhtml">
+                        <div class="brand_name">瓦房店市羽丰养殖有限公司</div>
+                        <div class="in_box my_clear">
+                            <img src="${resources}/basepage/store/default/level_pages/img/fflv1_img/origin/origin_yf.jpg">
+                            <div class="long">业务领域：蛋鸡养殖、禽蛋销售</div>
+                        </div>
+                        <p>进入商铺</p>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="/fsst/101_00000000000000344_str/top.jhtml">
+                        <div class="brand_name">瓦房店市鑫龙果品有限公司</div>
+                        <div class="in_box my_clear">
+                            <img src="${resources}/basepage/store/default/level_pages/img/fflv1_img/origin/origin_xlgp.jpg">
+                            <div>业务领域：干鲜果品；林果种植；果品储藏；果汁加工</div>
+                        </div>
+                        <p>进入商铺</p>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="/fsst/101_00000000000000290_str/top.jhtml">
+                        <div class="brand_name">瓦房店市众利果蔬专业合作社</div>
+                        <div class="in_box my_clear">
+                            <img src="${resources}/basepage/store/default/level_pages/img/fflv1_img/origin/origin_zlgs.jpg">
+                            <div>业务领域：蔬菜、米面、水果、蛋类、小菜</div>
+                        </div>
+                        <p>进入商铺</p>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="/fsst/101_00000000000000333_str/top.jhtml">
+                        <div class="brand_name">大连恒诚冷链有限公司</div>
+                        <div class="in_box my_clear">
+                            <img src="${resources}/basepage/store/default/level_pages/img/fflv1_img/origin/origin_hc.jpg">
+                            <div>业务领域：海鲜干虾类</div>
+                        </div>
+                        <p>进入商铺</p>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="/fsst/101_00000000000000350_str/top.jhtml">
+                        <div class="brand_name">瓦房店益园蔬菜专业合作社</div>
+                        <div class="in_box my_clear">
+                            <img src="${resources}/basepage/store/default/level_pages/img/fflv1_img/origin/origin_yysc.jpg">
+                            <div>业务领域：蔬菜类</div>
+                        </div>
+                        <p>进入商铺</p>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="/fsst/101_00000000000000348_str/top.jhtml">
+                        <div class="brand_name">大连米米米电子商务有限公司</div>
+                        <div class="in_box my_clear">
+                            <img src="${resources}/basepage/store/default/level_pages/img/fflv1_img/origin/origin_mmm.jpg">
+                            <div>业务领域：水果类、蔬菜类、肉禽蛋类、水产类、粮油类、干货类、果蔬加工类、酒水类</div>
+                        </div>
+                        <p>进入商铺</p>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="/fsst/101_00000000000000360_str/top.jhtml">
+                        <div class="brand_name">瓦房店新盛蔬菜专业合作社</div>
+                        <div class="in_box my_clear">
+                            <img src="${resources}/basepage/store/default/level_pages/img/fflv1_img/origin/origin_xs.jpg">
+                            <div>业务领域：水果蔬菜类</div>
+                        </div>
+                        <p>进入商铺</p>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="/fsst/101_00000000000000373_str/top.jhtml">
+                        <div class="brand_name">大连香洲庄园葡萄酒有限公司</div>
+                        <div class="in_box my_clear">
+                            <img src="${resources}/basepage/store/default/level_pages/img/fflv1_img/origin/origin_xzzy.jpg">
+                            <div>业务领域：葡萄酒酿造；农副产品收购（不含粮食收购）</div>
+                        </div>
+                        <p>进入商铺</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="item_list"><#--庄河-->
+            <ul>
+                <li class="item">
+                    <a href="/fsst/101_00000000000000212_str/top.jhtml">
+                        <div class="brand_name">大连逍峰农产品有限公司</div>
+                        <div class="in_box my_clear">
+                            <img src="${resources}/basepage/store/default/level_pages/img/fflv1_img/origin/origin_xf.jpg">
+                            <div>业务领域：农副产品、海产品收购、加工及销售</div>
+                        </div>
+                        <p>进入商铺</p>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="/fsst/101_00000000000000203_str/top.jhtml">
+                        <div class="brand_name">大连稼钰实业有限公司</div>
+                        <div class="in_box my_clear">
+                            <img src="${resources}/basepage/store/default/level_pages/img/fflv1_img/origin/origin_jy.jpg">
+                            <div>业务领域：水果类、蔬菜类、米面粮油、肉蛋奶、酒水饮料、海鲜类、罐装食品</div>
+                        </div>
+                        <p>进入商铺</p>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="/fsst/101_00000000000000238_str/top.jhtml">
+                        <div class="brand_name">大连岛蛋王食品有限公司</div>
+                        <div class="in_box my_clear">
+                            <img src="${resources}/basepage/store/default/level_pages/img/fflv1_img/origin/origin_ddw.jpg">
+                            <div>业务领域：食品加工；蛋品收购、加工、销售；农产品收购、加工、销售</div>
+                        </div>
+                        <p>进入商铺</p>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="/fsst/101_00000000000000220_str/top.jhtml">
+                        <div class="brand_name">贺氏农业</div>
+                        <div class="in_box my_clear">
+                            <img src="${resources}/basepage/store/default/level_pages/img/fflv1_img/origin/origin_hsny.jpg">
+                            <div>业务领域：庄河特产</div>
+                        </div>
+                        <p>进入商铺</p>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="/fsst/101_00000000000000261_str/top.jhtml">
+                        <div class="brand_name">大连九月贸易有限公司</div>
+                        <div class="in_box my_clear">
+                            <img src="${resources}/basepage/store/default/level_pages/img/fflv1_img/origin/origin_jymy.jpg">
+                            <div>业务领域：农畜产品收购、销售；货物进出口</div>
+                        </div>
+                        <p>进入商铺</p>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="/fsst/101_00000000000000301_str/top.jhtml">
+                        <div class="brand_name">洪源绿色食品</div>
+                        <div class="in_box my_clear">
+                            <img src="${resources}/basepage/store/default/level_pages/img/fflv1_img/origin/origin_hy.jpg">
+                            <div class="long">业务领域：土特产</div>
+                        </div>
+                        <p>进入商铺</p>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="/fsst/101_00000000000000294_str/top.jhtml">
+                        <div class="brand_name">庄河菜“缘”时蔬阁</div>
+                        <div class="in_box my_clear">
+                            <img src="${resources}/basepage/store/default/level_pages/img/fflv1_img/origin/origin_cyssg.jpg">
+                            <div>业务领域：蔬菜</div>
+                        </div>
+                        <p>进入商铺</p>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="/fsst/101_00000000000000262_str/top.jhtml">
+                        <div class="brand_name">老农果蔬超市</div>
+                        <div class="in_box my_clear">
+                            <img src="${resources}/basepage/store/default/level_pages/img/fflv1_img/origin/origin_lngscs.jpg">
+                            <div>业务领域：应季水果、浆果及热带水果</div>
+                        </div>
+                        <p>进入商铺</p>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="/fsst/101_00000000000000335_str/top.jhtml">
+                        <div class="brand_name">森野绿洲</div>
+                        <div class="in_box my_clear">
+                            <img src="${resources}/basepage/store/default/level_pages/img/fflv1_img/origin/origin_sylz.jpg">
+                            <div class="long">业务领域：大骨鸡散养，林蛙养殖；农作物，中药材种植、销售</div>
+                        </div>
+                        <p>进入商铺</p>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="/fsst/101_00000000000000338_str/top.jhtml">
+                        <div class="brand_name">小二草莓</div>
+                        <div class="in_box my_clear">
+                            <img src="${resources}/basepage/store/default/level_pages/img/fflv1_img/origin/origin_xecm.jpg">
+                            <div>业务领域：草莓、果蔬、鸡鸭鹅等</div>
+                        </div>
+                        <p>进入商铺</p>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="/fsst/101_00000000000000352_str/top.jhtml">
+                        <div class="brand_name">金钱沟草莓</div>
+                        <div class="in_box my_clear">
+                            <img src="${resources}/basepage/store/default/level_pages/img/fflv1_img/origin/origin_jqgcm.jpg">
+                            <div>业务领域：草莓</div>
+                        </div>
+                        <p>进入商铺</p>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="/fsst/101_00000000000000334_str/top.jhtml">
+                        <div class="brand_name">庄河市大营镇丰硕果蔬专业合作社</div>
+                        <div class="in_box my_clear">
+                            <img src="${resources}/basepage/store/default/level_pages/img/fflv1_img/origin/origin_fsgs.jpg">
+                            <div>业务领域：水果类</div>
+                        </div>
+                        <p>进入商铺</p>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="/fsst/101_00000000000000357_str/top.jhtml">
+                        <div class="brand_name">松花湖老酒坊</div>
+                        <div class="in_box my_clear">
+                            <img src="${resources}/basepage/store/default/level_pages/img/fflv1_img/origin/origin_shh.jpg">
+                            <div>业务领域：白酒</div>
+                        </div>
+                        <p>进入商铺</p>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="/fsst/101_00000000000000362_str/top.jhtml">
+                        <div class="brand_name">大连市天红牧业发展有限公司</div>
+                        <div class="in_box my_clear">
+                            <img src="${resources}/basepage/store/default/level_pages/img/fflv1_img/origin/origin_thmy.jpg">
+                            <div>业务领域：鸡鸭鹅牛羊饲养、收购、销售；畜禽产品初加工、销售</div>
+                        </div>
+                        <p>进入商铺</p>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="/fsst/101_00000000000000365_str/top.jhtml">
+                        <div class="brand_name">国峰农业</div>
+                        <div class="in_box my_clear">
+                            <img src="${resources}/basepage/store/default/level_pages/img/fflv1_img/origin/origin_gfny.jpg">
+                            <div>业务领域：草莓</div>
+                        </div>
+                        <p>进入商铺</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="item_list"><#--普兰店-->
+            222
+        </div>
+        <div class="item_list"><#--旅顺-->
+            222
+        </div>
+        <div class="item_list"><#--长海县-->
+            <ul>
+                <li class="item">
+                    <a href="/fsst/101_00000000000000298_str/top.jhtml">
+                        <div class="brand_name">獐子岛集团股份有限公司</div>
+                        <div class="in_box my_clear">
+                            <img src="${resources}/basepage/store/default/level_pages/img/fflv1_img/brand/brand_zzd.jpg">
+                            <div>业务领域：海鲜/海鲜酱</div>
+                        </div>
+                        <p>进入商铺</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="item_list"><#--东港-->
+            <ul>
+                <li class="item">
+                    <a href="/fsst/101_00000000000000312_str/top.jhtml">
+                        <div class="brand_name">东港市龙头山制米厂</div>
+                        <div class="in_box my_clear">
+                            <img src="${resources}/basepage/store/default/level_pages/img/fflv1_img/origin/origin_lts.jpg">
+                            <div>业务领域：粮食收购、加工、销售</div>
+                        </div>
+                        <p>进入商铺</p>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="/fsst/101_00000000000000316_str/top.jhtml">
+                        <div class="brand_name">馨伟蔬菓</div>
+                        <div class="in_box my_clear">
+                            <img src="${resources}/basepage/store/default/level_pages/img/fflv1_img/origin/origin_xwsg.jpg">
+                            <div>业务领域：荷兰黄瓜及蔬菜</div>
+                        </div>
+                        <p>进入商铺</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="item_list"><#--岫岩-->
+            <ul>
+                <li class="item">
+                    <a href="/fsst/101_00000000000000224_str/top.jhtml">
+                        <div class="brand_name">岫岩满族自治县昇菜农产品电子商务有限公司</div>
+                        <div class="in_box my_clear">
+                            <img src="${resources}/basepage/store/default/level_pages/img/fflv1_img/origin/origin_xymz.jpg">
+                            <div>业务领域：海鲜类、蔬菜类、肉禽类、米面粮油类</div>
+                        </div>
+                        <p>进入商铺</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+<!--中部结束-->
+<script type="text/javascript">
+    $(function () {
+        var url=window.location.href;
+        var num=url.split("#tab");
+        change_tab(num[1]);
+    });
+    function change_tab(obj) {
+        $(".category_list li").eq(obj).addClass("on").siblings().removeClass("on");
+        $(".item_list").eq(obj).show().siblings().hide();
+    }
+</script>
+<@footer.render />    <!--导入footer-->
+<@scrollTop.render />
+</body>
+</html>

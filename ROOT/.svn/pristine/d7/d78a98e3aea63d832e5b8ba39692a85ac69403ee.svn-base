@@ -1,0 +1,167 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>单据打印</title>
+<style media=print>     
+	.Noprint{display:none;}     
+	.PageNext{page-break-after: always;}   
+	body {   
+	  color: #000;   
+	  background: #fff;   
+	} 
+	nav, aside {   
+		display: none;   
+	}  
+@page{  
+	size: A4 landscape; 	
+	margin: 8mm 5mm 5mm 5mm;  
+} 
+.divleft{
+    float: left;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+</style> 
+
+<style>
+.print * {   
+	font-size: 9pt;
+	margin: 0 auto;
+	word-spacing: 0mm;
+	letter-spacing: 0mm;
+	font-family: "宋体";
+}
+.print .web {
+	width: 275mm;
+	margin: 0 auto;
+}
+.print .title {
+    font-size: 16pt;
+    text-align: center;
+    font-weight: 600;
+    display: block;
+    height:6mm;
+}
+
+.print .property {
+    clear: both;
+     height: 12mm;
+}
+
+.print .property span {
+	display: block;
+	float: left;
+	word-break: break-all;
+}
+.print table{
+	border-collapse:collapse;
+	width:100%;
+	margin:0px auto 0px auto;
+	table-layout:fixed;
+}
+.print tr{
+	height:6mm;
+	}
+.print tr td{
+	text-align:center;
+	overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+	}
+.print .divleft{
+    float: left;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+</style>
+</head>
+<body>
+<div class="print">
+<div class="web">
+	<div id="head"><span class="title" tag="a0"><!--[[[a0]]]--></span></div>
+	
+	<table tag="a15">	
+		<tr id="trhead0">
+	      <td width="3%" style="border:none"></td>
+		  <td width="8%" style="border:none"></td>
+		  <td width="10%" style="border:none"></td>
+		  <td width="8%" style="border:none"></td>
+		  <td width="9%" style="border:none"></td>
+		  <td width="12%" style="border:none"></td>
+		  <td width="12%" style="border:none"></td>
+		  <td width="10%" style="border:none"></td>
+		  <td width="5%" style="border:none"></td>
+		  <td width="5%" style="border:none"></td>
+		  <td width="5%" style="border:none"></td>
+		  <td width="5%" style="border:none"></td>
+		  <td style="border:none"></td>
+	    </tr>
+	    <tr id="trhead1">
+	      <td colspan="7" tag="a1" style="border: solid #000 1px; text-align:left;">仓库：<!--[[[a1]]]--></td>
+	      <td colspan="3" tag="a2" style="border: solid #000 1px; text-align:left;">路线：<!--[[[a2]]]--></td>
+		  <td colspan="3" tag="a3" style="border: solid #000 1px; text-align:left;">采购商所属仓位：<!--[[[a3]]]-->号</td>
+	    </tr>
+	    <tr id="trhead2">
+	      <td colspan="7" tag="a4" style="border: solid #000 1px; text-align:left;">采购商：<!--[[[a4]]]--></td>
+	      <td colspan="3" tag="a6" style="border: solid #000 1px; text-align:left;"><div class="divleft">联系人：</div>
+		  <div tag="a5" class="divleft" style="max-width: 20mm;"><!--[[[a5]]]--></div>(<!--[[[a6]]]-->)</td>  
+		  
+		  <td colspan="3" tag="a7" style="border: solid #000 1px; text-align:left;">打印时间：<!--[[[a7]]]--></td>
+	    </tr>
+	    <tr id="trhead3">
+	      <td colspan="7" tag="a8" style="border: solid #000 1px; text-align:left;">采购商地址：<!--[[[a8]]]--></td>
+	      <td colspan="3" tag="a9" style="border: solid #000 1px; text-align:left;">送达时间：<!--[[[a9]]]--></td>
+	      <td colspan="3" tag="a10" style="border: solid #000 1px; text-align:left;">合计金额：￥<!--[[[a10]]]--></td>
+	    </tr>
+	    <tr id="trhead4">
+	      <td style="border: solid #000 1px;border-bottom:0;">序号</td>
+		  <td style="border: solid #000 1px;border-bottom:0;">供应商身份码</td>
+		  <td style="border: solid #000 1px;border-bottom:0;">供应商</td>
+		  <td style="border: solid #000 1px;border-bottom:0;">采购单号</td>
+		  <td style="border: solid #000 1px;border-bottom:0;">订单编号</td>
+		  <td style="border: solid #000 1px;border-bottom:0;">商品号（SKU）</td>
+		  <td style="border: solid #000 1px;border-bottom:0;">商品名称</td>
+		  <td style="border: solid #000 1px;border-bottom:0;">规格</td>
+		  <td style="border: solid #000 1px;border-bottom:0;">数量</td>
+		  <td style="border: solid #000 1px;border-bottom:0;">单价(元)</td>
+		  <td style="border: solid #000 1px;border-bottom:0;">金额(元)</td>
+		  <td style="border: solid #000 1px;border-bottom:0;">验收否</td>
+		  <td style="border: solid #000 1px;border-bottom:0;">备注</td>
+	    </tr>
+	
+	    <tr tag="a15_detail">
+	      <td width="3%" style="border: solid #000 1px;"><!--[[[a15_0]]]--></td>
+	      <td width="8%" style="border: solid #000 1px;"><!--[[[a15_1]]]--></td>
+	      <td width="10%" style="border: solid #000 1px;"><!--[[[a15_2]]]--></td>
+	      <td width="8%" style="border: solid #000 1px;"><!--[[[a15_3]]]--></td>
+	      <td width="9%" style="border: solid #000 1px;"><!--[[[a15_4]]]--></td>
+	      <td width="12%" style="border: solid #000 1px;"><!--[[[a15_5]]]--></td>
+	      <td width="12%" style="border: solid #000 1px;"><!--[[[a15_6]]]--></td>
+	      <td width="10%" style="border: solid #000 1px;"><!--[[[a15_7]]]--></td>
+	      <td width="5%" style="border: solid #000 1px;"><!--[[[a15_8]]]--></td>
+	      <td width="5%" style="border: solid #000 1px;"><!--[[[a15_9]]]--></td>
+	      <td width="5%" style="border: solid #000 1px;"><!--[[[a15_10]]]--></td>
+		  <td width="5%" style="border: solid #000 1px;"><!--[[[a15_11]]]--></td>
+		  <td style="border: solid #000 1px;"><!--[[[a15_12]]]--></td>
+	    </tr>
+	    <tr style="display:none" tag="a15_sum">
+	    </tr>
+	</table>
+	<table  tag="a16" style="display:none">
+	</table>
+	<table tag="a17">
+		  <tr id="trNum">
+			<td style="float :right;border: none">页码：<!--[[[a17_1]]]--></td>
+		 </tr>
+	</table>
+	  <div id="foot4" class="property"><span tag="a11" style="width:40%;" >饭饭1080直采平台客服电话：<!--[[[a11]]]--></span><span tag="a12">饭饭1080直采平台：<!--[[[a12]]]--></span><div style="clear:both;"></div></div>
+</div>
+</div>
+</body>
+</html>
+
+
+

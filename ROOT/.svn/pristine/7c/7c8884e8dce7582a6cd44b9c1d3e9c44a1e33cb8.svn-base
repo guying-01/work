@@ -1,0 +1,70 @@
+@charset "UTF-8";
+.member-tit{
+    font-weight: 600;
+    border-bottom: none;
+}
+.member-tit g{
+    font-size: 0.3rem;
+    background: url(../../img/member/goBack.png) no-repeat center center;
+    display: inline-block;
+    height: 0.35rem;
+    width: 0.35rem;
+    background-size: contain;
+    position: absolute;
+    top: 50%;
+    margin-top: -0.175rem;
+    left: 0.1rem;
+}
+.information-line-gy{
+    padding: 0.1rem 0;
+    font-size: 0.25rem;
+    overflow: hidden;
+    box-sizing: border-box;
+    border-bottom: 0.03rem solid #e3e3e3;
+    width: 90%;
+    margin: 0 auto;
+    word-break: break-all;
+}
+.information-line-gy span{
+    float: left;
+}
+.information-line-gy span:nth-of-type(1){
+    width: 35%;
+}
+.information-line-gy span:nth-of-type(2){
+    width: 65%;
+    padding-left: 0.1rem;
+    box-sizing: border-box;
+    text-align: right;
+}
+.title-g{
+   height: 0.5rem;
+   line-height: 0.5rem;
+    font-weight: 600;
+    font-size: 0.27rem;
+    width: 95%;
+    text-align: center;
+    margin: 0.3rem auto 0;
+    background: #c91622;
+    color: #fff;
+    border-radius: 0.2rem 0.2rem 0 0;
+    padding: 0.1rem 0;
+}
+.common-style{
+    width: 95%;
+    margin: 0 auto;
+    border:2px solid #c91622;
+    box-sizing: border-box;
+    border-radius: 0 0 0.3rem 0.3rem;
+}
+.son-account .information-line-gy:last-of-type{
+    border-bottom: none!important;
+}
+.red-line{
+    width: 100%;
+    height: 2px;
+    background:#c91622 ;
+}
+.red-line:last-of-type{
+    display: none;
+}

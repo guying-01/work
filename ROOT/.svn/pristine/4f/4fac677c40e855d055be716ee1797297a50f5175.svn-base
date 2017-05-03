@@ -1,0 +1,62 @@
+<#include "/common/common_var_definds.ftl" />
+<#macro render data>
+    <#escape x as x?html>
+    <input type="hidden" id="returnState">
+    <div id="commonTitleGy" onclick="window.history.go(-1)">
+        <h2>退换货管理</h2>
+        <i></i>
+    </div>
+    <div class="member-list" id="member-list-gy">
+        <ul class="tabT" id="stateIdTab">
+          <li class="on"><span>所有退换货</span></li>
+          <li><span>退换货中</span></li>
+          <li><span>已完成</span></li>
+        </ul>
+    </div>
+    <div class="order-serch" id="orderSearchGy">
+      <form id="searchForm">
+        <input type="hidden" id="returnType" name="returnType">
+          <div class="nameBox">
+              <strong>商品名称：</strong>
+              <input type="text" class="text_A dm-no-auto-clear" id="goodsName" name="goodsName" maxLength="100">
+          </div>
+          <div class="timeBox">
+              <strong>下单时间：</strong>
+              <input readonly="" class="text_A laydate-icon dm-no-auto-clear" id="startDate" name="startDate">
+              <span>-</span>
+              <input readonly="" class="text_A laydate-icon dm-no-auto-clear" id="endDate" name="endDate">
+              <input type="hidden" value="" id="tagType" />
+              <strong id="returnStateLabel" style="display:none">退换货状态：</strong>
+          </div>
+        <a href="javascript:void(0)" class="small-button"> 查找 </a>
+      </form>
+    </div> 
+
+    <div id="returnContent">
+
+
+    </div>
+    <script id="returnContentTemplate" type="text/x_handlebars_template">
+        {{#each this}}
+        <div class="everyOrder">
+            <div>采购商账号：{{memberAccount}}</div>
+            <div>采购商名称：{{buyerName}}</div>
+             <div>商品名称：{{goodsName}}</div>
+             <div>下单时间：{{orderDate}}</div>
+             <div>交易金额：¥{{totalPrice this.itemPrice this.itemAmount}}</div>
+             <div>退款金额：{{returnPrice this.itemPrice this.itemAmount this.returnType this.returnState}}</div>
+
+             <div style="color:#ff8b0e">退换货状态：{{state this.returnType this.returnState}}</div>
+        </div>
+        {{/each}}
+<#--------------------------------------------------------没有商品开始-------------------------------------------------------------------------------------------------------->
+        {{orderMore this}}
+
+        <#--------------------------------------------------------没有商品结束-------------------------------------------------------------------------------------------------------->
+
+    </script>
+
+    <div id="returnContentFill"></div>
+    <script type="text/javascript" src="${resources}/js/lib/date/date.js"></script>
+    </#escape>
+</#macro> 

@@ -1,0 +1,151 @@
+<div class="Related-products-div" dm-container="store-item-categroy-container" ></div>
+<script id="store-item-categroy-tl" type="text/x-handlebars-template">
+	      <h2>店内商品分类</h2>
+	      <div class="category-produce">
+	        <h3><a href="/st/{{storeId}}/search.jhtml?from=store-gd-search&ss=">所有商品</a></h3>
+			{{#each items}}
+			{{#if isShow}}
+	        <dd>
+	          <h4 class="category-produceico"><i>&nbsp;</i>{{name}}</h4>
+	          <p style="display: {{#if @first}}block;{{else}}block;{{/if}}">
+				{{#each subMenu}}
+				{{#if isShow}}
+				<a href="/st/{{storeId}}/search.jhtml?from=store-gd-search&ss=&st-cat={{id}}">{{name}}</a>
+				{{/if}}
+				{{/each}}
+			  </p>
+	        </dd>
+	        {{/if}}
+			{{/each}}
+	      </div>
+</script>
+<script type="text/javascript">
+/** 初始化加载 **/
+(function($){
+	
+	if(!$.dm){
+		$.dm={};
+	};
+	
+	if(!$.dm.widget){
+		$.dm.widget={};
+	};
+	
+	$.dm.widget.storeItemCategroy=function(){
+		
+		var init=function(options){
+			try{
+				// 备用
+				var range = options["range"] || {};
+				// 备用
+				var data = range["rangeData"] || {};
+				// 模板
+				var categroy_tl = $("#store-item-categroy-tl").html();
+				// 将模板编译成handlerbars对象
+				var categroy_template = Handlebars.compile(categroy_tl);
+				// 宝贝分类url
+				var url = "/st/findStoreGoodsCategoryList.ajax";
+				// 请求参数
+				var query = {"storeId":storeId};
+				storeItemCategroyCallServer(url,query,categroy_template,data);
+			}catch(ex){
+				console.log(ex);
+			};
+		}
+		var api={
+			init:init
+		};
+		
+		
+		
+	/**
+	* 点击商品分类时的处理
+	*/
+	var clickItemCategroyMenu = function(){
+		try{
+			// 给商品分类menu添加一个样式
+			// 商品分类
+			$(".category-produce h4").click( function(){
+			$(this).siblings("p").fadeToggle();
+			$(this).toggleClass("category-produceico");
+			});
+		}catch(ex){
+			console.log(ex);
+		}
+	};
+	
+	var storeItemCategroyEditGoodsCategory = function(arrs){
+		try{
+			var menuList = [];
+			var goodsCategoryList = {};
+			// 获取第一层商品分类
+			for(var key in arrs){
+				var menu = arrs[key];
+				menu["subMenu"] = new Array();
+				if(menu["grade"] == "1"){
+					var id = menu["id"];
+					goodsCategoryList[id] = menu;
+				}
+			}
+			// 获取第二层商品分类
+			for(var key in arrs){
+				var subMenu = arrs[key];
+				if(subMenu["grade"] == "2"){
+					var parentId = subMenu["parentId"];
+					if(typeof(goodsCategoryList[parentId]) != "undefined"){
+						goodsCategoryList[parentId]["subMenu"].push(subMenu);
+					}
+				}
+			}
+			// 将对象转换为数组
+			var index = 0;
+			for(var key in goodsCategoryList){
+				var isFirst = "none";
+				if(index == 0){
+					isFirst = "block";
+				}
+				index++;
+				var menu = goodsCategoryList[key];
+				menu["isFirst"] = isFirst;
+				
+				menuList.push(menu);
+			}
+			// 返回编辑好数据
+			return menuList;
+		}catch(ex){
+			console.log(ex);
+		}
+	};
+	
+	var storeItemCategroyCallServer = function(url,query,categroy_template,data,callback){
+		try{
+			var storeId=query.storeId;
+			callService(url,query,{callSuccess:function(result){
+			var menuList = {storeId:storeId,items:[]};
+				if(result["data"] && result["data"].length){
+					menuList.items = storeItemCategroyEditGoodsCategory(result["data"]);
+				}
+				{
+					// 编辑菜单数据
+					// 将模板与数据结合
+					var categroy_html = categroy_template(menuList);
+					// 选择栏位节点
+					var $_categroy = $('[dm-container="store-item-categroy-container"]');
+					// 插入html
+					$_categroy.html(categroy_html);
+					clickItemCategroyMenu();
+					}
+				}
+			});
+		}catch(ex){
+			console.log(ex);
+		}
+	};
+	
+	
+	return api;
+	
+	};	
+})(jQuery);
+</script>
+

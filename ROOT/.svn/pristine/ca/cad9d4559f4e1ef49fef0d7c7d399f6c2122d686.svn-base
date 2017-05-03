@@ -1,0 +1,187 @@
+
+<script type="text/x-handlebars-template" id="template_goods">
+    <div class="promotion-box-gy">
+    {{#each this}}
+        <div class="everyAds">
+            <a href="/fsgd/{{goodsInfo.id}}.jhtml"></a>
+
+            <div class="itemPic">
+                <img src="{{itemInfoList.0.itemPictureList.0.bigPicturePath}}" alt="">
+            </div>
+            <div class="itemName">
+                {{goodsInfo.name}}
+            </div>
+            <div class="itemDescription">
+                {{goodsInfo.description}}
+            </div>
+            <div class="wrap">
+                <div class="priceBox">
+                    <div class="itemPrice" style="color: #efefef">
+                        <span>原价：</span><span style="text-decoration: line-through;">¥{{itemInfoList.0.marketPrice}}</span>
+                    </div>
+                    <div class="itemPrice promotion-price">
+                        <span style="color: #000">{{priceHtml promotionInfo.promotionType}}</span><span style="color: red">¥{{itemInfoList.0.promotionItemForm.itemPromotionUnitPrice}}</span>
+                    </div>
+                </div>
+
+                <div class="buy">
+                    {{btnHtml promotionInfo.promotionType}}
+                </div>
+            </div>
+
+        </div>
+    {{/each}}
+    </div>
+
+    <div id="noData" style="width: 350px;	height: 60px;margin: 0 auto;padding:50px 0;display:none">
+        暂时没有活动商品
+    </div>
+    <div class="promotion-hb-fill"></div>
+    {{orderMore this}}
+</script>
+<script type="text/javascript">      //模板通用js
+$(function(){
+    let num=1;
+    let requestNum=$("#promotion-common").attr("requestnum");
+    if(!requestNum){
+        return
+    }
+
+    getGoodsList();
+    function getGoodsList(pageNum=1){
+        var dateStr = (new Date()).Format("yyyy-MM-dd hh:mm:ss");
+        var request_params = {"activityType": requestNum,"date":dateStr,"pageIndex":pageNum,"pageSize":10};
+        var goodsInfo = $.post("/fsActivity/activityList.ajax", request_params);
+
+        $.when(goodsInfo).done(function (data) {
+            var data = JSON.parse(data);
+            getGoodsListMain(data,pageNum);
+            try {
+                let gy=new countDown()
+                gy.getTimeData()
+            }catch (e){
+               console.log('德玛西亚,不需要时间模板')
+            }
+        });
+    }
+
+    function getGoodsListMain(data,pageNum) {
+        Handlebars.registerHelper({
+            showPrice: function (data) {
+                if (data != undefined && !isNaN(data)) {
+                    return $.ww.formatDecimal(data, 2);
+                } else {
+                    return "请登录";
+                }
+            },
+            deliverTime: function (day,time) {
+                var result = "";
+                if (time) {
+                    time = time.split(":")[0]
+                }
+                else {
+                    result='缺少数据'
+//                    result = "/resources/basepage/store/default/common_img/deliver_time_01.png";
+                }
+                if ("2" == day) {
+                    if (time < 12) {
+                        result = "/resources/basepage/store/default/common_img/deliver_time_01.png";
+                    } else {
+                        result = "/resources/basepage/store/default/common_img/deliver_time_02.png";
+                    }
+                } else if ("3" == day) {
+                    result = "/resources/basepage/store/default/common_img/deliver_time_03.png";
+                }
+                return result;
+            },
+            increases:function(person) {
+                return ++person;
+            },
+            orderMore: function (i) {
+                if(i.length<10&& i.length!=0){
+                    return new Handlebars.SafeString('<div class="orderMore" canClick="false">没有更多了</div>')
+                }
+                else if(i.length==0){
+                    $("#noData").show()
+                }
+                else{
+                    console.log(1)
+                    return  new Handlebars.SafeString('<div class="orderMore" canClick="true">加载更多</div>')
+                }
+            },
+            promotionIcon:function(i){
+                switch (i){
+                    case '01':return '${resources}/basepage/store/default/about_pages/img/m_10.png'              //秒杀
+                    case '02':return '${resources}/basepage/store/default/about_pages/img/m_1.png'               //巨便宜
+                    case '03':return '${resources}/basepage/store/default/about_pages/img/m_7.png'               //免费试吃
+                    case '04':return '${resources}/basepage/store/default/about_pages/img/m_12.png'              //打折
+                    case '05':return '${resources}/basepage/store/default/about_pages/img/m_2.png'               //清仓
+                    case '06':return '${resources}/basepage/store/default/about_pages/img/m_15.png'              //疯抢
+                    case '07':return '${resources}/basepage/store/default/about_pages/img/m_45.png'              //每日爆款
+
+                }
+
+            },
+            priceHtml:function(i){
+                switch (i){
+                    case '01':return '秒杀价：';
+                    case '03':return '试吃价：';
+                    case '06':return '疯抢价：';
+                }
+                return '现价：'
+            },
+            btnHtml:function(i){
+                switch (i){
+                    case '03':return '免费申请';
+                }
+                return '立即抢购'
+            }
+        });
+        var template_goods = $("#template_goods").html();
+        var html = loadHandlebarsTemplate(template_goods, data.dataList);
+        if(pageNum==1){
+            $(".promotion-common-content").html(html);
+        }else{
+            $('.promotion-common-content').append(html)
+        }
+
+        $(".goodsCollect").on("click", favStore);
+        $('.orderMore[canclick="true"]').on('click',orderMore)
+
+
+    }
+    /**加载更多*/
+    function orderMore(){
+        $(this).siblings('.promotion-hb-fill').remove()
+        $(this).siblings('#noData').remove()
+        $(this).remove();
+        num++
+        getGoodsList(num)
+    }
+    /**
+     * 收藏商品事件绑定
+     * Created by WW on 2016/10/12.
+     */
+    function favStore() {
+        var goodsId = $(this).attr("goods_id");
+        var storeId = $(this).attr("store_id");
+        $.ww.getLoginStatus(function () {
+            var success = function (data) {
+                if (data.success) {
+                    jsAlert("收藏成功");
+                } else {
+                    jsAlert(data.message);
+                }
+            };
+            var request = {"goodsId": goodsId, "storeId": storeId};
+            //API:"/fav/addToGdFav.ajax"
+            requestDataWithAJAX("/fav/addToGdFav.ajax", "post", true, {"success": success, data: request});
+        }, function () {
+            location.href = "/toLogin.jhtml";
+        });
+    };
+
+})
+
+
+</script>

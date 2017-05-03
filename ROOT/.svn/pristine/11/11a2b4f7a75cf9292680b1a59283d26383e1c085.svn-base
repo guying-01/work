@@ -1,0 +1,141 @@
+<#-- 加载通用变量定义 -->
+<#include "/common/common_var_definds.ftl" />
+
+<#macro render data>
+    <#escape x as x?html>
+    <style>
+        .search_btn {
+            display: block;
+            width: 1.5rem;
+            height: 0.5rem;
+            line-height: 0.5rem;
+            text-align: center;
+            background: #b32d10;
+            font-size: 0.25rem;
+            margin-left: 2.5rem;
+            margin-top: 0.3rem;
+            color: white;
+        }
+        .backwards {
+          background: url('${resources}/img/common/goBack.png') no-repeat center center;
+          width: 6%;
+          height: 100%;
+          background-size: contain;
+          display:inline-block;
+          margin-left: 0.2rem;
+        }
+        .member-tit {
+          font-size: 0.35rem;
+        }
+        .member-tit span {
+            display: inline-block;
+            font-size: 0.3rem;
+            float: left;
+            width: 80%;
+            text-align: center;
+        }
+        .lh_30 span {
+            font-size: 0.25rem;
+        }
+    </style>
+    <div class="member-list-tab" >
+        <h2 class="member-tit modify" onclick="javascript :history.go(-1);"> <a class="backwards" href="#"></a><i>&nbsp;</i><span>账户明细</span></h2>
+        <div class="bk_change_main">
+            <div class="mes_title lh_30">${(bankName.bankName)!''}</div>
+            <div class="lh_30">交易账户名：${(tranAccName.tranAccName)!''}</div>
+            <div class="lh_30"  id="tranAcc" name="tranAcc" value="${(tranAcc.tranAcc)!''}">
+                交易账号：
+                <span>${(tranAcc.tranAcc)!''}</span>
+            </div>
+            <div class="order-serch">
+                <div>
+                <span>开始时间：</span><input readonly="" style="margin-left: 0.3rem;" class=" text_A laydate-icon dm-no-auto-clear" id="startDate" name="startDate"><div style="clear: both"></div>
+                </div>
+                <div style="margin-top: 0.1rem;">
+                <span>结束时间：</span><input readonly="" style="margin-left: 0.3rem;" class=" text_A laydate-icon dm-no-auto-clear" id="endDate" name="endDate"><div style="clear: both"></div>
+                </div>
+                <a href="javascript:void(0)" class="search_btn" onClick="searchScoreList(1)">
+                    查找
+                </a>
+                <div class="clear"></div>
+            </div>
+
+
+            <div id="scoreData" style="padding-bottom: 1.5rem;">
+              <span class="title"></span>
+	      <div id="returnOrderListTable_processing" class="dataTables_processing" style="display: none;font-size: 0.25rem;font-weight: 600;text-align: center;margin-top: 0.2rem">处理中...</div>
+            </div>
+
+        </div>
+
+        <script>
+        //将字符串转换成日期
+        		!function(){
+                    laydate.skin('yalan');
+                    laydate({elem: '#demo'});
+                }();
+                function convertString2Date(date) {
+                    return new Date(Date.parse(date.replace(/-/g,'/')));
+                }
+                //格式化日期字符串
+                function convertDate2String(date) {
+                    var year=date.getFullYear();
+                    var month=(date.getMonth()+1).toString();
+                    if(month.length<2){
+                        month='0'+month;
+                    }
+                    var day=date.getDate().toString();
+                    var time_str=year+'-'+month+'-'+day;
+                    return time_str;
+                }
+                var start_time = {
+                    elem: '#startDate',
+                    format: 'YYYY-MM-DD',
+                    max: laydate.now(), //最大日期
+                    istime: false,
+                    istoday: false,
+                    choose : function (dates) {
+                        end_time.min = dates;//开始日期选好后，结束日期的最小日期就是开始日期
+                        var new_date = new Date(convertString2Date(dates).valueOf()+86400000*91);
+                        var now_date= new Date(convertString2Date(laydate.now()).valueOf());
+                        if( new_date<=now_date){
+                           end_time.max=convertDate2String(new_date);
+                        }
+                        else{
+                           end_time.max=laydate.now();
+                        }
+                    },
+                    delFunc:function(opts)
+                    {
+                        end_time.min='1000-06-16';
+                        end_time.max=laydate.now();
+                    }
+                };
+                var end_time = {
+                    elem: '#endDate',
+                    format: 'YYYY-MM-DD',
+                    max: laydate.now(),
+                    istime: false,
+                    follow: 'fixed',
+                    istoday: false,
+                    choose: function(dates){
+                        start_time.max=dates;
+                        var new_date = new Date(convertString2Date(dates).valueOf()-86400000*91);
+                        start_time.min=convertDate2String(new_date);
+                    },delFunc:function(opts){
+                        start_time.min='1000-06-16';
+                        start_time.max=laydate.now();
+                    }
+                };
+                laydate(start_time);
+                laydate(end_time);
+
+                $('#scoreData').on('click', '.eachTip em', function () {
+
+             $(this).siblings('.summary').toggle();
+             $(this).siblings('.postScript').toggle();
+           });
+        </script>
+
+    </#escape>
+</#macro>

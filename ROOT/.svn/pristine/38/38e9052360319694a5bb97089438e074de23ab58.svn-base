@@ -1,0 +1,19 @@
+<#-- 加载通用变量定义 -->
+<#include "/common/common_var_definds.ftl" />
+
+<#-- 导入通用模板 -->
+<#import "/common/common_seo_member_template.ftl" as common_member_template  />
+<#import "/common/common_meta.ftl" as common_meta  />
+
+<#-- 导入样式、脚本 -->
+<#import "./fields/field_store_house_link.ftl" as field_store_house_link />
+<#import "./fields/field_store_house_scripts.ftl" as field_store_house_scripts />
+
+<#-- 导入主要内容 -->
+<#import "./fields/field_store_house_mobile.ftl" as field_store_house />
+
+<#-- 调用通用模板 [ 标题  | metas | 链接  | 脚本  | 主要内容  | 页脚  | 数据 | SEO数据  ]-->
+<@common_member_template.render "会员中心我的仓库",[],[field_store_house_link],[field_store_house_scripts],[field_store_house],"address",[],data??,seoForm?? />
+
+<script src="${resources}/js/lib/date/date.js"></script>
+<script src="${resources}/js/lib/date/laydate.js"></script>

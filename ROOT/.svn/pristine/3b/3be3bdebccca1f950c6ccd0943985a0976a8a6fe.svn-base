@@ -1,0 +1,61 @@
+<#include "/common/common_var_definds.ftl" />
+<#macro render>
+<script type="text/javascript" src="${resources}/js/common/activity.js"></script>
+<script type="text/javascript" src="${resources}/js/common/tab.js"></script>
+<script type="text/javascript" src="${resources}/js/shopcart/shopcart.js"></script>
+<script type="text/javascript" src="${resources}/js/shopcart/bottomGoods.js"></script>
+<script type="text/javascript" src="${resources}/js/member/member_api.js"></script>
+<script type="text/javascript" src="${resources}/js/lib/jquery/jquery.blockUI.min.js"></script>
+<script type="text/javascript" src="${resources}/basepage/store/default/common_js/header_shopcar.js"></script>
+<script type="text/javascript">
+	$(document).ready(function () {
+		$(".nav").remove();
+		$(".menu").remove();
+
+        selectradiostyle();// 初始化确认收货信息样式及选中
+        initCheck();
+	});
+	function initCheck(){
+        if($(".order-adress li input[name='default']").size()>0){
+            $(".order-adress li input[name='default']").each(function (idex, item) {
+				if($(item).val()=="1"){
+					$(item).closest("div").find("input[type='radio']").attr("checked","true");
+					return false;
+				}
+            })
+		}
+	}
+	function searchShippingInfo(){
+		var url='${getConstant('constant.POM_SHIPPING_URL')}';
+		var opt={method:'post', target:'_blank'};
+			$.dm.jumpTo(url, {}, opt);
+	}
+    // 初始化确认收货信息样式及选中
+    function selectradiostyle() {
+// <a href="javascript:void(0);" onclick="del()">删除</a><a href="javascript:void(0);" class="cx1" onclick="editAddress()">修改</a><a href="javascript:void(0);" id="setAdress">设为默认</a><div class=" clear"></div></div>
+        var text = ('<div class="order-adress-selected"><h3>配送至：</h3><div class="left"></div>');
+        $(".order-adress li  input").click(function() {
+            if ($(this).parents().parent().hasClass("order-adress-selected")) {
+            } else {
+            	
+                $(this).parents().siblings().children(".order-adress-selected").remove();
+                $(this).parents().siblings().children(".order-adress-list").show();
+                $(this).parents("li").append(text);
+                $(this).parents().children(".order-adress-list").clone().appendTo(".order-adress-selected .left");                
+                $(this).parents().children(".order-adress-list").hide();
+                
+                
+            }
+
+        });
+        $(".useintegral").click(function() {
+            if ($(this).is(':checked')) {
+                $(this).siblings("div").show();
+            } else {
+                $(this).siblings("div").hide();
+            }
+        });
+    }
+</script>
+
+</#macro>

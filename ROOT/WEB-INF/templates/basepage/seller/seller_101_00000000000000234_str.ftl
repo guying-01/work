@@ -1,0 +1,81 @@
+<#--店铺首页-->
+	<#include "/common/common_var_definds.ftl" />
+	<#include "/basepage/store/default/hb_templates/store_hb_templates.ftl" />
+	<#import "/basepage/store/default/common/zizhi_slider.ftl" as zizhi/>
+	<#import "/basepage/store/default/common/dangan_slider.ftl" as dangan/>
+	<!DOCTYPE html>
+	<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>饭饭1080°直采平台</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+		<script type="text/javascript">
+			var deviceWidth = document.documentElement.clientWidth;
+			if(deviceWidth > 768) {
+				deviceWidth = 768;
+			}
+			document.documentElement.style.fontSize = deviceWidth / 6.4 + 'px';
+		</script>
+		<#import "/basepage/store/default/common/common_link.ftl" as link/>
+		<#import "/basepage/store/default/common/common_script.ftl" as script/>
+		<#import "/basepage/store/default/common/common_header_bar.ftl" as header_bar/>
+		<#import "/basepage/store/default/common/common_header_searchbox_default.ftl" as searchBox/>
+		<#import "/basepage/store/default/common/common_footer.ftl" as footerNoTab/>
+		<#import "/basepage/seller/seller_header_search.ftl" as sellerSearch/>
+		<@link.render />
+		<!--导入共通样式-->
+		<@script.render />
+		<!--导入共通脚本-->
+		<link rel="stylesheet" href="${resources}/basepage/seller/css/store.css" type="text/css">
+		<script src="${resources}/basepage/seller/js/store_common_head_load.js"></script>
+        <script src="${resources}/basepage/seller/js/staticStore.js"></script>
+		<script src="${resources}/basepage/seller/js/store_dynamics.js"></script>
+		<script src="${resources}/basepage/seller/js/sp_getAboutImg.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<div id="pageInfo" store_id="${storeId!''}" store_template_code="${storeTemplateCode!''}" page_id="${storeTemplateCode!''}" style="display: none"></div>
+		<!--此处是头部开始-->
+		<div class="top"><@header_bar.render "商铺",""/></div>
+		<!--此处是头部结束-->
+		<!--网页头部&导航开始-->
+		<div id="sp_hd_1"></div>
+		<div id="sp_hd_2"></div>
+		<@sellerSearch.render />
+		<div id="ff_tab_box">
+			<div class="ff_tab_content">
+				<div class="ff-tab-title">
+					<img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /> <span>商家介绍</span>
+				</div>
+				<div class="ff-tab-con-detail">
+        <p>大连久康粮食有限公司拥有中日优质水稻种子研发基地一处，五常鸭稻种植基地一处（种植五常稻花香大米）和丹东种植基地一处（种植日本大米）。公司集优质水稻种子研发、种植、加工、储存、销售为一体，拥有一支专业粮食生产、加工、销售的人才队伍，具有涵盖国内的广泛的营销网络。公司以创建和谐社会为宗旨，以农民增收、客户放心、企业增效为原则，贯穿建设生态农业，提倡国人注重和食用健康食材并逐步开展循环经济加工，生产绿色鸭稻有机米，以“让耕者富有，送食者健康”为经营理念。</p>
+        <p>我公司以黑龙江省五常市久康水稻种植农民专业合作社的20000亩种植基地（其中有机种植土地1020亩）为主，选择优良稻花香二号原种和良种，利用日本的旱植稀育和大米保鲜兼传统的朝鲜族水稻栽培技术，严格按照国际生态有机种植标准及生态鸭稻种植技术进行种植，年产优质五常新华村牌稻花香大米 6000吨（其中有机鸭稻稻谷500吨）。公司在稻谷及大米的加工、运输、仓储、销售各环节中均有专业人员管理，绝对保证了稻花香二号米的纯度。本公司的产品得到了国家绿办主任韩佩鑫的品鉴赞许。</p>
+        <p>公司于2011年初和日本新泻县著名水稻育种专家伊藤正直先生合作，在丹东市东港市前阳镇农民村探索种植日本大米，经过3年对土质、水质、积温等的调查研究及改良，开发出了日料专供寿司大米（新泻美人牌大米），此品牌大米于2013年10月正式投放市场，面对全国高档商超、进口超市和日本料理店进行销售，深受各地代理商和消费者的欢迎。与此同时，我们于2013年12月把新泻美人稻种在辽宁省种子管理局申请注册，给公司将来出售种子配备了合法手续。</p>
+
+
+				</div>
+			</div>
+			<div class="ff_tab_content only_book_content_zizhi">
+				<div class="ff-tab-title">
+					<img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /><span>商家资质</span>
+				</div>
+				<div class="ff-tab-con-detail">
+					<@zizhi.render />
+				</div>
+			</div>
+
+			<div class="ff_tab_content">
+				<div class="ff-tab-title">
+					<img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /> <span>商家活动</span>
+
+				</div>
+				<div class="ff-tab-con-detail">敬请期待</div>
+			</div>
+
+		</div>
+		<@footerNoTab.render />
+	</body>
+
+	</html>

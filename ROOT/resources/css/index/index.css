@@ -1,0 +1,455 @@
+@charset "utf-8";
+/* CSS Document */
+
+.banner {
+	position: relative;
+	z-index: 0;
+	width: 100%;
+	height: 370px;
+	overflow: hidden;
+}
+.newPutGoods {
+	height: 0.7rem;
+}
+.min-banner {
+	width: 100%;
+	height: 370px;
+}
+.min-banner li {
+	display: none;
+	width: 100%;
+	height: 370px;
+	text-align: center;
+}
+.min-banner li  a{ display: block; width:100%; height:100%;}
+.sliderBtn {
+	background: url(../../img/index/sprite.png) no-repeat;
+	cursor: pointer;
+	height: 60px;
+	position: absolute;
+	top: 150px;
+	left: 50%;
+	z-index: 9;
+	width: 0;
+}
+.prev {
+	margin-left: -385px;
+}
+.next {
+	background-position: right top;
+	margin-left: 385px;
+}
+.banner_num {
+	position: absolute;
+	left: auto !important;
+	right: 230px !important;
+	bottom: 10px;
+	width: auto !important;
+	height: 12px;
+	padding: 5px 7px;
+	background: url(../../img/common/pngB.png) repeat;
+	text-align: center;
+	border-radius: 10px;
+}
+.banner_num li {
+	float: left;
+	width: 12px;
+	height: 12px;
+	margin: 0 3px;
+	cursor: pointer;
+	overflow: hidden;
+	background: url(../../img/index/roundness.png) 0 0 no-repeat;
+}
+.banner_num li:hover, .btnListOn {
+	background: url(../../img/index/roundness.png) 0 -13px no-repeat !important;
+}
+.bannerUpAd {
+	width: 1200px;
+	position: relative;
+	height: 0;
+	margin: 0 auto;
+}
+.bannerUpAdImg {
+	position: absolute;
+	top: -370px;
+	right: 0;
+	width: 165px;
+	height: 370px;
+}
+.bannerUpAdImg a, .bannerUpAdImg img {
+	display: block;
+	width: 165px;
+	height: 185px;
+}
+/*推荐产品*/
+.recommend {
+	margin-top: 20px;
+/*	height: 630px;*/
+}
+.recommend .tabT {
+	height: 25px;
+	margin-bottom: 10px;
+	background: #faf2f2;
+	border: solid 1px #fcd8d8;
+}
+.recommend .tabT li {
+	position: relative;
+	width: 200px;
+	float: left;
+	line-height: 25px;
+	text-align: center;
+	font-size: 14px;
+	cursor: pointer;
+	border-right: solid 1px #fcd8d8;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.recommend .tabT .on {
+	background: #f69191;
+	color: #fff;
+}
+.recommend .tabT .on i {
+	display: block;
+	position: absolute;
+	bottom: -8px;
+	left: 92px;
+	width: 0;
+	height: 0;
+	border-left: 8px solid transparent;
+	border-right: 8px solid transparent;
+	border-top: 8px solid #f69191;
+}
+.recommend-produce-div {
+	width: 1200px;
+	height: 590px;
+	overflow: hidden;
+	background: #fff;
+}
+.recommend-produce {
+	position: relative;
+	float: left;
+	width: 198px;
+	height: 293px;
+	border: solid 1px #efefef;
+}
+.recommend-produce:hover {
+	border: solid 1px #f69191;
+}
+.recommend-produce img {
+	display: block;
+	margin: 25px auto 10px auto;
+	width: 140px;
+	height: 140px;
+}
+.recommend-price {
+	position: relative;
+	width: 170px;
+	height: 80px;
+	margin: 0 auto;
+	padding: 5px 0 0 0;
+	line-height: 22px;
+}
+.recommend-price p, .recommend-price p b {
+	color: #c81623;
+}
+.recommend-price p strong {
+	color: #c81623;
+}
+.recommend-price p u {
+	color: #888;
+}
+.recommend-price h3 {
+	height: 40px;
+	margin-bottom: 5px;
+	overflow: hidden;
+	font-weight: lighter;
+	line-height: 20px;
+}
+.recommend-price p {
+	clear: both;
+	height: 25px;
+	line-height: 25px;
+}
+.recommend-price p strong {
+	font-size: 16px;
+}
+.recommend-price p u {
+	font-size: 13px;
+	text-decoration: line-through;
+}
+/*楼层产品*/
+.floor {
+	margin-top: 30px;
+	height: 510px;
+	background: #fff;
+}
+.floor h2 {
+	position: relative;
+	height: 49px;
+	line-height: 24px;
+}
+.floor h2 span {
+	display: block;
+	float: left;
+	font-size: 16px;
+	color: #fff;
+	font-weight: lighter;
+	text-align: center;
+	line-height: 49px;
+	height: 49px;
+	width: 190px;
+}
+.floor h2 .tabT {
+	position: absolute;
+	left: 200px;
+	top: 0;
+}
+.floor h2 .tabT li {
+	position: relative;
+	display: block;
+	float: left;
+	margin: 0 20px;
+	font-weight: lighter;
+	height: 49px;
+	line-height: 49px;
+	cursor: pointer;
+}
+.floor h2 .tabT li.on {
+	font-size: 14px;
+	font-weight: bold;
+}
+.floor h2 .tabT li.on i {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	width: 14px;
+	height: 6px;
+	margin-left: -7px;
+}
+.floor-produce {
+	height: 460px;
+
+}
+/*
+.floor-produceA, .floor-produceA img {
+	float: left;
+	width: 190px;
+	height: 460px;
+}
+*/
+
+.floor-produceA{
+	float: left;
+	width: 190px;
+	height: 460px;
+}
+.floor-produceA img {
+	margin-left:-28px;
+	width: 218px;
+	height: 460px;
+
+}
+
+.floor-produceB, .floor-produceB img {
+	float: left;
+	width: 404px;
+	height: 460px;
+}
+.floor-produceC {
+	float: right;
+	/*width: 606px;*/
+	width: 1010px;
+}
+.floor-produceCimg li img{ width:160px !important; height:188px !important;margin:20px !important;}
+.floor-produceC li {
+	float: left;
+	width: 200px;
+	height: 228px;
+	border: solid 1px #fff3f3;
+}
+.floor-produceC li:hover {
+	border: solid 1px #db0401;
+}
+.floor-produceC li img {
+	display: block;
+	margin: 10px auto 5px auto;
+	width: 120px;
+	height: 120px;
+}
+.floor-produceC li h3 {
+	width: 150px;
+	height: 38px;
+	margin: 0 auto;
+
+	overflow: hidden;
+	line-height: 19px;
+	font-weight: lighter;
+}
+.floor-produceC li h3 a:hover {
+	color: #db0401;
+}
+.floor-produceC li p {
+	width: 150px;
+	height: 20px;
+	margin: 0 auto;
+	padding: 5px 0 0 0;
+	overflow: hidden;
+	line-height: 20px;
+}
+.floor-produceC li p b {
+	font-size: 12px;
+	color: #ca1d3f;
+	font-family: "微软雅黑", "Microsoft Yahei", Arial
+}
+.floor-produceC li p strong {
+	padding-right: 10px;
+	font-size: 16px;
+	color: #ca1d3f;
+}
+.floor-produceC li p u {
+	color: #888;
+	text-decoration: line-through;
+}
+/*1楼*/
+.floor1 h2 {
+	border-bottom: solid 2px #3cb38d;
+}
+.floor1 span {
+	background: url(../../img/index/floor1.png) no-repeat;
+}
+.floor1 h2 .tabT li.on {
+	color: #3cb38d;
+}
+.floor1 h2 .tabT li.on i {
+	background: url(../../img/common/Zico.png) no-repeat 0 -75px;
+}
+/*2楼*/
+.floor2 h2 {
+	border-bottom: solid 2px #883966;
+}
+.floor2 span {
+	background: url(../../img/index/floor2.png) no-repeat;
+}
+.floor2 h2 .tabT li.on {
+	color: #883966;
+}
+.floor2 h2 .tabT li.on i {
+	background: url(../../img/common/Zico.png) no-repeat 0 -100px;
+}
+/*3楼*/
+.floor3 h2 {
+	border-bottom: solid 2px #ff649d;
+}
+.floor3 span {
+	background: url(../../img/index/floor3.png) no-repeat;
+}
+.floor3 h2 .tabT li.on {
+	color: #ff649d;
+}
+.floor3 h2 .tabT li.on i {
+	background: url(../../img/common/Zico.png) no-repeat 0 -124px;
+}
+/*4楼*/
+.floor4 h2 {
+	border-bottom: solid 2px #db6b15;
+}
+.floor4 span {
+	background: url(../../img/index/floor4.png) no-repeat;
+}
+.floor4 h2 .tabT li.on {
+	color: #db6b15;
+}
+.floor4 h2 .tabT li.on i {
+	background: url(../../img/common/Zico.png) no-repeat 0 -159px;
+}
+/*5楼*/
+.floor5 h2 {
+	border-bottom: solid 2px #155970;
+}
+.floor5 span {
+	background: url(../../img/index/floor5.png) no-repeat;
+}
+.floor5 h2 .tabT li.on {
+	color: #155970;
+}
+.floor5 h2 .tabT li.on i {
+	background: url(../../img/common/Zico.png) no-repeat 0 -183px;
+}
+
+/*range6*/
+.hot {
+	position: absolute;
+	top: 10px;
+	left: 0px;
+}
+.hot p {
+	position: relative;
+	float: left;
+	width: 43px;
+	height: 43px;
+	margin-left: 10px;
+}
+.hotA {
+	background: url(../../img/index/r1.png) no-repeat;
+	_background: url(../../img/index/r1.gif) no-repeat;
+}
+.hotB {
+	background: url(../../img/index/r2.png) no-repeat;
+	_background: url(../../img/index/r2.gif) no-repeat;
+}
+.hotC {
+	background: url(../../img/index/r3.png) no-repeat;
+	_background: url(../../img/index/r3.gif) no-repeat;
+}
+.hot i, .hot u {
+	position: absolute;
+	display: block;
+}
+.hot i {
+	top: 6px;
+	left: 8px;
+	color: #fff;
+	font-size: 12px;
+}
+.hot u {
+	top: 18px;
+	left: 23px;
+	font-size: 12px;
+}
+.hotB i {
+	top: 5px;
+	left: 10px;
+	font-size: 14px
+}
+.hotA u {
+	color: #e60012;
+}
+.hotB u {
+	color: #22ac38;
+}
+.hotC u {
+	color: #f39800;
+}
+
+/*品牌推荐*/
+.brand{height:300px;}
+.brand .recommend-produce{height:148px}
+.brand .recommend-produce img{ width:150px; height:110px; margin:20px auto;}
+.brandDiv{position: relative;height:29px; }
+.brandText{position: absolute;
+top: 6px;
+left: 0;}
+.recommend .brandDiv .tabT {
+height: 29px;
+margin-bottom: 0;
+background: none;
+border:none;
+}
+.recommend .brandDiv .tabT  li{float:right;width:150px;line-height:27px;border:none;}
+
+.recommend .brandDiv .tabT .on {
+	background:none;
+border-bottom:solid #222 2px;
+color:#222;
+}

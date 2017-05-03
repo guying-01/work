@@ -1,0 +1,285 @@
+<!--二级页面的Handlebars模板-->
+
+<!--此处是三级类目模板开始 id="category_list"-->
+<script type="text/x-handlebars-template" id="lv2_categoryList_lv3">
+    {{#lv2_eachCategory_lv3 this}}
+    <li><a href="/FSgoodsSearch.jhtml?level1=${level1}&name1=${name1}&level2=${level2}&name2=${name2}&level3={{this.id}}&name3={{this.name}}" title="{{this.name}}">{{this.name}}</a></li>
+    {{/lv2_eachCategory_lv3}}
+</script>
+<!--此处是三级类目模板结束-->
+
+<!--此处是二级页面banner模板 id="hb_lv2_banner"-->
+<script type="text/x-handlebars-template" id="hb_lv2_banner">
+    <div class="ff_banner_banner">
+        {{#each this}}
+        <div class="ff_banner_img_box"><a><img src="{{adsInfo.advertPic}}"></a></div>
+        {{/each}}
+    </div>
+    <div class="ff_banner_nav_box">
+        <div class="ff_banner_nav">
+            <ul class="ff_banner_ul">
+                {{#each this}}
+                <li></li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+    <div class="ff_banner_pre"><</div>
+    <div class="ff_banner_nex">></div>
+</script>
+<!--此处是二级页面banner模板结束-->
+
+<!--此处是二级页面banner下面的模板 id="hb_lv2_banner_bottom_right"-->
+<script type="text/x-handlebars-template" id="hb_lv2_banner_bottom_right">
+    {{#each this}}
+    <div class="ff_banner_img_box_1">
+        <div class="classification_lv1_recommend_right_item"><a><img src="{{ad0.adsInfo.advertPic}}"><span>疯抢晚八点</span></a></div>
+        <div class="classification_lv1_recommend_right_item"><a><img src="{{ad1.adsInfo.advertPic}}"><span>天上掉馅饼</span></a></div>
+        <div class="classification_lv1_recommend_right_item"><a><img src="{{ad2.adsInfo.advertPic}}"><span>365主题活动</span></a></div>
+        <div class="classification_lv1_recommend_right_item"><a><img src="{{ad3.adsInfo.advertPic}}"><span>舌尖上的情人</span></a></div>
+    </div>
+    {{/each}}
+</script>
+<!--此处是二级页面banner下面的模板结束-->
+
+<!--此处是二级页面品牌专区的模板 id="hb_lv2_pinpaizhuanqu"-->
+<script type="text/x-handlebars-template" id="hb_lv2_pinpaizhuanqu">
+    {{#each this}}
+    <div>
+        <a href="#" class="brand_zone_goods">
+            <img src="{{adsInfo.advertPic}}""/>
+            <p class="brand_zone_title">爱氏晨曦（Arla）奶芙奶酪 340g 丹麦22222222222222222.2..</p>
+            <p class="brand_zone_price">￥56.00</p>
+        </a>
+        <a class="brand_zone_add_shopcar">加入购物车</a>
+    </div>
+    {{/each}}
+</script>
+<!--此处是二级页面品牌专区的模板结束-->
+
+<!--此处是二级页面猜你喜欢的模板 id="hb_lv2_cainixihuan"-->
+<script type="text/x-handlebars-template" id="hb_lv2_cainixihuan">
+    {{#each this}}
+    <div>
+        <a href="#" class="brand_zone_goods">
+            <img src="{{adsInfo.advertPic}}""/>
+            <p class="brand_zone_title">爱氏晨曦（Arla）奶芙奶酪 340g 丹麦22222222222222222.2..</p>
+            <p class="brand_zone_price">￥56.00</p>
+        </a>
+        <a class="brand_zone_add_shopcar">加入购物车</a>
+    </div>
+    {{/each}}
+</script>
+<!--此处是二级页面猜你喜欢的模板结束-->
+
+<!--此处是二级页面限时秒杀的模板 id="hb_lv2_xianshimiaosha"-->
+<script type="text/x-handlebars-template" id="hb_lv2_xianshimiaosha">
+    <ul>
+        {{#each this}}
+        <li>
+            <a href="" class="myscrollbox_pic"><img src="{{adsInfo.advertPic}}"/></a>
+            <a href="#" class="scrollpic_title fn_text_overflow">我爱鱼 北海道阿拉斯加大...</a>
+            <a href="#" class="scrollpic_price"><strong>¥</strong>68.00</a>
+            <a class="qianggou">立即抢购</a>
+        </li>
+        {{/each}}
+    </ul>
+</script>
+<!--此处是二级页面限时秒杀的模板结束-->
+
+<!--此处是二级页面本日秒杀的模板 id="hb_lv2_benrimiaosha"-->
+<script type="text/x-handlebars-template" id="hb_lv2_benrimiaosha">
+    <ul>
+        {{#each this}}
+        <li>
+            <a href="" class="myscrollbox_pic"><img src="{{adsInfo.advertPic}}"/></a>
+            <a href="#" class="scrollpic_title fn_text_overflow">我爱鱼 北海道阿拉斯加大...</a>
+            <a href="#" class="scrollpic_price"><strong>¥</strong>68.00</a>
+            <a class="qianggou">立即抢购</a>
+        </li>
+        {{/each}}
+    </ul>
+</script>
+<!--此处是二级页面本日秒杀的模板结束-->
+
+<!--此处是二级页面秒杀下面的模板 id="hb_lv2_miaosha_bottom"-->
+<script type="text/x-handlebars-template" id="hb_lv2_miaosha_bottom">
+    <ul>
+        {{#each this}}
+        <a href="#"><img src="{{adsInfo.advertPic}}"/></a>
+        {{/each}}
+    </ul>
+</script>
+<!--此处是二级页面秒杀下面的模板结束-->
+
+<!--此处是二级页面一楼的模板 id="hb_lv2_f1"-->
+<script type="text/x-handlebars-template" id="hb_lv2_f1">
+    <div class="latest_product_wrap_b1 light">
+        <a href="#"><img src="{{f1.ad0.adsInfo.advertPic}}"/> </a>
+    </div>
+    <div class="latest_product_wrap_b2">
+        <a href="#" class="latest_product2"><img src="{{f1.ad1.adsInfo.advertPic}}"/> </a>
+        <a href="#" class="latest_product2"><img src="{{f1.ad2.adsInfo.advertPic}}"/> </a>
+        <a href="#" class="latest_product2"><img src="{{f1.ad4.adsInfo.advertPic}}"/> </a>
+        <a href="#" class="latest_product3"><img src="{{f1.ad3.adsInfo.advertPic}}"/> </a>
+        <a href="#" class="latest_product2"><img src="{{f1.ad5.adsInfo.advertPic}}"/> </a>
+    </div>
+    <div class="latest_product_wrap_b3">
+        <a href="#" class="latest_product4"><img src="{{f1.ad6.adsInfo.advertPic}}"/> </a>
+        <a href="#" class="latest_product4"><img src="{{f1.ad7.adsInfo.advertPic}}"/> </a>
+        <a href="#" class="latest_product4"><img src="{{f1.ad8.adsInfo.advertPic}}"/> </a>
+    </div>
+</script>
+<!--此处是二级页面一楼的模板结束-->
+
+<!--此处是二级页面二模板 id="hb_lv2_f2"-->
+<script type="text/x-handlebars-template" id="hb_lv2_f2">
+    <div class="latest_product_wrap_b1 light">
+        <a href="#"><img src="{{f2.ad0.adsInfo.advertPic}}"/> </a>
+    </div>
+    <div class="latest_product_wrap_b2 best__seller_b2">
+        <a href="#" class="latest_product2"><img src="{{f2.ad1.adsInfo.advertPic}}"/> </a>
+        <a href="#" class="latest_product2"><img src="{{f2.ad2.adsInfo.advertPic}}"/> </a>
+        <a href="#" class="latest_product2"><img src="{{f2.ad3.adsInfo.advertPic}}"/> </a>
+        <a href="#" class="latest_product2"><img src="{{f2.ad4.adsInfo.advertPic}}"/> </a>
+    </div>
+    <div class="latest_product_wrap_b1 borL0">
+        <a href="#"><img src="{{f2.ad5.adsInfo.advertPic}}"/> </a>
+    </div>
+    <div class="latest_product_wrap_b3">
+        <a href="#" class="latest_product4"><img src="{{f2.ad6.adsInfo.advertPic}}"/> </a>
+        <a href="#" class="latest_product4"><img src="{{f2.ad7.adsInfo.advertPic}}"/> </a>
+        <a href="#" class="latest_product4"><img src="{{f2.ad8.adsInfo.advertPic}}"/> </a>
+    </div>
+</script>
+<!--此处是二级页面二楼的模板结束-->
+
+<!--此处是二级页面三模板 id="hb_lv2_f3"-->
+<script type="text/x-handlebars-template" id="hb_lv2_f3">
+    <div class="latest_product_wrap_b1 light">
+        <a href="#"><img src="{{f3.ad0.adsInfo.advertPic}}"/> </a>
+    </div>
+    <div class="latest_product_wrap_b2">
+
+        <a href="#" class="latest_product3"><img src="{{f3.ad1.adsInfo.advertPic}}"/> </a>
+        <a href="#" class="latest_product2"><img src="{{f3.ad4.adsInfo.advertPic}}"/> </a>
+        <a href="#" class="latest_product2"><img src="{{f3.ad2.adsInfo.advertPic}}"/> </a>
+        <a href="#" class="latest_product2"><img src="{{f3.ad3.adsInfo.advertPic}}"/> </a>
+        <a href="#" class="latest_product2"><img src="{{f3.ad5.adsInfo.advertPic}}"/> </a>
+    </div>
+    <div class="latest_product_wrap_b3">
+        <a href="#" class="latest_product4"><img src="{{f3.ad6.adsInfo.advertPic}}"/> </a>
+        <a href="#" class="latest_product4"><img src="{{f3.ad7.adsInfo.advertPic}}"/> </a>
+        <a href="#" class="latest_product4"><img src="{{f3.ad8.adsInfo.advertPic}}"/> </a>
+    </div>
+</script>
+<!--此处是二级页面三楼的模板结束-->
+
+<!--此处是二级页面四楼模板 id="hb_lv2_f4"-->
+<script type="text/x-handlebars-template" id="hb_lv2_f4">
+    <div class="latest_product_wrap_b1 light">
+        <a href="#"><img src="{{f4.ad0.adsInfo.advertPic}}"/> </a>
+    </div>
+    <div class="latest_product_wrap_b2 best__seller_b3">
+        <a href="#" class="latest_product2"><img src="{{f4.ad1.adsInfo.advertPic}}"/> </a>
+        <a href="#" class="latest_product2"><img src="{{f4.ad2.adsInfo.advertPic}}"/> </a>
+    </div>
+    <div class="latest_product_wrap_b1 borL0">
+        <a href="#"><img src="{{f4.ad3.adsInfo.advertPic}}"/> </a>
+    </div>
+    <div class="latest_product_wrap_b2 best__seller_b3 ">
+        <a href="#" class="latest_product2"><img src="{{f4.ad4.adsInfo.advertPic}}"/> </a>
+        <a href="#" class="latest_product2"><img src="{{f4.ad5.adsInfo.advertPic}}"/> </a>
+    </div>
+    <div class="latest_product_wrap_b3">
+        <a href="#" class="latest_product4"><img src="{{f4.ad6.adsInfo.advertPic}}"/> </a>
+        <a href="#" class="latest_product4"><img src="{{f4.ad7.adsInfo.advertPic}}"/> </a>
+        <a href="#" class="latest_product4"><img src="{{f4.ad8.adsInfo.advertPic}}"/> </a>
+    </div>
+</script>
+<!--此处是二级页面四楼的模板结束-->
+
+<!--此处是二级页面五楼楼模板 id="hb_lv2_f5"-->
+<script type="text/x-handlebars-template" id="hb_lv2_f5">
+    <div class="latest_product_wrap_b1 light">
+        <a href="#"><img src="{{f5.ad0.adsInfo.advertPic}}"/> </a>
+    </div>
+    <div class="latest_product_wrap_b2">
+
+        <a href="#" class="latest_product3"><img src="{{f5.ad1.adsInfo.advertPic}}"/> </a>
+        <a href="#" class="latest_product2"><img src="{{f5.ad4.adsInfo.advertPic}}"/> </a>
+        <a href="#" class="latest_product2"><img src="{{f5.ad2.adsInfo.advertPic}}"/> </a>
+        <a href="#" class="latest_product2"><img src="{{f5.ad3.adsInfo.advertPic}}"/> </a>
+        <a href="#" class="latest_product2"><img src="{{f5.ad5.adsInfo.advertPic}}"/> </a>
+    </div>
+    <div class="latest_product_wrap_b3">
+        <a href="#" class="latest_product4"><img src="{{f5.ad6.adsInfo.advertPic}}"/> </a>
+        <a href="#" class="latest_product4"><img src="{{f5.ad7.adsInfo.advertPic}}"/> </a>
+        <a href="#" class="latest_product4"><img src="{{f5.ad8.adsInfo.advertPic}}"/> </a>
+    </div>
+</script>
+<!--此处是二级页面五楼的模板结束-->
+
+<!--此处是二级页面六楼模板 id="hb_lv2_f6"-->
+<script type="text/x-handlebars-template" id="hb_lv2_f6">
+    <div class="latest_product_wrap_b1 light">
+        <a href="#"><img src="{{f6.ad0.adsInfo.advertPic}}"/> </a>
+    </div>
+    <div class="latest_product_wrap_b2">
+        <a href="#" class="latest_product2"><img src="{{f6.ad1.adsInfo.advertPic}}"/> </a>
+        <a href="#" class="latest_product2"><img src="{{f6.ad2.adsInfo.advertPic}}"/> </a>
+        <a href="#" class="latest_product2"><img src="{{f6.ad4.adsInfo.advertPic}}"/> </a>
+        <a href="#" class="latest_product3"><img src="{{f6.ad3.adsInfo.advertPic}}"/> </a>
+        <a href="#" class="latest_product2"><img src="{{f6.ad5.adsInfo.advertPic}}"/> </a>
+    </div>
+    <div class="latest_product_wrap_b3">
+        <a href="#" class="latest_product4"><img src="{{f6.ad6.adsInfo.advertPic}}"/> </a>
+        <a href="#" class="latest_product4"><img src="{{f6.ad7.adsInfo.advertPic}}"/> </a>
+        <a href="#" class="latest_product4"><img src="{{f6.ad8.adsInfo.advertPic}}"/> </a>
+    </div>
+</script>
+<!--此处是二级页面六楼的模板结束-->
+
+<!--此处是二级页面七楼模板 id="hb_lv2_f7"-->
+<script type="text/x-handlebars-template" id="hb_lv2_f7">
+    <div class="latest_product_wrap_b1 light">
+        <a href="#"><img src="{{f7.ad0.adsInfo.advertPic}}"/> </a>
+    </div>
+    <div class="latest_product_wrap_b2 best__seller_b2">
+        <a href="#" class="latest_product2"><img src="{{f7.ad1.adsInfo.advertPic}}"/> </a>
+        <a href="#" class="latest_product2"><img src="{{f7.ad2.adsInfo.advertPic}}"/> </a>
+        <a href="#" class="latest_product2"><img src="{{f7.ad3.adsInfo.advertPic}}"/> </a>
+        <a href="#" class="latest_product2"><img src="{{f7.ad4.adsInfo.advertPic}}"/> </a>
+    </div>
+    <div class="latest_product_wrap_b1 borL0">
+        <a href="#"><img src="{{f7.ad5.adsInfo.advertPic}}"/> </a>
+    </div>
+    <div class="latest_product_wrap_b3">
+        <a href="#" class="latest_product4"><img src="{{f7.ad6.adsInfo.advertPic}}"/> </a>
+        <a href="#" class="latest_product4"><img src="{{f7.ad7.adsInfo.advertPic}}"/> </a>
+        <a href="#" class="latest_product4"><img src="{{f7.ad8.adsInfo.advertPic}}"/> </a>
+    </div>
+</script>
+<!--此处是二级页面七楼的模板结束-->
+
+<!--此处是二级页面八楼模板 id="hb_lv2_f8"-->
+<script type="text/x-handlebars-template" id="hb_lv2_f8">
+    <div class="latest_product_wrap_b1 light">
+        <a href="#"><img src="{{f8.ad0.adsInfo.advertPic}}"/> </a>
+    </div>
+    <div class="latest_product_wrap_b2 best__seller_b2">
+        <a href="#" class="latest_product2"><img src="{{f8.ad1.adsInfo.advertPic}}"/> </a>
+        <a href="#" class="latest_product2"><img src="{{f8.ad2.adsInfo.advertPic}}"/> </a>
+        <a href="#" class="latest_product2"><img src="{{f8.ad3.adsInfo.advertPic}}"/> </a>
+        <a href="#" class="latest_product2"><img src="{{f8.ad4.adsInfo.advertPic}}"/> </a>
+    </div>
+    <div class="latest_product_wrap_b1 borL0">
+        <a href="#"><img src="{{f8.ad5.adsInfo.advertPic}}"/> </a>
+    </div>
+    <div class="latest_product_wrap_b3">
+        <a href="#" class="latest_product4"><img src="{{f8.ad6.adsInfo.advertPic}}"/> </a>
+        <a href="#" class="latest_product4"><img src="{{f8.ad7.adsInfo.advertPic}}"/> </a>
+        <a href="#" class="latest_product4"><img src="{{f8.ad8.adsInfo.advertPic}}"/> </a>
+    </div>
+</script>
+<!--此处是二级页面八楼的模板结束-->

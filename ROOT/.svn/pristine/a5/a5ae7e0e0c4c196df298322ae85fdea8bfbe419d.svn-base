@@ -1,0 +1,78 @@
+﻿<#include "/common/common_var_definds.ftl" />
+<#macro render>
+<script type="text/javascript" src="${resources}/js/common/pager.js"></script>
+<script type="text/javascript" src="${resources}/js/common/tab.js"></script>
+<script type="text/javascript" src="${resources}/js/lib/jquery/jquery.dataTables.js"></script>
+<script type="text/javascript" src="${resources}/js/lib/jquery/dataTables.bootstrap.js"></script>
+<script type="text/javascript" src="${resources}/js/lib/jquery/dt-operation-commons.js"></script>
+<script type="text/javascript" src="${resources}/js/lib/jquery/jquery.blockUI.min.js"></script> 
+<script type="text/javascript" src="${resources}/js/lib/jquery/jquery.validate.min.js"></script>
+<script type="text/javascript" src="${resources}/js/lib/handlebars/handlebars-v2.0.0.js"></script>
+<script type="text/javascript" src="${resources}/js/lib/plupload/moxie.js"></script>
+<script type="text/javascript" src="${resources}/js/lib/plupload/plupload.dev.js"></script>
+
+<script type="text/javascript" src="${resources}/js/lib/date/laydate.js"></script>
+
+<script type="text/javascript">
+
+var isSendSmsVerificationCode = false;
+var dataTable = null;
+$('document').ready(function() {
+	initDataTable();
+});
+
+function initDataTable(){
+	dataTable = $("#member1Table").DataTable({
+		"stateSave": true,
+		"bPaginage":false,
+		"ajax" : {
+			"url" : "/memberType/findMemberList1.ajax?",
+			"type" : "POST"
+		},
+		"columns" : [
+			{ "data": "headMemberId","bVisible": false},
+      { "data": "headUserCode" ,"class":"userCode"},
+      { "data": "headBuyerName" ,"class":"buyerName"},
+      { "data": "headPassportNo" },
+      { "data": "headMemberType" },
+      { "data": "masterPorterName" },
+      { "data": "masterPorterMobile" },
+      { "data": "masterPorterTelephone" },
+      { "data": "address" }
+		],
+		"fnDrawCallback" : function() {
+			$('.dataTables_info').css('margin-left', '15px');
+			$('.dataTables_length').css('margin-left', '10px');
+			$('.dataTables_length').css('margin-top', '10px');
+			$("#member1Table_wrapper div[class='bottom']").hide();
+		}
+	});
+	
+	
+	
+	
+	dataTable = $("#member2Table").DataTable({
+		"stateSave": true,
+		"ajax" : {
+			"url" : "/memberType/findMemberList2.ajax?",
+			"type" : "POST"
+		},
+		"columns" : [
+		  { "data": "branchUserCode" ,"class":"buyerName"},
+		  { "data": "branchBuyerName" },
+		  { "data": "branchPassportNo" },
+		  { "data": "branchMemberType" },
+		  { "data": "masterPorterName" },
+		  { "data": "masterPorterMobile" },
+		  { "data": "masterPorterTelephone" },
+		  { "data": "address" }
+		],
+		"fnDrawCallback" : function() {
+			$('.dataTables_info').css('margin-left', '15px');
+			$('.dataTables_length').css('margin-left', '10px');
+			$('.dataTables_length').css('margin-top', '10px');
+		}
+	});
+}
+</script>
+</#macro>

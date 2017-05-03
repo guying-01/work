@@ -1,0 +1,417 @@
+<#include "/common/common_var_definds.ftl" />
+<#import "/basepage/store/default/common/common_scroll_top.ftl" as scrollTop/>
+<#macro render data>
+<#escape x as x?html>
+<style>
+    .time span {
+        float: left;
+        font-size: 0.2rem;
+        height: 0.45rem;
+        width: 0.45rem;
+        display: block;
+        margin-right: 0.5rem;
+    }
+</style>
+<@scrollTop.render />
+<#-------------------------------------------------------------------------订单页面开始----------------------------------------------------------------------->
+<div class="line"></div>
+<div class="wrapper">
+	<div class="submit_order_t">
+		<a onclick="window.history.go(-1)"></a>
+		<span>提交订单</span>
+	</div>
+	<div class="line"></div>
+  <h2 class="titH">
+ <#--   <a href="javascript:void(0);" class="m-t-10 font-color-c" onclick="toAddress()">管理收货地址</a>-->
+  确认收货信息</h2>
+  <#-----------------------------------------------------------确认收货信息<div class="order">开始------------------------------------------------------------------------------------>    
+  <div class="order">
+    <ul class="order-adress">
+      <#-------------------------------------------选中状态------------------------------------------->
+      <#if memberAddressFormList?? &&memberAddressFormList?size gt 0><#--如果有收货地址-->
+                      <input type="hidden" name="addressId" id="addressId" value="${memberAddressFormList[0].id}" />
+                      <#list memberAddressFormList as items>
+                          <#if items.isDefault==1><#--如果是默认地址-->
+                              <li id="li_${items.id}">
+                                    <div class="order-adress-selected">
+                                          <h3>配送至：</h3>
+                                          <div class="left">
+                                              <div class="order-adress-list">
+                                              <input type="hidden" name="default" value="${items.isDefault}"/>
+                                              <input type="hidden" id="hid" value="0"/>
+                                              <input type="hidden" id="telephone_${items.id}" value="${items.telephone!}"/>
+                                              <input type="hidden" id="modifyDate_${items.id}" value="${items.modifyDate!}"/>
+                                              <input type="hidden" class="memberId" value="${items.memberId!}"/>
+                                              <input name="RadioGroup1"  type="radio" id="RadioGroup1_0" value="${items.id}" checked="checked" 
+                                               onclick="addressCheck('${items.id}','${items.provinceName}','${items.cityName}','${items.areaName}','${items.address}',
+                                                    '${items.consignee}','${items.telephone!}','${items.mobile}')" dm-actor="defaultadress"/>
+                                                <#if Session.user.memberType?? && Session.user.memberType=="member_master">
+                                                    <span id="span_${items.id}" name="span_${items.id}">
+                                                    	<p><b>饭饭身份码：</b> ${items.odPassportNo!''}</p>
+                                                    	
+										           <p><b>店名：</b>${items.odBuyerName!''}</p>
+										           <p><b style="float: left;width: 14%">地址：</b> <b style="float: left;width: 86%;font-size: 0.24rem;">${items.provinceName}&nbsp;${items.cityName}&nbsp;${items.areaName}&nbsp;${items.address}</b></p>
+                                                    <p><b>收货人:</b><span style="float: right;width: 76%;margin: 0;font-weight: bold;">${items.consignee}</span></p>
+                                                    <p><b>联系电话：</b><#if items.mobile?? && items.mobile!=''>
+                                                        ${items.mobile}
+                                                        <#else>
+                                                        ${items.telephone}
+                                                        </#if>
+                                                    </p>
+                                                    <#-- <b>默认地址</b> -->
+                                                      </span>
+                                                <#else >
+                                                    <span id="span_${items.id}">
+                                                    	<p><b style="float: left;width: 14%">地址：</b><b style="float: left;width: 86%">${items.provinceName}&nbsp;${items.cityName}&nbsp;${items.areaName}&nbsp;${items.address}(${items.consignee}收)</b></p>
+                                                    	<p><b>联系人：</b><span style="float: right;width: 76%;margin: 0;font-weight: bold;">${items.consignee}</span></p>
+                                                       <p><b>联系电话：</b><#if items.mobile?? && items.mobile!=''>
+                                                        ${items.mobile}
+                                                        <#else>
+                                                        ${items.telephone}
+                                                        </#if></p>
+                                                    <#-- <b>默认地址</b>
+    -->                                               </span>
+                                                </#if>
+
+                                              </div>
+                                          </div>
+                                          <#-- <a href="javascript:void(0);" onclick="del()">删除</a>
+                                          <a href="javascript:void(0);" onclick="editAddress()" class="cx1">修改</a>
+                                           -->
+                                          <div class=" clear"></div>
+                                    </div>
+                                    <div class="order-adress-list none" id="${items.id}">
+                                      <input type="hidden" name="default" value="${items.isDefault}"/>
+                                      <input type="hidden" id="telephone_${items.id}" value="${items.telephone!}"/>
+                                      <input type="hidden" id="modifyDate_${items.id}" value="${items.modifyDate!}"/>
+                                      <input type="hidden" id="memberId" value="${items.memberId!}"/>
+                                      <input name="RadioGroup1" type="radio" id="RadioGroup1_0" value="${items.id}" onclick="addressCheck('${items.id}','${items.provinceName}',
+                                      '${items.cityName}','${items.areaName}','${items.address}','${items.consignee}','${items.telephone!}','${items.mobile}','1')"/>
+                                        <#if Session.user.memberType?? && Session.user.memberType=="member_master">
+                                            <span id="span_${items.id}" name="span_${items.id}">
+										          <p><b>饭饭身份码：</b> ${items.odPassportNo!''}</p>
+                                                    	
+										           <p><b>店名：</b>${items.odBuyerName!''}</p>
+										           <p><b style="float: left;width: 14%">地址：</b> <b style="float: left;width: 86%">${items.provinceName}&nbsp;${items.cityName}&nbsp;${items.areaName}&nbsp;${items.address}</b></p>
+                                                    <p><b>收货人:</b>${items.consignee}</p>
+                                                    <p><b>联系电话：</b><#if items.mobile?? && items.mobile!=''>
+                                                        ${items.mobile}
+                                                        <#else>
+                                                        ${items.telephone}
+                                                        </#if></p>
+                                            <#-- <b>默认地址</b> -->
+                                                      </span>
+                                        <#else >
+                                                <span id="span_${items.id}" name="span_${items.id}">
+                                             <p><b style="float: left;width: 14%">地址：</b><b style="float: left;width: 86%">${items.provinceName}&nbsp;${items.cityName}&nbsp;${items.areaName}&nbsp;${items.address}</b></p>
+                                                    	<p><b>联系人：${items.consignee}</b></p>
+                                                       <p><b>联系电话：</b><#if items.mobile?? && items.mobile!=''>
+                                                        ${items.mobile}
+                                                        <#else>
+                                                        ${items.telephone}
+                                                        </#if></p>
+                                              <#-- <b>默认地址</b> -->
+                                                </span>
+                                        </#if>
+
+                                    </div>
+                              </li>
+       <#----------------------------------------------非选中状态------------------------------------------->
+                          <#else><#--如果不是默认地址-->          
+                          <li id="li_${items.id}">
+                              <div class="order-adress-list " id="${items.id}">
+                                  <input type="hidden" name="default" value="${items.isDefault}"/>
+                                  <input type="hidden" id="telephone_${items.id}" value="${items.telephone!}"/>
+                                  <input type="hidden" id="modifyDate_${items.id}" value="${items.modifyDate!}"/>
+                                  <input type="hidden" class="memberId" value="${items.memberId!}"/>
+                                  <input type="radio" name="RadioGroup1" value="${items.id}" id="RadioGroup1_1" onclick="addressCheck('${items.id}','${items.provinceName}',
+                                  '${items.cityName}','${items.areaName}','${items.address}','${items.consignee}','${items.telephone!}','${items.mobile}','0')" dm-actor="notdefaultadress"/>
+                                  <#if Session.user.memberType?? && Session.user.memberType=="member_master">
+                                      <span id="span_${items.id}" name="span_${items.id}">
+										           <p><b>饭饭身份码：</b> ${items.odPassportNo!''}</p>
+                                                    	
+										           <p><b>店名：</b>${items.odBuyerName!''}</p>
+										           <p><b style="float: left;width: 14%">地址：</b> <b style="float: left;width: 86%">${items.provinceName}&nbsp;${items.cityName}&nbsp;${items.areaName}&nbsp;${items.address}</b></p>
+                                                    <p><b>收货人:</b>${items.consignee}</p>
+                                                    <p><b>联系电话：</b><#if items.mobile?? && items.mobile!=''>
+                                                        ${items.mobile}
+                                                        <#else>
+                                                        ${items.telephone}
+                                                        </#if></p>
+                                      <#-- <b>默认地址</b> -->
+                                                      </span>
+                                  <#else >
+                                      <span id="span_${items.id}" name="span_${items.id}"><p><b style="float: left;width: 14%">地址：</b><b style="float: left;width: 86%">${items.provinceName}&nbsp;${items.cityName}&nbsp;${items.areaName}&nbsp;${items.address}</b></p>
+                                                    	<p><b>联系人：${items.consignee}</b></p>
+                                                       <p><b>联系电话：</b><#if items.mobile?? && items.mobile!=''>
+                                                        ${items.mobile}
+                                                        <#else>
+                                                        ${items.telephone}
+                                                        </#if></p>
+                                     </span>
+                                  </#if>
+
+                              </div>
+                          </li>
+                          </#if>
+                      </#list>
+      <#else><#--否则，没有收货地址-->
+                      <input type="hidden" name="addressId" id="addressId" value="" />
+      </#if>
+      <#--------------------------------------------使用其他新地址---------------------------------------->
+      <#--<li>
+        <div class="order-adress-list">
+            <a href="javascript:void(0)" onclick="useOtherAddress()" class="cx1">使用其他新地址</a>
+        </div>
+      </li>-->
+      <#------------------------------------------------------------------------------------------------->
+    </ul>
+  </div>
+
+<div class="fenge"></div>
+<#------------------------------------------------------确认收货信息结束------------------------------------------------------------>
+<h2 class="titH">确认商品信息</h2>  
+<#------------------------------------------------------确认商品信息开始开始-------------------------------------------------------------------------------->  
+
+<#-----------------------------------------------------------同一家店铺开始------------------------------------------------------------------------------------------->
+<#if shopCartInfoFormmap?size gt 0>
+<input type="hidden" id="immediately" value="${(immediately!)?string('yes', 'no')!''}" />
+<#list shopCartInfoFormmap?keys as mKey >
+    <#assign shopCartInfoFormmapitem = shopCartInfoFormmap[mKey]>
+   <#--  <#assign freightitem = freightmap[mKey]> -->
+    <div class="table-tit  table_bgA">
+       <a class="store_info" href="/fsst/${shopCartInfoFormmapitem[0].sgGoodsForm.storeId!}/top.jhtml"> <span>店铺：</span><span class="store_word"  >${shopCartInfoFormmapitem[0].sgGoodsForm.storeName!}</span></a><#--店铺名称-->
+        <input type="hidden" id="storeId" value="${shopCartInfoFormmapitem[0].sgGoodsForm.storeId!}"/>
+        <input type="hidden" id="storeName" value="${shopCartInfoFormmapitem[0].sgGoodsForm.storeName!}"/>
+        <!--<a href="javascript:QQtalk('1739073619');" class=" consulting left m-l-10 m-t-5" dm-actor="webim-store" dm-data="${shopCartInfoFormmapitem[0].sgShopcartForm.customerName!}">&nbsp;</a>-->
+    </div>
+    <#--------------------------------------------------商品+留言开始------------------------------------------------->
+    <div class="order-tab">
+       <#-------------------------------------------------一件商品开始------------------------------------------------->
+       <#list shopCartInfoFormmapitem as itemValue>
+          <div class="table-produce" id="div_${itemValue.sgShopcartForm.id!''}">
+          	    <input type="hidden" id="shopcar_${itemValue_index}" value="${mKey!''}"></input>
+                <input type="hidden" id="shopCartId" name="shopCartId" value="${itemValue.sgShopcartForm.id!''}"></input>
+                <input id="goodsId" type="hidden" value="${itemValue.sgGoodsForm.id}"></input>
+                <input type="hidden" id="amount"  value="${itemValue.sgShopcartForm.amount!''}"></input>
+                <input type="hidden" id="itemId"  value="${itemValue.sgItemForm.id!''}"></input>
+                <input type="hidden" id="goodsName"  value="${itemValue.sgGoodsForm.name!''}"></input>
+                <input type="hidden" id="itemName"  value="${itemValue.sgItemForm.name!'测试'}"></input>
+                <div class="order_submit_goods_info_top">
+
+	                <div class="line"></div>
+                	<div class="order_submit_goods_pic" >
+                    <span>
+                        <a href="${ctx}/fsgd/${itemValue.sgGoodsForm.id}.jhtml">
+                                    <#if itemValue.sgItemPictureForm?? >
+                                    <input type="hidden" id="pic"  value="${itemValue.sgItemPictureForm.smallPicturePath!}"></input>
+                                        <img src="${itemValue.sgItemPictureForm.smallPicturePath!}" />
+                                    <#else>
+                                        <img src="" />
+                                    </#if>
+                        </a>
+                    </span>
+                    <span href="${ctx}/fsgd/${itemValue.sgGoodsForm.id}.jhtml" class="goods_name">${itemValue.sgGoodsForm.name!''}</span>
+                    <#if itemValue.sgItemForm.name==itemValue.sgGoodsForm.name>
+                    <span style="word-break: break-all;" class="goods_guige">
+                        ${(itemValue.sgItemForm.name!'')?replace(itemValue.sgGoodsForm.name!'','无','f')}
+                    </span>
+                    <#else>
+                    <span style="word-break: break-all;" class="goods_guige">
+                         ${(itemValue.sgItemForm.name!'')?replace(itemValue.sgGoodsForm.name!'','','f')}
+                    </span>
+                    </#if>
+
+                    	<p class="price_num">
+                    <span  class=" ">单价：${(itemValue.sgItemPriceForm.salesPrice!0)?string("0.00")}</span><#--单价-->
+                    <span  class="num">数量：${itemValue.sgShopcartForm.amount!''}</span><#--数量-->
+                    	</p>
+                </div>
+
+               
+                </div>
+                <a class="order_submit_goods_info_bottom" href="${ctx}/fsgd/${itemValue.sgGoodsForm.id}.jhtml">
+                
+
+                
+                
+                
+                
+                   <#-- <span  class=" " title="${itemValue.sgItemForm.name!'测试'}">${itemValue.sgItemForm.name!'测试'}</span>规格-->
+                  <#--   <#if promotionTypeMap?size gt 0>
+	                    <#if promotionTypeMap[itemValue.sgItemForm.id+itemValue.sgShopcartForm.combId]??>
+	                    	<#assign promotionTypeItem = promotionTypeMap[itemValue.sgItemForm.id+itemValue.sgShopcartForm.combId]>
+	                    	<span  class=" ">${promotionTypeItem!}</span>
+	                    <#else>
+	                    	<span  class=" ">&nbsp</span>
+	                    </#if>
+	                
+	                <#else>
+	                	<span  class=" ">&nbsp</span>
+                    </#if> --><#--参与促销-->
+                   
+                    <#-- <#if activitySaleMap?size gt 0>
+                    	<div class="xiaoji"> 小计（元）：<span  class=" " numprice=${mKey_index}>${(activitySaleMap[itemValue.sgItemForm.id+itemValue.sgShopcartForm.combId]!(itemValue.sgItemPriceForm.salesPrice*itemValue.sgShopcartForm.amount!0))?string("0.00")}</span></div>
+                   
+                    <#else>	
+                    	<div class="xiaoji">     小计（元）： <span  class=" " numprice=${mKey_index}>${(itemValue.sgItemPriceForm.salesPrice*itemValue.sgShopcartForm.amount!0)?string("0.00")}</span></div>
+                
+                    </#if> -->
+                    <div class="xiaoji">小计（元）：<span  class=" " numprice=${mKey_index}>${(itemValue.sgItemPriceForm.salesPrice*itemValue.sgShopcartForm.amount!0)?string("0.00")}</span></div>
+                       <div class="time">
+                          <span>
+                          <#switch itemValue.sgItemTimeForm.prepareDatePicType!''>
+                              <#case 'prepare_date_pic_type_2_am'>
+                                  <img src="/resources/basepage/store/default/common_img/deliver_time_01.png" style="height: 100%;">
+                                  <#break>
+                              <#case 'prepare_date_pic_type_2_pm'>
+                                  <img src="/resources/basepage/store/default/common_img/deliver_time_02.png" style="height: 100%;">
+                                  <#break>
+                              <#case 'prepare_date_pic_type_3'>
+                                  <img src="/resources/basepage/store/default/common_img/deliver_time_03.png" style="height: 100%;">
+                                  <#break>
+                          </#switch>
+                          </span>
+                       </div>
+                    </a>
+          </div>
+       
+       </#list>
+       <div class="line"></div>
+		                <div class="order-sum">
+                    <ul>
+                   <#--  <#if spCouponIssueFormListMap?? && spCouponIssueFormListMap?size gt 0>
+                        <#if spCouponIssueFormListMap[mKey]??>
+                        <#assign spCouponIssueFormListMapitem = spCouponIssueFormListMap[mKey]>
+                            
+                            <li><span>店铺优惠券：（元）：</span>
+                                <select id="coupon_${mKey!}" onchange="changCoupon(this)" class="m-r-10">
+                                    <option value="">无优惠</option>
+                                    <#list spCouponIssueFormListMapitem as spCouponIssueFormitem>
+                                        <option value="${spCouponIssueFormitem.couponId!''}" dm-couponType="${spCouponIssueFormitem.couponType!''}" }>${spCouponIssueFormitem.couponName!''}</option>
+                                    </#list>
+                                </select>
+                                <strong id="couponSale_${mKey!}"></strong>
+                            </li>
+                             
+                        </#if>
+                        </#if>-->
+                        <#-- <#if adminSpCouponIssueFormListMap?? && adminSpCouponIssueFormListMap?size gt 0>
+                        <#if adminSpCouponIssueFormListMap[mKey]??>
+                        <#assign adminSpCouponIssueFormListMapitem = adminSpCouponIssueFormListMap[mKey]>
+                        <input type="hidden" value="" id="adminCouponSale"></input>
+                            <li><span>平台优惠券：（元）：</span>
+                                <select id="adminCoupon_${mKey!}" data-value="" onchange="changAdminCoupon(this)" class="m-r-10">
+                                    <option value="">无优惠</option>
+                                    <#list adminSpCouponIssueFormListMapitem as adminSpCouponIssueFormitem>
+                                        <option value="${adminSpCouponIssueFormitem.couponId!''}" dm-index="${adminSpCouponIssueFormitem.couponId!''}_${mKey!}" dm-couponType="${adminSpCouponIssueFormitem.couponType!''}" }>${adminSpCouponIssueFormitem.couponName!''}</option>
+                                    </#list>
+                                </select>
+                                <input type="hidden" id="adminCouponOldSale_${mKey!}" value="">
+                                <strong id="adminCouponSale_${mKey!}"></strong>
+                            </li>
+                             
+                        </#if>
+                        </#if>-->
+                        
+                       <#--   <#if activitySale02Map?? && activitySale02Map?size gt 0>
+                        <#if activitySale02Map[mKey]??>
+                        <#assign activitySale02Mapitem = activitySale02Map[mKey]>
+                        	<#if activitySale02Mapitem!=0>
+                        	<li><span>满减（元）：</span><strong id="activitySale02_${mKey!}" >-${(activitySale02Mapitem!0)?string("0.00")}</strong></li>
+                        	</#if>
+                        </#if>
+                        </#if>-->
+                        <li><span>商品合计（元）：</span><strong id="shopgoods_${mKey!}" class="font-color-d" shopindex=${mKey_index}></strong></li>
+                       <#--  <li><span>配送运费（元）：</span><strong id="freight_${mKey!}" name="shipMoney">${(freightitem!0)?string("0.00")}</strong></li> 
+                        <li><span>合计（元）：        </span><strong id="shopamount_${mKey!}" class="font-color-d"></strong></li>-->
+                    </ul>
+                </div>
+               
+       <!-- 发票stat-->
+               <#--     <div class="invoice">
+                 <input type="radio" name="invoice_${mKey!}" onclick="selectinvoice('0','${mKey!}')" value="" checked="checked"   >
+                 <span>无需发票</span>
+                 <input type="radio" name="invoice_${mKey!}" id="isInvoice_${mKey!}" onclick="selectinvoice('1','${mKey!}')" value=""    >
+                  <span>开发票</span>
+      			</div>
+      			 <div class="information-line m-l-10" style=" display:none" id="invoice_message_${mKey!}">
+      			 <select id="invoice_${mKey!}"  class="m-r-10">
+                                    <option value="1">个人</option>
+                                    <option value="2">单位</option>
+                   </select>
+                   	发票抬头
+                   <span >
+                    <input  style=" width:190px;border:2px solid #e1e1e1" name="tittle_invoice_${mKey!}" id="tittle_invoice_${mKey!}"></input>
+                	</span>
+      			 </div> -->
+		      <!-- 发票end-->
+       <#--------------------------------------------------一件商品结束------------------------------------------------->
+       <#--------------------------------------------------卖家留言开始------------------------------------------------->
+          <div class="table-message ">
+                <p class="left"><span>给商家留言：</span></p>
+ <span class="left">
+                    <textarea name="memo" id="memo_${mKey!}"  
+                    onKeyUp="$(this).parent().find('#countCsg').text(200-$(this).val().length)" 
+                    maxlength="200" class=" textarea_A left" style=""></textarea>
+                    <em id="reviwerEm" class="font-color-e left" style="">还可输入<span id="countCsg">200</span>字</em>
+                </span>
+                <div style="clear:both"></div>
+         </div>
+       <#--------------------------------------------------卖家留言结束------------------------------------------------->
+    </div>
+     <div class="fenge"></div>
+      <#--------------------------------------------------商品+留言结束------------------------------------------------->
+
+    <input type="hidden"  id="isGoodsNameHide_${mKey!}" name="isGoodsNameHide" value="1"/>
+<#---------------------------------------------------------同一家店铺结束------------------------------------------------------------------------------------------->       
+    <#-- <div class="display-name">
+          <input name="${mKey!}" type="checkbox" class="left" onclick="up(this)" checked />
+          <p class="left">匿名购买</p>
+    </div> 
+     -->    
+</div>
+</#list>
+</#if>
+<#------------------------------------------------------确认商品信息结束-------------------------------------------------------------------------------->
+<input type="hidden" id="adminCouponVal" value="0"></input>
+<#-- 使用积分商城 <form id="pointsForm" style="z-index:-1">
+<div class="use-integral" style="position: relative;; z-index:100">
+  <div class="none1" style="display: none;"><strong id="point" class="font-color-d">0.00</strong><span class="font-color-e">(可用<u id="avaliblepoint" allPoints = "${points!'0'}" class="font-color-e">${points!'0'}</u>分)</span> <span>分</span>
+    <input id="inputpoint" name="inputpoint" type="text" class=" text_A width40">
+    <input type="hidden" id="pointsSales" value="${pointsSales!'200'}">
+  </div>
+  <span>使用商城积分</span>
+  <input id="pointcheck" name="pointcheck" type="checkbox" value="" class="m-t-10 useintegral">
+</div>
+</form>
+积分商城结束-->
+<div class=" ">
+        <!--<div class="order-infomation m-0">
+            <p><strong>配送至：</strong><span id="shdz"></span></p>
+            <p><strong>收货人：</strong><span id="shr"></span></p>
+            <input type="hidden" id="pointsRatio" value="${pointsRatio!'1'}">
+        </div>
+        <div class="clear"></div>-->
+        <div class="order_real_pay_box">
+
+        <#if Session.user.memberType ?? && Session.user.memberType=="member_servant">
+            <a href="javascript:void(0);" class="ff_button_unc right"  >提交订单</a>
+        <#else >
+            <a href="javascript:void(0);" class="big-button right" businessed=${businessed?c} >提交订单</a>
+        </#if>
+        <div class="order_real_pay"><strong>订单实付（元）：</strong><b class=" font-color-d" id="sumOrderSalesPrice" money="97.80">97.80</b></div>
+        </div>
+
+
+        <div class="clear"></div>
+        <div class="mes_tib"></div>
+        <div style="height: 0.7rem;"></div>
+    </div>
+</div>
+<#---------------------------------------------------------------修改地址遮罩-------------------------------------------------------------------->
+
+
+<#---------------------------------------------------------------------------------------------------------------------------------------------->
+</#escape>
+</#macro>

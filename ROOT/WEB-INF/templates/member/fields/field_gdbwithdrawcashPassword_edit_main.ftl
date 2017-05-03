@@ -1,0 +1,55 @@
+<#include "/common/common_var_definds.ftl" />
+<#macro render data>
+	<#escape x as x?html>
+	  <div class="cash-collection" >
+		 <h2 class="member-tit cashTitle" onclick="javascript :history.go(-1);"> <i></i><a class="goBack" href="javascript:void(0);" ></a>提现密码</h2>
+		 <form action="${ctx}/cash_gdb/modifyCashAccountPasswordPage.jhtml" method="post" id="modifyPasswordForm" onkeydown="if(event.keyCode==13)$('#btnSubmit').click();"  autocomplete="off">
+         <input type="hidden" id="memberId" name="memberId" <#if memberForm??> value="${memberForm.id!''}"</#if>/>
+         <input type="hidden" id="mobile" name="mobile" value="${mobileNumber!''}" />
+         <input type="hidden" id="userCode" name="userCode" <#if memberForm??>value="${memberForm.userCode!''}" </#if>/>
+         
+         <div class="cash-add cashBox cashBox1">
+          	
+          	<div class="cash-add">
+          		
+          		<span><i class="font-color"> * </i>新密码：</span>
+          		<input type="hidden" id="newPwd" name="newPwd" />
+	        	<input type="password" class=" text_A laydate-icon dm-no-auto-clear errorwrong" style="float:left;margin-left:10px;width:150px;" id="withDrawPwd" placeholder="请输入密码" maxlength="16"" name="withDrawPwd" onkeyup="pwdStrongCheck(this.value);"/>
+	        	 <div id="pwdStren3" class="bg_red" style="display:none;">密码强度：强</div>
+          		 <div id="pwdStren2" class="bg_yellow" style="display:none;">密码强度：中</div>
+          		 <div id="pwdStren1" class="bg_green" style="display:none;">密码强度：弱</div>
+          		 <div id="pwdrule" style="clear:both;height:10px;padding-top:3px;display:none; ">
+            	   </div>
+	        </div>
+          	<div class="cash-add">
+          		<span class="mod-password"><i class="font-color"> * </i>重新输入密码：</span>
+	        	<input type="password" class=" text_A laydate-icon dm-no-auto-clear errorwrong" style="float:left; maxlength="16" placeholder="请再次输入密码" id="withDrawPwdConfirm" name="withDrawPwdConfirm" />
+	        	 
+	        </div>
+	        <div class="cash-add">
+          		<span style="float:left;font:bold; " > 手机号码： </span>
+          		<span style="float:left;font:bold;" class="phoneNum"> ${mobile!''}
+          		</span>
+          		<a href="javascript:void(0);" id="send_message" class="small-button " >发送验证码</a>
+	        	
+                <em></em>
+                
+                <div id="send_failed" class="message-info" style="color:red;display:none;" >发送失败，请重试</div>
+	            <div id="send_timeout" class="message-info" style="color:red;display:none;" >请等待一分钟后发送您的请求</div>
+            	<div class="loginError" id="message_info" style="display:none;"> <span style="float:left;">验证码已发出，请注意查收短信，如果没有收到，您可以在</span><span class="font-color-b" style="float:left;" id="second"> 60 </span> <span style="float:left;" >秒后要求系统重新发送 </span></div>
+            </div>
+            <div class="cash-add">
+          		 <span><i class="font-color"> * </i>验证码：</span>
+	        	<input id="passwordVerify" name="passwordVerify" class="text_A left width150 dm-no-auto-clear" value="" style="float:left;" maxlength="10" placeholder="请输入验证码" type="text"/>
+	        </div>
+	        
+            <div class="cash-add">
+	        	<a href="javascript:void(0);" onclick="modifyAccountPassword();" id='btnSubmit' class="small-button">确定</a>
+	  		</div>
+	  		
+	        </div>
+	    
+           </form>
+         </div> 
+	</#escape>
+</#macro> 

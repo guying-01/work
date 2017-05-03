@@ -1,0 +1,63 @@
+<script type="text/x-handlebars-template" id="template_goods">
+    {{#each this}}
+    <div class="contentRight-List">
+        <div class="contentRight-List-Left">
+            <div class="contentRight-List-img">
+                <a href="/fsgd/{{goodsInfo.id}}.jhtml?fromPage=promotion"  class="item_pic" title="{{goodsInfo.name}}">
+                    <img class="lazy" src="{{itemInfoList.[0].itemPictureList.[0].bigPicturePath}}" alt="{{goodsInfo.name}}"/>
+                </a>
+            </div>
+            <a class="goodsCollect" goods_id="{{goodsInfo.id}}" store_id="{{goodsInfo.storeId}}"><img class="lazy" src="/resources/basepage/store/default/list_pages/img/collect32.jpg" />
+                <p>收藏</p>
+            </a>
+            <a class="addShoppingCar" amount="1" goods_Id="{{goodsInfo.id}}" goodsName="{{goodsInfo.name}}" itemId="{{item_id}}" itemName=" {{item_name}}" pic="{{item_pic}}" storeId=" {{store_id}}" storeName="{{store_name}}"><img class="lazy" src="/resources/basepage/store/default/list_pages/img/shoppingcar.jpg" />
+                <p>加入购物车</p>
+            </a>
+        </div>
+        <a  href="/fsgd/{{goodsInfo.id}}.jhtml?lv3Id=${level3!''}">
+            <div class="contentRight-List-Right">
+                <table cellspacing="0" cellpadding="0" class="contentRight-List-Right-table">
+                    <tr>
+                        <td class="goodsDecoration">品名</td>
+                        <td class="goodsDecoration2" title="{{goods.name}}">{{goodsInfo.name}}</td>
+                    </tr>
+                    <tr>
+                        <td class="goodsDecoration">生产企业</td>
+                        <td class="goodsDecoration2" title="{{goods.manufacturer}}">{{goodsInfo.manufacturer}}</td>
+                    </tr>
+                    <tr>
+                        <td class="goodsDecoration">饭饭单价</td>
+                        <td class="goodsDecoration1" title="{{itemInfoList.[0].salesPrice}}">{{itemInfoList.[0].salesPrice}}</td>
+                        <td class="goodsDecoration">规格</td>
+                        <td class="goodsDecoration1" title="{{itemInfoList.[0].attrValue1}}">{{itemInfoList.[0].attrValue1}}</td>
+                    </tr>
+                    <tr>
+                        <td class="goodsDecoration">产地</td>
+                        <td class="goodsDecoration1" title="{{goods.placeOfProduction}}">{{goodsInfo.placeOfProduction}}</td>
+                        <td class="goodsDecoration">送达时间</td>
+                        <td class="goodsDecoration1">
+                            <img style="width: 0.8rem;height: 0.4rem;margin-top: 0.04rem;" src="{{deliverTime itemInfoList.[0].prepareGoodsDay  itemInfoList.[0].prepareGoodsTime}}"/>
+                        </td>
+                    </tr>
+                    <tr>
+
+                        <td class="goodsDecoration">本日活动</td>
+                        <td class="goodsDecoration2" title="">巨便宜</td>
+                    </tr>
+                    <tr>
+                        <td class="goodsDecoration">产品描述</td>
+                        <td class="goodsDecoration2" title="{{goods.description}}">{{goodsInfo.description}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="goodsDecoration">供应区域</td>
+                        <td class="goodsDecoration1" title="">全市</td>
+                        <td class="goodsDecoration">商品等级</td>
+                        <td class="goodsDecoration2" title="{{searchInfo.data.dataList.[0].item_level_name}}">{{searchInfo.data.dataList.[0].item_level_name}}</td>
+                    </tr>
+                </table>
+            </div>
+        </a>
+    </div>
+    {{/each}}
+</script>

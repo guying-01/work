@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context-3.2.xsd
+            http://www.springframework.org/schema/mvc
+			http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
+
+	<!-- spring配置 -->
+	<mvc:annotation-driven />
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+
+	<!-- spring拦截器 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/*/*.jhtml" />
+			<mvc:mapping path="/*/*/*.jhtml" />
+			<mvc:mapping path="/*/*.ajax" />
+			<mvc:mapping path="/*/*/*.ajax" />
+			<bean class="cn.com.fan1080.shop.webstore.interceptor.RequestInterceptor" />
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/*/*.jhtml" />
+			<mvc:mapping path="/*/*/*.jhtml" />
+			<bean class="cn.com.fan1080.shop.webstore.interceptor.BrandCrumbsInterceptor" />
+		</mvc:interceptor>
+		<bean class="cn.com.fan1080.shop.webstore.interceptor.TraceWebInterceptor"/>
+		<bean class="cn.com.fan1080.shop.webstore.interceptor.AvertRepeatSubmitIntercepter"/>
+	</mvc:interceptors>
+
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 设置上传文件的最大尺寸为10MB -->
+		<property name="maxUploadSize">
+			<value>10485760</value>
+		</property>
+		<property name="maxInMemorySize">
+			<value>4096</value>
+		</property>
+	</bean>
+	
+		
+	<!-- 身份证图片的上传 -->
+	<bean id="cardFileSaver" class="cn.com.htwins.ec.fw.web.file.FileSaverFactoryBean">
+		<property name="useSwift" value="${SWIFT_ENABLE}" />
+		<property name="smbFileSaverId" value="cardSmbFileSaver" />
+	</bean>
+	<bean id="cardSmbFileSaver" class="cn.com.htwins.ec.fw.web.file.SmbFileSaver" autowire-candidate="false" lazy-init="true">
+		<property name="rootPath" value="${CARD_IMAGE_PATH}" />
+	</bean>
+	<!--  <bean id="cardSwiftFileSaver" parent="abstractSwiftFileSaver" autowire-candidate="false" lazy-init="true">
+		<property name="containerName" value="${CARD_SWIFT_CONTAINER_NAME}" />
+	</bean>-->
+
+	<!-- HandlerMapping -->
+	<bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" />
+
+	<!-- ErrorHandlerMapping -->
+	<bean class="cn.com.fan1080.shop.common.web.util.ExceptionProcess">
+		<property name="errorHtmlViewName" value="errors/error-500"></property>
+		<property name="errorJsonView">
+			<bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
+				<property name="extractValueFromSingleKeyModel" value="false"></property>
+				<property name="contentType" value="text/html;charset=UTF-8"></property>
+			</bean>
+		</property>
+		<property name="systemErrorMessage" value="系统错误"></property>
+	</bean>
+
+	<!-- HandlerAdapter -->
+	<bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" />
+
+	<!-- ViewResolver -->
+	<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver" id="viewResolver">
+		<property name="ignoreAcceptHeader" value="true"></property>
+		<property name="mediaTypes">
+			<map>
+				<entry key="json" value="application/json"></entry>
+				<entry key="xml" value="application/xml"></entry>
+			</map>
+		</property>
+		<property name="defaultContentType" value="text/html"></property>
+		<property name="favorParameter" value="false"></property>
+		<property name="viewResolvers">
+			<list>
+				<bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+					<property name="order" value="1"></property>
+					<property name="contentType" value="text/html;charset=UTF-8"></property>
+					<property name="cache" value="true"></property>
+					<property name="prefix" value=""></property>
+					<property name="suffix" value=".ftl"></property>
+					<property name="exposeRequestAttributes" value="true"></property>
+					<property name="exposeSessionAttributes" value="true"></property>
+					<property name="exposeSpringMacroHelpers" value="true"></property>
+					<property name="requestContextAttribute" value="rc" />
+					<property name="allowSessionOverride" value="true" />
+					<property name="attributesMap">
+						<map>
+							<entry key="getConstant">
+								<bean class="cn.com.fan1080.shop.webstore.web.util.GetConstantUtil" />
+							</entry>
+							<entry key="readPageTemplate">
+								<bean class="cn.com.fan1080.shop.webstore.web.util.ReadPageTemplateUtil" />
+							</entry>
+						</map>
+					</property>
+				</bean>
+				<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+					<property name="order" value="2"></property>
+					<!-- <property name="prefix" value="/" /> -->
+					<property name="prefix" value="/" />
+					<property name="suffix" value=".jsp" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<!-- Freemarker config -->
+	<bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		<property name="templateLoaderPath" value="/WEB-INF/templates/" />
+		<property name="freemarkerVariables">
+			<map>
+				<entry key="xml_escape" value-ref="fmXmlEscape" />
+			</map>
+		</property>
+		<property name="freemarkerSettings">
+			<props>
+				<prop key="defaultEncoding">UTF-8</prop>
+				<prop key="number_format">computer</prop>
+				<prop key="locale">zh_CN</prop>
+				<prop key="date_format">yyyy-MM-dd</prop>
+				<prop key="time_format">HH:mm:ss</prop>
+				<prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="fmXmlEscape" class="freemarker.template.utility.XmlEscape" />
+
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+					<property name="supportedMediaTypes">
+						<list>
+							<value>text/html;charset=UTF-8</value>
+						</list>
+					</property>
+				</bean>
+				<bean class="org.springframework.http.converter.FormHttpMessageConverter" />
+				<bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter" />
+				<ref bean="jacksonHttpMessageConverter" />
+				<bean class="org.springframework.http.converter.xml.SourceHttpMessageConverter" />
+			</list>
+		</property>
+	</bean>
+	<bean id="jacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+		<property name="supportedMediaTypes">
+			<list>
+				<value>text/html;charset=UTF-8</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>classpath:exceptions</value>
+			</list>
+		</property>
+		<property name="cacheSeconds" value="3600">
+		</property>
+		<property name="useCodeAsDefaultMessage" value="false" />
+		<property name="defaultEncoding" value="UTF-8" />
+	</bean>
+</beans>

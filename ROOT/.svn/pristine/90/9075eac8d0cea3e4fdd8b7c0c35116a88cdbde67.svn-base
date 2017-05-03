@@ -1,0 +1,214 @@
+var isSendSmsVerificationCode = false;
+var dataTable = null;
+$('document').ready(function() {
+	//initDataTable();
+	//resetQueryParamsByChangeReturnState('');
+	changeReturnStateTab('')
+});
+
+function initDataTable(){
+	dataTable = $("#returnOrderListTable").DataTable({
+		"stateSave": true,
+		"ajax" : {
+			"url" : "/return/findReturnOrderListByPage.ajax?",
+			"type" : "POST"
+		},
+		"columns" : [{
+				"mRender" : function(obj, type, rowData) {
+					return rowData.goodsName;
+				}
+			},{
+				"sClass" : "center",
+				"mRender" : function(obj, type, rowData) {
+					// var d = new Date(rowData.orderDate);
+					// return fomateDate(d, 'YYYY-MM-dd','yes');
+					return rowData.orderDate;
+				}
+			},{
+				"sClass" : "center",
+				"mRender" : function(obj, type, rowData) {
+					return (rowData.itemAmount *　rowData.itemPrice).toFixed(2);
+				}
+			},{
+				"sClass" : "center",
+				"mRender" : function(obj, type, rowData) {
+					if(rowData.returnType == '10'){
+						return (rowData.itemAmount *　rowData.itemPrice).toFixed(2);
+					} else if(rowData.returnType == '20'){
+						return '0.00';
+					}
+				}
+			},{
+				"sClass" : "center",
+				"mRender" : function(obj, type, rowData) {
+					if(rowData.returnType == '10' && rowData.returnState == '00'){
+						return '退货中';
+					} else if(rowData.returnType == '10' && rowData.returnState == '20'){
+						return '退货完成';
+					} else if(rowData.returnType == '20' && rowData.returnState == '00'){
+						return '换货中';
+					} else if(rowData.returnType == '20' && rowData.returnState == '20'){
+						return '换货完成';
+					}
+				}
+			}
+		],
+		"fnDrawCallback" : function() {
+			$('.dataTables_info').css('margin-left', '15px');
+			$('.dataTables_length').css('margin-left', '10px');
+			$('.dataTables_length').css('margin-top', '10px');
+		}
+	});
+}
+
+function queryReturnOrderList(){
+	returnOrderListTableReload();
+}
+
+function changeReturnStateTab(returnState){
+	//resetQueryParamsByChangeReturnState(returnState);
+	//if(returnState != ''){
+	//	$("#returnStateLabel").hide();
+	//	$("#returnState").hide();
+	//// } else {
+	//// 	$("#returnStateLabel").show();
+	//// 	$("#returnState").show();
+	//}
+	//returnOrderListTableReload();
+	$('#returnType').val(returnState);
+	num=1;
+	getReturnData(returnState,num)
+	state=returnState;
+}
+
+function resetQueryParamsByChangeReturnState(returnState){
+	$("#goodsName").val('');
+	$("#startDate").val('');
+	$("#endDate").val('');
+	$("#returnState").val(returnState);
+	$("#returnType").val('');
+}
+// 搜索
+function returnOrderListTableReload() {
+	var goodsName = $("#goodsName").val();
+	var startDate = $("#startDate").val();
+	var endDate = $("#endDate").val();
+	var returnState = $("#returnState").val();
+	var returnType = $("#returnType").val();
+	var params = + "&returnType=" + returnType + 'length=' + 10 + 'start' + 0;
+	$.ajax({
+		type: 'post',
+		url: '/return/findReturnOrderListByPage.ajax?',
+		data: {
+			"goodsName" : goodsName,
+			"startDate" : startDate,
+			"endDate" : endDate,
+			"returnState" : returnType,
+			'length': 10,
+			'start': 0
+		},
+		success: function (data) {
+			var data=data.data;
+			if(num==1){
+				if(data.length==0){
+					$("#returnContentMore").hide();
+				}
+				else if(data.length<10){
+					$("#returnContentMore").html("没有更多了").attr('onclick','').show()
+				}
+				else{
+					$("#returnContentMore").html("加载更多").attr('onclick','orderMore()').show()
+				}
+			}     //这里是首次进入页面判断
+			else{
+				if(num*10>data.length){
+					$("#returnContentMore").html("没有更多了").attr('onclick','').show()
+				}
+				else{
+				}
+			}
+			Handlebars.registerHelper('state',function(i,j){
+				if(i == '10' && j == '00'){
+					return '退货中';
+				} else if(i == '10' && j == '20'){
+					return '退货完成';
+				} else if(i == '20' && j == '00'){
+					return '换货中';
+				} else if(i == '20' && j == '20'){
+					return '换货完成';
+				}
+			});
+			var template=Handlebars.compile($('#returnContentTemplate').html())
+			var templateHtml=template(data);
+			$("#returnContent").html(templateHtml);
+		}
+	});
+}
+
+var num=1;
+function getReturnData(returnState,num){
+   var url='/return/findReturnOrderListByPage.ajax?';
+	$.ajax({
+		type:'post',
+		url:url,
+		data:{
+			length:10*num,
+			returnState:returnState
+		},
+		success:function(data){
+			var data=data.data;
+			if(num==1){
+				if(data.length==0){
+					$("#returnContentMore").hide();
+				}
+				else if(data.length<10){
+					$("#returnContentMore").html("没有更多了").attr('onclick','').show()
+				}
+				else{
+					$("#returnContentMore").html("加载更多").attr('onclick','orderMore()').show()
+				}
+			}     //这里是首次进入页面判断
+			else{
+				if(num*10>data.length){
+					$("#returnContentMore").html("没有更多了").attr('onclick','').show()
+				}
+				else{
+				}
+			}
+			Handlebars.registerHelper({
+				state:function(i,j){
+				if(i == '10' && j == '00'){
+					return '退货中';
+				} else if(i == '10' && j == '20'){
+					return '退货完成';
+				} else if(i == '20' && j == '00'){
+					return '换货中';
+				} else if(i == '20' && j == '20'){
+					return '换货完成';
+				}
+			},debug: function (i) {
+					console.log(i)
+			},noData:function(data,opt){
+					let dataL=data.length;
+					if (dataL==0){
+						return opt.fn(this)
+					}
+					else{
+						return opt.inverse(this)
+					}
+			}
+
+			})
+			var template=Handlebars.compile($('#returnContentTemplate').html())
+			var templateHtml=template(data);
+			$("#returnContent").html(templateHtml);
+		}
+	})
+
+}
+var state;
+function orderMore(i){
+	num++;
+	getReturnData(state,num)
+}
+

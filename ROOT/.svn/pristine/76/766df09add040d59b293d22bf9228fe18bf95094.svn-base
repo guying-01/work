@@ -1,0 +1,101 @@
+<#--店铺首页-->
+	<#include "/common/common_var_definds.ftl" />
+	<#include "/basepage/store/default/hb_templates/store_hb_templates.ftl" />
+	<#import "/basepage/store/default/common/zizhi_slider.ftl" as zizhi/>
+	<#import "/basepage/store/default/common/dangan_slider.ftl" as dangan/>
+	<!DOCTYPE html>
+	<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>饭饭1080直采平台</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+		<script type="text/javascript">
+			var deviceWidth = document.documentElement.clientWidth;
+			if(deviceWidth > 768) {
+				deviceWidth = 768;
+			}
+			document.documentElement.style.fontSize = deviceWidth / 6.4 + 'px';
+		</script>
+		<#import "/basepage/store/default/common/common_link.ftl" as link/>
+		<#import "/basepage/store/default/common/common_script.ftl" as script/>
+		<#import "/basepage/store/default/common/common_header_top.ftl" as top/>
+		<#import "/basepage/store/default/common/common_header_searchbox_default.ftl" as searchBox/>
+		<#import "/basepage/store/default/common/common_footer.ftl" as footerNoTab/>
+		<#import "/basepage/seller/seller_header_search.ftl" as sellerSearch/>
+		<@link.render />
+		<!--导入共通样式-->
+		<@script.render />
+		<!--导入共通脚本-->
+		<link rel="stylesheet" href="${resources}/basepage/seller/css/store.css" type="text/css">
+		<script src="${resources}/basepage/seller/js/store_common_head_load.js"></script>
+        <script src="${resources}/basepage/seller/js/staticStore.js"></script>
+		<script src="${resources}/basepage/seller/js/store_dynamics.js"></script>
+		<script src="${resources}/basepage/seller/js/sp_getAboutImg.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<div id="pageInfo" store_id="${storeId!''}" store_template_code="${storeTemplateCode!''}" page_id="${storeTemplateCode!''}" style="display: none"></div>
+		<!--此处是头部开始-->
+		<div class="top">
+			<@top.render />
+			<div class="store_search_box">
+				<@searchBox.render />
+				<#--导入search_box-->
+			</div>
+		</div>
+		<!--此处是头部结束-->
+		<!--网页头部&导航开始-->
+		<div id="sp_hd_1"></div>
+		<div id="sp_hd_2"></div>
+		<@sellerSearch.render />
+		<div id="ff_tab_box">
+			<div class="ff_tab_content">
+				<div class="ff-tab-title">
+					<img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /> <span>商家介绍</span>
+				</div>
+				<div class="ff-tab-con-detail">
+       					<p>
+                           他是一个有思想和追求的“庄稼汉”，他只做绿色食品，他的目标是让全大连市市民都可以吃上绿色无公害食品，他就是——刘忠奇。
+                       </p>
+                       <p>
+                           刘忠奇，大连市本地人，在辽宁省农业技术学院，取得了高级农业植保师，到庄河鞍子山发展农业，致力于农业发展6年整，努力让大连市市民吃上绿色无公害食品。
+                       </p>
+                       <p>
+                           刘忠奇是一个土生土长的大连人。早年间他在辽宁省农业技术学院取得了高级农业植保师的证书，最初几年，刘忠奇并没有打算从事农业方面的工作，他尝试做过一些小本生意，但本小利薄，时赚时蚀，生活仍入不敷出。
+                       </p>
+                       <p>
+                           人们常说靠山吃山，靠海吃海，小本生意不起色，刘忠奇就打算发挥自己植保师的优势，到庄河鞍子山发展农业。可是传统的种植方式，规模小，成本大，利润低，刘忠奇的生意总是难以为继。
+                       </p>
+						<p>
+							难道农业真的没有出路？刘忠奇百思不得其解。正当他发愁的时候，他发现提倡吃生态食品、绿色食物的声音越来越多了，一时间他恍然大悟，“也许是传统种植过分依赖化肥和农药了。”过后，刘忠奇看准了一条路——绿色食品。他坚信，只有走绿色食品这条路，农民们才会有出路。
+						</p>
+						<p>
+							六年过去了，现在的庄河鞍子山已经大变样，生物防治与有机肥代替了农药与化肥，庄河鞍子山出产的绿色食品迅速的打开了市场，当全国各地的客商蜂拥而至的时候，刘忠奇知道，他成功了。
+						</p>
+
+				</div>
+			</div>
+			<div class="ff_tab_content only_book_content_zizhi">
+				<div class="ff-tab-title">
+					<img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /><span>商家资质</span>
+				</div>
+				<div class="ff-tab-con-detail">
+					<@zizhi.render />
+				</div>
+			</div>
+
+			<div class="ff_tab_content">
+				<div class="ff-tab-title">
+					<img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /> <span>商家活动</span>
+
+				</div>
+				<div class="ff-tab-con-detail">敬请期待</div>
+			</div>
+
+		</div>
+		<@footerNoTab.render />
+	</body>
+
+	</html>

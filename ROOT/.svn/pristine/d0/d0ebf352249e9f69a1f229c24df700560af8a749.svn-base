@@ -1,0 +1,78 @@
+//获取数据
+$(function () {
+    let gy= new getGoodsData;
+    gy.getData()
+})
+
+class getGoodsData{
+    constructor(){
+
+
+    }
+    static tem(){
+        let num=0;
+        Handlebars.registerHelper({
+            'debug': function (i) {
+                console.log(i)
+            },
+            'index': function () {
+                num++
+                return num
+            },
+            deliverTime: function (day,time) {
+                var result = "";
+                if (time) {
+                    time = time.split(":")[0]
+                }
+                else {
+                    result = "/resources/basepage/store/default/common_img/deliver_time_01.png";
+                }
+                if ("2" == day) {
+                    if (time < 12) {
+                        result = "/resources/basepage/store/default/common_img/deliver_time_01.png";
+                    } else {
+                        result = "/resources/basepage/store/default/common_img/deliver_time_02.png";
+                    }
+                } else if ("3" == day) {
+                    result = "/resources/basepage/store/default/common_img/deliver_time_03.png";
+                }
+                return result;
+            }
+        })
+    }
+    getData(){
+        let dateStr = (new Date()).Format("yyyy-MM-dd hh:mm:ss");
+        let request_params = {"activityType": '03',"date":dateStr,"pageIndex":1,"pageSize":20};
+        $.post("/fsActivity/activityList.ajax", request_params, function (data) {
+            getGoodsData.tem()
+            let dataG=JSON.parse(data).dataList
+            let template=Handlebars.compile($('#boxContent').html())
+            let templateHtml=template(dataG)
+            $(".boxContent").html(templateHtml)
+            $('.boxContent .every-goods-pic img').on('click', function (e) {
+                e.stopPropagation()
+                let num=$(this).attr('index');
+                let returnData=dataG[num-1]
+                let template=Handlebars.compile($('#table').html())
+                let templateHtml=template(returnData)
+                $('.table').html(templateHtml)
+                $('.zhao').show()
+                $('.table').fadeIn()
+                $('.collect').on('click', function (e) {
+                    e.stopPropagation()
+                    jsAlert('收藏成功')
+                })
+                $(document).on('click', function () {
+
+                    if($('.zhao').css('display','block')){
+                        $('.zhao').hide()
+                        $('.table').fadeOut()
+                    }
+                    $(document).off()
+                })
+            })
+
+        });
+
+    }
+}

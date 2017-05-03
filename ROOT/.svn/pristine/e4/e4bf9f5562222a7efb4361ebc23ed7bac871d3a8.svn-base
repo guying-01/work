@@ -1,0 +1,34 @@
+<#include "/common/common_var_definds.ftl" />
+<#import "/basepage/store/default/common/common_header_top.ftl" as top/>
+<#macro render>
+<div class="top"><!--头部导航条开始-->
+    <#--<@top.render />-->
+  <!--<div class="header_search">
+        <div class="header_search_logo">
+            <a href="/"></a>
+        </div>
+        <div class="header_search_text">
+            <div class="header_search_text_1">
+                <a href="/">
+                    <span>首页</span>
+                </a>
+            </div>
+            <div class="header_search_text_2">
+                <a>
+                    <span>${name!""}</span>
+                </a>
+            </div>
+            <div class="header_search_text_3">
+                <input name="" type="button" value="搜索" style="width:70px; height:32px;"/>
+            </div>
+            <div class="header_search_text_4">
+                <input name="" type="text"/>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>-->
+    <div class="commonTitleBack" onclick="window.history.go(-1)">
+
+    </div>
+</div>
+</#macro>

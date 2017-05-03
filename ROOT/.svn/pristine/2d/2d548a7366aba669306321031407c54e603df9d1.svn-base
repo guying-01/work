@@ -1,0 +1,337 @@
+<link href="/resources/css/common/lib.css" rel="stylesheet" type="text/css">
+<link href="/resources/js/lib/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" type="text/css">
+<link href="/resources/css/goods/goods.css" rel="stylesheet" type="text/css" />
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<style>
+.tool {
+	background: none;
+}
+.custom{ display:block;height:30px; margin:10px 0 0 10px; clear:both;}
+.custom img,.custom p{ display:block; float:left; line-height:30px; margin-left:10px;}
+</style>
+<script>
+	var dm_ctx = '';
+	var online= new Array(); //全局变量
+</script>
+<script src="/resources/js/lib/jquery/jquery-1.8.3.js"></script>
+<script src="/resources/js/lib/jquery/jquery.validate.min.js"></script>
+<script src="/resources/js/common/validation.js"></script>
+<script src="/resources/js/lib/handlebars/handlebars-v2.0.0.js"></script>
+<script src="/resources/js/lib/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+
+<script src="/resources/js/common/common.js"></script>
+<script src="/resources/js/common/page_design.js"></script>
+<script src="/resources/js/common/headerbar.js"></script>
+<script src="/resources/js/common/goods_search.js"></script>
+
+<script src="/resources/js/store/shopbanner.js"></script>
+
+<script src="/resources/js/common/top_toolbar.js"></script>
+<script src="/resources/js/common/page.js"></script>
+<script src="/resources/js/common/hover.js"></script>
+<script src="/resources/js/common/hideshow.js"></script>
+<script src="/resources/js/common/tool.js"></script>
+<script src="/resources/js/goods/other.js"></script>
+
+<script src="/resources/js/common/scrollTop.js"></script>
+<script src="/resources/js/common/sys_info.js"></script>
+<script src="/resources/js/member/member_api.js"></script>
+<script src="/resources/js/common/activity.js"></script>
+<!--[if lt IE 9]>
+<script src="/resources/js/lib/html5/es5-shim.min.js"></script>
+<script  type="text/javascript" src="/resources/js/lib/html5/html5shiv.min.js"></script>
+<![endif]-->
+<script>
+	var pageId = "page0002";
+	var subSystemId = "00";
+	var storeId = getStoreId();
+	var pageDesignOptions = {
+		pageId : "page0002",
+		subSystemId : "00",
+		storeId : storeId
+	};
+	/**
+	 * 获取店面id storeId
+	 */
+	function getStoreId() {
+		try {
+			var urls = "";
+			if (location.pathname) {
+				urls = location.pathname.split("/");
+			}
+			var urLen = 0;
+			if (urls.length) {
+				urLen = urls.length;
+			}
+			var suburl = "";
+			if (urLen > 0) {
+				suburl = urls[urLen - 2]
+			}
+			var storeId = "";
+			if (suburl) {
+				storeId = suburl.split(".")[0];
+			}
+			return storeId;
+		} catch (ex) {
+		}
+
+	}
+	
+	$.dm.getStoreInfo(getStoreId(),function(data){
+		$('title').text(data.storeName+' - 饭饭在线');
+		$('body').trigger('tj.dp');
+	});
+	
+</script>
+</head>
+
+<body>
+	<!-- grid0001开始 -->
+	<div dm-layout-grid="grid0001" dm-data="">
+		<!-- range0001开始 显示头部共同状态栏信息-->
+		<div dm-layout-range="range0001" id="range0001">
+			<script>
+				$("[dm-layout-range='range0001']").dmHeaderBar({
+					"type" : "html"
+				});
+			</script>
+		</div>
+		<!-- range0001结束 -->
+
+		<!-- range0002开始 商城搜索-->
+		<script id="range0002-tl" type="text/x-handlebars-template">
+			<div class="header" dm-layout-range="range0002" id='range0002' order="{{orders}}">
+				<div class="header" dm-container="header-search-container"></div>
+			</div>
+		</script> 
+    	<script type="text/javascript"
+				src="/resources/js/ranges/range0002.js"></script> 
+
+		<!-- range0002结束 -->
+
+		<!-- range0008开始 店招-->
+		<script id="range0008-tl" type="text/x-handlebars-template">
+			<div dm-layout-range="range0008" order="{{orders}}">
+				<div class="shopbanner" style="display:none;"></div>
+			</div>
+		</script>
+		<script src="/resources/js/ranges/range0008.js"></script>
+		<!-- range0008结束-->
+
+		<!-- range0009开始 导航-->
+		<script id="range0009-tl" type="text/x-handlebars-template">
+			<div dm-layout-range="range0009" id='range0009' order="{{orders}}">
+				<div class="shopNav"></div>
+			</div>
+		</script>
+		<script src="/resources/js/ranges/range0009.js"></script>
+		<!-- range0009结束-->
+
+		<!-- range0005开始 店铺轮播图片 -->
+		<script id="range0005-tl" type="text/x-handlebars-template">
+			<div dm-layout-range="range0005" id='range0005' order="{{orders}}"></div>
+		</script>
+		<script src="/resources/js/ranges/range0005.js"></script>
+		<script id="bannerjs-tl" type="text/x-handlebars-template">
+		<div class=" wrapper" style="width:auto;">
+			<div class="shopBanner">
+				<a href="javascript:void(0)" class="sliderBtn prev"></a> <a href="javascript:void(0)" class="sliderBtn next"></a>
+  				<ul class="conBanner">
+					{{#if ad_pic1}}
+    				<li style="display:block;"><a href="{{ad_url1}}" style="background: url({{ad_pic1}}) no-repeat center"></a></li>
+					{{/if}}
+					{{#if ad_pic2}}
+    				<li style="display:block;"><a href="{{ad_url2}}" style="background: url({{ad_pic2}}) no-repeat center"></a></li>
+					{{/if}}
+					{{#if ad_pic3}}
+    				<li style="display:block;"><a href="{{ad_url3}}" style="background: url({{ad_pic3}}) no-repeat center"></a></li>
+					{{/if}}
+					{{#if ad_pic4}}
+    				<li style="display:block;"><a href="{{ad_url4}}" style="background: url({{ad_pic4}}) no-repeat center"></a></li>
+					{{/if}}
+					{{#if ad_pic5}}
+    				<li style="display:block;"><a href="{{ad_url5}}" style="background: url({{ad_pic5}}) no-repeat center"></a></li>
+					{{/if}}
+					{{#if ad_pic6}}
+    				<li style="display:block;"><a href="{{ad_url6}}" style="background: url({{ad_pic6}}) no-repeat center"></a></li>
+					{{/if}}
+  				</ul>
+ <div style="width:1200px; position: absolute ; bottom:0; left:50%; margin-left:-600px;">
+  				<ul class="banner_num">
+					{{#if imgCount1}}
+						<li class="btnListOn"></li>
+					{{/if}}
+					{{#if imgCount2}}
+						<li></li>
+					{{/if}}
+					{{#if imgCount3}}
+						<li></li>
+					{{/if}}
+					{{#if imgCount4}}
+						<li></li>
+					{{/if}}
+					{{#if imgCount5}}
+						<li></li>
+					{{/if}}
+					{{#if imgCount6}}
+						<li></li>
+					{{/if}}
+  				</ul>
+			</div>
+           </div>
+		</div>
+		</script>
+		<!-- range0005结束 -->
+	</div>
+	<!-- grid0001结束-->
+
+	<!--正文部分  -->
+	<div class="wrapper" style="height: auto; margin-top: 20px;">
+		<img dm-info="not-pg-data" src="/resources/img/common/decorate.jpg" style="display: none;" />
+		<!--左侧开始  -->
+		<div class="Related-products">
+			<!-- grid0002开始  左侧搜索、分类、排行等-->
+			<div dm-layout-grid="grid0002" dm-data="">
+				<!--range0010开始  店铺内搜索-->
+				<script id="range0010-tl" type="text/x-handlebars-template">
+					<div dm-layout-range="range0010" id='range0010' order="{{orders}}">
+						<div dm-container="store-search-container" style="display:none;"></div>
+					</div>
+				</script>
+				<script src="/resources/js/ranges/range0010.js"></script>
+				<!--range0010结束  店铺内搜索-->
+
+				<!--range0014结束  店内商品分类 -->
+				<script id="range0014-tl" type="text/x-handlebars-template">
+					<div dm-layout-range="range0014" id='range0014' order="{{orders}}">
+						<div dm-container="store-item-categroy-container" style="display:none;"></div>
+					</div>
+				</script>
+				<script src="/resources/js/ranges/range0014.js"></script>
+				<!--range0014结束  店内商品分类-->
+
+				<!--range0012开始  店内商品排行 -->
+				<script id="range0012-tl" type="text/x-handlebars-template">
+					<div dm-layout-range="range0012" id='range0012' order="{{orders}}">
+						<div dm-actor="store-rank" style="display:none;"></div>
+					</div>
+				</script>
+				<script src="/resources/js/ranges/range0012.js"></script>
+				<!--range0012结束  店内商品排行 -->
+
+				<!--range0017开始  优惠券领取 -->
+				<script id="range0017-tl" type="text/x-handlebars-template">
+					<div dm-layout-range="range0017" id='range0017' order="{{orders}}">
+						<div class="Related-products-div">
+							<h2>{{rangeData.range_title_show}}</h2>
+							{{#if rangeData.ad_url1}}
+							<a href="javascript:void(0)" ad_url={{rangeData.ad_url1}} title="{{rangeData.ad_name1}}"  style="text-decoration: none;">
+								<div class="card {{rangeData.hide-text-ad_colour1}}"><span>￥<strong id="{{rangeData.ad_url1}}">6</strong></span><p>优惠券</p></div>
+							</a>
+							{{/if}}
+							{{#if rangeData.ad_url2}}
+							<a href="javascript:void(0)" ad_url={{rangeData.ad_url2}} title="{{rangeData.ad_name2}}"  style="text-decoration: none;">
+								<div class="card {{rangeData.hide-text-ad_colour2}}"><span>￥<strong id="{{rangeData.ad_url2}}">5</strong></span><p>优惠券</p></div>
+							</a>
+							{{/if}}
+							{{#if rangeData.ad_url3}}
+							<a href="javascript:void(0)" ad_url={{rangeData.ad_url3}} title="{{rangeData.ad_name3}}"  style="text-decoration: none;">
+								<div class="card {{rangeData.hide-text-ad_colour3}}"><span>￥<strong id="{{rangeData.ad_url3}}"></strong></span><p>优惠券</p></div>
+							</a>
+							{{/if}}
+						</div>
+					</div>
+				</script>
+				<script src="/resources/js/ranges/range0017.js"></script>
+				<!--range0017结束  优惠券领取 -->
+
+				<!--range0023开始  店铺客服 -->
+				<script id="range0023-tl" type="text/x-handlebars-template">
+					<div dm-layout-range="range0023" id='range0023' order="{{orders}}">
+						<div class="Related-products-div">
+							<h2>店铺客服</h2>
+							{{#each this.customServiceList}}
+								<a href="javascript:void(0)" target="_blank" qq={{qq}} online={{statu}} style="text-decoration: none;" class='custom'>
+									<img src="/resources/img/common/waiter.png" width="30" height="30">
+									<p>{{nickName}}</p>
+								</a>
+							{{/each}}
+						</div>
+					</div>
+				</script>
+				<script src="/resources/js/ranges/range0023.js"></script>
+				<!--range0023结束  店铺客服 -->
+			</div>
+			<!-- grid0002结束-->
+		</div>
+		<!--左侧结束  -->
+
+		<!-- grid0003开始  右侧内容、自定义等-->
+		<div dm-layout-grid="grid0003" dm-data="">
+			<!--range0011开始  商品推荐-->
+			<script id="range0011-tl" type="text/x-handlebars-template">
+				<div dm-layout-range="range0011" id='range0011' order="{{orders}}">
+					<div class="detail-bottom">
+						<h2 class="shop-goods-tit">{{rangeData.title}}</h2>
+						<div class="recommend-produce-div">
+						</div>
+					</div>
+				</div>
+			</script>
+			<script id="recommend-list-tl" type="text/x-handlebars-template">
+						{{#each this}}
+						<div class="recommend-produce"> <a target="_blank" href="/gd/{{id}}.jhtml"><img src="{{pic}}"></a>
+        					<div class="recommend-price">
+            					<h3><a target="_blank" href="/gd/{{id}}.jhtml" title="{{ad_word}}">{{name}}</a></h3>
+            					<p><strong>￥{{minSalesPrice}}</strong><u class=" m-l-10">{{minMarketPrice}}</u></p>
+        					</div>
+     				 	</div>
+						{{/each}}
+			</script>
+			<script src="/resources/js/ranges/range0011.js"></script>
+			<!--range0011结束 商品推荐 -->
+
+			<!-- range0013 自定义内容开始-->
+			<script id="range0013-tl" type="text/x-handlebars-template">
+				<div dm-layout-range="range0013" id='range0013' order="{{orders}}"></div>
+			</script>
+			<script id="define-self-tl" type="text/x-handlebars-template">
+				<!--自定义内容 -->
+				<div class="detail-bottom">
+    				<div class="shop-goodsBox">
+					{{#if range_title}}
+      				<h2 class="shop-goods-tit">
+					{{range_title}}
+					</h2>
+					{{/if}}
+      				<div class="shop">
+      					<div class="shopInfor">
+      						{{{range_description}}}
+      					</div>
+					</div>
+      				<div class="clear"></div>
+    				</div>
+  				</div>
+			</script>
+			<script src="/resources/js/ranges/range0013.js"></script>
+			<!--range0013 结束自定义内容 -->
+
+			<div class="clear"></div>
+
+			<!-- grid0003结束-->
+		</div>
+		<!--正文 wrapper结束  -->
+	</div>
+<script type="text/javascript">
+$(document).ready(function() {
+    //顶部js
+    $("#top_toolbar").topshort()
+});
+</script> 
+<!-- <script src="http://webpresence.qq.com/getonline?Type=1&:"></script> 
+<script>  
+if (online[0]==0)  
+alert("不在线");  
+else  
+alert("在线");  
+</script>  -->

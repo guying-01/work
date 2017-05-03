@@ -1,0 +1,110 @@
+<#--店铺首页-->
+	<#include "/common/common_var_definds.ftl" />
+	<#include "/basepage/store/default/hb_templates/store_hb_templates.ftl" />
+	<#import "/basepage/store/default/common/zizhi_slider.ftl" as zizhi/>
+	<#import "/basepage/store/default/common/dangan_slider.ftl" as dangan/>
+	<!DOCTYPE html>
+	<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>饭饭1080直采平台</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+		<script type="text/javascript">
+			var deviceWidth = document.documentElement.clientWidth;
+			if(deviceWidth > 768) {
+				deviceWidth = 768;
+			}
+			document.documentElement.style.fontSize = deviceWidth / 6.4 + 'px';
+		</script>
+		<#import "/basepage/store/default/common/common_link.ftl" as link/>
+		<#import "/basepage/store/default/common/common_script.ftl" as script/>
+		<#import "/basepage/store/default/common/common_header_top.ftl" as top/>
+		<#import "/basepage/store/default/common/common_header_searchbox_default.ftl" as searchBox/>
+		<#import "/basepage/store/default/common/common_footer.ftl" as footerNoTab/>
+		<#import "/basepage/seller/seller_header_search.ftl" as sellerSearch/>
+		<@link.render />
+		<!--导入共通样式-->
+		<@script.render />
+		<!--导入共通脚本-->
+		<link rel="stylesheet" href="${resources}/basepage/seller/css/store.css" type="text/css">
+		<script src="${resources}/basepage/seller/js/store_common_head_load.js"></script>
+        <script src="${resources}/basepage/seller/js/staticStore.js"></script>
+		<script src="${resources}/basepage/seller/js/store_dynamics.js"></script>
+		<script src="${resources}/basepage/seller/js/sp_getAboutImg.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<div id="pageInfo" store_id="${storeId!''}" store_template_code="${storeTemplateCode!''}" page_id="${storeTemplateCode!''}" style="display: none"></div>
+		<!--此处是头部开始-->
+		<div class="top">
+			<@top.render />
+			<div class="store_search_box">
+				<@searchBox.render />
+				<#--导入search_box-->
+			</div>
+		</div>
+		<!--此处是头部结束-->
+		<!--网页头部&导航开始-->
+		<div id="sp_hd_1"></div>
+		<div id="sp_hd_2"></div>
+		<@sellerSearch.render />
+		<div id="ff_tab_box">
+			<div class="ff_tab_content">
+				<div class="ff-tab-title">
+					<img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /> <span>商家介绍</span>
+				</div>
+				<div class="ff-tab-con-detail">
+					<p>一、公司基本情况</p>
+                   	<p>丘北县达平食品有限责任公司成立于2000年5月，注册资本2560万元，，省内有丘北树皮工厂、昆明工厂、丘北总厂;其中丘北总公司占地面积100余亩，建筑面积32564平方米， 现有员工212余人，季节性工人400余人，设有行政部、财务部、人力资源部、产品研发部、市场营销部、技术中心等，并建有党、团支部、工会、妇女委员会等组织，还设立了一个“职工之家”，专门组织职工学习、培训、娱乐活动。</p>
+                   	<p>　公司主要从事辣椒系列产品深加工和农特产品营销，主营产品有辣椒干、轮切辣椒圈、直食辣椒圈、辣椒调味料、泡椒、脱水蔬菜、姜片等八大类四十八个系列产品。公司依托公司配送中心，在全省共建立有7528个销售网点，并辐射到四川、重庆、广西、贵州等省市区，远销美国、日本、韩国、墨西哥等国际市场。公司拥有了一批稳定的客户，成为辣椒生产企业的姣姣者，效益不断增加。</p>
+                   	<p>公司累计建设完成省内先进的脱水蔬菜生产线1条，省级公共检测平台1个，多功能辣椒文化展示厅1500平方米，年产10000吨泡椒生产线1条，年产10000吨调味品生产线1条。现在顺应政府号召，在新工业园区，新增100亩土地，2014年建厂，2015年投入使用，将为城市下岗失业人员和农村富余劳动力提供就业岗位200余个，在一定程度上缓解了就业压力。</p>
+                   	<p>二、公司运作模式</p>
+                   	<p>为抓好产品质量，公司从提高原料品质入手，公司一直走“公司+合作社+基地+标准化+农户”的产业化路子，采用“技术、资金、物资”配套管理办法，几年来累计扶持农户建社辣椒基地6万亩，生姜种植基地2万亩，小米椒种植基地3万亩，覆盖全县7个乡镇，受益农户达15000多户。为解决农户的后顾之忧，公司与农户实行保护价收购，当市场下滑时，按照保护价进行收购;当市场上涨时，随行就市，保护了农户的利益，激发了种植的积极性。农户通过种植辣椒，户均增收12000万元，人均达到2800元。与农户之间形成了“风险共担、利益相连、共同发展”的双赢格局。</p>
+                   	<p>三、取得的成绩</p>
+                   	<p>公司产能已经达到5万吨，产品主要供应国内外著名生产加工企业和大型品牌连锁超市，产品目标市场明确，销售渠道畅通。</p>
+                   	<p>　在各级党委、政府及各职能部门、社会各界的大力关心支持下，2013年公司取得了可喜的成绩。年销售产品26000多吨，实现销售收入2.65亿元，实现利润2663万元，年出口创汇1100多万美元。</p>
+                   	<p>四、荣誉及认证</p>
+                   	<p>践行企业使命，恩泽百姓，回报社会，达平食品一直在努力。几年来，公司捐款捐物300多万元用于资助贫困学生、参加抗旱救灾、抗震救灾、扶贫等社会公益事业。</p>
+                   	<p>在各级党委、政府及各职能部门、社会各界的大力关心支持下，在达平人的共同努力下，公司取得了可喜的成绩，先后获得如下荣誉：</p>
+                   	<p>——国家商务部“双百市场工程”实施企业</p>
+                   	<p>——云南农业产业化经营重点龙头企业</p>
+               		<p>——云南农业产业化经营优秀龙头企业</p>
+               		<p>——金融服务三农重点扶持企业</p>
+               		<p>——云南省第一批农产品深加工科技型企业。</p>
+               		<p>——消费者信得过产品</p>
+               		<p>——公司多次被省、州、县评为“先进私营企业”</p>
+               		<p>——优秀民营企业</p>
+               		<p>——云南省首届风云“滇商”评为最具成长型中小企业</p>
+               		<p>——重合同守信用单位</p>　　
+               		<p>公司的辣椒基地先后通过了云南省出入境检验检疫局出口基地认证;公司的调味料、酱腌菜等获得了国家工业生产许可证、产品是国家绿色食品、云南省名牌农产品。质量管理体系通过ISO9001和ISO22000认证，其中，“达平”商标已获得云南省著名商标认证。公司创始人刘达平先后当选文山州首届十大杰出青年、云南省劳动模范、全国劳动模范、中国西部之星，是云南省创业明星，有“辣椒大王”之称。</p>
+               		<p>五、未来发展规划</p>
+               		<p>丘北县达平食品有限责任公司在各级党委、政府及各职能部门、社会各界的大力关心支持下，已经形成了加工规模化、贸易一体化、管理信息化的多元化发展格局，成为了行业的排头兵。站在新的起点，达平人有了更高的追求，确定了发展的目标和规划：</p>
+               		<p>一是加快新工业园区新厂区建设。公司积极响应县委、政府“工业上山”战略，在新工业园区新增征地100亩，实施年产10万吨农特产品建设项目。</p>
+               		<p>　二是树立品牌战略。通过几年的努力，将“达平”打造成为中国驰名商标，年销售额达10亿元，年利税总额为3.5亿元，成为省内调味品行业的领导者。</p>
+               		　<p>三是加强科技创新。逐步加大产品科研投入，提高产品科技含量，争取研发投入逐年增加，在3年建设完成国家级辣椒工程技术中心，建设辣椒博物馆1个。</p>　
+               		<p>　四是努力推进辣椒文化建设。从丘北辣椒的历史渊源、种植、生产、销售、售后服务等各个环节着手，深层次开发辣椒内涵，整合产品文化，树立丘北辣椒大品牌。建设具有文化研究、公共教育、产品展示、信息传播等功能的辣椒历史馆、名人文化馆、辣椒主题公园、休闲食品开放生产线。</p>
+               		<p>五是加大教育、扶贫等社会公共事业投入，年内将捐资100万元用于新农村建设;捐资100多万元购买校车，解决学生出行问题。用实际行动回报社会各界人事帮助和支持。</p>　　
+				</div>
+			</div>
+			<div class="ff_tab_content only_book_content_zizhi">
+				<div class="ff-tab-title">
+					<img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /><span>商家资质</span> 
+				</div>
+				<div class="ff-tab-con-detail">
+					<@zizhi.render />
+				</div>
+			</div>
+			<div class="ff_tab_content">
+				<div class="ff-tab-title">
+					<img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /> <span>商家活动</span>
+
+				</div>
+				<div class="ff-tab-con-detail">敬请期待</div>
+			</div>
+		</div>
+		<@footerNoTab.render />
+	</body>
+
+	</html>

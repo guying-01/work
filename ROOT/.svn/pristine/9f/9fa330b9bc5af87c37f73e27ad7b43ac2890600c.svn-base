@@ -1,0 +1,39 @@
+<#include "/common/common_var_definds.ftl" />
+<#import "/basepage/store/default/common/common_scroll_top.ftl" as scrollTop/>
+<#macro render data>
+<#escape x as x?html>
+	<style type="text/css">
+		.content-right{
+			margin-bottom: 0.87rem;
+		}
+	</style>
+    <div class="member-con">
+      <h2 class="member-tit mobileHistory"  onclick="javascript :history.go(-1);"><a href="javascript:void(0);"></a><i>&nbsp;</i>浏览历史</h2>
+      <div class="footprint" id="browseHistory">
+      <div class="nullA" style="padding:50px 0 30px 0"><img src="/resources/img/member/null3.png" class="left m-t-5"><div class="left"><P>你什么都没有看过呢~赶紧去逛两圈吧~~</P><P>去 <a href="../index.jhtml">随便逛逛</a>吧~</P></div></div>
+      </div>
+      <div class="clear" style="height:90px;"></div>
+    </div>
+<script id="hbBrowseHistory" type="text/x-handlebars-template">
+	{{#each this}}
+		<ul>
+          <div class="footprintDate">
+            <P>{{dataStr}}</P>
+            <strong>{{day}}</strong>
+          </div>
+			<h3><u>&nbsp;</u></h3>
+			{{#each data}}
+      		<li class="member-list-history"><a href="/fsgd/{{goodsId}}.jhtml" class="goods_pic"><img dm-actor="browse-history-item-pic" dm-data="{{goodsId}}" src="{{goodsPicturePath}}" width="400" height="400" class="goodspic"></a>
+      			<h4><a href="/fsgd/{{goodsId}}.jhtml" class="produce his_gsName" title="{{goodsName}}">{{goodsName}}</a></h4><P class="goodsprice his_gdPrice" id="foodprice"><strong>￥{{saleMinPrice}}</strong><span style="color: #A0A0A0;float:right">￥{{marketMinPrice}}</span></p>
+                <a class="btn-g" href="/fsgd/{{goodsId}}.jhtml">
+                    查看详情
+                </a>
+      		</li>
+      		{{/each}}
+          <p class="clear"></p>
+		</ul>
+	{{/each}}
+</script>
+<@scrollTop.render />
+</#escape>
+</#macro>

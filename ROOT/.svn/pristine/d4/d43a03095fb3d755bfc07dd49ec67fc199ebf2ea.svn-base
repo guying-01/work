@@ -1,0 +1,84 @@
+<#--店铺首页-->
+	<#include "/common/common_var_definds.ftl" />
+	<#include "/basepage/store/default/hb_templates/store_hb_templates.ftl" />
+	<#import "/basepage/store/default/common/zizhi_slider.ftl" as zizhi/>
+	<#import "/basepage/store/default/common/dangan_slider.ftl" as dangan/>
+	<!DOCTYPE html>
+	<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>饭饭1080°直采平台</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+		<script type="text/javascript">
+			var deviceWidth = document.documentElement.clientWidth;
+			if(deviceWidth > 768) {
+				deviceWidth = 768;
+			}
+			document.documentElement.style.fontSize = deviceWidth / 6.4 + 'px';
+		</script>
+		<#import "/basepage/store/default/common/common_link.ftl" as link/>
+		<#import "/basepage/store/default/common/common_script.ftl" as script/>
+		<#import "/basepage/store/default/common/common_header_top.ftl" as top/>
+		<#import "/basepage/store/default/common/common_header_searchbox_default.ftl" as searchBox/>
+		<#import "/basepage/store/default/common/common_footer.ftl" as footerNoTab/>
+		<#import "/basepage/seller/seller_header_search.ftl" as sellerSearch/>
+		<@link.render />
+		<!--导入共通样式-->
+		<@script.render />
+		<!--导入共通脚本-->
+		<link rel="stylesheet" href="${resources}/basepage/seller/css/store.css" type="text/css">
+		<script src="${resources}/basepage/seller/js/store_common_head_load.js"></script>
+        <script src="${resources}/basepage/seller/js/staticStore.js"></script>
+		<script src="${resources}/basepage/seller/js/store_dynamics.js"></script>
+		<script src="${resources}/basepage/seller/js/sp_getAboutImg.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<div id="pageInfo" store_id="${storeId!''}" store_template_code="${storeTemplateCode!''}" page_id="${storeTemplateCode!''}" style="display: none"></div>
+		<!--此处是头部开始-->
+		<div class="top">
+			<@top.render />
+			<div class="store_search_box">
+				<@searchBox.render />
+				<#--导入search_box-->
+			</div>
+		</div>
+		<!--此处是头部结束-->
+		<!--网页头部&导航开始-->
+		<div id="sp_hd_1"></div>
+		<div id="sp_hd_2"></div>
+		<@sellerSearch.render />
+		<div id="ff_tab_box">
+			<div class="ff_tab_content">
+				<div class="ff-tab-title">
+					<img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /> <span>商家介绍</span>
+				</div>
+				<div class="ff-tab-con-detail">
+                        <p>1972年，为贯彻毛泽东主席“五七指示”精神，解决部分职工家属和子女就业难的问题，贵州茅台酒厂党委决定成立“贵州省茅台酒厂五七工厂”， 1984年成立“贵州省茅台酒厂劳动服务公司”， 茅台酒厂五七工厂于1986年合并到茅台酒厂劳动服务公司。1988年6月，随着市场经济和改革发展的需要，劳动服务公司更名为“中国贵州茅台酒厂附属酒厂”，2002年再度更名为“贵州茅台酒厂（集团）保健酒业有限公司”，并一直延用至今。</p>
+                        <p>劳动服务公司建立之初只有100多平方米的简易生产场地，12名工人，生产量很小。1984年底和1985年元月先后两次向银行贷款扩建厂房，修建第一、第二制酒厂。2001年至2004年投资650多万元，对生产厂房、生产设备、办公楼等进行改造。2005年又将原1号生产厂房改建为800吨不锈钢罐群，建成半自动包装流水生产线4条，生产量逐渐扩大。到2007年，年生产能力接近2400吨。其间，保健酒业公司成功研制和推出多种产品。1985年成功研制第一个酱香型白酒台源窖酒，1986年开发出茅乡曲酒和茅乡窖酒，1993年成功研制保健酒茅台不老酒，1999年推出茅乡酒和低档贵州窖酒、茅乡缘酒，2005年又推出中华侨酒、小熊猫酒、大中国酒以及茅台不老酒帝王系列、十二生肖系列和心心相印系列等产品。</p>
+                        <p>公司创立之后，确实缓解了茅台酒厂部分职工家属及其子女的就业问题，为国酒茅台的发展提供了一个稳定的环境。但是随着市场经济改革的不断深入，市场竞争的不断加剧，由于管理基础比较薄弱，营销手段落后，员工素质普遍偏低，技术人才短缺等因素，导致保健酒业公司在市场竞争中逐渐落后下来，经济效益陷入窘境，到2007年底，甚至连员工正常的工资都发不出。</p>
+                        <p>如何才能走出困境？2008年，面对历史罕见的重大自然灾害和国际金融危机的考验，茅台集团重新调整了保健酒业公司的领导班子，任命张城同志为总经理（现任董事长）、法人代表。新班子上任后，在党的十七大精神指引下，在茅台集团党委、董事会、经营班子的坚强领导下，以科学发展观为指导，团结带领广大员工努力开拓市场，强化管理意识、质量意识，奋力拼搏，使保健酒业公司重新恢复生机，并以较快的速度发展。从2008年到现在短短的四年时间，保健酒业公司的行业地位、声誉得到很大提高，企业面貌焕然一新，取得了巨大的成就。</p>
+				</div>
+			</div>
+			<div class="ff_tab_content only_book_content_zizhi">
+				<div class="ff-tab-title">
+					<img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /><span>商家资质</span> 
+				</div>
+				<div class="ff-tab-con-detail">
+					<@zizhi.render />
+				</div>
+			</div>
+			<div class="ff_tab_content">
+				<div class="ff-tab-title">
+					<img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /> <span>商家活动</span>
+
+				</div>
+				<div class="ff-tab-con-detail">敬请期待</div>
+			</div>
+		</div>
+		<@footerNoTab.render />
+	</body>
+
+	</html>

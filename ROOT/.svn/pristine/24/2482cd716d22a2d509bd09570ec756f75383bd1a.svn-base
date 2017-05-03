@@ -1,0 +1,83 @@
+<#--店铺首页-->
+	<#include "/common/common_var_definds.ftl" />
+	<#include "/basepage/store/default/hb_templates/store_hb_templates.ftl" />
+	<#import "/basepage/store/default/common/zizhi_slider.ftl" as zizhi/>
+	<#import "/basepage/store/default/common/dangan_slider.ftl" as dangan/>
+	<!DOCTYPE html>
+	<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>饭饭1080直采平台</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+		<script type="text/javascript">
+			var deviceWidth = document.documentElement.clientWidth;
+			if(deviceWidth > 768) {
+				deviceWidth = 768;
+			}
+			document.documentElement.style.fontSize = deviceWidth / 6.4 + 'px';
+		</script>
+		<#import "/basepage/store/default/common/common_link.ftl" as link/>
+		<#import "/basepage/store/default/common/common_script.ftl" as script/>
+		<#import "/basepage/store/default/common/common_header_top.ftl" as top/>
+		<#import "/basepage/store/default/common/common_header_searchbox_default.ftl" as searchBox/>
+		<#import "/basepage/store/default/common/common_footer.ftl" as footerNoTab/>
+		<#import "/basepage/seller/seller_header_search.ftl" as sellerSearch/>
+		<@link.render />
+		<!--导入共通样式-->
+		<@script.render />
+		<!--导入共通脚本-->
+		<link rel="stylesheet" href="${resources}/basepage/seller/css/store.css" type="text/css">
+		<script src="${resources}/basepage/seller/js/store_common_head_load.js"></script>
+        <script src="${resources}/basepage/seller/js/staticStore.js"></script>
+		<script src="${resources}/basepage/seller/js/store_dynamics.js"></script>
+		<script src="${resources}/basepage/seller/js/sp_getAboutImg.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<div id="pageInfo" store_id="${storeId!''}" store_template_code="${storeTemplateCode!''}" page_id="${storeTemplateCode!''}" style="display: none"></div>
+		<!--此处是头部开始-->
+		<div class="top">
+			<@top.render />
+			<div class="store_search_box">
+				<@searchBox.render />
+				<#--导入search_box-->
+			</div>
+		</div>
+		<!--此处是头部结束-->
+		<!--网页头部&导航开始-->
+		<div id="sp_hd_1"></div>
+		<div id="sp_hd_2"></div>
+		<@sellerSearch.render />
+		<div id="ff_tab_box">
+			<div class="ff_tab_content">
+				<div class="ff-tab-title">
+					<img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /> <span>商家介绍</span>
+				</div>
+				<div class="ff-tab-con-detail">
+                        <p>北方地区最大规模的娃娃鱼养殖基地——大连裕康生物科技股份有限公司是一家集大鲵（娃娃鱼）子二代人工繁育驯养试验、展览、科普教育、研发销售为一体的专业化水生野生动物驯养繁殖企业，企业拥有国家养殖及经营等资质；通过国家检验检疫，符合食品安全标准，品质上成，没有中间商环节。</p>
+                        <p>公司大鲵养殖基地及仿生态繁育基地占地面积共计1200余亩。目前拥有种鱼500余尾，鱼苗20000尾，子二代商品鱼11200余尾，室内养殖池面积3000平方米，其周边环境清新、植被茂密、水质优良、海拔适宜，自然降水充足，无工业污染原，远离生活居住区及畜禽养殖区，是目前北方地区最大规模且各方面条件极为符合标准的大鲵繁育养殖基地。公司优秀事迹曾多次被市级和地方电台电视台报纸等媒体报道。2014年12月被我市“老科学技术者协会”授予专家教授工作站。2015年至2016年期间，我公司先后申请并取得4项发明专利。另有3项正在申报中。公司现已成为北方地区大鲵养殖领域龙头企业。</p>
+                        <p>企业实行“产学研”一体化企业经营方式，与国际知名科研机构合作研发大鲩医药、保腱品与食品、化妆品等领域项目进展顺利，正逐步发展为集约化、标准化、产业化、国际化大鲵养殖开发经营企业。“银娃娃”正在形成琨代农业、特色农业、观光农业和出口创汇型农业的龙头品种，成为投国拥有自主知识产权、拥有核心技术及竞争力的知名牌。</p>
+				</div>
+			</div>
+			<div class="ff_tab_content only_book_content_zizhi">
+				<div class="ff-tab-title">
+					<img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /><span>商家资质</span> 
+				</div>
+				<div class="ff-tab-con-detail">
+					<@zizhi.render />
+				</div>
+			</div>
+			<div class="ff_tab_content">
+				<div class="ff-tab-title">
+					<img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /> <span>商家活动</span>
+
+				</div>
+				<div class="ff-tab-con-detail">敬请期待</div>
+			</div>
+		</div>
+		<@footerNoTab.render />
+	</body>
+
+	</html>

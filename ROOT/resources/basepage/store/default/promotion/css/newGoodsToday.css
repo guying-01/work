@@ -1,0 +1,6 @@
+.banner {
+    width: 100%;
+    height: 2.7rem;
+    background:  url('../img/newGoodsToday/banner.png') no-repeat center center;
+    background-size: 100% 100%;
+}

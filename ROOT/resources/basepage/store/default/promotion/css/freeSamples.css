@@ -1,0 +1,101 @@
+body{
+	height: 100%;
+    font-size: 14px;
+    font-family: "microsoft yahei";
+    min-width: 300px;
+    max-width: 768px;
+    margin: 0 auto!important;
+}
+.freeSamples_header {
+	width: 100%;
+	height: 3.46rem;
+	background: url(/resources/basepage/store/default/promotion/img/ff_freeSamples/freeSamples_header.jpg) no-repeat center center;
+	background-size: 100%;
+}
+
+.freeSamples_content {
+	width: 100%;
+	box-sizing: border-box;
+	overflow: hidden;
+}
+
+.freeSamples_content:after {
+	content: '.';
+	clear: both;
+	visibility: hidden;
+	height: 0;
+	display: block;
+}
+
+.freeSamples_content li {
+	float: left;
+	width: 2.84rem;
+	height: 3.74rem;
+	margin-right: 0.2rem;
+	margin-bottom: 0.3rem;
+	background: #fff;
+	box-sizing: border-box;
+}
+
+.freeSamples_content li a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+	padding: 0.14rem 0.14rem 0 0.14rem
+}
+
+.freeSamples_content li a img {
+	width: 100%;
+	height: 2.35rem;
+	margin-bottom: 0.08rem;
+}
+
+.freeSamples_name {
+	width: 100%;
+	color: #4d4d4d;
+	font-size: 0.22rem;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	margin-bottom: 0.1rem;
+}
+
+.freeSamples_info {
+	width: 100%;
+	color: #fe0000;
+	font-size: 0.22rem;
+	line-height: 0.3rem;
+	float: left;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.freeSamples_info .colon {
+	margin: 0 0.03rem 0 0.08rem;
+}
+
+.line-through {
+	text-decoration: line-through;
+}
+
+.free_apply {
+	width: 1.07rem;
+	height: 0.29rem;
+	float: right;
+	background: #fe7b05;
+	text-align: center;
+	line-height: 0.29rem;
+	color: #fff;
+	font-size: 0.22rem;
+	border-radius: 0.04rem;
+}
+
+.freeSamples_info .goods_num_box {
+	float: left;
+	width: 1.46rem;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}

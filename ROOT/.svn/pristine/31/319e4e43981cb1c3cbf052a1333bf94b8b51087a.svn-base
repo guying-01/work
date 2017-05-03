@@ -1,0 +1,85 @@
+<#--店铺首页-->
+	<#include "/common/common_var_definds.ftl" />
+	<#include "/basepage/store/default/hb_templates/store_hb_templates.ftl" />
+	<#import "/basepage/store/default/common/zizhi_slider.ftl" as zizhi/>
+	<#import "/basepage/store/default/common/dangan_slider.ftl" as dangan/>
+	<!DOCTYPE html>
+	<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>饭饭1080直采平台</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+		<script type="text/javascript">
+			var deviceWidth = document.documentElement.clientWidth;
+			if(deviceWidth > 768) {
+				deviceWidth = 768;
+			}
+			document.documentElement.style.fontSize = deviceWidth / 6.4 + 'px';
+		</script>
+		<#import "/basepage/store/default/common/common_link.ftl" as link/>
+		<#import "/basepage/store/default/common/common_script.ftl" as script/>
+		<#import "/basepage/store/default/common/common_header_top.ftl" as top/>
+		<#import "/basepage/store/default/common/common_header_searchbox_default.ftl" as searchBox/>
+		<#import "/basepage/store/default/common/common_footer.ftl" as footerNoTab/>
+		<#import "/basepage/seller/seller_header_search.ftl" as sellerSearch/>
+		<@link.render />
+		<!--导入共通样式-->
+		<@script.render />
+		<!--导入共通脚本-->
+		<link rel="stylesheet" href="${resources}/basepage/seller/css/store.css" type="text/css">
+		<script src="${resources}/basepage/seller/js/store_common_head_load.js"></script>
+		<script src="${resources}/basepage/seller/js/store_dynamics.js"></script>
+		<script src="${resources}/basepage/seller/js/sp_getAboutImg.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<div id="pageInfo" store_id="${storeId!''}" store_template_code="${storeTemplateCode!''}" page_id="${storeTemplateCode!''}" style="display: none"></div>
+		<!--此处是头部开始-->
+		<div class="top">
+			<@top.render />
+			<div class="store_search_box">
+				<@searchBox.render />
+				<#--导入search_box-->
+			</div>
+		</div>
+		<!--此处是头部结束-->
+		<!--网页头部&导航开始-->
+		<div id="sp_hd_1"></div>
+		<div id="sp_hd_2"></div>
+		<@sellerSearch.render />
+		<div id="ff_tab_box">
+			<div class="ff_tab_content">
+				<div class="ff-tab-title">
+					<img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /> <span>商家介绍</span>
+				</div>
+				<div class="ff-tab-con-detail">
+        <p>稼钰农业一直坚持“科技为本，服务为先”的企业精神，把“倾听百姓的心声，解决百姓的心事”作为公司工作的第一要务。公司专门为广大农户打造了一个“农民110服务平台”，这在全国农业企业中首开了先河，农民110服务平台“的创办理念是：“人民群众有警察，农民朋友有稼钰”，老百姓只需一个电话，稼钰农业的服务天使就会在第一时间赶到现场，为农户解决燃眉之急。为此，稼钰农业专门成立了配送车队，送货上门，送服务上门，送技术上门；稼钰农业的科技宣传推广服务车，每天穿梭在庄河农村的乡里乡间，即招即停，供农所需，急农所想；稼钰农业还专门开办了“农业科技大讲堂”，联合多名专家，通过现场培训、疑难解答、情景模拟等方式为农户解决疑难杂症；稼钰农业的科技下乡宣讲团已经是庄河老百姓每天最盼望的人，几年来他们已经在田间地头培训了几十万农民；</p>
+        <p>稼钰农业总是与时俱进，作为农业的领航者之一，在网络盛行的时代，还专资打造了一个专业化的大型农业门户网站，网站规模堪称目前农资企业之最，稼钰网站让老百姓坐在家中便能连线专家，解答疑惑。多年来稼钰农业一直都在探索打造“农业产业化全产业链模式”，现在公司已经形成了完整的上游生产资料供应、中游专业化种植、下游农产品收购、销售及农产品品牌打造、包装与推广的专业纵向一体化农业模式，不但解除了广大农户的后顾之忧，还实现了农产品的利润最大化，率先为农业领域开辟出了一条全产业化运作的新模式。</p>
+
+
+				</div>
+			</div>
+			<div class="ff_tab_content only_book_content_zizhi">
+				<div class="ff-tab-title">
+					<img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /><span>商家资质</span>
+				</div>
+				<div class="ff-tab-con-detail">
+					<@zizhi.render />
+				</div>
+			</div>
+
+			<div class="ff_tab_content">
+				<div class="ff-tab-title">
+					<img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /> <span>商家活动</span>
+
+				</div>
+				<div class="ff-tab-con-detail">敬请期待</div>
+			</div>
+
+		</div>
+		<@footerNoTab.render />
+	</body>
+
+	</html>

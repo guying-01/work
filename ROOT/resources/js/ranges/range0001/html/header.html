@@ -1,0 +1,130 @@
+<style>
+.colorOrange {
+	color: orange;
+}
+</style>
+<div class="topnav">
+	<ul class="wrapper">
+	<li class="left welcome"><i></i>欢迎来到饭饭1080°直采平台</li>
+	<li class="left"><a href="/toLogin.jhtml" >[登录]</a></li>
+    <!--<li class="left"><a href="###" class="font-color-d  m-0">[注册] </a></li> hideregisterlink-->
+    <li class="right font-color-d p-l-10">客服电话：400-1234-5678</li>
+    <li class="right"><a href="http://seller.fan1080.com">商家中心</a>|</li>
+    <!-- <li class="right"><a href="/member/index.jhtml">个人中心</a>|</li>
+    <li class="right"><a href="/fav/toList.jhtml">我的收藏</a>|</li>
+    <li class="right"><a href="/sc/toList.jhtml">我的购物车</a>|</li>
+    <li class="right"><a href="/order/toOrderList.jhtml">我的采购单</a>|</li> -->
+	</ul>
+</div>
+
+<script id="topnav-tl" type="text/x-handlebars-template">
+<ul class="wrapper" >
+	<li class="left topuser" style="z-index:120;">
+			<span class="left">{{userCode}}</span>
+			<img  class="left AA" style='margin:8px 0 0 5px;' src="/resources/img/common/v{{userGrade}}.png"  width="20" height="20"><i>&nbsp;</i>
+			 <div class="top-li-pop"><i>&nbsp;</i>
+				<div class="top-user-con"> 
+					<img id="headerPic" src="/resources/img/member/header.png" width="100" height="100" class="topuserHeader">
+				  	<h3>
+					<img class="left" src="/resources/img/common/v{{userGrade}}.png" width="20" height="20">
+					<a href="/member/index.jhtml">账号管理</a>
+					<em>&nbsp;|&nbsp;</em><a href="/logout.jhtml" dm-actor="logout">退出</a>
+					</h3>
+				  	<p>当前积分：{{point}}</p>
+				</div>
+			 </div>
+	</li>
+    <li class="left topnew" id="station_message"><em>&nbsp;</em>新消息<b id="station_message_num">0</b><i>&nbsp;</i>
+      <div class="top-li-pop"><i>&nbsp;</i>
+            			<div class="Unread-mes">
+              				<h2><a href="javascript:void(0);" class="right m-t-10" title="消息设置"><img src="/resources/img/common/set.png" width="15" height="15"></a>未读消息</h2>
+              				<div class="top-scoll">
+                				<div class="mes-con" id="station_message_content">
+              	  					<p>暂时没有消息</p>
+                				</div>
+              				</div>
+              				<a href="/notify/notifyList.jhtml" id="more" class="top-more" style="display:none;">查看更多</a>
+              			</div>
+      </div>
+    </li>
+<li class="right">客服电话：<strong class="font-color-c">22222222222</strong></li>
+	{{#if inner}}
+	<li class="right"><a href="{{seller_path}}/store/index.jhtml" target="_blank">商家中心</a></li>
+	<!--<li class="right"><a href="{{seller_path}}/storeApply/init.jhtml">申请入驻</a></li>-->
+    {{else}}
+	 <li class="right"><a href="{{seller_path}}/store/index.jhtml" target="_blank">商家中心</a></li>
+	{{/if}}
+    <li class="right"><a href="/member/index.jhtml">个人中心</a></li>
+    <li class="right"><a href="/fav/toList.jhtml">我的收藏夹</a></li>
+    <li class="right"><a href="/sc/toList.jhtml">我的购物车<b dm-actor="header_shopCar_Count">0</b></a><i>&nbsp;</i>
+      <div class="top-li-pop"><i>&nbsp;</i>
+        <div class="Top-car">
+          <h2>我的购物车</h2>
+          <div class="top-scoll ps-container">
+            <div class="top-car-con">
+              <!--购物车物品区-->
+            </div>
+          </div>
+          <a href="/sc/toList.jhtml" class="top-more">查看更多</a> </div>
+      </div>
+    </li>
+    <li class="right"><a href="/order/toOrderList.jhtml">我的采购单</a></li>
+ </ul>
+</script>
+<script id="header-top-shopcar" type="text/x-handlebars-template">
+	{{#each this}}
+		<div class="top-car-goods">
+              <a href="/gd/{{goodsId}}.jhtml">
+              	<img src="{{itemPic}}" width="430" height="430">
+                <h3>{{goodsName}}</h3>
+              </a>
+              <p>￥<strong>{{salesPrice}}</strong></p>
+              <a href="javascript:void(0);" class="top-car-del" dm-actor="header-shopcar-delete" dm-data="{{id}}">删除</a>
+        </div>
+	{{/each}}
+</script>
+
+<script id="header-top-msg" type="text/x-handlebars-template">
+	<li class="left topnew" id="station_message" onclick="location='/notify/notifyList.jhtml'"><em>&nbsp;</em><a href="/notify/notifyList.jhtml">新消息</a><b id="station_message_num">0</b><i>&nbsp;</i>
+      <div class="top-li-pop" ><i>&nbsp;</i>
+            			<div class="Unread-mes">
+              				<h2><!--<a href="javascript:void(0);" class="right" >消息设置</a>-->未读消息</h2>
+              				<div class="top-scoll">
+                				<div class="mes-con" id="station_message_content">
+              	  					<p>暂时没有消息</p>
+                				</div>
+              				</div>
+              				<a href="/notify/notifyList.jhtml" id="more" class="top-more" style="display:none;">查看更多</a>
+              			</div>         	
+      </div>
+    </li>
+</script>
+<script id="header-top-fav" type="text/x-handlebars-template">
+	{{#each this}}
+		<div class="top-favGd-con">
+           <div class="top-favGd-goods" style="position: relative; height: 45px; padding: 7px 0; border-bottom: dashed 1px #ddd;"> 
+				<a href="/gd/{{goodsId}}.jhtml"><img style="position: absolute; top: 7px; left: 0px; width: 40px; height: 40px; border: solid 1px #ddd;" src="{{goodsPic}}" width="430" height="430">
+               <h3 style="margin: 0 40px 3px 50px; height: 28px; overflow: hidden; font-weight: lighter; line-height: 14px; word-wrap: break-word;">{{goodsName}}</h3>
+                </a>
+                <p style="margin-left: 50px; line-height: 12px;">￥<strong style="color: red; margin: 0; padding: 0; border: none;">{{salesPrice}}</strong></p>
+                <a style="position: absolute; top: 2px; right: 5px; color: #0dab88 !important; line-height: 22px;" href="javascript:void(0);" class="top-favGd-del" dm-actor="header-favGd-delete" dm-data="{{id}}">删除</a> 
+            </div>
+         </div>
+	{{/each}}
+
+  </script>
+
+<script id="favorites_store_list" type="text/x-handlebars-template">
+	{{#each this}}
+       <div class="top-store-con">
+           <div class="top-store-goods" style="position: relative; height: 45px; padding: 7px 0; border-bottom: dashed 1px #ddd;"> 
+				<a href="/fsst/{{storeId}}/top.jhtml"><img style="position: absolute; top: 7px; left: 0px; width: 40px; height: 40px; border: solid 1px #ddd;" src="{{storeLogo}}" width="430" height="430">
+                <h3 title="{{storeName}}" style="margin: 0 40px 0 50px; line-height: 14px; height: 31px; font-weight: lighter; width:50px;overflow:hidden;text-overflow:ellipsis;">{{storeName}}</h3>
+                </a>
+                <a style="position: absolute; top: 2px; right: 5px; color: #0dab88 !important; line-height: 22px;" href="javascript:void(0);" class="top-store-del" dm-actor="header-store-delete" dm-data="{{id}}">删除</a> 
+            </div>
+        </div>
+	{{/each}}
+  </script>
+
+<script type="text/javascript" src="/resources/js/ranges/range0001.js"></script>

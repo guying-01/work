@@ -1,0 +1,82 @@
+<#--店铺首页-->
+<#include "/common/common_var_definds.ftl" />
+<#include "/basepage/store/default/hb_templates/store_hb_templates.ftl" />
+<#import "/basepage/store/default/common/zizhi_slider.ftl" as zizhi/>
+<#import "/basepage/store/default/common/dangan_slider.ftl" as dangan/>
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>饭饭1080直采平台</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <script type="text/javascript">
+        var deviceWidth = document.documentElement.clientWidth;
+        if(deviceWidth > 768) {
+            deviceWidth = 768;
+        }
+        document.documentElement.style.fontSize = deviceWidth / 6.4 + 'px';
+    </script>
+<#import "/basepage/store/default/common/common_link.ftl" as link/>
+<#import "/basepage/store/default/common/common_script.ftl" as script/>
+<#import "/basepage/store/default/common/common_header_top.ftl" as top/>
+<#import "/basepage/store/default/common/common_header_searchbox_default.ftl" as searchBox/>
+<#import "/basepage/store/default/common/common_footer.ftl" as footerNoTab/>
+<#import "/basepage/seller/seller_header_search.ftl" as sellerSearch/>
+<@link.render />
+    <!--导入共通样式-->
+<@script.render />
+    <!--导入共通脚本-->
+    <link rel="stylesheet" href="${resources}/basepage/seller/css/store.css" type="text/css">
+    <script src="${resources}/basepage/seller/js/store_common_head_load.js"></script>
+    <script src="${resources}/basepage/seller/js/store_dynamics.js"></script>
+    <script src="${resources}/basepage/seller/js/sp_getAboutImg.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+<div id="pageInfo" store_id="${storeId!''}" store_template_code="${storeTemplateCode!''}" page_id="${storeTemplateCode!''}" style="display: none"></div>
+<!--此处是头部开始-->
+<div class="top">
+<@top.render />
+    <div class="store_search_box">
+    <@searchBox.render />
+				<#--导入search_box-->
+    </div>
+</div>
+<!--此处是头部结束-->
+<!--网页头部&导航开始-->
+<div id="sp_hd_1"></div>
+<div id="sp_hd_2"></div>
+<@sellerSearch.render />
+<div id="ff_tab_box">
+    <div class="ff_tab_content">
+        <div class="ff-tab-title">
+            <img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /> <span>商家介绍</span>
+        </div>
+        <div class="ff-tab-con-detail">
+                <p>金易集团成立于1993年，至今已24年，拥有员工近500人，旗下公司：大连金易达饮品有限公司，大连金易商业管理有限公司，辽宁金易跨境电子商务有限公司，辽宁酒苑电子商务有限公司，沈阳金易得饮品有限公司，金易葡佳酿进口酒连锁品鉴中心，酒苑商城酒类直供连锁超市，控股公司有沈阳金香汇三宝粥店连锁酒店，锦江之星宾馆，由你做主现代连锁火锅酒店，辽宁兴达金属钢网厂等十几家公司企业。金易集团始于大连，立足全国，放眼世界，专注于进口酒的业务，以及国外酒庄运作业务，通过酒类的国外直采，与全球十多个国家的酒庄上千款品种建立业务往来。精选高性价比优质进口葡萄酒，进口啤酒，烈酒等酒类产品，为整个中国大陆市场提供服务。</p>
+                <p>同时，得益于金易集团旗下金易葡佳酿进口酒品鉴中心直营店和酒苑商城酒类直供连锁超市两种业务网络终端模式，几十家零售门店及各类电子商务线上网络资源，我们作为强大的产品后盾支持，共同打造从厂家到消费者之间层级最少，服务最快捷，成本最低，推广最精准的集订单处理，采购供应，仓储物流，数据营销四位一体的专业数字化服务平台。</p>
+                <p style="margin-top: 20px;">企业价值观：诚信于心，求真务实，星级服务，互惠互赢</p>
+        </div>
+    </div>
+    <div class="ff_tab_content only_book_content_zizhi">
+        <div class="ff-tab-title">
+            <img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /><span>商家资质</span>
+        </div>
+        <div class="ff-tab-con-detail">
+        <@zizhi.render />
+        </div>
+    </div>
+    <div class="ff_tab_content">
+        <div class="ff-tab-title">
+            <img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /> <span>商家活动</span>
+
+        </div>
+        <div class="ff-tab-con-detail">敬请期待</div>
+    </div>
+</div>
+<@footerNoTab.render />
+</body>
+
+</html>

@@ -1,0 +1,1 @@
+<#assign ctx = rc.contextPath,resources = ctx + "/resources">

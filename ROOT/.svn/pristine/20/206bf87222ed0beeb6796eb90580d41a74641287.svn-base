@@ -1,0 +1,138 @@
+@charset "utf-8";
+.wrapper{ position:relative;}
+.content-left{ position:absolute; top:0; left:0;}
+.help-nav,.help-nav .wrapper {
+	height: 48px;
+	background-color: #db0401;
+}
+.help-nav ul {
+}
+.help-nav ul li, .help-nav ul li a {
+	float: left;
+	width: 100px;
+	height: 48px;
+	color: #fff;
+	text-align: center;
+	line-height: 48px;
+}
+.help-nav ul li a:hover {
+	background-color: #a90b08;
+	text-decoration: none;
+}
+.help-navfoc {
+	background-color: #a90b08;
+}
+.help-nav p a {
+	float: right;
+	padding-left: 23px;
+	width: 50px;
+	height: 48px;
+	color: #fff;
+	line-height: 48px;
+	text-align: right;
+}
+
+
+/*一级菜单*/
+.leftsidebar {
+	width: 193px;
+	border: solid 1px #e0e0e0;
+	padding-bottom:20px;
+}
+.leftsidebar li {
+}
+.leftsidebar .lev_A {
+	display: block;
+	height: 40px;
+	line-height: 40px;
+	color: #222424;
+	background: url(../../img/help/ico.jpg) no-repeat 20px  center;
+	border-bottom: dashed 1px #e0e0e0;
+	margin:0 15px;
+	font-size: 16px;
+	text-align: center;
+}
+.leftsidebar .lev_A:hover {
+	color: #3f3f3f;
+	text-decoration: none;
+}
+/*二级菜单*/
+.leftsidebar li ul {
+	overflow: hidden;
+	background: #fff;
+	
+}
+.leftsidebar li ul.level2 {
+	display: none;
+}
+.leftsidebar li ul.level2 li {
+	height: 30px;text-align: center;
+	line-height: 30px;
+}
+.leftsidebar li ul.level2 li a {
+	display: block;
+	height: 30px;
+	overflow: hidden;
+	font-size: 14px;
+	
+	text-align: center;
+	line-height: 30px;
+}
+.leftsidebar li ul.level2 li a:hover, .leftsidebar_foc {
+	background:#ffe9eb; text-decoration:none;
+}
+
+.helpcontent{border: solid 1px #e0e0e0; width:1004px; min-height:386px; margin-bottom:50px;}
+.helpcontent h2 {
+	padding:20px 0 0 30px;
+	height:30px;
+	
+	font-size:18px;
+	font-weight:lighter;
+	color:#a90b08;
+	line-height:30px;
+}
+.help_article{margin:0 30px;
+	width:913px;
+	}
+.help_article p{
+	line-height:45px;}
+	.help_article h3{font-size:16px;}
+.help_article p img{max-width:100%;}
+.help_article table {
+	border: 1px solid #e3f1f1;
+}
+.help_article table th {
+	line-height:30px;
+	border-bottom: 1px solid #e3f1f1;
+	border-right: 1px solid #e3f1f1;
+	color: #0e9596;
+}
+.help_article table td {
+	line-height:24px;
+	padding-left: 20px;
+	border-right: 1px solid #e3f1f1;
+	border-bottom: 1px solid #e3f1f1;
+}
+.help_article_no_padding table td {
+	padding-left:0 !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

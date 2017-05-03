@@ -1,0 +1,662 @@
+<#include "/common/common_var_definds.ftl" />
+<#macro render data>
+<#escape x as x?html>
+<div class="wrapper">
+  <div class="breadcrumb"></div>
+  <div class="detail-top">
+    <div class="details-img">
+    <#-- 商品图片区域 start -->
+      <div id=preview>
+        <div class=jqzoom id=spec-n1>
+        	<#if  data.sgItemPictureFormList?? && data.sgItemPictureFormList[0]??>
+        	<IMG src="${data.sgItemPictureFormList[0].middlePicturePath!""}" 
+        		data-init="${data.sgItemPictureFormList[0].middlePicturePath!""}"
+        		data-name="firstPicture"
+        		jqimg="${data.sgItemPictureFormList[0].bigPicturePath!""}" width=400 height=400>
+        	</#if>
+        	<div style="display:none;" dm-contianer="activity-icon"></div>
+		</div>
+        <div id=spec-n5>
+          <div class=control id=spec-left>　</div>
+          <div id=spec-list>
+            <ul class=list-h>
+            <#-- 小图片列表区域  Start -->
+	          <#if  data.sgItemPictureFormList??>
+	          <#list data.sgItemPictureFormList as picItem>
+	          <li><img data-name="goodsSmallPic" src="${picItem.middlePicturePath!""}" style="cursor:pointer;"> </li>
+	          </#list>
+	          </#if>
+	         <#-- 小图片列表区域  End -->
+            </ul>
+          </div>
+          <div class=control id=spec-right>　 </div>
+        </div>
+      </div>
+      <#-- 商品图片区域 end -->
+      
+      <#-- 单品图片区域 start -->
+      <div id=preview style="display:none" data-name="itemPicture">
+        <div class=jqzoom id=spec-n1 data-name="itemBigPic">
+		</div>
+        <div id=spec-n5>
+          <div class=control id=spec-left>　</div>
+          <div id=spec-list>
+            <ul class=list-h id="itemMiddlePic">
+            <#-- 小图片列表区域  Start -->
+	         <#-- 小图片列表区域  End -->
+            </ul>
+          </div>
+          <div class=control id=spec-right>　 </div>
+        </div>
+      </div>
+      <#-- 单品图片区域 end -->
+      
+      <div class="details-tool">
+      <a href="javascript:void(0);" dm-actor="fav-gd-add" dm-data="${data.id!""}" id="collection">
+      <i class="details-toolb">&nbsp;</i><span>收藏商品(0)</span></a>
+     <!--  <a href="javascript:void(0);" id="report">
+      <span>举报</span></a>-->
+      </div>
+    </div>
+    <div class="details-right">
+<#-- 商品交易主要操作区域  Start -->
+<#if data??>
+      <input type="hidden" id="data_goodsId" value="${data.id!""}"/>
+      <h2 dm-info="goods-detail-name" title="${data.name!""}" id="goods_name">${data.name!""}
+        <p>${data.adWord!""}</p>
+      </h2>
+      <div dm-container="activity-description-container"></div>
+      <ul class="detail-price">
+        <li><span>促销价：</span> 
+	        <b>￥</b>
+	        <b class="item-price-text" dm-info="price" dm-container="MinPrice" ></b>
+	        <b class="item-price-text" dm-container="MinPrice" dm-data="${data.minSalesPrice}" id="MinPrice">${data.minSalesPrice}</b>
+	        <#if data.isPromotion??>
+	        <#if data.isPromotion!="1">
+	        <#if (data.minSalesPrice?? && data.maxSalesPrice??)
+	        &&  (data.minSalesPrice!= data.maxSalesPrice)>
+	        <b class="item-price-text" dm-container="MaxPrice" dm-data="${data.maxSalesPrice}">~￥${data.maxSalesPrice}</b>
+	        </#if>
+	        </#if>
+	        <#else>
+	        <b class="item-price-text" style="display:none" dm-container="MaxPrice" dm-data="${data.maxSalesPrice}">~￥${data.maxSalesPrice}</b>
+	        </#if>
+        </li>
+        <li dm-container="activity-market-price-container" style="display:none;"></li>
+        <li>
+        	<span>市场价：</span> 
+        	<u class="left" dm-container = "MarketPrice">
+        		<#if data.minMarketPrice==data.maxMarketPrice>
+        			￥ ${data.minMarketPrice!}
+        		<#else>
+        			￥ ${data.minMarketPrice!}~￥${data.maxMarketPrice}
+        		</#if>
+    		</u>
+        	<u id="marketPrice" class="left" dm-container = "MarketPrice"></u>
+    	</li>
+        
+        <#--配送地址 运费 START-->
+        <li><span>配送：</span>
+        <input type="hidden" id="goods_carriage_goodsId" value="${data.id!""}"/>
+        <input type="hidden" id="goods_carriage_areaId" value="86"/>
+        <input type="hidden" id="goods_carriage_carriageCount" value=""/>
+          <div class="detail-adress"><em id="goods_carriage_Sender" value="${data.id!""}"></em> &nbsp;至&nbsp;<em id="goods_carriage_areaName"></em><i>&nbsp;</i>
+            <div class="adress-list detailcx2">
+             <div class="adress-list-shut"></div>
+              <div id="carriage-area_province">
+              </div>
+              <div class="clear"></div>
+              <div class="mid-addr"></div>
+              <div id="carriage-area_city">
+              </div>
+             <div class="mid-addr"></div>
+              <div id="carriage-area_hot">
+                <p><a href="javascript:void(0);" dm-actor="area-city" dm-data="110100" dm-grade="2" dm-parentid="110000" dm-province="北京" class="adress-list-selected">北京 </a></p>
+                <p><a href="javascript:void(0);" dm-actor="area-city" dm-data="120100" dm-grade="2" dm-parentid="120000" dm-province="天津" >天津 </a></p>
+                <p><a href="javascript:void(0);" dm-actor="area-city" dm-data="310100" dm-grade="2" dm-parentid="310000" dm-province="上海" >上海 </a></p>
+                <p><a href="javascript:void(0);" dm-actor="area-city" dm-data="500100" dm-grade="2" dm-parentid="500000" dm-province="重庆" >重庆 </a></p>
+              </div>
+            </div>
+          </div>
+          <div class="detail-adress"><span id="goods_carriage_carriagePrice" style="width:auto;"></span>
+             <#--</span><i>&nbsp;</i>
+             <div class="freight-list  detailcx2">
+             <div>
+                <p><a href="javascript:void(0);">免运费：0元</a></p>
+                <p><a href="javascript:void(0);">EMS：10元</a></p>
+              </div>
+            </div>-->
+          </div>
+        </li>
+        <#--配送地址 运费 END-->
+      </ul>
+      
+    <#-- 销售属性区域  Start -->
+    <#if (data.goodsStatus!"")=="20"
+      || (data.goodsStatus!"")=="30" || (data.goodsStatus!"")=="40">
+      <div class="goods-shelves">该商品已下架</div>
+      <#elseif (data.localStock!0)<=0 >
+      <div class="goods-shelves">该商品已售罄</div>
+      <#elseif (data.goodsStatus!"")=="10">
+      
+      <ul class="specifications">
+      	<#if data.saleAttrDicFormList??>
+      		<#list data.saleAttrDicFormList as saleAttrDicForm>
+      		<li id="specifications-error0_${saleAttrDicForm_index+1}" >
+		        <p class="specifications-error-shut" title="关闭">&nbsp;</p>
+	            <span>${saleAttrDicForm.attrDicName!''}：</span>
+		        <div class="specifications-list" id="saleAttr${saleAttrDicForm_index+1}"></div>
+		        <label class="errorwrong" >请先选择商品属性</label> <div class="clear"></div>
+	        </li>
+      		</#list>
+      	</#if>
+      
+        <#-- 操作区域  Start -->
+        <li><span dm-actor="amount-container">数量：</span>
+          <div class="num_box left"><a  href="javascript:void(0);" class="add_1"  dm-actor="gd-amt-add">加</a>
+            <input name="" type="text"  value="1" id="numbox" dm-info="gd-amt"/>
+            <a href="javascript:void(0);" class="reduce_0"  id="reduce" dm-actor="gd-amt-reduce">减</a></div>
+            <div class="count-note" dm-info="local-stock" dm-data="${data.localStock?string("#")}" dm-stock="${data.localStock?string("#")}">(库存${data.localStock?string("#")}件 )</div><#--${data.localStock?string("#")}-->
+          <#-- 库存区域  End -->
+          <#if  data.itemList??>
+          		<div style="display:none;" dm-container="local-stock-container">
+          <#list data.itemList as item>
+          <#if (item.localStock!0)!=0>
+          		<span dm-data="${item.localStock?string("#")}"></span>
+          </#if>
+          </#list>
+          </div>
+          </#if>
+          <label class="errorwrong"><i></i>请设置数量</label>
+          <div class="clear"></div>
+          <#-- 库存区域  End -->
+        </li>
+        <li>
+          <div class="detail-button">
+             <#if lockStatus?? && lockStatus !=0 >
+                 <a href="javascript:void(0);" style="background: grey">立即购买</a> <#--${ctx}/sc/addSc.ajax-->
+                 <a href="javascript:void(0);" class="detail-button-bg2" style="background: grey">加入购物车</a></div><#--${ctx}/sc/addSc.ajax-->
+             <#else >
+                 <#if  data.unPromotion?? && (data.unPromotion)=="1">
+                     <a href="javascript:cantbuy();" >立即购买</a> <#--${ctx}/sc/addSc.ajax-->
+                     <a href="javascript:cantbuy();" class="detail-button-bg2" >加入购物车</a></div><#--${ctx}/sc/addSc.ajax-->
+                 <#else>
+                     <a href="javascript:void(0);" dm-actor="dm-buy">立即购买</a> <#--${ctx}/sc/addSc.ajax-->
+                     <a href="javascript:void(0);" class="detail-button-bg2" dm-actor="dm-add2shpcart" id="addcur">加入购物车</a></div><#--${ctx}/sc/addSc.ajax-->
+                 </#if>
+             </#if>
+
+        </li>
+        <#-- 操作区域  End -->
+      </ul>
+  </#if>
+  <#-- 销售属性  End -->
+</#if>
+<#-- 商品交易主要操作区域  End -->
+
+<#-- 店铺信息区域  Start -->
+      <div class="shop-informaiton" id="shop-informaiton">
+      	
+      </div>
+    </div>
+  </div>
+<#-- 店铺信息区域  End -->
+
+<#-- 头部快捷栏出现时，点击购买，显示商品信息条  start -->
+  <div class="good-tool" style="display: none;">
+    <div class="good-tool-serch">
+      <input name="new-goods-search" dm-info="quick-goods-search-word" type="text" value="" placeholder="搜索"/>
+      <a href="javascript:void(0);" dm-actor="quick-gd-search">搜 索</a></div>
+    <div class="good-tool-tab">
+      <div class="detail-button"> <a href="javascript:void(0)" class="detail-button-bg2">加入购物车</a>
+      <a href="javascript:void(0);" dm-actor="dm-buy-tool">立即购买</a></div><#--${ctx}/sc/addSc.ajax-->
+      <div class="good-tool-filter"><i>&nbsp;</i>
+        <ul>
+          <li class="good-tool-price"><span>价格：</span> 
+          <b>￥</b>
+          <b class="item-price-text" dm-info="price" dm-container="MinPrice" ></b>
+          <b class="item-price-text" dm-container="MinPrice" dm-data="${data.minSalesPrice}">${data.minSalesPrice}</b>
+          <#if (data.minSalesPrice?? && data.maxSalesPrice??)
+       		&&  (data.minSalesPrice!= data.maxSalesPrice)>
+       	  <b class="item-price-text" dm-container="MaxPrice" dm-data="${data.maxSalesPrice}">~￥${data.maxSalesPrice}</b>
+      	  </#if>
+      	  </span>
+          </li>
+          <li dm-container="activity-market-price-container" style="display:none;"></li>
+          
+          <#--销售属性 start-->
+          <#if data.saleAttrDicFormList??>
+          	<#list data.saleAttrDicFormList as saleAttrDicForm>
+	          	<li id="specifications-error1_${saleAttrDicForm_index+1}" >
+		          <p class="specifications-error-shut" title="关闭">&nbsp;</p>
+		             <span>${saleAttrDicForm.attrDicName!''}</span>
+			         <div class="specifications-list" id="toolSaleAttr${saleAttrDicForm_index+1}">
+			          </div>
+		          <label class="errorwrong" style="display:none">请先选择商品属性</label> <div class="clear"></div>
+		        </li>
+          	</#list>
+          </#if>
+          <#--销售属性end -->
+          
+          <li><span>数量：</span>
+            <div class="num_box left"><a  href="javascript:void(0)" class="add_1"  dm-actor="gd-amt-add">加</a>
+              <input actor="hideTool" name="" type="text"  value="1" id="numbox" dm-info="gd-amt"/>
+              <a href="javascript:void(0)" class="reduce_0"  id="reduce" dm-actor="gd-amt-reduce">减</a></div>
+            <div class="count-note" dm-info="local-stock" dm-data="" dm-stock="">(库存件 )</div>
+            	<#if  data.itemList??>
+      				<div style="display:none;" dm-container="local-stock-container">
+		      	<#list data.itemList as item>
+		      	<#if (item.localStock!0)!=0>
+		      		<span dm-data="${item.localStock?string("#")}"></span>
+		      	</#if>
+		      	</#list>
+		      	</div>
+		      	</#if>
+		      <div class="clear"></div>
+          </li>
+        </ul>
+        <div class="good-tool-bt">
+        <a href="javascript:void(0)" class="small-button" dm-actor="" id="confirmAdd">确定</a>
+        <a href="javascript:void(0)" onclick="clsNewTool()" class="small-button-greay">取消</a></div>
+      </div>
+    </div>
+  </div>
+<#-- 头部快捷栏出现时，点击购买，显示商品信息条  end -->
+<#-- 左侧栏区域  Start -->
+  <div class="Related-products" dm-layout-grid="grid0002">
+ 
+  </div>
+<#-- 左侧栏区域  End -->
+<div class="detail-bottom">
+<div id="combinationDiv">
+<script id="combination" type="text/x-handlebars-template">
+<div class='detailRecommend'>
+  <h2>推荐商品</h2>
+  <div class="detailRecommendSum">
+  
+        
+        
+        <#--<#list data.combinationList as item>-->
+         <div class="detailRecommendSumDom">
+          <div class="detailRecommendGoods"><img src="${data.sgItemPictureFormList[0].smallPicturePath!""}" width="400" height="400">
+          <p style="text-overflow:ellipsis; white-space:nowrap; overflow:hidden;" title="{{this.baseData.name}}">{{this.baseData.name}}</p>
+          <input style="display:none" value="{{this.baseData.combinationPrice}}" id='baseMoney'>
+        	<input style="display:none" name="baseCombinationItemId" value="{{this.baseData.itemId}}">
+        	<input style="display:none" name="baseCombId" value="{{this.baseData.combId}}">
+        	<input style="display:none" name="baseCombinationId" value="{{this.baseData.combinationId}}">
+        	<input style="display:none" name="promotionId" value="{{this.baseData.promotionId}}">
+          <p><strong >￥{{this.baseData.combinationPrice}}</strong></p>
+        </div>
+        {{#each this.data}}
+        
+        <div class="detailRecommendAccord">+</div>
+        <div class="detailRecommendGoods"><a href="{{goodsId}}.jhtml"><img src="{{itemPictureList.[0].smallPicturePath}}" width="400" height="400"></a>
+          <p style="text-overflow:ellipsis; white-space:nowrap; overflow:hidden;" title="{{name}}" ><a href="{{goodsId}}.jhtml">{{name}}</a></p>
+          <p>
+          	{{#compare combinationType "10"}}
+            	<input name="combinationMoneyCheck" type="checkbox" value="{{combinationPrice}}" combinationItemId="{{id}}" combId="{{combId}}" combinationId="{{combinationId}}" promotionId="{{promotionId}}">
+            	{{else}}
+            	<input name="combinationMoney" style="display:none" value="{{combinationPrice}}" combinationItemId="{{id}}" combId="{{combId}}" combinationId="{{combinationId}}" promotionId="{{promotionId}}">
+     		{{/compare}}
+            <strong>￥{{combinationPrice}}</strong></p>
+        </div>
+        
+        {{/each}}
+         
+        <div class="detailRecommendAccord">=</div>
+        </div>
+        <div class="detailRecommendPrice"><p>已选择<strong id="num">0</strong>件搭配</p><p>搭配价格：<strong id="allMoney">￥{{this.baseData.combinationPrice}}</strong></p><a href="javascript:addCombination();" id="addCombination" class="detailRecommendBt">加入购物车</a></div>
+      </div>
+      </div>
+</script>
+</div>
+    <ul  class="tabT " >
+      <li dm-type="goodsDetil" onclick="Javascript:ChangeDiv('0','JKDiva_',2)" class="on">商品详情</li>
+      <li dm-type="goodsScore" onclick="Javascript:ChangeDiv('1','JKDiva_',2)" >商品评价（0）</li>
+      <li dm-type="goodsRecord" onclick="Javascript:ChangeDiv('2','JKDiva_',2)" >销售记录（0）</li>
+    </ul>
+    <#--商品详情 Tab0 START-->
+    <div id="JKDiva_0">
+	<#if data.otherAttrFormList??>
+      <div class="good-details"> 
+      <div class="good-attribute">
+		<ul>
+		<#list data.otherAttrFormList as attr>
+		<li title="${attr.value!""}"><strong>${attr.attrDicName!""}：</strong>&nbsp;${attr.value!""}</li>
+		</#list>
+		<div class="clear"></div>
+		</ul>
+	  </div>
+	  <#noescape>
+		${(data.sgGoodsInfoChannelForm.introduction)!"没有描述哦！～"}
+	  </#noescape>
+	  </div>
+	</#if>
+	  <div class="clear"></div> 
+    </div>
+    <#--商品详情 Tab END-->
+  	<div id="JKDiva_1" style="display:none" >
+  	 <div class="evaluation m-t-20">
+        <h2><span class="width120">评论者</span><span class=" width435">购买心得</span><span class=" width150">满意度</span></h2>
+  		<div class='bor-b' id = "discuss_div"></div>
+      </div>
+      <div class="detail-null" style="display:none;"><img src="${resources}/img/common/null4.png" width="38" height="37" class="left m-t-5">
+	      <div class="left"> 啊哦，该商品暂时没有评价哦～～～ </div>
+	    </div>
+    </div>
+     <#--商品评价 Tab1 START-->
+    <div id="JKDiva_2" style="display:none" >
+      <div id="sellHistory">
+	      <table width="960" border="0" cellspacing="0" cellpadding="0" class="table-line m-t-10" id="transaction_table">
+	      </table>
+	      <input type="hidden" id="rows" name="length" value="10"/>
+		  <input type="hidden" id="currentPage" name="currentPage" value="1"/>
+	      <div class="page-con"> </div>
+      </div>
+      <div class="detail-null" style="display:none;"><img src="${resources}/img/common/carNulla.png" class="left ">
+      	<div class="left"> 啊哦，该商品暂时还没有人购买过哦～～～ </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<#--店铺详情模板 Start-->
+
+<#-----<script id="storeInfo" type="text/x-handlebars-template">
+	<a href="/st/{{storeId}}/index.jhtml">
+	<img src="{{storeLogo}}" width="100" height="100" class="shop-header" /></a>
+        <h3>
+          <P><a href="/st/{{storeId}}/index.jhtml">{{sellerName}}</a></P>
+          <input id="storeName" type="hidden" value="{{sellerName}}"/>
+          <img title="{{storeRangHelper gradeId}}级会员" src="${resources}/img/common/s{{storeRangHelper gradeId}}.png" width="13" height="20"> </h3>
+        <table  border="0" cellpadding="0" cellspacing="0" width="180">
+          <tr>
+            <th scope="col" width="90">综合评分</th>
+            <th scope="col">评分细则</th>
+          </tr>
+          <tr>
+            <td rowspan="4"><strong>{{storeScore}}</strong> 分</td>
+            <td class="p-t-10">描述  {{storeDescCredit}}</td>
+          </tr>
+          <tr>
+            <td>价格  {{storePriceCredit}}</td>
+          </tr>
+          <tr>
+            <td>服务  {{storeServiceCredit}}</td>
+          </tr>
+          <tr>
+            <td>物流  {{storeDeliveryCredit}}</td>
+          </tr>
+        </table>
+        <div class="dialogue">
+        <span class="m-0">咨询：</span><a href="javascript:void(0);">
+        <span dm-actor="webim-store" dm-data="{{bossName}}"><img src="${resources}/img/common/waiter.png" width="30" height="30"></span><span>小二</span></a><a href="javascript:void(0);">
+        <span dm-actor="webim-store" dm-data="{{bossName}}"><img src="${resources}/img/common/doctor.png" width="30" height="30"></span><span>药师</span></a></div>
+        <div class="shop-informaiton-bt"><a href="/st/{{storeId}}/index.jhtml" class=" small-button-greay m-r-10">进入店铺</a>
+        <a href="javascript:void(0);" class=" small-button-greay" id="collect">收藏店铺</a></div>
+</script>--->
+<script id="storeInfo" type="text/x-handlebars-template">
+	<!---<a href="/fsst/{{storeId}}/top.jhtml">
+	<img src="{{storeLogo}}" width="100" height="100" class="shop-header" /></a>-->
+        <h3>
+          <P>店铺等级</P>
+          <img title="{{gradeId}}级店铺" src="${resources}/img/common/store{{gradeId}}.png"> </h3>
+       <h4><a href="/fsst/{{storeId}}/top.jhtml" id="tjstoreName" data-sid="{{storeId}}">{{storeName}}</a></h4>
+        <div class="dialogue"><span class="m-0">掌柜：</span><span>{{sellerName}}</span></div>
+        <div class="dialogue">
+        	<span class="m-0">客服：</span>
+			<a href="javascript:QQtalk('1739073619');">
+        		<span dm-actor="webim-store" dm-data="{{bossName}}"><img src="${resources}/img/common/waiter.png" width="30" height="30"></span><span>{{bossName}}</span>
+			</a>
+		</div>
+        
+        <table width="190" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <th valign="bottom" scope="col" >描述</th>
+            <th valign="bottom"  scope="col">价格</th>
+            <th valign="bottom"  scope="col">服务</th>
+            <th valign="bottom"  scope="col">物流</th>
+          </tr>
+          <tr>
+            <td valign="top"><strong>{{storeDescCredit}}</strong></td>
+            <td valign="top"><strong>{{storePriceCredit}}</strong></td>
+            <td valign="top"><strong>{{storeServiceCredit}}</strong></td>
+            <td valign="top"><strong>{{storeDeliveryCredit}}</strong></td>
+          </tr>
+        </table>        
+        <div class="shop-informaiton-bt"><a href="/fsst/{{storeId}}/top.jhtml" class=" small-button-greay m-r-10">进入店铺</a>
+        <a href="javascript:void(0);" class=" small-button-greay" id="collect" onclick="addStoreFavorite()">收藏店铺</a></div>
+</script>
+<#--店铺详情模板 End-->
+
+<#-- 商品评价模板 Start -->
+<script id="discuss_tl" type="text/x-handlebars-template">
+<#-- ADD START BY geshuo 20151207:评价标签-->
+<div id="score_tag" class='score_tag'>
+<P style="cursor:pointer;" class="showTag" id="allScore" onclick="Javascript:ChangeDiv('1','JKDiva_',2)">所有评价(0)</p>
+{{#each this.scoreTagList}}
+	<P style="cursor:pointer;" class="showTag" data-id="{{id}}">{{name}}({{count}})</p>
+{{/each}}
+<p style="cursor:pointer;" class="showTag pictureComment" data-id="picture">有图评价({{this.commentCountMap.pictureCommentCount}})</p>
+<p style="cursor:pointer;" class="showTag addedComment" data-id="again">追加评价({{this.commentCountMap.addedCommentCount}})</p>
+	<div class="clear"></div>
+</div>
+<#-- ADD END   BY geshuo 20151207:评价标签-->
+{{#each this.data.data}}
+<div class=" evaluation-line">
+  <div class="evaluation-header"><img src="{{#memberPicHelper memberPic}}{{/memberPicHelper}}"/>
+  {{#if isHideMemberName}}
+  	<P>{{#hideMemberHelper memberName}}{{/hideMemberHelper}}</P>
+  {{else}}
+  	<P>{{memberName}}</P>
+  {{/if}}
+    <p ><img src="${resources}/img/common/v{{memberGradeRank}}.png" /></p>
+  </div>
+  <div class="evaluation-con">
+  {{#each this.historyList}}
+		{{#scoreTypeHelper scoreState}} 
+	    		<div class="evaluation-con-lvA">{{#scoreStateHelper scoreState}}{{/scoreStateHelper}}{{memo}}
+				{{#if pictureList}}
+				<ul class="evaluationImg">
+				{{#each pictureList}}
+					<li title="放大"><img src="{{picUrl}}{{picName}}">
+					<u title="缩小" style="display: none;"></u> </li>
+ 	 			{{/each}}
+				</ul>
+				<div class="evaluationImg-big" title="缩小" style="display: none;"></div>
+				{{/if}}
+		{{else}}
+	    		<div class="evaluation-con-lvB">{{#scoreStateHelper scoreState}}{{/scoreStateHelper}}{{memo}}
+    	{{/scoreTypeHelper}}
+      	<P>{{#formatCreateData createDate}}{{/formatCreateData}}</P>
+	    </div>
+  {{/each}}
+  </div>
+  <div class="evaluation-strat">
+    <P>{{#scoreLevelHelper score}}{{/scoreLevelHelper}}</P>
+  </div>
+  <div class="clear"></div>
+</div>
+{{/each}}
+</script>
+
+<#-- 商品评论模板 Start -->
+
+<#-- 商品销售记录模板 Start {{pic}}-->
+<script id="score_tl" type="text/x-handlebars-template">
+	<tr>
+      <th width="180" scope="col">采购商</th>
+      <th width="180" scope="col">拍下单价</th>
+      <th width="180" scope="col">购买数量</th>
+      <th width="200" scope="col">付款时间</th>
+      <th scope="col">款式</th>
+    </tr>
+{{#each this}}
+<tr>
+  <td>
+  	{{#if isHideMemberName}}
+  		<p>{{#hideMemberHelper memberAccount}}{{/hideMemberHelper}}</p>
+  	{{else}}
+  		<p>{{memberAccount}}</p>
+  	{{/if}}
+	<p><img src="${resources}/img/common/v{{#storeRangHelper userGrade}}{{/storeRangHelper}}.png" width="61" height="16" /></p></td>
+  <td>￥{{itemPrice}}</td>
+  <td>{{itemAmount}}</td>
+  <td>{{createDate}}</td>
+  <td>{{itemName}}</td>
+</tr>
+{{/each}}
+</script>
+<#-- 商品销售记录模板 End-->
+<#-- 评价等级 Start -->
+<script>
+Handlebars.registerHelper("scoreLevelHelper",function(param,options){
+var imgs = '';
+	for(var i = 1;i<=param;i++){
+		imgs+='<img src="${resources}/img/common/x_on.jpg" width="19" height="18"/>';
+	}
+	return imgs;
+})
+</script>
+<#-- 评价等级 End -->
+
+<#--头像helper Start-->
+<script>
+Handlebars.registerHelper("memberPicHelper",function(param,options){
+	return param==null?'/resources/img/member/header.png':param;
+})
+</script>
+<#--头像helper End-->
+
+<#--店铺等级helper Start-->
+<script>
+Handlebars.registerHelper("storeRangHelper",function(param,options){
+	return param==null?'1':param
+})
+</script>
+<#--店铺等级helper End-->
+
+<#-- 评价时间格式化Start -->
+<script>
+Handlebars.registerHelper("formatCreateData",function(param,options){
+	var d=new Date(param);
+	return d.format("yyyy-MM-dd");
+})
+</script>
+<#-- 评价时间格式化End -->
+
+<#--评价样式区分Start scoreTypeId-->
+<script>
+Handlebars.registerHelper("scoreTypeHelper",function(param,options){
+	if(param=="00"||param == "20"){
+	  return options.fn(this);
+	 }else{
+	  return options.inverse(this);
+	 }
+})
+</script>
+<#--评价样式区分End-->
+<#-- 评价内容格式化Start -->
+<script>
+Handlebars.registerHelper("scoreStateHelper",function(param,options){
+	if(param == '00'){
+		return "";
+	}else if(param == '10'){
+		return "掌柜回复:"
+	}else if(param == '20'){
+		return "追加评论:";
+	}else{
+		return "追加回复:";
+	}
+})
+</script>
+<#-- 评价内容格式化End -->
+<#--匿名回复Helper Start-->
+<script>
+	Handlebars.registerHelper("hideMemberHelper",function(param,options){
+	return param.replace(param.substring(2,(param.length)-2),'***');
+})
+</script>
+<#--匿名回复Helper End-->
+
+<#--店内搜索模板Start-->
+<script id="store-goods-search-tl" type="text/x-handlebars-template">
+<form dm-container="search-form">
+  <h2>店内搜索</h2>
+  <div class="search-products"><span>关键字：</span>
+    <input name="" type="text" class="text_A left" maxlength="20" style="width:130px; z-index:5" dm-info="store-gd-search-word" value="{{search}}"/>
+  </div>
+  <div class="search-products"><span>价 格：</span>
+    <input name="minPrice" type="text" class="text_B left" maxlength="8" style="width:55px; z-index:5" dm-info="store-gd-search-min-price" value="{{minPrice}}"/>
+    <em>-</em>
+    <input name="maxPrice" type="text" class="text_B left" maxlength="8" style="width:55px; z-index:5" dm-info="store-gd-search-max-price" value="{{maxPrice}}"/>
+  </div>
+  <label id="minPrice-error" class="error" for="minPrice" style="display:none; padding:1px 1px 1px 17px;"></label>
+  <label id="maxPrice-error" class="error" for="maxPrice" style="display:none; float: right; padding:1px 1px 1px 17px;"></label>
+  <div class="search-products-button"><a href="javascript:void(0);" class=" small-button" dm-actor="store-gd-search">搜索</a></div>
+</form>
+</script>
+
+<#--店内搜索模板End-->
+
+<#--field_goods_operation_panel.ftl handlebar START-->
+<script id="gd-it-tl" type="text/x-handlebars-template">
+{{#each item_datas}}<dd class="{{#if selected}}specifications-selected{{/if}}" data-price="{{price}}">{{name}}[{{price}}]</dd>{{/each}}
+</script>
+<script id="gd-it-off-tl" type="text/x-handlebars-template">
+<div class="goods-shelves">该商品已下架</div>
+</script>
+
+<#--商品活动 handlebar Start-->
+<script id="activity-icon-tl" type="text/x-handlebars-template">
+
+<div class="detail-sale" style="left:300px;" dm-contianer="activity-icon" dm-data="{{goodsId}}"><p dm-info="activity-icon" dm-data="{{goodsId}}">{{shortName}}</p></div>
+
+</script>
+
+
+<script id="activity-description-tl" type="text/x-handlebars-template">
+
+	<div class="details-right-sale" dm-container="activity-description-container">
+		<div class="details-sale-tit" dm-info="activity-title" dm-data="{{goodsId}}">{{name}}</div>
+		<div class="details-sale-con" dm-container="activity-description-time-container"></div> 
+		<a href="javascript:void(0)" class="details-sale-btn">更多优惠<i class="">&nbsp;</i></a>
+		<div class="sale-pop" style="display: none;">
+		<p dm-info="activity-description" dm-data="{{goodsId}}">{{{description}}}</p>
+		</div>
+	</div>
+
+</script>
+
+<#if  data.unPromotion?? && (data.unPromotion)=="1">
+<script id="activity-description-time-tl" type="text/x-handlebars-template">
+<div class="details-sale-con" dm-container="activity-description-time-container">本场秒杀已结束，敬请期待下一场秒杀
+</div>
+</script>
+<#else>
+<script id="activity-description-time-tl" type="text/x-handlebars-template">
+<div class="details-sale-con" dm-container="activity-description-time-container">
+{{#if isEnd}}活动已经结束{{else}}
+<strong class="  font-color-a" id="date" dm-info="activity-rest-day" dm-data="{{goodsId}}">{{restDay}}</strong>&nbsp;天&nbsp;
+<strong class="  font-color-a" id="time" dm-info="activity-rest-hour" dm-data="{{goodsId}}">{{restHour}}</strong>&nbsp;小时&nbsp;
+<strong class="  font-color-a" id="time" dm-info="activity-rest-minute" dm-data="{{goodsId}}">{{restMinute}}</strong>分&nbsp;
+<strong class="  font-color-a" id="time" dm-info="activity-rest-second" dm-data="{{goodsId}}">{{restSecond}}</strong>秒&nbsp;
+后{{#if noBegin}}开始{{else}}结束{{/if}}，请尽快购买！{{/if}}</div>
+</script>
+</#if>
+
+<script id="activity-market-price-tl" type="text/x-handlebars-template">
+<li dm-container="activity-market-price-container"><span>市场价：</span> <u class="left" >¥</u><u class="left" dm-info="activity-market-price" dm-data="{{goodsId}}"></u></li>
+</script>
+
+
+<script id="activity-price-tl" type="text/x-handlebars-template">
+<b dm-info="activity-price" dm-data-gd="{{goodsId}}" dm-data-gd="{{itemId}}">{{price}}</b>
+</script>
+<#--商品活动 handlebar End-->
+<#--有未闭合标签 加一个解决FOOT问题-->
+</div>
+</#escape>
+
+</#macro>

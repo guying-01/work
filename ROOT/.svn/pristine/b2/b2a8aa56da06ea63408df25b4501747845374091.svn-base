@@ -1,0 +1,39 @@
+<#include "/common/common_var_definds.ftl" />
+<#macro render data>
+    <#escape x as x?html>
+    <table id="member1Table" width="97%" border="0" cellspacing="0" cellpadding="0" class="table" style="word-break:break-all">
+      <h2 class="member-tit"><i></i>主账号</h2><thead>
+        <tr class="bor-l bor-r bor-t">
+          <th style="line-height:20px">主账号隐藏</th>
+          <th width="5%" style="line-height:20px">采购商主账号</th>
+				  <th width="5%" style="line-height:20px">采购商店名</th>
+          <th width="5%" style="line-height:20px">采购商身份码</th>
+          <th width="6%" style="line-height:20px">账号类型</th>
+				  <th width="4%" style="line-height:20px">接货人</th>
+				  <th width="6%" style="line-height:20px">接货人电话</th>
+          <th width="6%" style="line-height:20px">店内电话</th>
+          <th width="15%" style="line-height:20px">地址</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+    
+    <table id="member2Table" width="97%" border="0" cellspacing="0" cellpadding="0" class="table" style="word-break:break-all">
+      <h2 class="member-tit"><i></i>子账号</h2> <thead>
+        <tr class="bor-l bor-r bor-t">
+  			  <th width="5%" style="line-height:20px">采购商子账号</th>
+          <th width="5%" style="line-height:20px">采购商店名</th>
+          <th width="5%" style="line-height:20px">采购商身份码</th>
+          <th width="6%" style="line-height:20px">账号类型</th>
+  			  <th width="4%" style="line-height:20px">接货人</th>
+  			  <th width="6%" style="line-height:20px">接货人电话</th>
+          <th width="6%" style="line-height:20px">店内电话</th>
+          <th width="15%" style="line-height:20px">地址</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+    </#escape>
+</#macro> 

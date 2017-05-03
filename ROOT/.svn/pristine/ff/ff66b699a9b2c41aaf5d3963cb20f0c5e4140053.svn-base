@@ -1,0 +1,199 @@
+<div class="shopNav"></div>
+
+<script id="shop-header-nav-tl" type="text/x-handlebars-template" >
+  <div class="wrapper">
+    <ul>
+    {{#each navitems}}
+    <li><a href="{{url}}" title="{{label}}" class=" shopNavfoc">{{shortLabel}}</a></li>
+    {{/each}}
+    </ul>
+  </div>
+</script>
+<script id="shop-goods-categroy-tl" type="text/x-handlebars-template">
+{{#each this}}
+	    <div class="submenu" style="border:1px solid #0dab88;border-top:0.5px solid #0dab88;">
+	      <a title="{{name}}" href="/st/{{storeId}}/search.jhtml?from=store-gd-search&ss=&min=&max=&st-cat={{id}}"><h3  dm-data="{{id}}">{{shortName}}</h3></a>
+	      	<div class="submenu-floating" style="height:auto; border:1px solid #0dab88; position:relative; top:-56px;">
+	        	<ul style="height:auto;">
+	        		{{#if subMenu}}
+					{{#each subMenu}}
+					{{#if isShow}}
+	          		<li><a title="{{name}}" href="/st/{{storeId}}/search.jhtml?from=store-gd-search&ss=&min=&max=&st-cat={{id}}"  dm-data="{{id}}" title="{{label}}">{{shortName}}</a></li>
+					{{/if}}
+					{{/each}}
+					{{else}}
+					<li><a href="javascript:void(0);" >没有二级分类</a></li>
+					{{/if}}
+	        	</ul>
+	      	</div>
+	    </div>
+		{{/each}}
+</script>
+
+<script type="text/javascript">
+/** 初始化加载 **/
+(function($){
+	
+	if(!$.dm){
+		$.dm={};
+	};
+	
+	if(!$.dm.widget){
+		$.dm.widget={};
+	};
+	
+	$.dm.widget.storeNav=function(){
+		
+		var init=function(options){
+		try{
+			var data = {"storeId":storeId};
+			var container = options["container"];
+			var range = options["range"] || {};
+			var order = range["orders"] || "";
+			data["order"]  = order;
+			
+			var rangeData = range["rangeData"];
+			var navitems=[];
+			if(rangeData && rangeData['navitem']){
+				try{
+					navitems=JSON.parse(rangeData['navitem']);
+				}catch(ex){
+				}
+			}
+ 			var datas=[];
+			for(var i in navitems){
+				var label=navitems[i]['label'];
+				var url=navitems[i]['url'];
+				if(label){
+					if(!url){
+						url = "javascript:void(0);";
+					}
+					var shortLabel = label;
+					if(label.length>6){
+						shortLabel = label.substr(0,6)+"...";
+					}
+					datas.push({label:label,url:url,shortLabel:shortLabel});
+				}
+			}
+			var nav_count = datas.length;
+ 			
+			// 模板
+			var nav_tl = $("#shop-header-nav-tl").html();
+			// 将模板编译成handlerbars对象
+			var nav_template = Handlebars.compile(nav_tl);
+ 
+			data['navitems']=datas;
+			var nav_html = nav_template(data);
+			$(container+" .shopNav").html(nav_html);
+			switch(nav_count){
+				case 10:
+				$(".shopNav ul li.selfNav").css("width","89px");
+				break;
+				case 9:
+				$(".shopNav ul li.selfNav").css("width","99px");
+				break;
+				case 8:
+				$(".shopNav ul li.selfNav").css("width","110px");
+				break;
+			}
+ 
+			if(storeId){
+				var goods_categroy_tl = $("#shop-goods-categroy-tl").html();
+				var goods_categroy_template = Handlebars.compile(goods_categroy_tl);
+				// 宝贝分类url
+				var url = "/st/findStoreGoodsCategoryList.ajax";
+				// 请求参数
+				var query = {"storeId":storeId};
+				storeItemCategroyCallServer(container,url,query,goods_categroy_template,{});
+			}
+			
+		}catch(ex){
+			console.log(ex);
+		}
+	};
+	var api={
+		init:init
+	};
+ 
+	var storeItemCategroyCallServer = function(container,url,query,categroy_template,data,callback){
+		try{
+			callService(url,query,
+			{callSuccess:function(result)
+				{
+					var menuList = [];
+					if(result["data"] && result["data"].length){
+						menuList = storeItemCategroyEditGoodsCategory(result["data"]);
+					}
+					// 编辑菜单数据
+					// 将模板与数据结合
+					var categroy_html = categroy_template(menuList);
+					// 选择栏位节点
+					var $_categroy = $(container+' [dm-container="submenu"]');
+					// 插入html
+					$_categroy.html(categroy_html);
+				}
+			});
+		}catch(ex){
+			console.log(ex);
+		}
+	};
+
+	var storeItemCategroyEditGoodsCategory = function(arrs){
+		try{
+			var menuList = new Array();
+			var goodsCategoryList = {};
+			var goodsCategoryMap = {};
+			// 获取第一层商品分类
+			for(var key in arrs){
+				var menu = arrs[key];
+				menu["subMenu"] = new Array();
+				goodsCategoryMap[menu["id"]] = menu;
+			}
+			// 将第三层商品放入第二层中
+			for(var key in arrs){
+			
+				var menu = arrs[key];
+				var grade = menu["grade"];
+				if(grade==3){
+					var parentId = menu["parentId"];
+					var superMenu = goodsCategoryMap[parentId];
+					superMenu["subMenu"].push(menu);
+				}
+			}
+			// 将第二层商品放入第第一层中
+			for(var key in arrs){
+			
+				var menu = arrs[key];
+				var grade = menu["grade"];
+				if(grade==2){
+					var parentId = menu["parentId"];
+					var superMenu = goodsCategoryMap[parentId];
+					if(typeof(superMenu) != "undefined"){
+						superMenu["subMenu"].push(menu);
+					}
+				}
+			}
+			var root = new Array();
+			// 将第一层商品放入第根目录中
+			for(var key in arrs){
+			
+				var menu = arrs[key];
+				var grade = menu["grade"];
+				var parentId = menu["parentId"];
+				if(grade==1 && parentId==-1){
+					root.push(menu);
+				}
+			}
+			// 返回编辑好数据
+			return root;
+		}catch(ex){
+			console.log(ex);
+		}
+	};
+ 
+	return api;
+	
+	};	
+})(jQuery);
+</script>
+

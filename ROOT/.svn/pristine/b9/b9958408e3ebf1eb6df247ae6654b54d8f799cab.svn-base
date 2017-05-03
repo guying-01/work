@@ -1,0 +1,109 @@
+.mr0{
+	margin-right: 0!important;
+}
+body{
+	overflow: hidden;
+	min-width: 300px;
+    max-width: 768px;
+    margin: 0 auto;
+}
+div{
+	  -webkit-tap-highlight-color: rgba(255,255,255,0);
+
+}
+.line{
+	border-top: 1px solid #e5e5e5;
+}
+.category_search_box{
+	position: relative;
+	height: 0.73rem;
+}
+.page_fenlei_daohang ul{
+	 width: 85px;
+	 height: 100%;
+}
+.page_fenlei_daohang li {
+    height: 46px;
+    line-height: 46px;
+    background: #fff;
+    text-align: center;
+    position: relative;
+    border:solid #e5e5e5;
+    border-width: 0 1px 1px 0;
+}
+.page_fenlei_daohang .active a{
+    color: #c91622;
+}
+.page_fenlei_daohang li a {
+    display: block;
+    width: 100%;
+    height: 46px;
+    line-height: 46px;
+    text-decoration: none;
+    font-size: 14px;
+    color: #232326;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.page_yiji_title{
+	display: block;
+	width: 100%;
+	height: 0.5rem;
+    line-height:0.5rem;
+    background: #C91622;
+	text-align: center;
+	color: #fff;
+    font-size:0.26rem;
+}
+.page_yiji_title_b {
+	box-sizing: border-box;
+    padding-top:0.16rem;
+    height: 100%;
+	padding: 0 0.1rem;
+}
+.page_yiji_title_b li{
+	width: 33.3333333%;
+	margin-bottom:20px;
+	float: left;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-align: center;
+}
+.page_yiji_title_b li a {
+    color: #000;
+    font-size:14px;
+}
+
+.page_yiji_title_b li a {
+    font-size:14px;
+    color: #000;
+}
+.page_yiji_title_b li a img{
+	width: 55px;
+    height: 55px;
+    border: 0;
+}
+.page_yiji_title_b li a p{
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.page_fenlei_daohang{
+	float: left;
+	height: 100%;
+}
+.page_fenlei_daohang ul,.page_yiji_wrap ul{
+	overflow-y: scroll;
+}
+.page_yiji_wrap{
+	float: left;
+	height: 100%;
+}
+.category-viewport{
+	overflow: hidden;
+}
+/*滚动条样式*/
+.scrollbar-none::-webkit-scrollbar {/*滚动条宽度设置*/
+    width: 0px;height: 0;
+}

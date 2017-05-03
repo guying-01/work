@@ -1,0 +1,172 @@
+<#include "/common/common_var_definds.ftl" />
+<#macro render>
+<script src="${resources}/js/common/hideshow.js"></script>
+<#--<script src="${resources}/js/order/order_adress.js"></script>拿出来单独放下边的js里了-->
+<script src="${resources}/js/order/order_submit_scripts.js"></script>
+<script src="${resources}/js/member/member_address_add.js"></script>
+<script src="${resources}/js/member/member_adress.js"></script>
+<script src="${resources}/js/lib/jquery/jquery.validate.min.js"></script>
+<script src="${resources}/js/common/validation.js"></script>
+<script src="${resources}/js/lib/jquery/jquery.blockUI.min.js"></script>
+<script type="text/javascript">
+//点击"提交订单"
+$(document).ready(function() {
+if( $(".big-button").attr("businessed")=="false"){
+		 $(".big-button").css("background","#999");//变更样式
+	     jsAlert("当前时间点不允许下单，欲知详情请联系客服")
+//		 $(".mes_tib").text("当前时间点不允许下单，欲知详情请联系客服");
+	}else{
+ $(".big-button").click(function(){
+ 	if($("#sumOrderSalesPrice").text()<0){
+		jsErrAlert("订单金额不小于0.00元");
+		return;
+	}
+	
+	if($("#pointcheck").attr("checked") || $("#redPacketCheck").attr("checked")){
+		if(!$("#pointsForm").valid()){
+			return;
+		}
+	 }
+	var memoList = $('[name="memo"]');
+	for(var i = 0 ; i < memoList.length; i++){
+		if($(memoList[i]).val().length > 200){
+			jsErrAlert("给商家留言最多只能输入200个字。");
+			return;
+		}
+	}
+
+var modelMap = {};
+modelMap["memoList"] = memoList.val();
+var shopCartId = $("input[name='shopCartId']");
+var shopCartIds = "";
+	shopCartId.each(function(index){
+		if(index==shopCartId.length-1){
+			shopCartIds += this.value;
+		}else{
+			shopCartIds += this.value+",";
+		}	
+ 	});
+ 	modelMap['shopCartIds'] = shopCartIds;
+ 	modelMap['addressId'] = $('#addressId').val();
+    var memo = $("textarea[name='memo']");
+ 	memo.each(function(){
+ 	var id = this.id;
+ 		modelMap[id]=this.value;
+ 	});
+    var coupon = "";
+    var isGoodsNameHide = $("input[name='isGoodsNameHide']");
+	isGoodsNameHide.each(function(index){
+		var id = this.id;
+ 		modelMap[id]=this.value;
+ 	});
+	
+ 	//收货地址check
+	if($('#addressId').length>=0 && $('#addressId').val()=='' || $('#addressId').val()==undefined){
+		jsErrAlert("请选择收货地址");
+		return false;
+	}
+	$("select[id^='coupon_']").each(function(){
+		modelMap[this.id]=this.value;
+	});
+	$("select[id^='adminCoupon_']").each(function(){
+		modelMap[this.id]=this.value;
+	});
+	if($("#pointcheck").attr("checked")){
+		modelMap["point"] = $("#inputpoint").val();
+	}
+	modelMap["immediately"] = $('#immediately').val();
+	modelMap["amount"] = $('#amount').val();
+	modelMap["itemId"] = $('#itemId').val();
+	modelMap["storeId"] = $('#storeId').val();
+	modelMap["storeName"] = $('#storeName').val();
+	modelMap["goodsId"] = $('#goodsId').val();
+	modelMap["goodsName"] = $('#goodsName').val();
+	modelMap["itemName"] = $('#itemName').val();
+	modelMap["pic"] = $('#pic').val();
+	 if($(".order-adress-list input[type='radio']:checked").size()>0){
+         modelMap["memberId"] = $(".order-adress-list input[type='radio']:checked").closest("div").find(".memberId").val();
+	 }
+	$("select[id^='invoice_']").each(function(){
+		var mykey = this.id.substr('invoice_'.length);
+		if(document.getElementById("isInvoice_"+mykey).checked){
+			modelMap[this.id]=this.value;
+			modelMap["tittle_"+this.id]=document.getElementById("tittle_"+this.id).value;
+		}
+	});
+	jsConfirm("确定要提交订单吗?",{callback:function(result){
+		if(result){
+		var target = $(".big-button-green");
+		$.dm.block(target);//开始区域锁定
+			callService('/order/createOrder.ajax', modelMap, 
+				{async:false,
+					callSuccess:function(data)
+					{
+					    // bug1099 订单提交页面，显示错误-孙洁-2017-03-17-start
+					    // 重复提交信息
+					    var winMsg = '亲爱的用户，您的订单已提交，请勿重复提交。';
+					    winMsg += '<br>1、点击<label style = "color: #f88c0e;font-weight:bold;"> [确定] </label>按钮';
+					    winMsg += '去<label style = "color: #b5191a;font-weight:bold;"> 我的采购单 </label>查看订单';
+					    winMsg += '<br>2、点击<label style = "color: #f88c0e;font-weight:bold;"> [取消] </label>按钮';
+					    winMsg += '去<label style = "color: #b5191a;font-weight:bold;"> 购物车 </label>继续购买新商品'
+					    // 订单提交后data为空
+					    if(data == '[object Object]'){
+					        // 弹出信息提示消息
+
+					        jsConfirm(winMsg,{callback:function(result){
+					            // 点击提示窗口的确认按钮
+					            if(result){
+					                // 跳转[我的购物单]页面
+					                window.location.href = "/order/toOrderList.jhtml";
+					            // 点击提示窗口的取消按钮
+					            }else{
+					                // 跳转[购物车]页面
+					                window.location.href = "/sc/toList.jhtml";
+					            }
+					        }});
+					        return;
+					    }
+					    // bug1099 订单提交页面，显示错误-孙洁-2017-03-17-end
+						//生成多个订单时跳转到订单列表
+							var money = $("#sumOrderSalesPrice").text();
+							var payUrl = "";
+							if(${getConstant('constant.PAYMENT_TYPE')}=="0")
+							{
+								payUrl = "${ctx}/order/toPayFromOrder.jhtml";
+							}else if(${getConstant('constant.PAYMENT_TYPE')}=="1")
+							{
+								payUrl = "${ctx}/order/toPayFromOrderB2C.jhtml";
+							}
+							$.dm.jumpTo(payUrl,{orderIds:data,money:parseFloat(money)});
+					},
+					callError:function(textStatus, errorThrown, error){
+						if(error.errMsg){
+                            jsErrAlert(error.errMsg);
+						}else{
+                            if($("#div_"+error.businessErrAttachs).size>0){
+                                $("#div_"+error.businessErrAttachs).attr("style","border: 1px solid red;");
+                            }else if($("input[value='"+error.businessErrAttachs+"']").size()>0){
+                                $("input[value='"+error.businessErrAttachs+"']").parent().attr("style","border: 1px solid red;");
+                            }
+                            var namemsg = '';
+                            if(error.businessErrAttachs.length>0){
+                                for(var i=0;i<error.businessErrAttachs.length;i++){
+                                    namemsg += error.businessErrAttachs[i]+',';
+                                }
+                                namemsg = namemsg.substring(0,namemsg.length-1);
+                                jsErrAlert(namemsg+" "+ error.errMsg||'');
+                            }else {
+                                jsErrAlert(namemsg+" "+ error.errMsg||'');
+                            }
+						}
+
+						$.dm.unblock(target);
+					}
+				}
+			);
+		}
+		}});
+	  });
+}
+});
+</script>
+</#macro>

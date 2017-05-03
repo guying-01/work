@@ -1,0 +1,253 @@
+<div  dm-container="store-goods-rank-container" class='m-b-20'></div>
+ 
+<script id="store-goods-rank-tl" type="text/x-handlebars-template">
+	<!--店铺商品排行 -->
+		<ul class="produce-ranking">
+    		<li id="produce-ranking-li-A" class="produce-ranking-on"><span>热销商品排行</span></li>
+    		<li id="produce-ranking-li-B" class=""><span>热门收藏排行</span></li>
+    	</ul>
+		<div id="produce-rankingA" style="display: block;"></div>
+    	<div id="produce-rankingB" style="display: none;"></div>
+</script>
+	
+<script id="shop-sale-tl" type="text/x-handlebars-template">
+		{{#each this}}
+		<div class="products-div">
+		<a href="/gd/{{goodsId}}.jhtml"><img src="{{goodsPicturePath}}"></a>
+          <h5><a href="/gd/{{goodsId}}.jhtml" title="{{showName}}">{{showName}}</a>
+            <p><strong>￥{{saleMinPrice}}&nbsp;</strong><u style="text-decoration: line-through;">￥{{saleMaxPrice}}</u></p>
+            <p dm-sale-goods="{{goodsId}}">已售：<i>{{goodsCount}}</i>件</p>
+          </h5>
+        </div>
+		{{/each}}
+</script>
+	
+<script id="shop-fav-tl" type="text/x-handlebars-template">
+		{{#each this}}
+		 <div class="products-div"><a href="/gd/{{goodsId}}.jhtml"><img src="{{goodsPicturePath}}"></a>
+          <h5><a href="/gd/{{goodsId}}.jhtml" title="{{showName}}">{{showName}}</a>
+            <p><strong>￥{{saleMinPrice}}&nbsp;</strong><u style="text-decoration: line-through;">￥{{saleMaxPrice}}</u></p>
+            <p>已收藏：{{goodsCount}}次</p>
+          </h5>
+        </div>
+		{{/each}}
+</script>
+
+
+<script type="text/javascript">
+/** 初始化加载 **/
+(function($){
+	
+	if(!$.dm){
+		$.dm={};
+	};
+	
+	if(!$.dm.widget){
+		$.dm.widget={};
+	};
+	
+	$.dm.widget.storeGoodsRank=function(){
+		
+		var init=function(options){
+			try{
+				var data = {"storeId":storeId};
+				var container = options["container"] || "";
+				var range = options["range"] || {};
+				var order = range["orders"] || "";
+				data = range["rangeData"] || {};
+				data["order"]  = order;
+				
+				// 备用
+				var range = options["range"] || {};
+				// 备用
+				var data = range["rangeData"] || {};
+				
+				// 模板
+				var rank_tl = $("#store-goods-rank-tl").html();
+				// 将模板编译成handlerbars对象
+				var rank_template = Handlebars.compile(rank_tl);
+				
+				var rank_html = rank_template({});
+				var rank = $('[dm-container="store-goods-rank-container"]');
+				if(container){
+					rank = $(container+' [dm-container="store-goods-rank-container"]');
+				}
+				rank.html(rank_html);
+				initActionOfRankTab(container);
+				
+				
+			}catch(ex){
+				console.log(ex);
+			};
+		}
+		var api={
+			init:init
+		};
+		
+		var initActionOfRankTab = function(container){
+			try{
+			var $_container = $('[dm-container="store-goods-rank-container"]');
+			var $_rankMenu = $('[dm-container="store-goods-rank-container"] ul li');
+			if(container){
+				var $_container = $(container+' [dm-container="store-goods-rank-container"]');
+				var $_rankMenu = $(container+' [dm-container="store-goods-rank-container"] ul li');
+			}
+			// 给每个tab加上click事件
+			$_rankMenu.bind("hover",
+					function(){
+						// 变化tab样式
+						$(this).addClass("produce-ranking-on").siblings().removeClass("produce-ranking-on");
+						// 变化内容
+						var tab_index = $_rankMenu.index($(this));
+						if(tab_index == 0){
+							clickSaleCount($_container,storeId);
+							$_container.children("#produce-rankingA").css("display","block");
+							$_container.children("#produce-rankingB").css("display","none");
+						}else if(tab_index == 1){
+							clickFavCount($_container,storeId);
+							$_container.children("#produce-rankingA").css("display","none");
+							$_container.children("#produce-rankingB").css("display","block");
+						}
+				});
+				
+				clickSaleCount($_container,storeId);
+				$_container.children("#produce-rankingA").css("display","block");
+				$_container.children("#produce-rankingB").css("display","none");
+		
+			}catch(ex){
+			console.log(ex);
+			}
+		};
+		
+		/**
+	 * 点击销售量时的业务处理
+	 */
+	function clickSaleCount($_container,storeId){
+		try{
+			// 模板
+			var shop_sale_tl = $("#shop-sale-tl").html();
+			// 将模板编译成handlerbars对象
+			var shop_sale_template = Handlebars.compile(shop_sale_tl);
+			
+			var url = "/st/findStoreSaleSort.ajax";
+			var query = {"storeId":storeId};
+			callService(url,query,{type:"POST",callSuccess:function(result){
+				var data = editSaleAndFavriteGoods(result);
+					// 将模板与数据结合
+					var shop_sale_html = shop_sale_template(data);
+					if(data==null || data.length==0){
+						shop_sale_html = "<span class='goodsNull'>还未有商品销售哦～～</span>";
+					}
+					// 查找要插入html的节点
+					var $_shop_sale = $_container.children("#produce-rankingA");
+					// 插入html
+					$_shop_sale.html(shop_sale_html);
+				}
+			});
+			
+		}catch(e){
+			console.log(e);
+		}
+	};
+	
+	/**
+	 * 点击收藏数时的业务处理
+	 */
+	function clickFavCount($_container,storeId){
+		try{
+			// 模板
+			var shop_fav_tl = $("#shop-fav-tl").html();
+			// 将模板编译成handlerbars对象
+			var shop_fav_template = Handlebars.compile(shop_fav_tl);
+			var url = "/st/findStoreFavSort.ajax";
+			var query = {"storeId":storeId};
+			callService(url,query,{type:"POST",callSuccess:function(result){
+				var data = editSaleAndFavriteGoods(result);
+				
+					// 将模板与数据结合
+					var shop_fav_html = shop_fav_template(data);
+					// 查找要插入html的节点
+					if(data==null || data.length==0){
+						shop_fav_html = "<span class='goodsNull'>还未有商品收藏哦～～</span>";
+					}
+					var $_shop_fav = $_container.children("#produce-rankingB");
+					// 插入html
+					shop_fav_html = shop_fav_html || "<span class='goodsNull'>还未有商品收藏哦～～<span>";
+					$_shop_fav.html(shop_fav_html);
+				}
+			});
+			
+		}catch(e){
+			console.log(e);
+		}
+	};
+	
+	/**
+	 * 编辑当前店铺被收藏的商品的排行
+	 */
+	function editSaleAndFavriteGoods(result){
+		try{
+// 			console.log("result === " + JSON.stringify(result));
+			var data = {};
+			if(result["data"]){
+				data = result["data"];
+			}
+			var dataList = new Array();
+			for(var goodsKey in data){
+				var goodsObj = data[goodsKey];
+				var goodsInfo = {};
+				var goodsPictureList = goodsObj["goodsDetailInfo"]["sgItemPictureFormList"];
+				var showName = goodsObj["goodsDetailInfo"]["name"];
+				if( goodsObj["goodsDetailInfo"]["adWord"]){
+					 showName += "  "+goodsObj["goodsDetailInfo"]["adWord"];
+				}
+				if(showName.length >12){
+					showName = showName.substr(0,10)+"...";
+				}
+				var salesMinPrice = goodsObj["goodsDetailInfo"]["minSalesPrice"];
+				var salesMaxPrice = goodsObj["goodsDetailInfo"]["maxSalesPrice"];
+				var goodsPicturePath = goodsPictureList[0].smallPicturePath;
+				var goodsId = goodsObj["goodsDetailInfo"]["id"];
+
+				goodsInfo.showName = showName;
+				goodsInfo.goodsCount = goodsObj["goodsCount"];
+				goodsInfo.goodsPicturePath = goodsPicturePath;
+				goodsInfo.saleMinPrice= salesMinPrice;
+				goodsInfo.saleMaxPrice = salesMaxPrice;
+				goodsInfo.goodsId = goodsId;
+				dataList.push(goodsInfo);
+			}
+
+			
+			// 按照收藏数量大小进行排序
+			for(var i=0;i<dataList.length;i++){
+				
+				for(var j=0;j<dataList.length - i;j++){
+					var obj1 = dataList[j];
+					var obj2 = dataList[j+1];
+					var tempObj = obj1;
+					if(obj1 && obj2){
+						if(obj1["goodsCount"] < obj2["goodsCount"]){
+							dataList[j] = obj2;
+							dataList[j+1] = tempObj;
+							
+						}
+					}
+					
+				}
+				
+			}
+// 			console.log("goodsInfo==="+JSON.stringify(goodsInfo));
+			return dataList;
+		}catch(ex){
+			console.log(ex);
+		}
+	};
+	
+	
+	return api;
+	
+	};	
+})(jQuery);
+</script>
+

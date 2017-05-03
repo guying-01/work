@@ -1,0 +1,16 @@
+<#include "/common/common_var_definds.ftl" />
+<#macro render>
+<#--    <#include "/basepage/store/default/hb_templates/header_hb_templates.ftl" />-->
+<div id="header_top">
+    <div class="header_box my_clear">
+        <ul>
+            <li><a href="/nav/category.jhtml">商品分类</a></li>
+            <#--<li><a>关注饭饭</a></li>-->
+            <li><a href="/nav/website.jhtml">网站导航</a></li>
+            <li><a href="http://m.fan1080.com:8888/toLogin.jhtml">供应商中心</a></li>
+            <li><a href="/fsst/contact/contact_com.jhtml">联系客服</a></li>
+            <li><a href="/promotion/notify_list.jhtml">饭饭公告</a></li>
+        </ul>
+    </div>
+</div>
+</#macro>

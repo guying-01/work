@@ -1,0 +1,80 @@
+<#--店铺首页-->
+	<#include "/common/common_var_definds.ftl" />
+	<#include "/basepage/store/default/hb_templates/store_hb_templates.ftl" />
+	<#import "/basepage/store/default/common/zizhi_slider.ftl" as zizhi/>
+	<#import "/basepage/store/default/common/dangan_slider.ftl" as dangan/>
+	<!DOCTYPE html>
+	<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>饭饭1080°直采平台</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+		<script type="text/javascript">
+			var deviceWidth = document.documentElement.clientWidth;
+			if(deviceWidth > 768) {
+				deviceWidth = 768;
+			}
+			document.documentElement.style.fontSize = deviceWidth / 6.4 + 'px';
+		</script>
+		<#import "/basepage/store/default/common/common_link.ftl" as link/>
+		<#import "/basepage/store/default/common/common_script.ftl" as script/>
+		<#import "/basepage/store/default/common/common_header_bar.ftl" as header_bar/>
+		<#import "/basepage/store/default/common/common_header_searchbox_default.ftl" as searchBox/>
+		<#import "/basepage/store/default/common/common_footer.ftl" as footerNoTab/>
+		<#import "/basepage/seller/seller_header_search.ftl" as sellerSearch/>
+		<@link.render />
+		<!--导入共通样式-->
+		<@script.render />
+		<!--导入共通脚本-->
+		<link rel="stylesheet" href="${resources}/basepage/seller/css/store.css" type="text/css">
+		<script src="${resources}/basepage/seller/js/store_common_head_load.js"></script>
+        <script src="${resources}/basepage/seller/js/staticStore.js"></script>
+		<script src="${resources}/basepage/seller/js/store_dynamics.js"></script>
+		<script src="${resources}/basepage/seller/js/sp_getAboutImg.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<div id="pageInfo" store_id="${storeId!''}" store_template_code="${storeTemplateCode!''}" page_id="${storeTemplateCode!''}" style="display: none"></div>
+		<!--此处是头部开始-->
+		<div class="top"><@header_bar.render "商铺",""/></div>
+		<!--此处是头部结束-->
+		<!--网页头部&导航开始-->
+		<div id="sp_hd_1"></div>
+		<div id="sp_hd_2"></div>
+		<@sellerSearch.render />
+		<div id="ff_tab_box">
+			<div class="ff_tab_content">
+				<div class="ff-tab-title">
+					<img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /> <span>商家介绍</span>
+				</div>
+				<div class="ff-tab-con-detail">
+                    <p>大连金晟隆商贸有限公司是安徽口子酒业股份有限公司大连地区的总代理。</p>
+                    <p>安徽口子酒业股份有限公司是以生产国优名酒而著称的国家酿酒重点骨干企业。企业营业执照核准的经营范围：生产、制造和销售白酒及玻璃制品。</p>
+                    <p>1949年5月18日，人民政府赎买了私人酿酒作坊“小同聚”等酒坊，创立了“国营濉溪人民酒厂”（安徽口子酒业股份有限公司前身）。1951年，国营濉溪人民酒厂在老濉河东岸“祥兴泰”、“协源公”、“协顺”、“协昌”等古酒坊基础上征地扩建，即今安徽口子酒业股份有限公司东关分厂。1997年由淮北市口子酒厂、濉溪县口子酒厂合并成立安徽口子集团公司（以下简称“口子集团”）。2002年12月，口子集团联合其他发起人股东发起成立安徽口子酒业股份有限公司（以下简称“口子酒业”或“公司”）。公司拥有首届中国酿酒大师等在内的技术创新队伍及一批国家级、省级的评酒勾兑专家和一个现代化的省级技术中心。</p>
+                    <p>公司先后荣获国家和省市多项殊荣。2003年通过了ISO9001和ISO14001质量环境兼容管理体系认证，五年口子窖酒通过了国家级产品质量认证；2005年通过了HACCP管理体系认证，“口子”商标被国家工商行政管理总局评定为中国驰名商标，荣膺“中国白酒经济效益十佳企业”；2006年被国家商务部首批认定为中华老字号，副总经理张国强被评定为首届中国酿酒大师；2009年被国家标准化管理委员会批准为中国白酒标准化技术委员会兼香型白酒分技术委员会秘书处承担单位，董事长徐进任全国白酒标准化技术委员会兼香型白酒分技术委员会主任委员。</p>
+                    <p>公司拥有口子窖、口子坊、老口子等系列品牌产品，在安徽、江苏、河南、河北、山东、辽宁、北京等地区有较高的产品知名度并保持一定的市场占有率，近几年在东北和西北地区也表现出较快的市场拓展，口子窖等高档产品在销售收入中的比重逐年增大。主导产品“口子窖酒”，以其独特的风格和卓越的品质得到了社会各界的高度赞同。2002年荣获中国白酒典型风格金杯奖称号并被国家批准实施原产地域产品保护；2005年被国家商务部等联合评定为全国首届三绿工程畅销白酒品牌；2006年被评定为中国白酒工业十大影响力品牌并通过了纯粮固态发酵白酒标志认定。</p>
+                    <p>经营管理方面，公司秉承“理智、规范、敬业、创新”的企业精神，按照国际惯例和规范的公司模式运作，构建了“产权明晰，权责分明，政企分开，管理科学”的法人治理结构，实施名牌战略，加大技术改造步伐，推进企业信息化建设，不断探索加强企业管理的各种有效举措。市场开拓方面倡导“执信有恒，成功有道”的诚信营销理念，整合营销管理体系并创新了白酒营销模式。持续开展的营销、管理和技术创新，提升了公司产品的品牌价值和核心竞争力，满足了广大消费者的需求，进一步做大做强了“口子”品牌，市场占有率不断提升。近几年，公司销售收入、利润等重要经济指标逐年保持良性增长，在全国白酒行业重点骨干企业中的位次不断攀升，创造了良好的经济效益和社会效益。</p>
+				</div>
+			</div>
+			<div class="ff_tab_content only_book_content_zizhi">
+				<div class="ff-tab-title">
+					<img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /><span>商家资质</span> 
+				</div>
+				<div class="ff-tab-con-detail">
+					<@zizhi.render />
+				</div>
+			</div>
+			<div class="ff_tab_content">
+				<div class="ff-tab-title">
+					<img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /> <span>商家活动</span>
+
+				</div>
+				<div class="ff-tab-con-detail">敬请期待</div>
+			</div>
+		</div>
+		<@footerNoTab.render />
+	</body>
+
+	</html>

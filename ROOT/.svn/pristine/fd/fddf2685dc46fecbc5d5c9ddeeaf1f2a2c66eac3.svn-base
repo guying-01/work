@@ -1,0 +1,258 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<%
+response.setHeader("Pragma","No-cache");
+response.setHeader("Cache-Control","no-cache");
+response.setDateHeader("Expires", -10);
+%>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+
+<!-- ADD START BY geshuo 20151214:SEO管理  -->
+<meta name="description" content="<%=request.getAttribute("description")%>">
+<meta name="Keywords" content="<%=request.getAttribute("keywords")%>">
+<META NAME="ROBOTS" CONTENT="<%=request.getAttribute("robots")%>">
+<!-- ADD END   BY geshuo 20151214:SEO管理  -->
+
+<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/lib/jquery/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/lib/jquery/jquery.validate.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/js/lib/jquery/jquery.md5.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/common/common.js"></script>
+<!--<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/login/login.js"></script>  -->
+<link href="<%=request.getContextPath()%>/resources/css/common/lib.css" rel="stylesheet" type="text/css" />
+<link href="<%=request.getContextPath()%>/resources/css/login/login.css" rel="stylesheet" type="text/css" />
+
+	<!--[if lt IE 9]>
+	<script src="<%=request.getContextPath()%>/js/lib/html5/es5-shim.min.js"></script>
+	<script  type="text/javascript" src="<%=request.getContextPath()%>/js/lib/html5/html5shiv.min.js"></script>
+	<![endif]-->
+
+<title><%=request.getAttribute("title")%></title>
+</head>
+
+<%--设置字体与自适应屏幕--%>
+	<script type="text/javascript">
+		var meta = document.createElement('meta');
+		meta.setAttribute('name', 'viewport');
+		var content = 'with=device-width,initial-scale=' + 1 + ',minimum-scale=' + 1 + ',maximum-scale=' + 1 + ',user-scalable=' + 0;
+		meta.setAttribute('content', content);
+		document.querySelector('head').appendChild(meta);
+
+		var fontSize = document.documentElement.clientWidth / 6.4;
+		document.querySelector('html').style.fontSize = fontSize + 'px';
+		document.querySelector('body').style.fontSize = 16 + 'px';
+
+	</script>
+<%--end--%>
+
+
+	<script type="text/javascript">
+		function refreshCaptcha(url) {
+			document.getElementById("img_captcha").src = url + "/kaptcha?t="
+					+ Math.random();
+		}
+
+	$(document).ready(function() {
+		<!--光标点进去时的提示-->
+		$(".prompt").click(function() {
+			$(this).siblings("input:text,input:password").focus();
+		});
+
+		$("#userName").focus(function() {
+			$(this).siblings(".loginError").hide();
+			$("#userNamep").hide();
+			$(this).parents('.loginStyleA').css({
+	            'border-color': '#2e75d5'
+	        })
+		});
+		$("#userName").blur(function() {
+			if($("#userName").val().length==0){
+				$("#userNamep").show();
+			};
+			$(this).parents('.loginStyleA').css({
+	            'border-color': '#d0d0d0'
+	        })
+		});
+		$("#password1").focus(function() {
+			$(this).siblings(".loginError").hide();
+			$("#passwordp").hide();
+			$(this).parents('.loginStyleA').css({
+	            'border-color': '#2e75d5'
+	        })
+		});
+		$("#password1").blur(function() {
+			if($("#password1").val().length==0){
+				$("#passwordp").show();
+			};
+			$(this).parents('.loginStyleA').css({
+	            'border-color': '#d0d0d0'
+	        })
+		});
+		<!--点击提交时的校验-->
+		$("#btnSubmit").click(function() {
+			spot = 2;
+			var keyVal = $("#userName").val();
+			var keyVal1 = $("#password1").val();
+			if (keyVal.length == 0) {
+				$("#usere").show();
+				$("#userName").attr("placeholder", null);
+				$("#usere").siblings(".loginError").hide()
+			} else {
+				$(".form #userName").siblings(".loginError").hide()
+				spot--
+			}
+			;
+			if (keyVal1.length == 0) {
+				$("#pwde").show()
+				$("#password1").attr("placeholder", null);
+				$(".form #password1").addClass("redborder")
+			} else {
+				$(".form #password1").siblings(".loginError").hide()
+				spot--
+			}
+			;
+
+			if (spot != 0) {
+				return false;
+			}
+			$("#password").val($.md5(keyVal1));
+          	//$("#password").val(keyVal1);
+          	$("#password1").attr("disabled", "true");
+			$("#loginForm").submit();
+
+		});
+	})
+
+
+</script>
+<body  class="loginBg">
+	<div id="title">
+		<span>采购商账号登陆</span>
+	</div>
+
+<div class="login">
+  <form  id="loginForm" action="/doLogin.jhtml" method="post" onkeydown="if(event.keyCode==13)$('#btnSubmit').click();"  autocomplete="off">
+  	<h1>
+		<a href="/index.jhtml" ><img src="<%=request.getContextPath()%>/resources/img/common/logo.png"></a>
+	</h1>
+
+		<%--<ul class=" logoRight">--%>
+			<%--<!-- 		<li><i class="foot_ICOA"></i> -->--%>
+			<%--<!-- 			<h2>正品保证 -->--%>
+			<%--<!-- 				<p>放心之选，值得信赖！</p> -->--%>
+			<%--<!-- 			</h2> -->--%>
+			<%--<!-- 		</li> -->--%>
+			<%--<!-- 		<li><i class="foot_ICOB">&nbsp;</i> -->--%>
+			<%--<!-- 			<h2>及时配送 <p>专业物流，准时送达！</p> -->--%>
+			<%--<!-- 			</h2></li> -->--%>
+			<%--<!-- 		<li><i class="foot_ICOC">&nbsp;</i> -->--%>
+			<%--<!-- 			<h2>售后无忧 <p>7天无理由退换货！</p> -->--%>
+			<%--<!-- 			</h2></li> -->--%>
+			<%--<!-- 		<li><i class="foot_ICOD">&nbsp;</i> -->--%>
+			<%--<!-- 			<h2>优质低价 <p>品质保证，良心低价！</p> -->--%>
+			<%--<!-- 			</h2></li> -->--%>
+			<%--<!--     <P class="clear"></P> -->--%>
+
+			<%--<%=application.getAttribute("link__storeQuality__") %>--%>
+		<%--</ul>--%>
+
+<%--  ${Session["link__storeQuality__"]!""} --%>
+
+  <div class="login-con">
+    <%--<h2>账号登录</h2>--%>
+    <div class="loginStyleA loginStyleA-ico1">
+      <input name="userName"  placeholder="用户名"  type="text" id="userName" <%if (request.getAttribute("userName") != null) {%>value="<%=request.getAttribute("userName")%>" <%}%>></input>
+      <!-- ---<p class="prompt" id="userNamep" style="<%if (request.getAttribute("userName") != null) {%>display:none;<%} else {%>display:block;<%}%> ">用户名</p> -->
+        <%
+		    String errorInfo = (String) request.getAttribute("info");
+		    if (errorInfo != null && request.getAttribute("userName") != null) {
+		        if(errorInfo.indexOf("锁定")>-1){
+                    %>
+                    <label class="loginError" style="display: block;color:red"><u></u><i></i>账号已锁定，请联系客服</label>
+                    <%
+                }else{
+                    %>
+                    <label class="loginError" style="display: block;color:red;margin-left: 3rem;"><u></u><i></i>用户名和密码不匹配</label>
+                    <%
+                }
+
+		    }
+		%>
+	   <label class="loginError" style="display:none;color:red" id="usere"><u></u><i></i>用户名不能为空</label>
+    </div>
+
+
+    <div class="loginStyleA loginStyleA-ico2" style="margin-top: 0.1rem">
+      <input name="password1"  placeholder="密码"  type="password"  id="password1"  <%if (request.getAttribute("password1") != null) {%> value="<%=request.getAttribute("password1")%>" <%}%> />
+      <input type="hidden" name="password" id="password"/>
+      <!----<p id="passwordp" style="<%if (request.getAttribute("password1") != null) {%>display:none;<%} else {%> display:block;<%}%>">密码</p>----->
+      <label class="loginError" style="display:none;color:red" id="pwde"><u></u><i></i>密码不能为空</label>
+    </div>
+
+
+    <%
+        Integer loginErrorTimes = (Integer) request.getSession().getAttribute("loginErrorTimes");
+	    if (loginErrorTimes>3) {
+	    	 Object infoCaptcha = request.getAttribute("infoCaptcha");
+	%>
+
+
+	<div class="m-a">
+	    <div class="loginStyleA loginStyleA-ico2 verification left code">
+        <input id="captcha" name="captcha" type="text" placeholder="验证码"  style="width: 1.5rem; text-indent: 0"/>
+
+        <label class="loginError" style="display:none;color:red"><u></u><i></i>验证码不能为空</label>
+        <%
+		    if (infoCaptcha != null) {
+		%>
+			<span class="captchaWrong">
+				<label class="loginError" style="display: block;color:red" id="captchaWrong"><u></u><i></i>您的验证码错误</label>
+			</span>
+		<%
+		    }
+		%>
+	</div><img src="/kaptcha"   class="left m-l-10"  style="margin-top:0.2rem; height: 1rem;"  id="img_captcha" />
+        <a class="left m-l-10" style="margin-top:0.43rem;font-size: 0.35rem;" onclick="javascript:refreshCaptcha('');">看不清 换一张</a>
+     </div>
+	<%
+	    }
+	%>
+
+	<a  href="javascript:void(0);" id="btnSubmit" class="loginStyleA-bt">登&nbsp;&nbsp;录</a>
+    <div class="loginStyleA-bot">
+      <!-- ----<input name="rememberMe" type="checkbox" id="rememberMe">
+      <div class="left">下次自动登录</div> -->
+		<%--<div class="left"><a href="javascript:;">免费注册</a></div>--%>
+      	<div class="right"><a href="/forget/init.jhtml">忘记密码</a></div>
+	</div>
+
+  </div>
+
+  </form>
+</div>
+
+	<div class="footer" style="height: auto">
+		<div class="character">
+			<span>正品保证</span>
+			<span>及时配送</span>
+			<span>便捷付款</span>
+			<span>万种商品</span>
+		</div>
+		<div class="msg">
+			<p><a href="http://www.miitbeian.gov.cn" target="_blank" class="copyRight">辽ICP备17003186号-1</a></p>
+            <p><a href="javascript:;">饭饭1080直采平台:www.fan1080.com版权所有</a></p>
+		</div>
+	</div>
+<%--<div class="footer">--%>
+<!-- 	<p><a href="http://www.miitbeian.gov.cn" target="_blank">辽ICP备B2- </a><span class="m-r-10">|</span>互联网药品信息服务资格证编号：（辽）-经营性-2015-0001</p> -->
+<!-- 	<p>Copyright 2016,fanan group INC.，LTD ALL Reserved  辽ICP备 号-2</p> -->
+<%--&lt;%&ndash; 			<%HttpSession Session = request.getSession(); %> &ndash;%&gt;--%>
+ <%--<%=application.getAttribute("link__beian__") %>--%>
+<%--</div>--%>
+</body>
+</html>

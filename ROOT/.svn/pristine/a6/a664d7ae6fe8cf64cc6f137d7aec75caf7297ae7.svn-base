@@ -1,0 +1,176 @@
+<#include "/common/common_var_definds.ftl" />
+<#macro render data>
+	<#escape x as x?html>
+    <style>
+        .member-tit-gy {
+            height: 0.8rem;
+            line-height: 0.8rem;
+            width: 100%;
+            background: #fff;
+            color: #000;
+            letter-spacing: 0.05rem;
+            font-size: 0.3rem;
+            text-align: center;
+            position: relative;
+            left: 0;
+            top: 0;
+            font-weight: 500;
+        }
+        .member-tit-gy i {
+            background: url("${resources}/img/member/goBack.png") no-repeat center center;
+            position: absolute;
+            left: 0.2rem;
+            top: 50%;
+            width: 0.4rem;
+            height: 0.35rem;
+            background-size: contain;
+            z-index: 98;
+            margin: 0;
+            padding: 0;
+            margin-top: -0.175rem;
+            display: block;
+        }
+        .linespan em {
+            color: red;
+        }
+        select {
+            float: none;
+        }
+        .linespan {
+            font-size: 0.22rem;
+        }
+        .oper-btn a {
+            position: absolute;
+            height: 0.3rem;
+            line-height: 0.3rem;
+            color: white;
+            font-size: 0.22rem;
+            border-radius: 0.1rem;
+            left: 37%;
+            top: 120%;
+        }
+    </style>
+
+    <h2 class="member-tit member-tit-gy" ">
+      <i onclick="history.go(-1)">&nbsp;</i>账户列表
+      <span class="oper-btn">
+        <a href="javascript:void(0);" style="display:none" id="addMemberWithDrawCashAccountBtn" class="small-button">添加账户</a>
+      </span>
+    </h2>
+
+    <#--<table id="memberWithDrawCashAccountListTable" class="table-B" style="background: #fff;">-->
+      <#--<thead style="display: none">-->
+        <#--<tr class="bor-l bor-r bor-t">-->
+          <#--<th width="10%" scope="col">银行名称1</th>-->
+          <#--<th width="10%" scope="col">银行开户名</th>-->
+          <#--<th width="30%" scope="col">银行账号</th>-->
+          <#--<th width="20%" scope="col">开户银行支行名称</th>-->
+          <#--<th width="20%" scope="col">开户银行所在地</th>-->
+          <#--<th width="10%" scope="col">操作</th>-->
+        <#--</tr>-->
+      <#--</thead>-->
+    <#--</table>-->
+    <div class="cashAccountBox" id="accountData"></div>
+    <script id="cashList-tl" type="text/x_handlebars_template">
+        {{#each this}}
+        <div class="everyCashAccount">
+            <div class="line"><strong>交易账号:</strong><span>{{bankAccount}}</span></div>
+            <div class="line"><strong>银行名称:</strong>{{#if bank}}<span>{{bank}}</span>{{else}}<span>广发银行</span>{{/if}}</div>
+            <div class="line"><strong>交易账户名:</strong><span>{{accountName}} </span></div>
+            <div class="line"><strong>开户银行网点名称:</strong><span>{{bankName}}</span></div>
+            <div class="line"><strong>开户银行所在地:</strong><span>{{bankProvince}}省&nbsp;{{bankCity}}市&nbsp;{{bankDistrict}} </span></div>
+            <div class="line line1"><strong>操作:</strong><span>
+            	<a href="javascript:void(0);" class="m-l-10 font-color-c" onClick="deleteMemberWithDrawCashAccount({{id}});" dm-actor="deleteAddress" value='{{id}}'>删除</a>
+              	<a href="javascript:void(0)" class="font-color-c" onClick="editMemberWithDrawCashAccount({{id}});" dm-actor="editAddress" value='{{id}}'>修改</a>
+              </span></div>
+        </div>
+        {{/each}}
+    </script>
+
+    <h2 class="member-tit-gy" id="editH2" style="display:none;height: 0.6rem;line-height: 0.6rem;font-size: 0.26rem;color:#f88c0e">
+      账户编辑
+    </h2>
+    <div id="editFormDiv" style="display:none">
+      <form id="editForm">
+        <input id="id" name="id" type="hidden"/>
+        <input id="mobile" name="mobile" type="hidden" value="${lrMobile!''}"/>
+        <div class="information-into information-into-gy">
+            <div class="information-line">
+                <span class="linespan"><em>*</em>银行名称：</span>
+                <select name="baseBankName" id="baseBankName" class="left" onchange="initBankBubBranchSelect();showOrhideBankCode();" style="width: 52%">
+		  <option value='' selected dm-container='select2'>请选择</option>
+                    <#if basBankVoList?exists> 
+                    <#list basBankVoList as basBankVo>
+                  <option value='${basBankVo.name!''}' bankCode='${basBankVo.code!''}' dm-container='select2'>${basBankVo.name!''}</option>
+                    </#list>
+                    </#if>
+                </select>
+            </div>
+          <div class="information-line">
+            <span class="linespan"><em>*</em>交易账户名：</span>
+            <input id="accountName" name="accountName" type="text" maxlength="25" class="text_A required" onkeyup="this.value=this.value.replace(/\s/gi,'')" illegalAccountNameCheck="true"/>
+          </div>
+          <div class="information-line">
+            <span class="linespan"><em>*</em>交易账号：</span>
+            <input id="bankAccount" name="bankAccount" type="text" class="text_A required" maxlength="32" onkeyup="this.value=this.value.replace(/\s/gi,'')" illegalBankAccountCheck="true"/>
+          </div>
+
+          <div class="information-line">
+            <span class="linespan"><em>*</em>开户银行所在地：</span>
+            <div>
+              <select name="bankProvince" id="bankProvince" class="left" onchange="initAreaSelect('bankProvince','bankCity')">
+               <option value='' areaId='' selected dm-container='select2'>请选择</option>
+                <#if basicAreaVoList?exists> 
+                  <#list basicAreaVoList as basicAreaVo>
+                    <option areaId='${basicAreaVo.id!''}' value='${basicAreaVo.name!''}' dm-container='select2'>
+                    ${basicAreaVo.name!''}</option>
+                  </#list>
+                </#if>
+              </select>
+            </div>
+            <div>
+              <select name="bankCity" id="bankCity" class="left m-l-10" onchange="initBankBubBranchSelect()">
+	      <option value='' areaid='' bankcode='' selected dm-container='select2'>请选择</option>
+	      </select>
+            </div>
+            <div>
+            <div class="information-line">
+                <span class="linespan"><em>*</em>开户银行网点名称：</span>
+                <select name="bankName" id="bankName" class="left" onchange="initBankCode()" style="width: 55%">
+                    <option value='' bankcode='' selected dm-container='select2'>请选择</option>
+                </select>
+            </div>
+
+            </div>
+          </div>
+            <div class="information-line">
+            <span class="linespan"><em>*</em>联行号：</span>
+            <input id="bankCode" name="bankCode" type="text" maxlength="12" mimLength="12" class="text_A left " disabled="disabled" />
+          </div>
+          <div class="information-line">
+            <span class="linespan">手机号码：</span>
+            <span id="showMobile" style="width: auto"></span>
+            <a href="javascript:void(0);" id="sendSmsVerificationCodeBtn" class="small-button">发送验证码</a>
+            <div id="sendSmsAgainCountdownDiv" style="display:none;padding: 0.05rem;text-align: center">
+              <div id="sendSmsAgainCountdownSecond" style="display: inline-block"></div>秒后可再次发送验证码短信
+            </div>
+          </div>
+          <div class="information-line">
+            <span class="linespan"><em>*</em>验证码：</span>
+            <input id="verificationCode" name="verificationCode" type="text" class="text_A required" minlength="6" maxlength="6" onkeyup="this.value=this.value.replace(/\s/gi,'')" placeholder="请输入验证码" verificationCodeCheck="true"/>
+          </div>
+          <div class="information-line">
+            <span class="linespan"><em>*</em>提现密码：</span>
+            <input id="password" name="password" type="password" class="text_A required" onkeyup="this.value=this.value.replace(/\s/gi,'')"/>
+            <span style="display: block;float: right;"><a class="font-color-b" href="/memberWithdrawCash/toMemberWithdrawCashPassword.jhtml">忘记密码？</a></span>
+          </div>
+          <div class="bottom-button">
+            <a href="javascript:void(0);" id="submitBtn" class="big-button big-button-gy" >提 交</a>
+            <a href="javascript:void(0);" id="cancelBtn" class="big-button big-button-gy" >取 消</a>
+          </div>
+        </div>
+          <div class="cashAccountFill"></div>
+      </form>
+    </div>
+	</#escape>
+</#macro> 

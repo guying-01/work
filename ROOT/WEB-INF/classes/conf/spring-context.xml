@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+	<import resource="classpath*:conf/service-dev-deploy.xml" />
+	<!-- Trace相关 -->
+	<import resource="classpath*:conf/fw-trace-web.xml" />
+
+	<context:component-scan base-package="cn.com.fan1080.shop.common.web.modal" />
+	<context:component-scan base-package="cn.com.fan1080.shop.common.web.controller" />
+	<context:component-scan base-package="cn.com.fan1080.shop.webstore" />
+	<context:component-scan base-package="cn.com.fan1080.shop.common.web.util" />
+
+	<!-- 资源文件管理 -->
+	<bean id="propertyConfigurer" class="cn.com.fan1080.shop.common.web.util.WebPropertyHolder">
+		<property name="ignoreResourceNotFound" value="true" />
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+		<property name="properties" ref="webProperty" />
+	</bean>
+	<bean id="webProperty" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="ignoreResourceNotFound" value="true" />
+		<property name="locations">
+			<list>
+				<value>classpath:conf/dubbo.properties</value>
+				<value>classpath:conf/image.properties</value>
+				<value>classpath:conf/system.properties</value>
+				<value>classpath:conf/fw-trace.properties</value>
+				<!-- <value>classpath:conf/fan-store-cache.properties</value> -->
+			</list>
+		</property>
+	</bean>
+	
+	<!-- codis 缓存 -->
+	<!--	<import resource="classpath:conf/fan-store-cache.xml" /> -->
+
+	<!-- 本地文件及分布式文件处理
+	<bean id="abstractSwiftFileSaver" class="cn.com.htwins.ec.fw.web.file.SwiftFileSaver" abstract="true">
+		<property name="userName" value="${SWIFT_USERNAME}" />
+		<property name="password" value="${SWIFT_PASSWORD}" />
+		<property name="appliectionId" value="${SWIFT_APPLICATION}" />
+		<property name="authUrl" value="${SWIFT_AUTH_URL}" />
+		<property name="swiftUrl" value="${SWIFT_DEFAULT_URL}" />
+		<property name="sessionTimeout" value="${SWIFT_SESSION_TIMEOUT_DAY}" />
+	</bean> -->
+
+	<!-- 临时上传 -->
+	<bean id="returnFileSaver" class="cn.com.htwins.ec.fw.web.file.FileSaverFactoryBean">
+		<property name="useSwift" value="${SWIFT_ENABLE}" />
+		<property name="smbFileSaverId" value="returnSmbFileSaver" />
+		<property name="swiftFileSaverId" value="returnSwiftFileSaver" />
+	</bean>
+	<bean id="returnSmbFileSaver" class="cn.com.htwins.ec.fw.web.file.SmbFileSaver" autowire-candidate="false" lazy-init="true">
+		<property name="rootPath" value="${RETURN_IMAGE_PATH}" />
+	</bean>
+	<!-- <bean id="returnSwiftFileSaver" parent="abstractSwiftFileSaver" autowire-candidate="false" lazy-init="true">
+		<property name="containerName" value="${RETURN_SWIFT_CONTAINER_NAME}" />
+	</bean>-->
+
+	<!-- 店铺上传 -->
+	<bean id="storeFileSaver" class="cn.com.htwins.ec.fw.web.file.FileSaverFactoryBean">
+		<property name="useSwift" value="${SWIFT_ENABLE}" />
+		<property name="smbFileSaverId" value="storeSmbFileSaver" />
+		<property name="swiftFileSaverId" value="storeSwiftFileSaver" />
+	</bean>
+	<bean id="storeSmbFileSaver" class="cn.com.htwins.ec.fw.web.file.SmbFileSaver" autowire-candidate="false" lazy-init="true">
+		<property name="rootPath" value="${STORE_IMAGE_PATH}" />
+	</bean>
+	<!--<bean id="storeSwiftFileSaver" parent="abstractSwiftFileSaver" autowire-candidate="false" lazy-init="true">
+		<property name="containerName" value="${STORE_SWIFT_CONTAINER_NAME}" />
+	</bean>-->
+
+	<!-- 积分上传 -->
+	<bean id="scoreFileSaver" class="cn.com.htwins.ec.fw.web.file.FileSaverFactoryBean">
+		<property name="useSwift" value="${SWIFT_ENABLE}" />
+		<property name="smbFileSaverId" value="scoreSmbFileSaver" />
+		<property name="swiftFileSaverId" value="scoreSwiftFileSaver" />
+	</bean>
+	<bean id="scoreSmbFileSaver" class="cn.com.htwins.ec.fw.web.file.SmbFileSaver" autowire-candidate="false" lazy-init="true">
+		<property name="rootPath" value="${SCORE_IMAGE_PATH}" />
+	</bean>
+	<!--<bean id="scoreSwiftFileSaver" parent="abstractSwiftFileSaver" autowire-candidate="false" lazy-init="true">
+		<property name="containerName" value="${SCORE_SWIFT_CONTAINER_NAME}" />
+	</bean>-->
+
+	<!-- 协议上传 -->
+	<bean id="licenseFileSaver" class="cn.com.htwins.ec.fw.web.file.FileSaverFactoryBean">
+		<property name="useSwift" value="${SWIFT_ENABLE}" />
+		<property name="smbFileSaverId" value="licenseSmbFileSaver" />
+		<property name="swiftFileSaverId" value="licenseSwiftFileSaver" />
+	</bean>
+	<bean id="licenseSmbFileSaver" class="cn.com.htwins.ec.fw.web.file.SmbFileSaver" autowire-candidate="false"
+		lazy-init="true">
+		<property name="rootPath" value="${LICENSE_IMAGE_PATH}" />
+	</bean>
+	<!--<bean id="licenseSwiftFileSaver" parent="abstractSwiftFileSaver" autowire-candidate="false" lazy-init="true">
+		<property name="containerName" value="${LICENSE_SWIFT_CONTAINER_NAME}" />
+	</bean>-->
+
+	<!-- 会员上传 -->
+	<bean id="memberFileSaver" class="cn.com.htwins.ec.fw.web.file.FileSaverFactoryBean">
+		<property name="useSwift" value="${SWIFT_ENABLE}" />
+		<property name="smbFileSaverId" value="memberSmbFileSaver" />
+		<property name="swiftFileSaverId" value="memberSwiftFileSaver" />
+	</bean>
+	<bean id="memberSmbFileSaver" class="cn.com.htwins.ec.fw.web.file.SmbFileSaver" autowire-candidate="false" lazy-init="true">
+		<property name="rootPath" value="${MEMBER_IMAGE_PATH}" />
+	</bean>
+	<!--<bean id="memberSwiftFileSaver" parent="abstractSwiftFileSaver" autowire-candidate="false" lazy-init="true">
+		<property name="containerName" value="${MEMBER_SWIFT_CONTAINER_NAME}" />
+	</bean>-->
+
+	<!-- 图片压缩器相关 -->
+	<bean id="imageConvertor" class="cn.com.htwins.ec.fw.common.image.ImageConvertorFactoryBean" autowire-candidate="true" />
+	<bean id="abstractImageConvertor" class="cn.com.htwins.ec.fw.common.image.impl.AbstractImageConvertor" abstract="true"
+		lazy-init="true" autowire-candidate="false">
+		<property name="quality" value="85" />
+		<property name="alpha" value="65" />
+		<property name="backgroundColor" value="#{T(java.awt.Color).white}" />
+	</bean>
+	<bean id="jdkImageConvertor" class="cn.com.htwins.ec.fw.common.image.impl.JdkImageConvertor" parent="abstractImageConvertor"
+		autowire-candidate="false" lazy-init="true" />
+	<bean id="graphicsImageMagickConvertor" class="cn.com.htwins.ec.fw.common.image.impl.GraphicsImageMagickConvertor"
+		parent="abstractImageConvertor" autowire-candidate="false" />
+
+
+	<bean id="spiritContext" class="cn.com.htwins.fw.AppContext" />
+</beans>

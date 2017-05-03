@@ -1,0 +1,80 @@
+<div class="shopbanner" style="display:none;"></div>
+
+<script id="store-shopbanner-tl" type="text/x-handlebars-template" >
+  <div order="{{order}}" style="background:url({{ad_pic1}}) no-repeat center;">
+  	<div style="width:auto;" class="wrapper">
+  	<p style="height:120px;line-height:120px; font-size:32px; color:#F60;padding-left:20px;">{{store_name}}
+  	<img title="{{gradeId}}级店铺" src="/resources/img/common/store{{gradeId}}.png"> </h3>
+  	</p>
+
+  	</div>
+
+  </div>
+</script>
+
+
+<script type="text/javascript">
+/** 初始化加载 **/
+(function($){
+	
+	if(!$.dm){
+		$.dm={};
+	};
+	
+	if(!$.dm.widget){
+		$.dm.widget={};
+	};
+	
+	$.dm.widget.storeBanner=function(){
+		var init=function(options){
+		try{
+				var data = {"storeId":storeId};
+				var container = options["container"] || "";
+				var range = options["range"] || {};
+				var order = range["orders"] || "";
+				data = range["rangeData"] || {};
+				if(data.store_name_show=='off'){
+					data.store_name="";
+				}
+				data["order"]  = order;
+				var grade;
+				var url = "/st/storeInfo.ajax";
+                callService(url,{"storeId":storeId},
+                {
+                async : false,
+                callSuccess:function(result){
+                        if(result!=null){
+                            grade=result.gradeId;
+                        }
+                    }
+                });
+                data["gradeId"]  = grade;
+
+
+				// 模板
+				var shop_banner_tl = $("#store-shopbanner-tl").html();
+				// 将模板编译成handlerbars对象
+				var shop_banner_template = Handlebars.compile(shop_banner_tl);
+				var shop_banner_html = shop_banner_template(data);
+				var rangeId = range["rangeId"];
+				if(container){
+					$(container+" .shopbanner").replaceWith(shop_banner_html);
+				}else{
+					$(".shopbanner").replaceWith(shop_banner_html);
+				}
+				
+				
+		}catch(ex){
+			console.log(ex);
+		}
+	};
+	var api={
+		init:init
+	};
+		
+	return api;
+	
+	};	
+})(jQuery);
+</script>
+

@@ -1,0 +1,155 @@
+@charset "utf-8";
+.card {
+	background: url(../../img/card/cardbg.jpg) no-repeat center;
+	height: 450px;
+}
+.cardSuccess {
+	height: 450px;
+	background: url(../../img/card/cardSuccessB.png) no-repeat 0 center;
+}
+.cardSuccess-con {
+	padding: 110px 0 0 460px;
+}
+.cardSuccess-con h2, .cardFailure-con h2 {
+	font-size: 20px;
+	color: #fff;
+	line-height: 50px;
+}
+.cardSuccess-con p, .cardFailure-con p {
+	color: #fff;
+	line-height: 25px;
+}
+.card-bta {
+	display: block;
+	float: left;
+	width: 125px;
+	height: 38px;
+	margin: 20px 0 0 0;
+	border: solid 1px #ff8b0e;
+	background: #ff8b0e;
+	color: #fff;
+	font-size: 14px;
+	text-align: center;
+	line-height: 38px;
+}
+.card-btb {
+	display: block;
+	float: left;
+	width: 125px;
+	height: 38px;
+	margin: 20px 0 0 20px;
+	border: solid 1px #ff8b0e;
+	color: #ff8b0e;
+	font-size: 14px;
+	text-align: center;
+	line-height: 38px;
+}
+.cardFailure {
+	height: 450px;
+	background: url(../../img/card/cardFailure.png) no-repeat 0 center;
+}
+.cardConfirm {
+	height: 450px;
+	background: url(../../img/card/cardConfirm.png) no-repeat 0 center;
+}
+.cardFailure-con {
+	padding: 150px 0 0 460px;
+}
+.cardConfirm-con {
+	padding: 170px 0 0 460px;
+}
+.cardConfirm h2 {
+	font-size: 16px;
+	color: #fff;
+	line-height: 50px;
+}
+.cardReceive {
+	height: 450px;
+	background: url(../../img/card/cardReceive.png) no-repeat 0 center;
+}
+.cardReceive-con {
+	padding: 150px 0 0 340px;
+}
+.card-con {
+	display: block;
+	float: left;
+	width: 183px;
+	margin-left: 30px;
+}
+.card-con-bg {
+	width: 183px;
+	height: 80px;
+	background: url(../../img/card/cardBg_small.png) no-repeat 0 0;
+	font-size: 18px;
+	color: #fff;
+}
+.card-price {
+	display: block;
+	float: left;
+	width: 105px;
+	margin: 10px 0 0 0px;
+	font-family: Arial, "微软雅黑";
+	color: #fff;
+	font-size: 18px;
+	text-align: center;
+	letter-spacing: -3px;
+}
+.card-price span {
+	font-size: 50px;
+	color: #fff;
+}
+.card-text {
+	float: right;
+	width: 65px;
+	text-align: center;
+	margin-right: 10px;
+}
+.card-text h2 {
+	margin-top: 20px;
+	font-size: 18px;
+	color: #fff;
+	font-weight: lighter;
+}
+.card-text p {
+	color: #fff;
+	line-height: 20px;
+}
+.cardCondition {
+	padding-top: 5px;
+}
+.cardCondition p {
+	color: #fff;
+	line-height: 20px;
+}
+.card-con a {
+	display: block;
+	width: 90px;
+	height: 38px;
+	margin: 20px auto 0 auto;
+	border: solid 1px #ff8b0e;
+	color: #fff; background:#ff8b0e;
+	font-size: 14px;
+	text-align: center;
+	line-height: 38px;
+}
+.card-con a:hover {
+	 background:#ea800d; text-decoration:none;
+}
+.card-con-bg2 {
+	background: url(../../img/card/cardBg_small.png) no-repeat -213px 0;
+}
+.card-con-bg3 {
+	background: url(../../img/card/cardBg_small.png) no-repeat -424px 0;
+}
+.card-block {
+	display: block;
+	width: 90px;
+	height: 38px;
+	margin: 20px auto 0 auto;
+	border: solid 1px #888888;
+	color: #FFFFFF;
+	background: #888888;
+	font-size: 14px;
+	text-align: center;
+	line-height: 38px;
+}

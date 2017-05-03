@@ -1,0 +1,13 @@
+<#include "/common/common_var_definds.ftl" />
+<#macro render>
+<script type="text/javascript" src="${resources}/basepage/store/default/common_js/jquery.js"></script>
+<script type="text/javascript" src="${resources}/basepage/store/default/common_js/jquery.lazyload.js"></script>
+<script type="text/javascript" src="${resources}/basepage/store/default/common_js/handlebars-v2.0.0.js"></script>
+<script type="text/javascript" src="${resources}/basepage/store/default/common_js/common_for_load.js"></script>
+<script type="text/javascript" src="${resources}/basepage/store/default/common_js/common_for_header.js"></script>
+<script type="text/javascript" src="${resources}/basepage/store/default/common_js/common_fixed.js"></script>
+<script type="text/javascript" src="${resources}/basepage/store/default/common_js/header_shopcar.js"></script>
+<script type="text/javascript" src="${resources}/basepage/store/default/common_js/header_search.js?v20170424"></script>
+<script type="text/javascript" src="${resources}/js/lib/jquery/jquery.blockUI.min.js"></script>
+<script type="text/javascript" src="${resources}/js/common/common.js"></script>
+</#macro>

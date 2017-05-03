@@ -1,0 +1,93 @@
+<#--店铺首页-->
+	<#include "/common/common_var_definds.ftl" />
+	<#include "/basepage/store/default/hb_templates/store_hb_templates.ftl" />
+	<#import "/basepage/store/default/common/zizhi_slider.ftl" as zizhi/>
+	<#import "/basepage/store/default/common/dangan_slider.ftl" as dangan/>
+	<!DOCTYPE html>
+	<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>饭饭1080°直采平台</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+		<script type="text/javascript">
+			var deviceWidth = document.documentElement.clientWidth;
+			if(deviceWidth > 768) {
+				deviceWidth = 768;
+			}
+			document.documentElement.style.fontSize = deviceWidth / 6.4 + 'px';
+		</script>
+		<#import "/basepage/store/default/common/common_link.ftl" as link/>
+		<#import "/basepage/store/default/common/common_script.ftl" as script/>
+		<#import "/basepage/store/default/common/common_header_bar.ftl" as header_bar/>
+		<#import "/basepage/store/default/common/common_header_searchbox_default.ftl" as searchBox/>
+		<#import "/basepage/store/default/common/common_footer.ftl" as footerNoTab/>
+		<#import "/basepage/seller/seller_header_search.ftl" as sellerSearch/>
+		<@link.render />
+		<!--导入共通样式-->
+		<@script.render />
+		<!--导入共通脚本-->
+		<link rel="stylesheet" href="${resources}/basepage/seller/css/store.css" type="text/css">
+		<script src="${resources}/basepage/seller/js/store_common_head_load.js"></script>
+        <script src="${resources}/basepage/seller/js/staticStore.js"></script>
+		<script src="${resources}/basepage/seller/js/store_dynamics.js"></script>
+		<script src="${resources}/basepage/seller/js/sp_getAboutImg.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<div id="pageInfo" store_id="${storeId!''}" store_template_code="${storeTemplateCode!''}" page_id="${storeTemplateCode!''}" style="display: none"></div>
+		<!--此处是头部开始-->
+		<div class="top"><@header_bar.render "商铺",""/></div>
+		<!--此处是头部结束-->
+		<!--网页头部&导航开始-->
+		<div id="sp_hd_1"></div>
+		<div id="sp_hd_2"></div>
+		<@sellerSearch.render />
+		<div id="ff_tab_box">
+			<div class="ff_tab_content">
+				<div class="ff-tab-title">
+					<img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /> <span>商家介绍</span>
+				</div>
+				<div class="ff-tab-con-detail">
+                        <p>
+                            大连福阳商贸有限公司主要经营：大成食品（大连）有限公司系列产品。公司尊崇“踏实、拼搏、责任”的企业精神，并以诚信、共赢、开创经营理念，创造良好的企业环境，以全新的管理模式，完善的技术，周到的服务，卓越的品质为生存根本，我们始终坚持用户至上 用心服务于客户，坚持用自己的服务去打动客户。
+                        </p>
+                        <p>
+                            大成食品(大连)有限公司是由台湾大成集团与日本丸红株式会社合资﹐经营地址大连瓦房店市炮台经济开发区﹐从事种鸡饲养、鸡雏孵化、饲料产销、肉鸡屠宰及深加工一条龙产业化经营﹐投资额3,200万美元。自一九九六年八月开始兴建至一九九七年十月全部完工﹐包含可饲养16万套父母代肉种鸡场﹑年孵化量3,200万只雏的孵化场﹑年产能24万吨的饲料厂﹐每年可加工3,600万只鸡的肉品加工厂﹐全公司共有员工3,200人。
+                        </p>
+                        <p>
+                            公司自1997年正式投入运营以来，销售收入不断快速增长，从1997年全年收入人民币4,700万元，至2002年收入大幅成长达人民币10亿元。公司卓越的经营绩效并获得往来银行─中国农业银行大连分行评选为aaa级企业，并屡获该行颁发「十大黄金客户」的殊荣。
+                        </p>
+                        <p>
+                            大成食品(大连)有限公司饲料厂与鸡肉加工厂均通过iso 9001-2000国际标准认证，产品质量普遍受国内外市场的好评，我公司经营方式是将自产优质鸡雏与先进科学配方饲料给紧密型联养的农户，并派专业兽医人员驻地服务，待肉鸡长大后，由公司以保证价格向农民收购，公司提供的饲料与鸡雏价格保持稳定，期间若原料成本上涨均由公司自行吸收，并确保契约鸡回收价格稳定，遇有鸡肉市场价格滑落，跌价损失亦由公司承担。上述模式使农民避开原料成本上涨与肉鸡价格滑落之风险，因此保障了农民的利益，发展农村经济并促进地方繁荣。
+                        </p>
+                        <p>
+                            大成食品(大连)有限公司销售给联养农户的肉鸡饲料，系采有效性胺基酸(a.a.a.)配方设计，蛋白质、能量、维他命等完全平衡的营养供应，并以特殊电解质平衡设计，可发挥鸡只最大的遗传潜能，饲料换肉率(f.c.r.)佳，具有增重快、节省农户饲养成本与缩短上市日龄的效益。我公司除生产联养肉鸡饲料外，同时亦生产猪料、蛋鸡料、牛料等配合饲料。
+                        </p>
+                        <p>近年来，大成食品(大连)有限公司实行公司加农户的一条龙经营方式，不但符合国家发展农业产业化的政策，更促进农村千家万户养鸡业的发展，增加农民收入，繁荣农村经济，除了直接受益的3,000多户联养农户之外，并由于我公司年产24万吨饲料，屠宰3,600万只毛鸡及生产熟食深加工品，需耗用15万吨玉米、3万吨豆粕，以及其它的副原料和配套的包材备品，因而带动周边相关的农产品原料生产与加工业、运输业、包装加工业等行业快速发展，创造了极大的社会效益。
+                        </p>
+				</div>
+			</div>
+			<div class="ff_tab_content only_book_content_zizhi">
+				<div class="ff-tab-title">
+					<img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /><span>商家资质</span>
+				</div>
+				<div class="ff-tab-con-detail">
+					<@zizhi.render />
+				</div>
+			</div>
+
+			<div class="ff_tab_content">
+				<div class="ff-tab-title">
+					<img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /> <span>商家活动</span>
+
+				</div>
+				<div class="ff-tab-con-detail">敬请期待</div>
+			</div>
+
+		</div>
+		<@footerNoTab.render />
+	</body>
+
+	</html>

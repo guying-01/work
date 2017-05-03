@@ -1,0 +1,324 @@
+<!-- InstanceBeginEditable name="doctitle" -->
+<!-- <title>商城首页</title> -->
+<!-- InstanceEndEditable -->
+<link href="/resources/css/common/lib.css" rel="stylesheet" type="text/css">
+<link href="/resources/js/lib/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" type="text/css">
+<link href="/resources/css/index/index.css" rel="stylesheet" type="text/css">
+<!-- InstanceEndEditable -->
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<style>
+body {
+	background: #eee;
+}
+
+
+</style>
+    <script src="/resources/js/lib/jquery/jquery-1.8.3.js"></script>
+    <script src="/resources/js/lib/handlebars/handlebars-v2.0.0.js"></script>
+    <script src="/resources/js/common/common.js"></script>
+    <script src="/resources/js/common/page_design.js"></script>
+    <script src="/resources/js/common/headerbar.js"></script>
+    <script src="/resources/js/common/sys_info.js"></script>
+    <script src="/resources/js/common/top_toolbar.js"></script>
+    <script src="/resources/js/common/tool.js"></script>
+
+<!--[if lt IE 9]>
+<script src="/resources/js/lib/html5/es5-shim.min.js"></script>
+<script  type="text/javascript" src="/resources/js/lib/html5/html5shiv.min.js"></script>
+<![endif]-->
+    <script type="text/javascript">
+	var pageDesignOptions = {
+		pageId : "page0001",
+		subSystemId : "00"
+	};
+	var pageId = "page0001";
+	var subSystemId = "00";
+</script>
+    </head>
+    <body>
+<div id="screenDiv">
+      <div id="top"></div>
+      <!-- grid0001开始 -->
+      <div dm-layout-grid="grid0001" dm-data=""> 
+    
+    <!-- range0001开始 显示头部共同状态栏信息--> 
+    <script id="range0001-tl" type="text/x-handlebars-template">
+			<div dm-layout-range="range0001" id='range0001' order="{{orders}}"></div>
+		</script> 
+    <script type="text/javascript"
+				src="/resources/js/ranges/range0001.js"></script> 
+    <!-- range0001开始 显示头部共同状态栏信息 结束--> 
+    
+    <!-- range0018开始 顶部通栏--> 
+    <script id="range0018-tl" type="text/x-handlebars-template">
+		<div class="header" dm-layout-range="range0018" style="width:100%; height:60px;" id='range0018' order="{{orders}}">
+			<a target="_blank" href="{{this.rangeData.url}}">
+				<img style="width:100%"  src="{{this.rangeData.ad_pic1}}" height="60">
+			</a>
+		</div>
+	</script> 
+    <script type="text/javascript"
+				src="/resources/js/ranges/range0018.js"></script> 
+    <!-- range0018 顶部通栏 结束--> 
+		
+    <!-- range0002开始 商城搜索 --> 
+    <script id="range0002-tl" type="text/x-handlebars-template">
+			<div class="header" dm-layout-range="range0002" id='range0002' order="{{orders}}">
+				<div class="header" dm-container="header-search-container"></div>
+			</div>
+		</script> 
+    <script type="text/javascript"
+				src="/resources/js/ranges/range0002.js"></script> 
+    <!-- range0002结束 --> 
+    
+    <!-- range0003开始 商城导航 --> 
+    <script id="range0003-tl" type="text/x-handlebars-template">
+			<div dm-layout-range="range0003" id='range0003' order="{{orders}}">
+				<div class="nav" dm-container="mallNav">
+					<ul></ul>
+				</div>
+			</div>
+		</script> 
+    <script type="text/javascript"
+				src="/resources/js/ranges/range0003.js"></script> 
+    <!-- range0003结束 --> 
+    
+    <!-- range0004开始 商城类目--> 
+    <script id="range0004-tl" type="text/x-handlebars-template">
+			<div dm-layout-range="range0004" class="firstMenu" id='range0004' order="{{orders}}">
+				<div class="menu" dm-container="menu" style="z-index:110;"></div>
+			</div>
+		</script> 
+    <script type="text/javascript"
+				src="/resources/js/ranges/range0004.js"></script> 
+    <!-- range0004结束 --> 
+    
+    <!-- range0005开始 图片轮播--> 
+    <script type="text/javascript" src="/resources/js/ranges/range0005.js"></script> 
+    <script type="text/javascript" src="/resources/js/index/banner.js"></script> 
+    <script id="range0005-tl" type="text/x-handlebars-template">
+			<div dm-layout-range="range0005" id="range0005" order="{{orders}}"></div>
+		</script> 
+    <script id="bannerjs-tl" type="text/x-handlebars-template">
+		  <div id="bannerjs" class="banner">
+			<a href="javascript:void(0);" class="sliderBtn prev" style="width: 0px;"></a>
+		  <a href="javascript:void(0);" class="sliderBtn next" style="width: 0px;"></a>
+		    <ul class="min-banner">
+				{{#if ad_pic1}}
+		     	 <li style="display:block; background:url({{ad_pic1}}) no-repeat center;" dm-data="{{ad_url1}}"><a href="javascript:void 0;" target="_blank"></a></li>
+				{{/if}}
+				{{#if ad_pic2}}
+		        <li style="background:url({{ad_pic2}}) no-repeat center;" dm-data="{{ad_url2}}"><a href="javascript:void 0;" ></a></li>
+				{{/if}}
+				{{#if ad_pic3}}
+		        <li style="background:url({{ad_pic3}}) no-repeat center;" dm-data="{{ad_url3}}"><a href="javascript:void 0;" ></a></li>
+				{{/if}}
+				{{#if ad_pic4}}
+		        <li style="background:url({{ad_pic4}}) no-repeat center;" dm-data="{{ad_url4}}"><a href="javascript:void 0;" ></a></li>
+				{{/if}}
+				{{#if ad_pic5}}
+		        <li style="background:url({{ad_pic5}}) no-repeat center;" dm-data="{{ad_url5}}"><a href="javascript:void 0;" ></a></li>
+				{{/if}}
+				{{#if ad_pic6}}
+		        <li style="background:url({{ad_pic6}}) no-repeat center;" dm-data="{{ad_url6}}"><a href="javascript:void 0;" ></a></li>
+				{{/if}}
+		    </ul>
+ <div style="width:1200px; position: absolute ; bottom:0; left:50%; margin-left:-600px;">
+		    <ul class="banner_num">
+				{{#if imgCount1}}
+		      	<li class="btnListOn"></li>
+				{{/if}}
+				{{#if imgCount2}}
+		     	<li ></li>
+				{{/if}}
+				{{#if imgCount3}}
+		      	<li ></li>
+				{{/if}}
+				{{#if imgCount4}}
+		      	<li ></li>
+				{{/if}}
+				{{#if imgCount5}}
+		      	<li ></li>
+				{{/if}}
+				{{#if imgCount6}}
+		     	<li ></li>
+				{{/if}}
+		    </ul>
+</div>
+		  </div>
+      	<div class="bannerUpAd">
+  			<div class="bannerUpAdImg">
+	  			<a href="{{ad_url_1}}" target="_blank"><img src="{{ad_picurl_1}}"></a>
+				<a href="{{ad_url_2}}" target="_blank"><img src="{{ad_picurl_2}}"></a>
+			</div>
+		</div>
+		</script> 
+    <!-- range0005结束 --> 
+  </div>
+      <!-- grid0001结束 -->
+	<!-- 中部网格加载 -->
+      <div class="wrapper" dm-layout-grid="grid0003" dm-data=""> 
+      
+    <!-- range0006开始 热门商品--> 
+    <script id="range0006-tl" type="text/x-handlebars-template">
+		<div dm-layout-range="range0006" order="{{orders}}" class="recommend">
+		    <ul class="tabT">
+			  {{#each goodsList}}
+		      <li goodsIds="{{this.goodsIds}}">{{this.title}}<i></i></li>
+			  {{/each}}
+		    </ul>
+		    <div class="recommend-produce-div" style="display: block;">
+		      
+		    </div>
+  		</div>
+	</script> 
+    <script type="text/javascript" src="/resources/js/ranges/range0006.js"></script> 
+    <script id="recommend-tl" type="text/x-handlebars-template">
+	 {{#each this}}
+	<div class="recommend-produce"> <a href="/gd/{{id}}.jhtml" target="_blank"><div class="hot">{{{activity.htmlStr}}}</div><img src="{{pic}}"></a>
+        <div class="recommend-price">
+          <div class="recommend-price">
+            <h3><a href="/gd/{{id}}.jhtml" target="_blank" title="{{ad_word}}">{{name}}</a></h3>
+            <p><strong>￥{{minSalesPrice}}</strong><u class=" m-l-10">￥{{minMarketPrice}}</u></p>
+            <p class="textalign-m ">
+				<a href="/fsst/{{storeId}}/top.jhtml" target="_blank">
+					<span style="vertical-align: top;font-size: 13px;">{{storeName}}</span>
+					<img title="{{storeGrade}}级店铺" src="/resources/img/common/store{{storeGrade}}.png" style="display:inline;width: 25px;height: 25px;margin: 0px;">
+				</a>
+			</p>
+          </div>
+			<div class="clear"></div>
+        </div>
+      </div>
+	 {{/each}}
+		</script> 
+    <!-- range0006结束 -->  
+      
+    <!-- range0024开始 品牌推荐--> 
+    <script id="range0024-tl" type="text/x-handlebars-template">
+		<div dm-layout-range="range0024" order="{{orders}}" class="recommend">
+<div  class="brandDiv">
+			<h3 class="brandText">
+				<img src="resources/img/index/brandText.png"></h3>
+				<ul class="tabT">
+			  		{{#each brandTitleList}}
+		      			<li title="{{this.title}}"  brandList="{{this.brandList}}">{{this.title}}<i></i></li>
+			  		{{/each}}
+		    	</ul>
+			</div>
+			<div class="recommend-produce-div brand" style="display: block;">
+		      	
+		    </div>
+  		</div>
+
+	</script> 
+	
+	<script id="range0024-brand-tl" type="text/x-handlebars-template">
+		{{#each this}}
+			<div class="recommend-produce"> 
+					<a href="{{url}}" target="_blank">
+						<img src="{{pic}}">
+					</a>
+      		</div>
+	 	{{/each}}
+	</script> 
+    <script type="text/javascript" src="/resources/js/ranges/range0024.js"></script> 
+    <!-- range0024结束 品牌推荐 -->
+    
+	<script id="range0022-tl" type="text/x-handlebars-template">
+		<div dm-layout-range="range0022"  id='range0022' order="{{orders}}">
+			<div class="wrapper" style="padding-top:20px;">			
+				<a target="_blank" href="{{this.rangeData.url1}}">
+					<img   src="{{this.rangeData.ad_pic1}}" width="1200">
+				</a>
+			</div>
+		</div>
+	</script> 
+    <script type="text/javascript" src="/resources/js/ranges/range0022.js"></script> 
+    
+    <!-- range0007开始商品楼层--> 
+    <script id="range0007-tl" type="text/x-handlebars-template">
+		<div dm-layout-range="range0007" class="floor floor{{cssIndex}}" id='range0007' order="{{orders}}">
+    		<h2><span>{{this.rangeData.title}}</span>
+      		<ul class="tabT">
+        		 {{#each this.goodsList}}
+		      	<li tabIndex="{{this.tabIndex}}" goodsIds="{{this.goodsIds}}">{{this.title}}<i></i></li>
+			  	{{/each}}
+      		</ul>
+    		</h2>
+    		<div class="floor-produce">
+      			<div class="floor-produceA"><a href="{{this.rangeData.url}}"><img src="{{this.rangeData.ad_pic}}"></a></div>
+      				<div class="left dmFloor" style="display: block; ">
+      				</div>
+     			</div>
+    		</div>
+  		</div>
+		</script> 
+		<script type="text/javascript" src="/resources/js/ranges/range0007.js"></script> 
+		
+		<script id="range0007-first-goods-tl" type="text/x-handlebars-template">
+        <ul class="floor-produceC" style="width:1010px;">
+			{{#each this.goodsDetailList}}
+          		<li> <a href="/gd/{{id}}.jhtml" target="_blank"><img src="{{pic}}"></a>
+            	<h3><a href="/gd/{{id}}.jhtml" target="_blank" title="{{ad_word}}">{{name}}</a></h3>
+            	<p style="padding-top:0"><b>￥</b><strong>{{minSalesPrice}}</strong><u>￥{{minMarketPrice}}</u></p>
+          		<div style="height:30px;line-height:30px;background:#FFE8E8;" class="textalign-m ">
+					<a href="/fsst/{{storeId}}/top.jhtml" target="_blank">
+					    <span style="background:none;vertical-align: top">{{storeName}}</span>
+						<img title="{{storeGrade}}级店铺" src="/resources/img/common/store{{storeGrade}}.png" style="display:inline;width: 25px;height: 25px;margin: 0px;">
+					</a>
+				</div>
+				</li>
+			{{/each}}
+        </ul>
+		</script> 
+		
+		<script id="range0007-first-pic-tl" type="text/x-handlebars-template">
+		<div class="floor-produceB"><a href="{{this.rangeData.url1}}"><img src="{{this.rangeData.ad_pic1}}"></a></div>
+        <ul class="floor-produceC floor-produceCimg">
+			{{#each this.picList}}
+          		<li> 
+					<a href="{{url}}"><img src="{{pic}}"></a>
+            	</li>
+			{{/each}}
+        </ul>
+		</script> 
+		
+		<script id="range0007-other-tl" type="text/x-handlebars-template">
+		<ul class="floor-produceC" style="width:1010px;">
+         	{{#each this.goodsDetailList}}
+          		<li> <a href="/gd/{{id}}.jhtml" target="_blank"><img src="{{pic}}"></a>
+            	<h3><a href="/gd/{{id}}.jhtml" target="_blank" title="{{ad_word}}">{{name}}</a></h3>
+            	<p><b>￥</b><strong>{{minSalesPrice}}</strong><u>￥{{minMarketPrice}}</u></p>
+          		</li>
+			{{/each}}
+ 		</ul>
+		</script> 
+    <!-- range0007结束商品楼层 --> 
+  </div>
+    </div>
+<!-- InstanceEndEditable -->
+
+<div class="footernav clear" dm-layout-grid="grid0004" dm-data="">
+	<script id="range0019-tl" type="text/x-handlebars-template">
+		<div dm-layout-range="range0019"  id='range0019' order="{{orders}}">
+			<div style=" background:#eee; text-align:center; padding:20px 0;">			
+				<a target="_blank" href="{{this.rangeData.url1}}">
+					<img  src="{{this.rangeData.ad_pic1}}" width="1200">
+				</a>
+			</div>
+		</div>
+	</script> 
+    <script type="text/javascript" src="/resources/js/ranges/range0019.js"></script> 
+	
+  </div>
+    </div>
+<!-- InstanceBeginEditable name="foot_js" --> <!-- InstanceEndEditable -->
+<script src="/resources/js/lib/perfect-scrollbar/perfect-scrollbar.min.js"></script> 
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#screenDiv').css('min-height', $(window).height() + 200);
+		//顶部js
+		$("#top_toolbar").topshort();
+	});
+</script>

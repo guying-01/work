@@ -1,0 +1,176 @@
+<#-- 加载通用变量定义 -->
+<#include "/common/common_var_definds.ftl" />
+<#macro render >
+<script src="${resources}/js/common/hideshow.js" type="text/javascript"></script>
+<script src="${resources}/js/order/order_adress.js" type="text/javascript"></script>
+<script src="${resources}/js/common/hover.js" type="text/javascript"></script>
+<script src="${resources}/js/lib/jquery/jquery.blockUI.min.js" type="text/javascript"></script>
+<script src="${resources}/js/common/common.js" type="text/javascript"></script>
+
+<script type="text/javascript">	
+
+$(document).ready(function () {
+	var message = $('#message').val();
+	if(message!=''){
+		jsConfirm(message,{callback:function(result){
+			if(result){
+				
+			}else{
+				toOrderDetail();
+			}
+		}});
+	}
+	
+	$('.shut').click(function(){
+		$(".cx20").fadeOut();
+	})
+    if(isWeiXin()){
+        $('.choosePayment').show();
+    }
+    else {
+    }
+});
+function isWeiXin(){
+    var ua = window.navigator.userAgent.toLowerCase();
+    if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+        return true;
+    }else{
+        return false;
+    }
+}
+/*choosePay 对选择的支付方式进行标记，方便下一步并入PC的dopaySwitch方法*/
+function choosePay(obj) {
+    var str=obj.getAttribute('checkflag');
+    var it_id=obj.getAttribute('id');
+    if(isWeiXin()){
+        $('#choosePayment').attr('checkflag',str);
+        $('#pay_balance i').removeClass('isChecked');
+        $('#pay_weixin i').removeClass('isChecked');
+        $('#'+it_id+' i').addClass('isChecked');
+    }
+    else {
+        if(it_id=='pay_weixin'){
+            jsAlert("您没有用微信访问本站，无法使用微信进行支付！");
+        }
+        else {
+            $('#choosePayment').attr('checkflag',str);
+            $('#pay_balance i').addClass('isChecked');
+        }
+    }
+
+
+}
+function dopaySwitch(dom){
+    var payType = $('#choosePayment').attr('checkflag');
+    if(payType=="00"){
+        dopayNew(dom);
+    }else if(payType=="10"){
+        modopayWX(dom);
+    }else{
+        jsAlert("请选择支付方式！");
+        return false;
+    }
+}
+function dopayNew(obj) {
+    if ($(".totalItem").size() > 0) {
+        var paramData = {};
+        $(".totalItem").each(function (idex, totalItem) {
+            var totalId = $(totalItem).find(".totalOrderId").html();
+            $(totalItem).find(".orderItem").each(function (orderIdex, orderItem) {
+                var orderIdList = new Array();
+                if(paramData[totalId]){
+                    orderIdList = paramData[totalId];
+                } ;
+                orderIdList.push($(orderItem).find(".orderId").val());
+                paramData[totalId] = orderIdList;
+            });
+        });
+        var data = JSON.stringify(paramData);
+
+        var target = $(obj).parent();
+        $.dm.block(target);//开始区域锁定
+        $(".cx20").fadeIn();
+        callService('${ctx}/pay/doPayNew.ajax',
+                {
+                    data:data
+                },
+                {
+                    async: true,
+                    callSuccess: function (data) {
+                        if(data){
+                            var resultJson = JSON.stringify(data);
+                            $.dm.jumpTo("${ctx}/pay/toPayNewSuccess.jhtml", {
+                                result: resultJson
+                            }, {target: "_blank"});
+
+                        }else{
+                            $(".cx20").fadeOut();
+                            jsErrAlert(data.error.errMsg);
+                        }
+                        $.dm.unblock(target);
+                    }, callError: function (textStatus, errorThrown, error) {
+                    $(".cx20").fadeOut();
+                    jsErrAlert(error.errMsg || '');
+                    $.dm.unblock(target);
+                }
+                });
+    }
+}
+function modopayWX(obj) {
+    if ($(".totalItem").size() > 0) {
+        var paramData = {};
+        $(".totalItem").each(function (idex, totalItem) {
+            var totalId = $(totalItem).find(".totalOrderId").html();
+            $(totalItem).find(".orderItem").each(function (orderIdex, orderItem) {
+                var orderIdList = new Array();
+                if (paramData[totalId]) {
+                    orderIdList = paramData[totalId];
+                }
+                orderIdList.push($(orderItem).find(".orderId").val());
+                paramData[totalId] = orderIdList;
+            });
+        });
+        var data = JSON.stringify(paramData);
+
+        var target = $(obj).parent();
+        if (!$("#state").val()) {
+            callService('${ctx}/fswx/insertPaWechatPay.ajax',
+                    {
+                        data: data
+                    },
+                    {
+                        async: true,
+                        callSuccess: function (data) {
+                            if (data) {
+                                if (data.success) {
+                                    var payId = data.result.payId;
+                                    var attach = data.result.attach;
+                                    var url="${ctx}/order/toOrderList.jhtml";
+                                    if (payId) {
+                                        window.location.href="http://wxpay.fan1080.com/payment/wxpay/topay?state="+payId+"&attach="+attach+"&redirectUrl="+url;
+                                    } else {
+                                        jsErrAlert("系统异常，请稍后再试");
+                                    }
+                                } else {
+                                    jsErrAlert(data.message);
+                                }
+
+                            } else {
+                                jsErrAlert(data.error.errMsg);
+                            }
+                        },
+                        callError: function (textStatus, errorThrown, error) {
+                            jsErrAlert(error.errMsg || '');
+                        }
+                    });
+        } else {
+
+        }
+    }
+}
+function toOrderDetail(){
+	window.location='${ctx}/order/toOrderList.jhtml';
+}
+
+</script>
+</#macro>

@@ -1,0 +1,368 @@
+<#include "/common/common_var_definds.ftl" /> <#macro render data>
+<#import "/basepage/store/default/common/common_scroll_top.ftl" as scrollTop/>
+	<#import "/basepage/store/default/common/common_header_bar.ftl" as header_bar/>
+<#escape x as x?html>
+	<@scrollTop.render />
+<style>
+    .ff_header_bar .tool-bt {
+        box-sizing: border-box;
+        padding-left: 0.4rem;
+	}
+    .ff_header_bar{
+		border-top:0;
+	}
+</style>
+<div class="top">
+	<@header_bar.render "购物车","编辑"/>
+<#--导入header_top-->
+    <#--<div class="ff_list_search_box">
+		<@searchBox.render />
+    </div>-->
+</div>
+	<#--<div class="cart_header">
+        <a href="/member/index.jhtml"></a>
+		<span>购物车</span>
+		<span class="edit">编辑</span>
+	</div>-->
+	<#if memberType?? && memberType == "member_master">
+        <h2 class="titH" style="padding:0.1rem 0 0.1rem 0.2rem;font-size: 0.3rem;">
+            确认购物车信息</h2>
+	<#-----------------------------------------------------------确认收货信息<div class="order">开始------------------------------------------------------------------------------------>
+        <div class="order" style="    background: #fff; padding-top: 0px;  margin-bottom: 10px;">
+            <ul class="order-adress">
+			<#-------------------------------------------选中状态------------------------------------------->
+				<#if memberAddressFormList?? &&memberAddressFormList?size gt 0><#--如果有收货地址-->
+                    <input type="hidden" name="addressId" id="addressId" value="${memberAddressFormList[0].id}" />
+					<#list memberAddressFormList as items>
+						<#if items.isDefault==1><#--如果是默认地址-->
+                            <li id="li_${items.id}">
+                                <div class="order-adress-selected">
+                                    <h3>配送至</h3>
+                                    <div class="left order-adress-con">
+                                        <div class="order-adress-list">
+                                            <input type="hidden" name="default" value="${items.isDefault}"/>
+                                            <input type="hidden" id="hid" value="0"/>
+                                            <input type="hidden" id="telephone_${items.id}" value="${items.telephone!}"/>
+                                            <input type="hidden" id="modifyDate_${items.id}" value="${items.modifyDate!}"/>
+                                            <input type="hidden" class="memberId" value="${items.memberId!}"/>
+                                            <input name="RadioGroup1"  type="radio" id="RadioGroup1_0" value="${items.id}" checked="checked"
+                                                    dm-actor="defaultadress"/>
+
+                                            <span id="span_${items.id}">  
+												
+												<p><b>饭饭身份码：</b>${items.odPassportNo!''}</p>
+												<p><b>店名：</b>${items.odBuyerName!''}</p>
+												<p><b style="float: left;width: 14%">地址：</b><i style="float: left;width: 86%;font-size: 0.22rem">${items.provinceName}&nbsp;${items.cityName}&nbsp;${items.areaName}&nbsp;${items.address}</i></p>
+												<p><b>收货人：</b>${items.consignee}</p>
+												<p>
+													<b>联系电话：</b>
+													<#if items.mobile?? && items.mobile!=''>
+													${items.mobile}
+													<#else>
+													${items.telephone}
+													</#if>
+												</p>
+									     </span>
+                                        </div>
+                                    </div>
+                                    <div class=" clear"></div>
+                                </div>
+                                <div class="order-adress-list none" id="${items.id}">
+                                    <input type="hidden" name="default" value="${items.isDefault}"/>
+                                    <input type="hidden" id="telephone_${items.id}" value="${items.telephone!}"/>
+                                    <input type="hidden" id="modifyDate_${items.id}" value="${items.modifyDate!}"/>
+                                    <input type="hidden" id="memberId" value="${items.memberId!}"/>
+                                    <input name="RadioGroup1" type="radio" id="RadioGroup1_0" value="${items.id}" />
+                                    <span id="span_${items.id}" name="span_${items.id}">
+										  <#-- <b>默认地址</b> -->
+										  	<p><b>饭饭身份码：</b>${items.odPassportNo!''}</p>
+												<p><b>店名：</b>${items.odBuyerName!''}</p>
+												<p><b style="width: 14%;float: left">地址：</b><i style="float: left;width: 86%;font-size: 0.22rem">${items.provinceName}&nbsp;${items.cityName}&nbsp;${items.areaName}&nbsp;${items.address}</i></p>
+												<p><b>收货人：</b>${items.consignee}</p>
+												<p>
+													<b>联系电话：</b>
+													<#if items.mobile?? && items.mobile!=''>
+													${items.mobile}
+													<#else>
+													${items.telephone}
+													</#if>
+												</p>
+                                      </span>
+                                </div>
+                            </li>
+						<#----------------------------------------------非选中状态------------------------------------------->
+						<#else><#--如果不是默认地址-->
+                            <li id="li_${items.id}">
+                                <div class="order-adress-list" id="${items.id}">
+                                    <input type="hidden" name="default" value="${items.isDefault}"/>
+                                    <input type="hidden" id="telephone_${items.id}" value="${items.telephone!}"/>
+                                    <input type="hidden" id="modifyDate_${items.id}" value="${items.modifyDate!}"/>
+                                    <input type="hidden" class="memberId" value="${items.memberId!}"/>
+                                    <input type="radio" name="RadioGroup1" value="${items.id}" id="RadioGroup1_1"  dm-actor="notdefaultadress"/>
+                                    <span id="span_${items.id}" name="span_${items.id}">
+										  	<p><b>饭饭身份码：</b>${items.odPassportNo!''}</p>
+												<p><b>店名：</b>${items.odBuyerName!''}&nbsp;&nbsp;&nbsp;&nbsp;</p>
+												<p><b style="float: left;width: 15%">地址：</b><i style="float: left;width: 85%;font-size: 0.22rem">${items.provinceName}&nbsp;${items.cityName}&nbsp;${items.areaName}&nbsp;${items.address}</i></p>
+												<p><b>收货人：</b>${items.consignee}</p>
+												<p>
+													<b>联系电话：</b>
+													<#if items.mobile?? && items.mobile!=''>
+													${items.mobile}
+													<#else>
+													${items.telephone}
+													</#if>
+												</p>
+                                  </span>
+                                </div>
+                            </li>
+						</#if>
+					</#list>
+				<#else><#--否则，没有收货地址-->
+                    <input type="hidden" name="addressId" id="addressId" value="" />
+				</#if>
+            </ul>
+        </div>
+
+
+	</#if>
+
+	<input id="category" value="shopcart" type="hidden" />
+	<div class="tableheight" id="shopcart_list">
+		<div class="inDate"></div>
+        <div class="outOfDate"></div>
+	</div>
+	<!--------------底部批量操作界面---全选、删除选中商品、清除失效商品、移入收藏夹、结算--------开始------------------------------------->
+	<div class="bottomWidthA">
+		<div class="bottomWidth">
+			<div class="bottom-nav">
+				<div class="left bottom_left">
+					<a href="javascript:void(0);" dm-actor="sc-del-list" style="margin-left: 1.3rem;" class="delGoodsBtn">删除选中商品</a>
+                    <a href="javascript:void(0);" dm-actor="fav-add-list">移入收藏夹</a>
+					<a href="javascript:void(0);" dm-actor="sc-del-disable">清除失效商品</a>
+					<#--<a href="javascript:void(0);" dm-actor="fav-add-list">移入收藏夹</a>-->
+				</div>
+				<div class="payRight" style="padding: 0">
+					<div class="allCheck">
+                        <label class="checkBoxes" ><input name="" type="checkbox" value="" id="checkBoxes" dm-actor="sc-select-all" />
+						</label>
+						<p>全选</p>
+					</div>
+                    <div class="carPrice">
+                        <div class=" clear">
+                            <p>合计：</p>
+                            <strong dm-info="sc-selectedtotal-price"><b>￥</b>0.00</strong>
+                            <span style="line-height: 0.35rem;text-align: left;font-size: 0.22rem">已选择<b dm-info="sc-selected-count">0</b>件商品</span>
+                        </div>
+                        <script id="activity-fee-total-tl" type="text/x-handlebars-template">
+                            <div class=" clear" dm-contianer="activity-fee-total-contianer" style="display:none">优惠金额：
+                                <strong dm-info="activity-fee-total-price">￥{{feeTotal}}</strong></div>
+                        </script>
+                        <div class=" clear" dm-contianer="activity-fee-total-contianer">
+                        </div>
+                    </div>
+                    <div class=" total_goods textalign-m" style="font-size: 0.19rem;overflow: hidden">
+
+						<#if (lockStatus?? && lockStatus !=0) || (memberType?? && memberType="member_servant") || (memberType?? && memberType="member_separate")>
+                        <a href="javascript:void(0);"
+                           class="big-button "  disabled="true" style="background: grey;margin-top: 0;margin-right: 0!important;height: 0.85rem;line-height: 0.85rem;width: 2rem">去结算</a>
+					<#else >
+                        <a href="javascript:void(0);"
+                           class="big-button  m-r-10" dm-actor="sc-buy" style="margin-top: 0;margin-right: 0!important;height: 0.85rem;line-height: 0.85rem;width: 2rem">去结算</a>
+					</#if>
+
+					<div dm-contianer="activity-fee-total-contianer"
+						style="display: none;"></div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--------------底部批量操作界面---全选、删除选中商品、清除失效商品、移入收藏夹、结算--------结束------------------------------------->
+	</div>
+
+	<div class="nullGoods"></div>
+	<!-----------------同一个店铺的商品---------------------------------->
+	<script id="sc-its-tl" type="text/x-handlebars-template">
+		    <div class="cartable st-{{storeId}}" dm-container="st-list" dm-data="{{storeId}}" st="{{storeId}}">
+		    </div>
+	</script>
+	<!-----------------一条商品规格------------------------------------->
+	<script id="sc-it-enable-tl" type="text/x-handlebars-template">
+        {{#each this}}
+		<#--每一栏订单标题-->
+        <div class="car-message data-st-{{this.0.storeId}}" dm-container="st-name" dm-data="{{this.0.storeId}}" st="{{this.0.storeId}}">
+            <label class="checkBoxes shopCheck" ><input name="" id="checkBoxes" type="checkbox" value="{{this.0.storeId}}" class="radio" dm-actor="sc-st-check" dm-data="{{this.0.storeId}}" st="{{this.0.storeId}}"/></label>
+            <a href="/fsst/{{this.0.storeId}}/top.jhtml" title="{{this.0.storeName}}" style="white-space:nowrap;" class="m-l-10 left">{{this.0.storeName}}</a>
+            <a href="javascript:QQtalk('1739073619');"  style="position: static;" class="consulting" dm-actor="webim-store" dm-data="{{userCode}}">&nbsp;</a>
+        </div>
+        {{#each this}}
+		<#--每一栏订单商品详情-->
+			<div class="cartable-td data-st-{{storeId}} data-sc-{{id}}" dm-container="sc-row" dm-data="{{id}}" style="background:#fff;margin-bottom: 0.05rem;">
+				<div class="left checkBtns">
+					{{#if storeStatus}}
+						{{#if isEnabled}}
+							  <label class="checkBoxes" style="margin-top: 0.2rem;"><input name="" id="checkBoxes" type="checkbox" value="{{id}}" class="checkBtn" st="{{storeId}}" dm-actor="sc-check" dm-data="{{id}}" dm-value="{{goodsId}}" dm-name="{{goodsName}}" dm-data-item="{{itemId}}" dm-data-promotionId="{{promotionId}}" dm-data-promotionType="{{promotionType}}" dm-data-combId="{{combId}}" isChecked="{{isChecked}}" isEnabled="{{isEnabled}}"/></label>
+						{{else }}
+							<span class="failure" id="fail" dm-data="{{id}}"="{{id}}">失效</span>
+			    		{{/if}}
+			    	{{else}}
+						<span class="failure" id="fail" dm-data="{{id}}"="{{id}}">关闭</span>
+			    	{{/if}}
+				</div>
+				<div class="left goodsImg"><a href="{{#if storeStatus}}{{#if isEnabled}}${ctx}/fsgd/{{goodsId}}.jhtml{{else}}javascript:void(0);{{/if}}{{else}}${ctx}/fsgd/{{goodsId}}.jhtml{{/if}}">{{#each smallPicturePath}}<img src="{{this}}" style="display:block;"/>{{/each}}</a></div>
+			<div style="float: right; width: 65%;">
+				<div class="textalign-l shopcar-goods-gy">{{#each goodsName}}<a href={{#if storeStatus}}{{#if isEnabled}}"${ctx}/fsgd/{{goodsId}}.jhtml"{{else}}javascript:void(0);{{/if}}{{else}}"${ctx}/fsgd/{{goodsId}}.jhtml"{{/if}}>{{goodsName}}</a>{{/each}}
+				</div>
+			<div class="wrap-g">
+
+				<div class="left" style="width: 20%"><label style="display:block;">{{#preparePic prepareDatePicType}}{{/preparePic}}</label></div>
+				<#--<div class="left width200">{{#each standard}}<label style="display:block;height:50px;padding:10px 0 0;">{{this}}</label>{{/each}}</div>-->
+				<#-- <div class="left" id='promotionTypeName' name="forCombinacation" >{{promotionTitleShort}}</div>-->
+				<#--<div class="left font14" dm-info="sc-item-price" dm-data-item="{{itemId}}" name="forCombinacation"><label style="display:block;font-size: 12px">￥<label id="salesPrice">{{salesPrice}}</label>-->
+				<#--</label></div>-->
+			    <div class=" forCombinacation" name="forCombinacation">
+					<label style="display:block;">
+					{{#if storeStatus}}
+						{{#if isEnabled}}
+							<div class="num_box"><a href="javascript:void(0);" class="add_1" id="add" dm-actor="sc-amt-add" dm-data="{{id}}" style="height:0.4rem">加</a>
+								<input name="" type="text"  value="{{amount}}" original="{{amount}}" id="numbox" dm-info="sc-amt" dm-data="{{id}}" dm-price="{{salesPrice}}" dm-stock="{{localStock}}"/>
+								<a href="javascript:void(0);" class="reduce_0"  id="reduce" dm-actor="sc-amt-reduce" dm-data="{{id}}" style="height:0.4rem">减</a>
+								<label class="errorwrong" style="display:none"><u></u><i>&nbsp;</i>最多购买{{localStock}}件</label>
+							</div>
+						{{else}}
+							<div class="num_box"><a href="javascript:void(0);" class="add_1" id="add" dm-data="{{id}}">加</a>
+								<input name="" type="text"  value="{{amount}}" id="numbox" dm-info="sc-amt" dm-data="{{id}}" dm-price="{{salesPrice}}" dm-stock="{{localStock}}" readOnly/>
+								<a href="javascript:void(0);" class="reduce_0"  id="reduce" dm-data="{{id}}">减</a>
+								<label class="errorwrong" style="display:none"><u></u><i>&nbsp;</i>最多购买{{localStock}}件</label>
+							</div>
+						{{/if}}
+					{{else}}
+						<div class="num_box"><a href="javascript:void(0);" class="add_1" id="add" dm-data="{{id}}">加</a>
+							<input name="" type="text"  value="{{amount}}" id="numbox" dm-info="sc-amt" dm-data="{{id}}" dm-price="{{salesPrice}}" dm-stock="{{localStock}}" readOnly/>
+							<a href="javascript:void(0);" class="reduce_0"  id="reduce" dm-data="{{id}}">减</a>
+							<label class="errorwrong" style="display:none"><u></u><i>&nbsp;</i>最多购买{{localStock}}件</label>
+						</div>
+					{{/if}}
+					</label>
+				</div>
+
+            </div>
+			<div class="wrap-g">
+                    <div class="left" name="forCombinacation">
+                        <label style="display:block;">
+                            <strong style="font-size: 0.22rem">￥</strong><strong style="font-size: 0.22rem" id="totalPrice" dm-info="price" dm-data="{{id}}" dm-data-item="{{itemId}}" field0="{{field0}}" field1="{{field1}}" style="font-size: 14px" >{{totalPrice}}</strong>
+                        </label>
+                    </div>
+
+                    <div class="delBox" name="forCombinacation">
+						<label style="display:block;">
+							{{#if storeStatus}}
+								{{#if isEnabled}}
+									<#--<a href="javascript:void(0);" dm-actor="fav-add" dm-value="{{goodsId}}" dm-data="{{storeId}}">移入收藏夹</a><br/>-->
+									<a href="javascript:void(0);" class="deletegoods" dm-actor="sc-del" dm-data="{{id}}">删除</a>
+									<#--<label class="errorwrong" style="display:none"><u></u><i>&nbsp;</i>该商品已收藏</label>-->
+								{{/if}}
+							{{/if}}
+						</label>
+				    </div>
+            </div>
+                <div class="clear"></div>
+			</div>
+		</div>
+		    {{/each}}
+         {{/each}}
+	</script>
+
+<script id="sc-it-disable-tl" type="text/x-handlebars-template">
+	<#--每一栏订单标题-->
+    {{#each this}}
+    <div class="car-message data-st-{{this.0.storeId}}" dm-container="st-name" dm-data="{{this.0.storeId}}" st="{{this.0.storeId}}">
+        <label class="checkBoxes shopCheck" ><input name="" id="checkBoxes" type="checkbox" value="{{this.0.storeId}}" class="radio" dm-actor="sc-st-check" dm-data="{{this.0.storeId}}" st="{{this.0.storeId}}"/></label>
+        <a href="/fsst/{{this.0.storeId}}/top.jhtml" title="{{storeName}}" style="white-space:nowrap;" class="m-l-10 left">{{this.0.storeName}}</a>
+        <a href="javascript:QQtalk('1739073619');"  style="position: static;" class="consulting" dm-actor="webim-store" dm-data="{{userCode}}">&nbsp;</a>
+    </div>
+	{{#each this}}
+	<#--每一栏订单商品详情-->
+    <div class="cartable-td data-st-{{storeId}} data-sc-{{id}} gray" dm-container="sc-row" dm-data="{{id}}" style="background:#fff;margin-bottom: 0.05rem;">
+        <div class="left checkBtns">
+            {{#if storeStatus}}
+            {{#if isEnabled}}
+            <label class="checkBoxes" style="margin-top: 0.2rem;"><input name="" id="checkBoxes" type="checkbox" value="{{id}}" class="checkBtn" st="{{storeId}}" dm-actor="sc-check" dm-data="{{id}}" dm-value="{{goodsId}}" dm-name="{{goodsName}}" dm-data-item="{{itemId}}" dm-data-promotionId="{{promotionId}}" dm-data-promotionType="{{promotionType}}" dm-data-combId="{{combId}}" isChecked="{{isChecked}}" isEnabled="{{isEnabled}}"/></label>
+            {{else }}
+            <span class="failure" id="fail" dm-data="{{id}}"="{{id}}">失效</span>
+            {{/if}}
+            {{else}}
+            <span class="failure" id="fail" dm-data="{{id}}"="{{id}}">关闭</span>
+            {{/if}}
+        </div>
+        <div class="left goodsImg">{{#each smallPicturePath}}<img src="{{this}}" style="display:block;"/>{{/each}}</div>
+	<div style="float: right;width: 65%">
+        <div class="left width200 textalign-l">{{#each goodsName}}<a href="{{#if storeStatus}}{{#if isEnabled}}${ctx}/fsgd/{{goodsId}}.jhtml{{else}}javascript:void(0);{{/if}}{{else}}${ctx}/fsgd/{{goodsId}}.jhtml{{/if}}">{{goodsName}}</a>{{/each}}</div>
+		<div class="warp-g">
+			<div class="left" style="width: 20%"><label style="display:block;">{{#preparePic prepareDatePicType}}{{/preparePic}}</label></div>
+			<#--<div class="left width200">{{#each standard}}<label style="display:block;height:50px;padding:10px 0 0;">{{this}}</label>{{/each}}</div>-->
+			<#-- <div class="left" id='promotionTypeName' name="forCombinacation" >{{promotionTitleShort}}</div>-->
+			<#--<div class="left font14" dm-info="sc-item-price" dm-data-item="{{itemId}}" name="forCombinacation"><label style="display:block;font-size: 12px">￥<label id="salesPrice">{{salesPrice}}</label>-->
+			<#--</label></div>-->
+			<div class=" forCombinacation" name="forCombinacation">
+				<label style="display:block;">
+					{{#if storeStatus}}
+					{{#if isEnabled}}
+					<div class="num_box"><a href="javascript:void(0);" class="add_1" id="add" dm-actor="sc-amt-add" dm-data="{{id}}" style="height:0.28rem">加</a>
+						<input name="" type="text"  value="{{amount}}" original="{{amount}}" id="numbox" dm-info="sc-amt" dm-data="{{id}}" dm-price="{{salesPrice}}" dm-stock="{{localStock}}"/>
+						<a href="javascript:void(0);" class="reduce_0"  id="reduce" dm-actor="sc-amt-reduce" dm-data="{{id}}" style="height:0.28rem">减</a>
+						<label class="errorwrong" style="display:none"><u></u><i>&nbsp;</i>最多购买{{localStock}}件</label>
+					</div>
+					{{else}}
+					<div class="num_box"><a href="javascript:void(0);" class="add_1" id="add" dm-data="{{id}}">加</a>
+						<input name="" type="text"  value="{{amount}}" id="numbox" dm-info="sc-amt" dm-data="{{id}}" dm-price="{{salesPrice}}" dm-stock="{{localStock}}" readOnly/>
+						<a href="javascript:void(0);" class="reduce_0"  id="reduce" dm-data="{{id}}">减</a>
+						<label class="errorwrong" style="display:none"><u></u><i>&nbsp;</i>最多购买{{localStock}}件</label>
+					</div>
+					{{/if}}
+					{{else}}
+					<div class="num_box"><a href="javascript:void(0);" class="add_1" id="add" dm-data="{{id}}">加</a>
+						<input name="" type="text"  value="{{amount}}" id="numbox" dm-info="sc-amt" dm-data="{{id}}" dm-price="{{salesPrice}}" dm-stock="{{localStock}}" readOnly/>
+						<a href="javascript:void(0);" class="reduce_0"  id="reduce" dm-data="{{id}}">减</a>
+						<label class="errorwrong" style="display:none"><u></u><i>&nbsp;</i>最多购买{{localStock}}件</label>
+					</div>
+					{{/if}}
+				</label>
+			</div>
+		</div>
+
+        <div class="wrap-g">
+			<div class="left" name="forCombinacation">
+				<label style="display:block;">
+					<strong style="font-size: 14px">￥</strong><strong id="totalPrice" dm-info="price" dm-data="{{id}}" dm-data-item="{{itemId}}" field0="{{field0}}" field1="{{field1}}" style="font-size: 14px" >{{totalPrice}}</strong>
+				</label>
+			</div>
+
+			<div class="left" name="forCombinacation">
+				<label style="display:block;">
+					{{#if storeStatus}}
+					{{#if isEnabled}}
+				<#--<a href="javascript:void(0);" dm-actor="fav-add" dm-value="{{goodsId}}" dm-data="{{storeId}}">移入收藏夹</a><br/>-->
+					<a href="javascript:void(0);" class="deletegoods" dm-actor="sc-del" dm-data="{{id}}">删除</a>
+				<#--<label class="errorwrong" style="display:none"><u></u><i>&nbsp;</i>该商品已收藏</label>-->
+					{{/if}}
+					{{/if}}
+				</label>
+			</div>
+        </div>
+	</div>
+        <div class="clear"></div>
+    </div>
+	{{/each}}
+    {{/each}}
+</script>
+	<script>
+//		Handlebars.registerHelper("equals", function(v1, v2,v3,v4, options) {
+//			if (v1==v2&&v3==v4) {
+//				return options.fn(this);
+//			} else{
+//				return options.inverse(this);
+//			}
+//		});
+	</script>
+	</#escape> </#macro>

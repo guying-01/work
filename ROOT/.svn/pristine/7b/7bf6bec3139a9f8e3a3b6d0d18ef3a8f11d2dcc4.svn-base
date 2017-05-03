@@ -1,0 +1,208 @@
+/*$.dm.loadWidget("[dm-container='menu']",
+									'mallItemMenu', options);//载入顶部商城搜索栏*/
+
+<div class="menu towMenu" dm-container="mallItemMenu">
+<script id="page-menu-tl" type="text/x-handlebars-template">
+<h2>全部商品分类</h2>
+<div class="menu-div">
+	{{#each this}}
+		<div class="submenu">
+			<a href="javascript:void(0)" dm-actor="item-cat-1-jump" dm-data-level1="{{mallCatId}}" dm-data-level1-name="{{gdcatNames}}">
+				<h3 title="{{gdcatNames}}" style="text-overflow: ellipsis;white-space:nowrap;overflow:hidden;">
+					
+				{{shortName}}
+				</h3>
+			</a>
+			<div class="submenu-floating">
+				{{#if subItems}}
+					{{#each subItems}}
+					<ul>
+					<h4 title="{{name}}">{{shortName}}</h4>
+					{{#each subItems}}
+						<li title="{{name}}"><a href="javascript:void(0)" dm-actor="item-cat-3-jump" 
+		          		dm-data-level1="{{../../mallCatId}}" dm-data-level1-name="{{../../gdcatNames}}" 
+		          		dm-data-level2="{{../mallCatId}}" dm-data-level2-name="{{../gdcatNames}}" 
+		          		dm-data-level3="{{mallCatId}}" dm-data-level3-name="{{gdcatNames}}" >
+		          		{{shortName}}</a></li>
+					{{/each}}
+					</ul>
+				{{/each}}
+				{{else}}
+					<ul>
+					<h4>没有更多分类了～～～</h4>
+					</ul>
+				{{/if}}
+			</div>
+		</div>
+	{{/each}}
+</div>
+</script>
+</div>
+<script type="text/javascript">
+/** 初始化检索 **/
+(function($){
+	if(!$.dm){
+		$.dm={};
+	}
+	if(!$.dm.widget){
+		$.dm.widget={};
+	}
+	$.dm.widget.mallItemMenu=function(){
+		
+		var initActor=function(){
+			$(document).on('click','[dm-actor]',function(){
+				var $actor=$(this);
+				var actor=$actor.attr('dm-actor');
+				//暂定跳转到类目相应的搜索页面
+				if(actor==='item-cat-1-jump'){
+					$.dm.jumpToGoodsSearch(actor,''
+						,$actor.attr('dm-data-level1')+':'+$actor.attr('dm-data-level1-name'));
+				}else if(actor==='item-cat-2-jump'){
+					$.dm.jumpToGoodsSearch(actor,''
+						,$actor.attr('dm-data-level1')+':'+$actor.attr('dm-data-level1-name')
+						,$actor.attr('dm-data-level2')+':'+$actor.attr('dm-data-level2-name'));
+				}else if(actor==='item-cat-3-jump'){
+					$.dm.jumpToGoodsSearch(actor,''
+						,$actor.attr('dm-data-level1')+':'+$actor.attr('dm-data-level1-name')
+						,$actor.attr('dm-data-level2')+':'+$actor.attr('dm-data-level2-name')
+						,$actor.attr('dm-data-level3')+':'+$actor.attr('dm-data-level3-name'));
+				}
+			});
+		};
+		var init=function(options){
+			//初始化动作
+			initActor();
+			var pageDesignOptions = {pageId:"page0001",subSystemId:"00"};
+			var pageId = "page0001";
+			var subSystemId = "00";
+		
+			var container = options["container"] || "";
+			var range = options["range"] || {};
+			var order = range["orders"] || "";
+			data = range["rangeData"] || {};
+			data["order"]  = order || "";
+
+			loadMallItemMenu(container, options);
+		};
+		
+		var loadMallItemMenu = function(container, options){
+			try{
+				if(container){
+					container = container + " ";
+				}
+				// 模板
+				var menu_tl = $("#page-menu-tl").html();
+				
+				$(container+"[dm-container='mallItemMenu']").attr('loadedshow', options.loadedShow);
+				    
+				// 将模板编译成handlerbars对象
+				var menu_template = Handlebars.compile(menu_tl);
+				var url = "/gd/findAllItemCategoryList.ajax";
+				var params = {};
+				callService(url,params,{
+					callSuccess:function(result){
+						$_menuContainer = $(container+"[dm-container='mallItemMenu']");
+						var data = result["data"] || {};
+						var menu_html = menu_template(data);
+						$_menuContainer.html(menu_html);
+						
+						if($_menuContainer.attr('loadedshow')){
+						    $('.menu').mouseover(function() {
+						        $(this).children('.menu-div').show();
+						    });
+						    $('.menu').mouseleave(function() {
+						        $(this).children('.menu-div').hide();
+						    });
+						}
+					$('.menu').mouseover(function() {
+						        $(this).children('.menu-div').show();
+						    });
+					$('.menu').mouseleave(function() {
+						        $(this).children('.menu-div').hide();
+						    });
+						$('.submenu').mouseover(function() {
+					        $(this).children('.submenu-floating').show();
+
+					    });
+					    $('.submenu').mouseleave(function() {
+					        $(this).children('.submenu-floating').hide();
+					    });
+						
+					    //增加menuB 让首页menu 隐藏起来
+					    $('.firstMenu').children('.menu').removeClass('towMenu');
+					    $('.firstMenu .menu').addClass('menuB');
+						$(".firstMenu .menuB h2 i").remove();
+						$('.menuB').mouseout(function() {
+						    $(this).children('.menu-div').show();
+						});
+						//计算menuB的个数，大于8个有点击展示与隐藏的效果
+						/** var menuSum = $(".firstMenu .menu-div .submenu").length;
+						if (menuSum >= 8) {
+						    $(".firstMenu .menu-div .submenu").eq(7).nextAll().hide();
+						    $(".firstMenu .menu-div .submenu:last").after('<div class="more-submenu"><span>展开分类</span></div>');
+						    $(".more-submenu").click(function() {
+						        $(".menu-div .submenu").eq(7).nextAll(".submenu").toggle();
+						        if (($(".menu-div .submenu").is(":hidden"))) {
+						            $(".more-submenu span").text("更多分类");
+						            $(".more-submenu i").removeClass("more-submenuI");
+						             $(".submenu-floating").css("height", "350px");
+						        } else {
+						            $(".more-submenu span").text("收起分类");
+						            $(".more-submenu i").addClass("more-submenuI");
+						            $(".submenu-floating").css("height", menuSum * 36 + "px");
+						
+						        }
+						    })
+						};**/
+						$('.submenu').mouseover(function() {
+						var ulSum = $(this).children('.submenu-floating').children('ul').length;
+						if (ulSum > 4) {
+						    $(this).children('.submenu-floating').css({
+						           'width': '800px'
+						     });
+						    $(this).children('.submenu-floating').children('ul').css({
+						           'float': 'left'
+						     });
+						}
+						});
+                   //没有主导航时，分类菜单样式  start
+			        var menuPostion = $('.nav').length
+			        if (menuPostion > 0) {
+			            $('.banner').css({
+			                'margin-top': '0'
+			            })
+			
+			        } else {
+			            $('.banner').css({
+			                'margin-top': '48px'
+			            });
+			            $('.menu').css({
+			                'top': '48px'
+			            })
+			        };
+				  //没有主导航时，分类菜单样式  end   
+					    
+					    
+					}
+					,callError:function(status,text){
+						console.log(status);
+						console.log(text);
+					}
+				});
+			}catch(ex){
+				console.log(ex);
+			}
+		};
+		
+		var api={
+			init:init
+		};
+		
+		return api;
+	};
+	
+})(jQuery);
+</script>
+
+
+

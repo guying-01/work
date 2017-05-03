@@ -1,0 +1,174 @@
+<#include "/common/common_var_definds.ftl" />
+<#import "/common/fields/field_page_tracker.ftl" as field_page_tracker />
+<#import "/basepage/store/default/common/common_link.ftl" as link/>
+<#import "/basepage/store/default/common/common_script.ftl" as script/>
+<#--<#import "/basepage/store/default/common/common_header_bar.ftl" as header_bar/>-->
+<#import "/basepage/store/default/common/common_header_searchbox_default.ftl" as searchBox/>
+<#import "/basepage/store/default/common/common_footer.ftl" as footer/>
+<#-- 
+标题 | metas     | 链接                         | 脚本                            | 主要内容                             | 页脚                                  | 数据
+title  metas=>[]   links=>[]    scripts=>[]   mainParts=>[]    footParts=>[]   data
+ -->
+<#macro render title,metas,links,scripts,mainParts,footParts,data>
+<#escape x as x?html>
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name = "format-detection" content = "telephone=no">
+				<meta http-equiv="X-UA-Compatible" content="IE=edge">
+				<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+				<script type="text/javascript">
+					var deviceWidth = document.documentElement.clientWidth;
+					if(deviceWidth > 768) {
+						deviceWidth = 768;
+					}
+					document.documentElement.style.fontSize = deviceWidth / 6.4 + 'px';
+				</script>
+						<@link.render />
+		<!--导入共通样式-->
+		<@script.render />
+		<!--导入共通脚本-->
+<#list metas as part>
+<@part.render />
+</#list>
+<#-- TemplateBeginEditable name="doctitle" -->
+<title>${title}</title>
+<#-- TemplateEndEditable -->
+<link rel="shortcut icon" href="${resources}/basepage/store/default/common_img/favicon.ico" />
+<link rel="bookmark" href="${resources}/basepage/store/default/common_img/favicon.ico" />
+<link rel="stylesheet" type="text/css" href="${resources}/css/common/lib.css" />
+<link rel="stylesheet" type="text/css" href="${resources}/js/lib/perfect-scrollbar/perfect-scrollbar.css" />
+<#-- TemplateBeginEditable name="my_css" -->
+<#list links as part>
+<@part.render />
+</#list>
+<#-- TemplateEndEditable -->
+<script>
+var dm_ctx='${ctx}';
+var dm_resources='${resources}';
+</script>
+<script src="${resources}/js/lib/jquery/jquery-1.8.3.js"></script>
+<script src="${resources}/js/lib/handlebars/handlebars-v2.0.0.js"></script>
+<script src="${resources}/js/lib/pubsub/tiny-pubsub.js"></script>
+<script src="${resources}/js/common/top_toolbar.js"></script>
+<script src="${resources}/js/common/pager.js"></script>
+<script src="${resources}/js/common/tool.js"></script>
+<script src="${resources}/js/common/common.js"></script>
+    <!--[if lt IE 9]>
+	<script src="/resources/js/lib/html5/es5-shim.min.js"></script>
+	<script  type="text/javascript" src="/resources/js/lib/html5/html5shiv.min.js"></script>
+    <![endif]-->
+<#-- TemplateBeginEditable name="my_js" -->
+<script>
+var dm_ctx='${ctx}';
+var dm_resources='${resources}';
+</script>
+<#list scripts as part>
+<@part.render />
+</#list>
+<#-- TemplateEndEditable -->
+<#-- TemplateBeginEditable name="head" -->
+<#-- TemplateEndEditable -->
+	<link rel="stylesheet" type="text/css" href="${resources}/css/order/order_confirm.css" />
+</head>
+<body>
+		<div class="top">
+			<#--<@top.render />-->
+			<#--导入header_top-->
+		</div>
+<#-- TemplateBeginEditable name="my_conner" -->
+<#list mainParts as part>
+<@part.render data/>
+</#list>
+<#-- TemplateEndEditable -->
+<@field_page_tracker.render />
+<#-- TemplateEndEditable -->
+<script src="${resources}/js/lib/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		var options = {
+			container : "",
+			replace : true,
+			range : {},
+			loadedShow : true
+		};
+		// 搜索
+		var gdSearch = function(search, from) {
+			location.href = '/goodsSearch.jhtml?from=' + from + '&s=' + encodeURIComponent(search);
+		};
+		//输入搜索关键词
+		$(document).on('keypress', '[dm-info="gd-search-word"]', function() {
+			switch (event.keyCode) {
+			case 13:
+				gdSearch($('[dm-info="gd-search-word"]').val(), 'gd-search');
+				break;
+			default:
+				break;
+			}
+		});
+		$(document).on('click', '[dm-actor="gd-search"]', function() {
+			gdSearch($('[dm-info="gd-search-word"]').val(), $(this).attr('dm-actor'));
+		});
+		//热门搜索
+		$(document).on('click', '[dm-info="gd-hot-search-item"]', function() {
+			gdSearch($(this).attr('dm-data'), $(this).attr('dm-info'));
+		});
+
+		callService("/findHotWords.ajax", {}, {
+			callSuccess : function(data) {
+				var htmlStr = '';
+				$.each(data, function(inx, val) {
+					var content = '<a href="/goodsSearch.jhtml?from=gd-search&s=' + val.content + '">' + val.content + '</a>';
+					if (inx != 0) {
+						content = '&nbsp&nbsp' + content;
+					}
+					htmlStr += content;
+				})
+				$('.hot-search').append(htmlStr);
+			}
+		});
+
+		callService("/tpl/fingNavigationBar.ajax", {
+			"subsystemId" : "00",
+			"pageId" : "page0001",
+			"gridId" : "grid0001",
+			"rangeId" : "range0003"
+		}, {
+			callSuccess : function(data) {
+				if (data.success) {
+					if (data.result.length != 0) {
+						var html = "";
+						for ( var i in data.result) {
+							var rangeExtendData = data.result[i].rangeExtendData;
+							if (rangeExtendData != null) {
+								var hot_goods = $.parseJSON(rangeExtendData).hot_goods;
+								var value = JSON.parse(hot_goods);
+								for (var j=0;j < value.length;j++) {
+									html += "<li><a href='"+value[j].url+"' title='"+value[j].label+"' style='padding: 0px 10px; text-align: center; overflow: hidden; width: 70px; height: 50px;'>" + value[j].label + "</a></li>"
+								}
+							}
+						}
+						$("#navigationBar").html(html);
+					}
+				}
+			}
+		});
+	});
+
+	function changeShowInfo() {
+		var checkValue = $("#selectType").val();
+		if (checkValue == 'byGoods') {
+			$("#showInfo").empty().append("商品名称");
+		} else {
+			$("#showInfo").empty().append("店铺名称");
+		}
+	}
+</script>
+	<script src="${resources}/js/common/hover.js"></script>
+</body>
+</html>
+</#escape>
+</#macro>
+

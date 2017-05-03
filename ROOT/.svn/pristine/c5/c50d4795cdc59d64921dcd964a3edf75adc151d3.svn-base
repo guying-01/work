@@ -1,0 +1,36 @@
+`<#-- 消息展示页面-->
+
+<#include "/common/common_var_definds.ftl" />
+<#macro render data>
+    <#escape x as x?html>
+    <div class="content-right">
+        <div class="list">
+            <ul class="tabT message-gy">
+                <li onclick="changeBtnState('',this)"><span>所有消息</span></li>
+                <li onclick="changeBtnState('00',this)"><span>交易</span></li>
+                <li onclick="changeBtnState('20',this)"><span>评价</span></li>
+                <li onclick="changeBtnState('30',this)"><span>退换</span></li>
+            </ul>
+            <div class="function">
+                <p><a href="javascript:void(0);"
+                      id="allReadCode" class="small-button right" value="">全部标为已读</a><span class="left" style="font-size:0.28rem; line-height:0.8rem;padding-left: 0.2rem; padding-top: 0.1rem;
+">当前未读消息共有 <span id="monthMsg3" class=''>0</span> 条</span>
+
+                </p>
+            </div>
+
+        </div>
+    </div>
+    <div class="messageCenter"></div>
+    <div id="noneOrder" style="line-height:80px; text-align:center; font-size:16px; display:none;">您现在暂无未读消息</div>
+    <div class="messageFill"></div>
+    <script id="messageCenter" type="text/x-handlebars-template">
+        {{#each this}}
+        <div class="message {{statu this}} " message-id={{id}}> {{messageContent this.message}}</div>
+
+        {{/each}}
+        {{assignMore}}
+    </script>
+
+    </#escape>
+</#macro>

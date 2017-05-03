@@ -1,0 +1,60 @@
+/**
+ * 商品分类页面动态数据绑定函数
+ * Created by WW on 2016/10/11.
+ */
+
+
+/**
+ * 一级分类点击事件
+ * Created by WW on 2016/10/11.
+ */
+function lv1_click(lv1) {
+    lv1_id = $(lv1).attr("lv1_id");
+    lv1_name = $(lv1).text();
+    var success = function (data) {
+//  	品牌厂家
+    	if(lv1_id=='307_00000000000000379_gic'){
+    		categoryBrand();
+    		return;
+    	}
+//  	产地直供
+    	if(lv1_id=='307_00000000000000374_gic'){
+    		directSupply();
+    		return;
+    	}
+//  	餐饮名店特色菜
+    	if(lv1_id=='307_00000000000000382_gic'){
+    		nongJia();
+    		return;
+    	}
+    	//维修保养
+    	if(lv1_id=='307_00000000000002606_gic'){
+    	    service();
+            return;
+        }
+        //酒店专业装修
+        if(lv1_id=='307_00000000000000236_gic'){
+            h_service();
+            return;
+        }
+//  	进口免税
+    	if(lv1_id=='testjinkoumianshui'){
+    		taxExemption();
+    		return;
+    	}
+        var formatedData = formatData_category(data);
+        formatedData.lv1.id = lv1_id;
+        formatedData.lv1.name = lv1_name;
+        var template_category_categoryList = $("#category_categoryList").html();
+        var html = loadHandlebarsTemplate(template_category_categoryList, formatedData);
+        $(".page_yiji_wrap ul").html(html);  //加载到html中
+        comingSoon(lv1_id);/*由于某些不能第一批次上线所以这么写,等到能上线后再注释掉相应的代码即可恢复*/
+        
+    };
+    requestDataWithAJAX("/fsajax/FSGoodsCategory.ajax?level2=" + lv1_id, "get", true, {"success": success});
+}
+$(function () {
+    $(".page_fenlei_daohang ul li .firstClick").click();
+});
+
+

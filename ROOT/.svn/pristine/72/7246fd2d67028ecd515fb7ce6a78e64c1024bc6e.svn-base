@@ -1,0 +1,255 @@
+@charset "utf-8";
+/*商家入住左侧导航*/
+/*一级菜单*/
+.leftsidebar {
+	margin: 0px auto 20px auto;
+	width: 198px;
+	border: solid 1px #db0401;
+	border-bottom: 0px;
+}
+.leftsidebar h2 {
+	position: relative;
+	display: block;
+	padding-left: 25px;
+	width: 173px;
+	height: 40px;
+	border-bottom: solid 1px #db0401;
+	font-size: 15px;
+	
+	line-height: 40px;
+}
+.leftsidebar li {
+	position: relative;
+	display: block;
+	height: 40px;
+	width: 198px;
+	border-bottom: solid 1px #db0401;
+}
+.leftsidebar li a {
+	position: absolute;
+	z-index: 1;
+	top: 0px;
+	left: 0px;
+	padding-left: 10px;
+	height: 40px;
+	width: 188px;
+	background: #fff;
+	font-size: 14px;
+	line-height: 40px;
+}
+.leftsidebar li a i {
+	padding: 10px 5px;
+	background: url(../../img/common/ico3.png) no-repeat 6px -111px;
+}
+.leftsidebar li a:hover {
+	color: #db0401;
+	text-decoration: none;
+}
+.leftsidebar li .leftsidebar-foc {
+	color: #db0401 !important;
+}
+.leftsidebar li .leftsidebar-foc i, .leftsidebar li a:hover i {
+	background: url(../../img/common/ico3.png) no-repeat -10px -152px;
+}
+/*商家入驻*/
+.store-intoH {
+	padding: 10px 0;
+	font-size: 20px;
+	border-bottom:solid 1px #e1e1e1;
+	
+}
+/*进度条*/
+.progress_three {
+	position: relative;
+	display: block;
+	margin: 30px auto;
+	height: 20px;
+	width: 475px;
+}
+.progress_four {
+	position: relative;
+	display: block;
+	margin: 30px auto;
+	height: 20px;
+	width: 700px;
+}
+.progress_five {
+	position: relative;
+	display: block;
+	margin: 30px auto 30px auto;
+	height: 20px;
+	width: 935px;
+}
+.progress_A {
+	background: url(../../img/common/progress.gif) no-repeat 0 -12px;
+}
+.progress_B {
+	background: url(../../img/common/progress.gif) no-repeat 0 -48px;
+}
+.progress_C {
+	background: url(../../img/common/progress.gif) no-repeat 0 -91px;
+}
+.progress_D {
+	background: url(../../img/common/progress.gif) no-repeat 0 -127px;
+}
+.progress_E {
+	background: url(../../img/common/progress.gif) no-repeat 0 -161px;
+}
+.progress_textA, .progress_textB, .progress_textC, .progress_textD, .progress_textE {
+	position: absolute;
+	width: 100px;
+	text-align: center;
+}
+.progress_textA {
+	top: -20px;
+	left: -40px;
+}
+.progress_textB {
+	top: -20px;
+	left: 190px;
+}
+.progress_textC {
+	top: -20px;
+	left: 420px;
+}
+.progress_textD {
+	top: -20px;
+	left: 645px;
+}
+.progress_textE {
+	top: -20px;
+	left: 873px;
+}
+.progress_text {
+	color: #db0401
+}
+/*入住协议*/
+.apply-agreement {
+	padding: 20px;
+	text-align: center;
+}
+.apply-agreement-content {
+	padding: 10px;
+	height: 320px;
+	overflow-y: scroll;
+	border: solid 1px #eee;
+	text-align: left;
+}
+.apply-agreement-content p {
+	line-height: 25px;
+}
+.apply-agreement h4 {
+	padding-top: 20px;
+	height: 30px;
+	border-bottom: solid 1px #eee;
+}
+/*提交信息*/
+.information-into {
+	margin: 20px auto;
+}
+.information-line {
+	position: relative;
+	padding-top: 10px;
+	min-height: 30px;
+	clear: both;
+}
+.information-line .linespan {
+	display: block;
+	padding-right: 10px;
+	float: left;
+	width: 150px;
+	
+	text-align: right;
+	line-height: 30px;
+}
+.information-line .linespan em {
+	color: red;
+}
+.information-line p {
+	display: block;
+	float: left;
+	
+	line-height: 30px;
+}
+.information-line .radio {
+	margin: 7px 5px 0 0;
+*margin:4px 5px 0 0;
+}
+.information-line textarea {
+	position: relative;
+	z-index: 1;
+}
+.form-labe {
+	position: absolute;
+	z-index: 0;
+	left: 170px;
+	top: 10px;
+	line-height: 30px;
+}
+/*图片放大*/
+.bigimg_up {
+	display: none;
+	width: 100%;
+	height: 100%;
+}
+.bigimg_up div {
+	display: table;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+}
+.bigimg_up div p {
+	display: table-cell;
+	width: 100%;
+	height: 100%;
+	vertical-align: middle;
+	cursor: pointer;
+}
+.bigimg_up div p img {
+	max-width: 100%;
+	max-height: 100%;
+}
+.information-note {
+	margin-left: 160px;
+	clear: both;
+	height: 25px;
+	line-height: 20px;
+}
+.information-line .errorwrong, .information-line .errorcorrect{
+	top: -11px;
+	left: 160px;
+}
+.apply-agreement a {
+	display: inline-block;
+	margin: 0 auto;
+	padding: 4px 20px;
+	border: solid 1px #e1e1e1;
+	background: #e1e1e1;
+	text-align: center;
+}
+.apply-agreement a:hover {
+	text-decoration: none;
+	
+}
+.apply-agreement .small-button{	
+	display: inline-block;
+	margin: 0 auto;
+	padding: 4px 20px;
+	border: solid 1px #ff8b0e;
+	background:#ff8b0e !important;
+	color: #fff !important;
+	text-align: center;
+	line-height: normal !important;
+}
+
+#qixie, #bao_shipin, #shipin, #huazhuang, #xiaodu {
+	display: none;
+}
+/*进度条时间*/
+.progress_time {
+	position: relative;
+	margin: 0 auto;
+	width: 475px;
+	height: 30px;
+	line-height: 30px;
+}

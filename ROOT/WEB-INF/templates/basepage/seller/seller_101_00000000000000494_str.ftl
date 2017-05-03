@@ -1,0 +1,110 @@
+<#--店铺首页-->
+<#include "/common/common_var_definds.ftl" />
+<#include "/basepage/store/default/hb_templates/store_hb_templates.ftl" />
+<#import "/basepage/store/default/common/zizhi_slider.ftl" as zizhi/>
+<#import "/basepage/store/default/common/dangan_slider.ftl" as dangan/>
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>饭饭1080°直采平台</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <script type="text/javascript">
+        var deviceWidth = document.documentElement.clientWidth;
+        if(deviceWidth > 768) {
+            deviceWidth = 768;
+        }
+        document.documentElement.style.fontSize = deviceWidth / 6.4 + 'px';
+    </script>
+<#import "/basepage/store/default/common/common_link.ftl" as link/>
+<#import "/basepage/store/default/common/common_script.ftl" as script/>
+<#import "/basepage/store/default/common/common_header_bar.ftl" as header_bar/>
+<#import "/basepage/store/default/common/common_header_searchbox_default.ftl" as searchBox/>
+<#import "/basepage/store/default/common/common_footer.ftl" as footerNoTab/>
+<#import "/basepage/seller/seller_header_search.ftl" as sellerSearch/>
+<@link.render />
+    <!--导入共通样式-->
+<@script.render />
+    <!--导入共通脚本-->
+    <link rel="stylesheet" href="${resources}/basepage/seller/css/store.css" type="text/css">
+    <script src="${resources}/basepage/seller/js/store_common_head_load.js"></script>
+    <script src="${resources}/basepage/seller/js/staticStore.js"></script>
+    <script src="${resources}/basepage/seller/js/store_dynamics.js"></script>
+    <script src="${resources}/basepage/seller/js/sp_getAboutImg.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+<div id="pageInfo" store_id="${storeId!''}" store_template_code="${storeTemplateCode!''}" page_id="${storeTemplateCode!''}" style="display: none"></div>
+<!--此处是头部开始-->
+<div class="top"><@header_bar.render "商铺",""/></div>
+<!--此处是头部结束-->
+<!--网页头部&导航开始-->
+<div id="sp_hd_1"></div>
+<div id="sp_hd_2"></div>
+<@sellerSearch.render />
+<div id="ff_tab_box">
+    <div class="ff_tab_content">
+        <div class="ff-tab-title">
+            <img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /> <span>商家介绍</span>
+        </div>
+        <div class="ff-tab-con-detail">
+            <p>
+                吉林市春宝集团位于吉林市龙潭经济开发区，成立于2010年4月，现有生产和经营场所占地面积7500平方米，建筑面积3000平方米，公司资产已达3500万元，生产加工技术先进，生产设备配套齐全，主导产业优势明显，辐射带动能力较强，是吉林省商务厅和吉林市商务局唯一指定的标准化犬类屠宰加工企业，也是吉林市龙潭区政府重点支持的民营骨干企业。
+            </p>
+            <p>
+                公司在吉林市商务局的正确指导和大力支持下，率先完成“产业整合，转型发展”的战略目标，先后并购六家小型企业，生产规模不断扩大，加工产量不断提高，经营业绩日益增长，成为吉林市狗肉屠宰加工领域内具有绝对竞争优势的龙头企业。
+            </p>
+            <p>
+                经营范围
+            </p>
+            <p>
+                吉林市春宝集团是一家以肉狗养殖，肉狗收购、肉狗屠宰，冷鲜狗肉批发零售及狗肉制品深加工为主导产业的综合性、专业化企业集团。公司拥有统代化犬类屠宰加工生产线，吉林市淞城食品有限公司、吉林市淞城狗肉农家庄园饭店以及九家狗肉产品批发零售商店，并与吉林化工学院食品工程系建立产学研合作关系．成立吉林市春宝农产品技术开发中心，为集团公司产业化建设和新产品开发提供强有力的技术支撑。
+            </p>
+            <p>
+                公司投资建设现代化犬类屠宰加工生产线，引进国内先进生产设备20台（套）。实现“宰前捡疫→屠宰加工→宰后检验”全程一体化．封闭式生产车间符合iso9001，国际质量体系要求的技术标准，生产工艺过程遵循qmp（良好管理规范）和ssop（标准操作规范）技术规范。产品质量达到国家规定的技术标准。
+            </p>
+            <p>
+                公司以狗肉产品开发和狗肉制品深加工为主体，自主研制开发《淞城牌》狗肉系列产品达七大类三十多个品种，采用传统工艺配方与现代科学技术相结合的工厂化加工制作方法，经真空包装．高温灭茵等技术手段，提高了狗肉制品的质量安全和保质期。充分满足不同群体和不同层次的消费需求，深受广大消费者的赞誉和青睐。为让广大人们群众吃上“放心狗肉、安全狗肉和健康狗肉” 。春宝集团会继续努力做出突出贡献。
+            </p>
+            <p>
+                企业愿景
+            </p>
+            <p>
+                吉林市春宝集团全体员工秉承总经理候宪宝提出的“诚信为本、稳健经营、追求卓越、引领未来”的公司纲领，把“质量决定命运，创新决定发展”作为公司经营的核心目标。把“用高尚的道德生产高品位食品”作为公司的核心价值观，以体制创新、科技创新和管理创新为动力，全力推进狗肉精深加工产业化进程，提高公司的核心竞争力，倾心努力做大做强春宝产业．为吉林市社会进步和经济发展贡献力量。
+            </p>
+            <p>
+                公司发展规划
+            </p>
+            <p>
+                ●建设规模化、标准化肉狗养殖基地10处。运用现代科技手段，培育出肉用品质特征明显的高产优质核心群，采甩TMR饲养管理技术和分群饲养模式．提高肉狗品质和产量。项目建成投产后，商品肉狗可达3000吨。
+            </p>
+            <p>
+                ●建设现代化、标准化狗肉制品加工生产线，利用本公司与化工学院食品工程系建立长期产学研合作关系．充分发挥科技优势和人才优势，大力开发狗肉深加工新产品。提高产品的科技含量，充分满足不同人群，不同层次的多样化市场需求．把资源优势转化为经济优势和产业优势。增加产品附加值，带动相关产业的健康发展。
+            </p>
+            <p>
+                ●建设现代化肉狗副产品深加工基地．针对肉狗屠宰加工过程所产生的大量狗皮、狗骨、狗血、和狗毛等副产品,进行深度加工和产品开发，变废为宝。提高资源的可利用率，精心构建狗肉深加工循环经济模式，形成养殖、屠宰、产品深加工和市场营销一体化的产兴产业格局。做大做强集群发展的产业规模，把春宝集团淞城食品打造成狗肉制品加工的领军企业。
+            </p>
+        </div>
+    </div>
+    <div class="ff_tab_content only_book_content_zizhi">
+        <div class="ff-tab-title">
+            <img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /><span>商家资质</span>
+        </div>
+        <div class="ff-tab-con-detail">
+        <@zizhi.render />
+        </div>
+    </div>
+    <div class="ff_tab_content">
+        <div class="ff-tab-title">
+            <img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /> <span>商家活动</span>
+
+        </div>
+        <div class="ff-tab-con-detail">敬请期待</div>
+    </div>
+</div>
+<@footerNoTab.render />
+</body>
+
+</html>

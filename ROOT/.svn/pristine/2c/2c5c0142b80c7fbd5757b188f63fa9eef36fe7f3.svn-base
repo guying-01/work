@@ -1,0 +1,179 @@
+<#-- 加载通用变量定义 -->
+<#include "/common/common_var_definds.ftl" />
+<#macro render >
+<script src="${resources}/js/common/hideshow.js" type="text/javascript"></script>
+<script src="${resources}/js/order/order_adress.js" type="text/javascript"></script>
+<script src="${resources}/js/common/hover.js" type="text/javascript"></script>
+<script src="${resources}/js/lib/jquery/jquery.blockUI.min.js" type="text/javascript"></script>
+<script src="${resources}/js/common/common.js" type="text/javascript"></script>
+
+<script type="text/javascript">	
+
+$(document).ready(function () {
+	var message = $('#message').val();
+	if(message!=''){
+		jsConfirm(message,{callback:function(result){
+			if(result){
+				
+			}else{
+				toOrderDetail();
+			}
+		}});
+	}
+	
+	$('.shut').click(function(){
+		$(".cx20").fadeOut();
+	})
+});
+
+function dopayNew(obj) {
+    if ($(".totalItem").size() > 0) {
+        var paramData = {};
+        $(".totalItem").each(function (idex, totalItem) {
+        	var totalId = $(totalItem).find("#totalOrderId").html();
+            $(totalItem).find(".orderItem").each(function (orderIdex, orderItem) {
+                var orderIdList = new Array();
+            	if(paramData[totalId]){
+                    orderIdList = paramData[totalId];
+				} ;
+				orderIdList.push($(orderItem).find(".orderId").val());
+                paramData[totalId] = orderIdList;
+            });
+        });
+		var data = JSON.stringify(paramData);
+		console.log(data);
+        var target = $(obj).parent();
+        $.dm.block(target);//开始区域锁定
+        $(".cx20").fadeIn();
+        callService('${ctx}/pay/doPayNew.ajax',
+                {
+                    data:data
+                },
+                {
+                    async: true,
+                    callSuccess: function (data) {
+                        if(data){
+                            var resultJson = JSON.stringify(data);
+                            $.dm.jumpTo("${ctx}/pay/toPayNewSuccess.jhtml", {
+                            result: resultJson
+                            });
+						}else{
+							$(".cx20").fadeOut();
+							jsErrAlert(data.error.errMsg);
+						}
+                        $.dm.unblock(target);
+                    }, callError: function (textStatus, errorThrown, error) {
+                    $(".cx20").fadeOut();
+                    jsErrAlert(error.errMsg || '');
+                    $.dm.unblock(target);
+                }
+                });
+    }
+}
+
+
+function dopay(obj){
+        var payMoney = $('#sumTotal').text();
+        var totalOrderId = $('#totalOrderId').text();
+		var orderIds = "";
+		var orderSize = $('#orderSize').val();
+		var payMoneyOld = "";
+		var i;
+		for (i = 0; i < orderSize; i++) {
+			var orderId = $('#orderId_' + i);
+			orderIds += orderId.val() + ",";
+			var str = "";
+			str += "#" + orderId.val() + "_payMoney";
+			payMoneyOld += $(str).text() + ",";
+		}
+		orderIds=orderIds.substring(0,orderIds.length-1);
+		payMoneyOld=payMoneyOld.substring(0,payMoneyOld.length-1);
+		var paymentChannelIds = '';
+		var k;
+		var payChannelDicListSize = $('#payChannelDicListSize').val();
+		for (k = 0; k < payChannelDicListSize; k++) {
+			if ($('#paymentChannelId_' + k + ':checked').length > 0) {
+				paymentChannelIds = $('#paymentChannelId_' + k).val();
+			}
+		}
+
+    var target = $(obj).parent();
+    $.dm.block(target);//开始区域锁定
+    $(".cx20").fadeIn();
+
+
+	//check是否选择付款方式
+	if(paymentChannelcheck(paymentChannelIds)){
+		var target = $(obj).parent();
+		$.dm.block(target);//开始区域锁定
+		if(${getConstant('constant.PAYMENT_TYPE')}=="0"||parseFloat(payMoneyOld)==0){
+			callService('${ctx}/pay/doPayOld.ajax',
+			{orderId:orderIds,
+			paymentChannelId:paymentChannelIds[0].value,
+			payMoneyOld:payMoneyOld,
+			payMoney:payMoney,
+			totalOrderId:totalOrderId
+			},
+			 {
+			 	async : true,
+			 	callSuccess:function(data){
+			 		if(data===1 || data===2 || data===3){
+                        $.dm.jumpTo("${ctx}/pay/toPayOldSuccess.jhtml",{result:data,totalOrderId:totalOrderId, orderIds:orderIds});
+                    }
+                    else{
+                        $(".cx20").fadeOut();
+                        jsErrAlert(data.error.errMsg);
+                    }
+					$.dm.unblock(target);
+				},callError:function(textStatus, errorThrown, error){
+                 	$(".cx20").fadeOut();
+					jsErrAlert(error.errMsg||'');
+					$.dm.unblock(target);
+				}
+			});
+		}else if(${getConstant('constant.PAYMENT_TYPE')}=="1"){
+			callService('${ctx}/pay/doPay.ajax', {
+					orderId : orderIds,
+					orderAmount : payMoneyOld,
+					transAmount : payMoneyOld,
+					rate : '1',
+					payBillId : orderIds,
+					notifyId : 'notifyId',
+					notifyTime : new Date(),
+					payType : 'payType',
+					sign : 'sign',
+					payerCode : 'payerCode',
+					attach1 : 'attach1',
+					attach2 : 'attach2'
+				}, {
+					async : false,
+					callSuccess : function(data) {
+						$(".cx20").fadeIn();
+						$.dm.jumpTo("${ctx}/pay/toPayOldSuccess.jhtml", {
+							orderIds : orderIds
+						});
+						$.dm.unblock(target);
+					}
+				});
+		}
+	}
+}
+function paymentChannelcheck(paymentChannelIds){
+	//选择付款方式
+	if(paymentChannelIds.length==0){
+		jsErrAlert("请选择付款方式");
+		return false;
+	}else{
+		return true;
+	}
+}
+function toOrderDetail(){
+	window.location='${ctx}/order/toOrderList.jhtml';
+}
+function ref(){
+var paymentChannelIds = $("input;[name='RadioGroup']:checked");
+paymentChannelIds[0].checked = false;
+}
+
+</script>
+</#macro>

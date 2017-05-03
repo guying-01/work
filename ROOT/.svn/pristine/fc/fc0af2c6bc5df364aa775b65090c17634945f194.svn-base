@@ -1,0 +1,652 @@
+<#include "/common/common_var_definds.ftl" />
+<#import "/basepage/store/default/common/common_link.ftl" as link/>
+<#import "/basepage/store/default/common/common_script.ftl" as script/>
+<#import "/basepage/store/default/common/common_header_top.ftl" as top/>
+<#import "/basepage/store/default/common/common_member_footer.ftl" as footer/>
+<#import "/basepage/store/default/common/common_footer_no_tab.ftl" as footer_no_tab/>
+<#import "/basepage/store/default/common/common_scroll_top.ftl" as scrollTop/>
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>饭饭1080直采平台</title>
+<@link.render />    <!--导入共通样式-->
+<@script.render />  <!--导入共通脚本-->
+
+
+
+    <link rel="stylesheet" href="${resources}/basepage/store/default/details_pages/css/swiper3.4.0.min.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="${resources}/css/common/lib.css" />
+    <link rel="stylesheet" href="${resources}/basepage/store/default/details_pages/css/details_pages.css" type="text/css">
+    <script src="${resources}/basepage/store/default/common_js/jquery.md5.js"></script>
+    <#--<script type="text/javascript" src="${resources}/basepage/store/default/shop_templates/js/common/common_head_load.js"></script>-->
+    <script type="text/javascript" src="${resources}/js/common/browse_history.js"></script>
+    <script src="${resources}/basepage/store/default/details_pages/js/details_dynamics.js"></script>
+    <script src="${resources}/basepage/store/default/details_pages/js/swiper3.4.0.min.js"></script>
+    <script type="text/javascript">
+      var deviceWidth = document.documentElement.clientWidth;
+      if(deviceWidth>768){
+        deviceWidth=768;
+      }
+      document.documentElement.style.fontSize = deviceWidth / 6.4 + 'px';
+    </script>
+</head>
+<body>
+<@scrollTop.render />
+<#--<div id="pageInfo" goodsId="${id}" goodsName="${data.name!""}" store_id="${storeId!""}" store_name="${storeName!""}" store_template_code="${storeTemplateCode!""}" lv3_id="${data.ctgId3!''}" style="display: none"></div><!--页面信息&ndash;&gt;-->
+<div id="pageInfo" goodsId="${id}" goodsName="${data.name!""}" store_id="${storeId!""}" store_name="${storeName!""}" store_template_code="${storeTemplateCode!""}" lv3_id="${data.ctgId3!''}" from_page="${fromPage!''}" begin_time="<#if data.promotionItemForm??>${data.promotionItemForm.promotionBeginDateL!''}</#if>" end_time="<#if data.promotionItemForm??>${data.promotionItemForm.promotionEndDateL!''}</#if>" now_time="<#if data.promotionItemForm??>${data.promotionItemForm.promotionNowDateL!''}</#if>" promotion_flag="<#if data.promotionItemForm??>true<#else>false</#if>" style="display: none"></div><!--页面信息-->
+<input type="hidden" id="getGoodsNum" value="1">
+<!--此处是头部开始-->
+
+<!--此处是头部结束-->
+
+<!--图片路径统统放在resources下面的webpages文件夹里面-->
+<#--<img src=${resources}/basepage/store/default/level_pages/img/ff_details_img/favicon.ico" />-->
+
+<div class="j_pInR">
+    <div class="detailsFill" style="height: 0.66rem"></div>
+    <div class="table_a">
+        <i class="back" onclick="getBackSetStatu()"></i>
+        <div class="tabs">
+            <a class="j_pInR_table1 j_pInR_table on">
+                商品
+            </a>
+            <a class="j_pInR_table2 j_pInR_table">
+                详情
+            </a>
+            <a class="j_pInR_table3 j_pInR_table">
+                评价
+            </a>
+            <div>
+            <#if lockStatus?? && lockStatus !=0>
+                <a class="float_right_a fixed_btn_buy">立即购买</a>
+                <a class="float_right_a fixed_btn_shoppingcar" style="right: 0;background: grey;">加入购物车</a>
+            <#else>
+                <a class="float_right_a fixed_btn_buy" permission="canBuy">立即购买</a>
+                <a class="float_right_a fixed_btn_shoppingcar" permission="canBuy" style="right: 0;background: #ff8b0e;">加入购物车</a>
+            </#if>
+            </div>
+            <div class="clear" style="clear :both"></div>
+        </div>
+        <div class="clear" style="clear :both"></div>
+    </div>
+
+    <div class="choosed">
+
+    </div>
+
+             <div id="tabla_01">
+              <div class="goodsInfo"></div>            <#----------------------------------goodsInfo模板---------------------------------------------->
+               <div class="fixedBottom"></div>
+              <div class="division"></div>
+              <div class="evaluate"></div>
+              <div class="division"></div>
+              <div class="store">
+                <div class="main"></div>
+              </div>
+              <div class="division"></div>
+              <div class="recommond">
+                <div class="main">
+                  <span class="common_title">推荐搭配</span>
+                  <dl class="detail_${data.ctgId3!''}_tuijiandapei_01">
+                    <dt><a class="pic" href="####"><img src="${resources}/basepage/store/default/details_pages/img/jm_top2.jpg"/></a></dt>
+                    <dd><a href="####" class="name">商品名称待补充</a></dd>
+                    <dd><a href="####" class="detail">商品描述待补充待补充待补充商品描述待补充待补充待补充</a></dd>
+                    <dd><b>999.00</b></dd>
+                  </dl>
+                  <dl class="detail_${data.ctgId3!''}_tuijiandapei_02">
+                    <dt><a class="pic" href="####"><img src="${resources}/basepage/store/default/details_pages/img/jm_top2.jpg"/></a></dt>
+                    <dd><a href="####" class="name">商品名称待补充</a></dd>
+                    <dd><a href="####" class="detail">商品描述待补充待补充待补充商品描述待补充待补充待补充</a></dd>
+                    <dd><b>999.00</b></dd>
+                  </dl>
+                  <dl class="detail_${data.ctgId3!''}_tuijiandapei_03">
+                    <dt><a class="pic" href="####"><img src="${resources}/basepage/store/default/details_pages/img/jm_top2.jpg"/></a></dt>
+                    <dd><a href="####" class="name">商品名称待补充</a></dd>
+                    <dd><a href="####" class="detail">商品描述待补充待补充待补充商品描述待补充待补充待补充</a></dd>
+                    <dd><b class="price">999.00</b></dd>
+                  </dl>
+                  <div style="clear: both"></div>
+                </div>
+              </div>
+              <div class="division"></div>
+              <div class="leader_like">
+                <div class="main">
+                  <span class="common_title">店长推荐</span>
+                  <dl class="detail_${storeId!''}_dianzahngtuijian_01">
+                    <dt><a class="j_pInL_topTu" href="####"><img src="${resources}/basepage/store/default/details_pages/img/jm_top2.jpg"/></a></dt>
+                    <dd><a href="####" class="j_pInL_topP">商品名称待补充</a></dd>
+                    <dd><b class="j_pInL_topS">999.00</b></dd>
+                  </dl>
+                  <dl class="detail_${storeId!''}_dianzahngtuijian_02">
+                    <dt><a class="j_pInL_topTu" href="####"><img src="${resources}/basepage/store/default/details_pages/img/jm_top2.jpg"/></a></dt>
+                    <dd><a href="####" class="j_pInL_topP">商品名称待补充</a></dd>
+                    <dd><b class="j_pInL_topS">999.00</b></dd>
+                  </dl>
+                  <dl class="detail_${storeId!''}_dianzahngtuijian_03">
+                    <dt><a class="j_pInL_topTu" href="####"><img src="${resources}/basepage/store/default/details_pages/img/jm_top2.jpg"/></a></dt>
+                    <dd><a href="####" class="j_pInL_topP">商品名称待补充</a></dd>
+                    <dd><b class="j_pInL_topS">999.00</b></dd>
+                  </dl>
+                  <div style="clear: both"></div>
+                </div>
+              </div>
+              <div class="division"></div>
+              <div class="same_goods">
+                <div class="main">
+                  <span class="common_title">同类商品</span>
+                  <dl class="detail_${data.ctgId3!''}_tongleishangpin_01">
+                    <dt><a class="j_pInL_buttomTu" href="####"><img src="${resources}/basepage/store/default/details_pages/img/jm_top2.jpg"/></a></dt>
+                    <dd><a href="####" class="j_pInL_buttomP">商品名称待补充</a></dd>
+                    <dd><b class="j_pInL_buttomS">999.00</b></dd>
+                  </dl>
+                  <dl class="detail_${data.ctgId3!''}_tongleishangpin_02">
+                    <dt><a class="j_pInL_buttomTu" href="####"><img src="${resources}/basepage/store/default/details_pages/img/jm_top2.jpg"/></a></dt>
+                    <dd><a href="####" class="j_pInL_buttomP">商品名称待补充</a></dd>
+                    <dd><b class="j_pInL_buttomS">999.00</b></dd>
+                  </dl>
+                  <dl class="detail_${data.ctgId3!''}_tongleishangpin_03">
+                    <dt><a class="j_pInL_buttomTu" href="####"><img src="${resources}/basepage/store/default/details_pages/img/jm_top2.jpg"/></a></dt>
+                    <dd><a href="####" class="j_pInL_buttomP">商品名称待补充</a></dd>
+                    <dd><b class="j_pInL_buttomS">999.00</b></dd>
+                  </dl>
+                  <div style="clear: both"></div>
+                </div>
+              </div>
+              <div class="division"></div>
+              <div class="guess_like">
+                <div class="main">
+                  <span class="common_title">猜你喜欢</span>
+                  <dl class="detail_${data.ctgId3!''}_cainixihuan_01">
+                    <dt><a class="j_youlikeTu" href="####"><img src="${resources}/basepage/store/default/details_pages/img/jm_top2.jpg"/></a></dt>
+                    <dd><a href="####" class="j_youlikeP">商品名称待补充</a></dd>
+                    <dd><b class="j_youlikeS">999.00</b></dd>
+                  </dl>
+                  <dl class="detail_${data.ctgId3!''}_cainixihuan_02">
+                    <dt><a class="j_youlikeTu" href="####"><img src="${resources}/basepage/store/default/details_pages/img/jm_top2.jpg"/></a></dt>
+                    <dd><a href="####" class="j_youlikeP">商品名称待补充</a></dd>
+                    <dd><b class="j_youlikeS">999.00</b></dd>
+                  </dl>
+                  <dl class="detail_${data.ctgId3!''}_cainixihuan_03">
+                    <dt><a class="j_youlikeTu" href="####"><img src="${resources}/basepage/store/default/details_pages/img/jm_top2.jpg"/></a></dt>
+                    <dd><a href="####" class="j_youlikeP">商品名称待补充</a></dd>
+                    <dd><b class="j_youlikeS">999.00</b></dd>
+                  </dl>
+                  <div style="clear: both"></div>
+                </div>
+              </div>
+              <div class="division"></div>
+
+              <div class="look_detail">
+                <span>查看全部详情</span><i></i>
+              </div>
+              <div class="division"></div>
+            </div>
+
+            <div style="display: none" id="tabla_02">
+                <div class="fixedBottom"></div>
+                <div>
+              <div class="good-attribute my_ff">
+                            <ul>
+                            <#if data.otherAttrFormList??>
+                                <#list data.otherAttrFormList as attrs>
+                                    <#if attrs.value != "">
+                                        <li><strong>${attrs.attrDicName!""}：</strong>&nbsp;${attrs.value!""}</li>
+                                    </#if>
+                                </#list>
+                            </#if>
+                                <div class="clear"></div>
+                            </ul>
+                        </div>
+              </div>
+              ${data.sgGoodsInfoChannelForm.introduction}
+            </div>
+
+            <div style="display: none" id="tabla_03">
+                <div class="fixedBottom"></div>
+                <div class="all_evaluate"></div>
+            </div>
+
+
+
+</div>
+
+</div>
+
+<#--<div id="shoppingContentFoot">-->
+<#--<div id="pageNumberWrap"></div>-->
+<#--<div id="pageNumberLeft"></div>-->
+
+
+<#--</div>-->
+
+</div>
+
+<!--用户登录界面开始-->
+<div class="bgBlack" style="display: none;"></div>
+<div class="" id="login_popUp">
+    <form id="loginForm" method="post" onkeydown="if(event.keyCode==13){$('#btnSubmit').click();}">
+        <div class="loginBg">
+        <div class="login">
+            <div class="loginTitle">饭饭1080°直采平台</div>
+            <a href="javascript:void(0);" class="loginShut shut"></a>
+            <h2>账号登录</h2>
+            <div class="loginStyleA loginStyleA-ico1">
+                <input id="userName" name="userName" type="text" placeholder="请输入用户名">
+                <!--以下label标签验证用，暂时隐藏了-->
+                <label class="loginError loginclear" id="usere_1"><u></u><i></i>用户名不能为空</label>
+                <label class="loginError loginclear" id="usere_2"><u></u><i></i>用户名和密码不匹配</label>
+                <label class="loginError loginclear" id="usere_3"><u></u><i></i>用户已锁定</label>
+            </div>
+            <div class="loginStyleA loginStyleA-ico2">
+                <input id="password" name="password" type="password" placeholder="请输入密码">
+                <!--以下label标签验证用，暂时隐藏了-->
+                <label class="loginError loginclear" id="pwde"><u></u><i></i>密码不能为空</label>
+            </div>
+            <a href="javascript:void(0);" class="loginStyleA-bt" id="btnSubmit">登<span class="login-space"></span>录</a>
+            <div class="loginStyleA-bot">
+                <a href="/forget/init.jhtml" class="forgetPSW">忘记密码</a>
+            </div>
+        </div>
+        </div>
+    </form>
+</div>
+
+<!--用户登录界面结束-->
+
+
+<!-----------------------此处为footer（楼层以下）-------------------->
+<@footer_no_tab.render />
+<@footer.render />    <!--导入footer-->
+<!--此处为底部结束（楼层以下）-->
+<!--底部结束-->
+<div class="f_returnTop" title="返回顶部"></div>
+
+<#--模版部分-->
+<script type="text/x-handlebars-template" id="details_goodsInfo">
+      <div class="goodsPic">
+        <div class="swiper-container">
+          <div class="swiper-wrapper">
+            {{#each goodsList}}
+            {{#each itemPictureList}}
+            <div class="swiper-slide">
+              <img src="{{bigPicturePath}}" />
+            </div>
+            {{/each}}
+            {{/each}}
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+      <#-------------------------------------------------------判断是否参与活动开始------------------------------------------------------------------------------->
+      <div class="desc">
+        <span style="width: 100%;padding: 0.1rem 0.2rem;box-sizing: border-box">${data.name!""}</span>
+        <span style="width: 100%;padding: 0.1rem 0.2rem;box-sizing: border-box" class="goodsFormat">${data.description!""}</span>
+       <#if data.promotionItemForm??>
+        <div class="price" style="width: 100%;padding: 0.1rem 0.2rem;box-sizing: border-box">
+        <div style="margin-bottom: 0.1rem;">
+            <span class="marketP">活动价: <b class="hightP" style="text-decoration: none;font-size: 0.3rem;color: #c91622">{{showPrice  promotionPriceList_min promotionPriceList_max}}</b></span>
+          <span class="arriveT"><span style="display: inline-block;font-size: 0.22rem;line-height: inherit;vertical-align: middle;">送达时间:</span><b class="arriveTm"> <img src={{deliverTime this.goodsList.[0].prepareGoodsDay this.goodsList.[0].prepareGoodsTime}} /></b></span>
+          <div class="clear"></div>
+        </div>
+        <div>
+          <span style="font-size: 0.23rem;line-height: normal;margin-bottom:0.1rem">饭饭单价：<b class="lowpP" style="text-decoration: line-through;float: none">{{showPrice unitePriceList_min unitePriceList_max}}</b></span>
+          <span class="lowFp">饭饭标准规格价: <b class="lowP">{{showPrice salesPriceList_min salesPriceList_max}}</b></span>
+          <div class="clear"></div>
+        </div>
+        </div>
+       <div class="activity">
+           <div class="activity_title">${data.promotionItemForm.promotionName!""}</div>
+           <div class="activity_time">
+           <#-- 此处通过下载 -->
+           </div>
+       </div>
+       <#else>
+           <div class="price">
+               <div style="margin-bottom: 0.1rem;">
+                   <span class="marketP">市场单价: <b class="hightP">{{showPrice marketPriceList_min marketPriceList_max}}</b></span>
+                   <span class="arriveT"><span style="display: inline-block;font-size: 0.22rem;line-height: inherit;vertical-align: middle;">送达时间:</span><b class="arriveTm"> <img src={{deliverTime this.goodsList.[0].prepareGoodsDay this.goodsList.[0].prepareGoodsTime}} /></b></span>
+                   <div class="clear"></div>
+               </div>
+               <div>
+                   <span style="font-size: 0.23rem;line-height: normal;margin-bottom:0.1rem">饭饭单价：<b class="lowpP" style="float: none">{{showPrice unitePriceList_min unitePriceList_max}}</b></span>
+                   <span class="lowFp">饭饭标准规格价: <b class="lowP">{{showPrice salesPriceList_min salesPriceList_max}}</b></span>
+                   <div class="clear"></div>
+               </div>
+           </div>
+      </#if>
+      </div>
+      <#-------------------------------------------------------判断是否参与活动结束------------------------------------------------------------------------------->
+
+
+      <#-------------------------------------------------------配送至分割线开始-------------------------------------------------------------------------------->
+<#if data.goodsStatus?? && '10' == data.goodsStatus>
+    <div class="aRchoose">
+        <span class="arc">已选</span>
+        <span class="aRchooseN">"请选择商品"</span>
+
+
+    <#-------------------------------------------------------判断库存数量开始------------------------------------------------------------------------------->
+
+        <#if data.localStock?? && data.localStock !=0>
+            <span class="aRchooseNum">"默认数量"：1</span>
+        <#else>
+            <span class="aRchooseNum" style="color: #c91622;font-weight: 600">"库存不足"</span>
+        </#if>
+        <b id="toChoose"></b>
+    </div>
+    <div class="division"></div>
+    <#-------------------------------------------------------判断库存数量结束------------------------------------------------------------------------------->
+    <div class="sendTo">
+          <span style="font-size: 0.25rem;">配送至</span>
+          <a href="javascript:void(0);">
+              <select style="display: inline-block">
+                  <#if buyerDistrict??>
+                  <option value="">${buyerDistrict!""}</option>
+                  <#else>
+                  <option value="">请登录</option>
+                  </#if>
+              </select>
+          </a>
+          <p style="text-indent: 0.4rem;padding-top: 0.2rem;clear: left;font-size: 0.25rem" title="由 {{storeName}} 发货,并提供售后服务">由 {{storeName}} 发货,并提供售后服务</p>
+      </div>
+      <#-------------------------------------------------------配送至分割线结束-------------------------------------------------------------------------------->
+    <#else>
+    <div style="font-size: 0.25rem;color: #c91622;font-weight: bold;text-align: center">
+        <#--此商品已下架-->
+    </div>
+</#if>
+</script>
+
+<script type="text/x-handlebars-template" id="fixedBottom">
+    <#if data.goodsStatus?? && '10' == data.goodsStatus>
+    <div class="functions">
+        <ul>
+            <li><a href="/fsst/${storeId!""}/contact.jhtml"></a></li>
+            <li><a href="javascript:;" class="addFav"></a></li>
+            <li class="goCart"><a href="javascript:;"></a></li>
+        </ul>
+        <#if lockStatus?? && lockStatus !=0>
+            <span class="buyNow">立即购买</span>
+            <span class="addCart">加入购物车</span>
+        <#else>
+            <#if data.promotionItemForm??>
+                <#if data.promotionItemForm.promotionOn!false>
+                    <span class="buyNow" buyflag="true" style="width: 50%">立即购买</span>
+                <#else>
+                    <span class="buyNow">立即购买</span>
+                </#if>
+            <#else>
+            <#-------------------------------------------------新增库存判断------------------------------------------------------------------------->
+                <#if data.localStock?? && data.localStock !=0>
+                    <span class="buyNow"  buyflag="true">立即购买</span>
+                    <span class="addCart" buyflag="true">加入购物车</span>
+                <#else>
+                    <span class="buyNow">立即购买</span>
+                    <span class="addCart" style="border-right: 0.01rem solid #fff">加入购物车</span>
+                </#if>
+            </#if>
+            <span class="makeTure" style="display:none">确认</span>
+            <div style="clear:both"></div>
+        </#if>
+
+    </div>
+    <#else>
+
+    <div class="functions">
+        <ul>
+            <li><a href="/fsst/${storeId!""}/contact.jhtml"></a></li>
+            <li><a href="javascript:;" class="addFav"></a></li>
+            <li class="goCart"><a href="javascript:;"></a></li>
+        </ul>
+        <span class="buyNow">立即购买</span>
+        <span class="addCart" style="border-right: 0.01rem solid #fff">加入购物车</span>
+        <span class="makeTure" style="display:none">确认</span>
+        <div style="clear:both"></div>
+        <#--<#if lockStatus?? && lockStatus !=0>-->
+            <#--<span class="buyNow">立即购买</span>-->
+            <#--<span class="addCart">加入购物车</span>-->
+        <#--<#else>-->
+            <#--<#if data.promotionItemForm??>-->
+                <#--<#if data.promotionItemForm.promotionOn!false>-->
+                    <#--<span class="buyNow" buyflag="true">立即购买</span>-->
+                <#--<#else>-->
+                    <#--<span class="buyNow">立即购买</span>-->
+                <#--</#if>-->
+            <#--<#else>-->
+            <#--&lt;#&ndash;-----------------------------------------------新增库存判断-----------------------------------------------------------------------&ndash;&gt;-->
+                <#--<#if data.localStock?? && data.localStock !=0>-->
+                    <#--<span class="buyNow"  buyflag="true">立即购买</span>-->
+                    <#--<span class="addCart" buyflag="true">加入购物车</span>-->
+                <#--<#else>-->
+                    <#--<span class="buyNow">立即购买</span>-->
+                    <#--<span class="addCart" style="border-right: 0.01rem solid #fff">加入购物车</span>-->
+                <#--</#if>-->
+            <#--</#if>-->
+            <#--<span class="makeTure" style="display:none">确认</span>-->
+            <#--<div style="clear:both"></div>-->
+        <#--</#if>-->
+
+    </div>
+    <div style="font-size: 0.25rem;padding:0.2rem 0;color: #c91622;font-weight: bold;text-align: center">
+        此商品已下架
+    </div>
+    </#if>
+
+
+
+</script>
+
+<script type="text/x-handlebars-template" id="details_storeInfo">
+
+  <span class="shopName">{{storeName}}<span class="level_pic">{{#storeLevel supplierTypeCode}}{{/storeLevel}}</span></span>
+  <ul>
+    <li>描述<b>{{storeScore}}</b></li>
+    <li>服务<b>{{storeServiceCredit}}</b></li>
+    <li class="last">价格<b>{{storePriceCredit}}</b></li>
+    <div style="clear:both"></div>
+  </ul>
+  <div class="storeOpt">
+    <div class="enterStore">
+        <a href="/fsst/${storeId!"#"}/top.jhtml" class="enter"><i></i><span>进入店铺</span></a>
+    </div>
+    <div class="enterStore">
+        <a class="collection"><i></i><span>收藏店铺</span></a>
+    </div>
+  </div>
+</script>
+
+
+
+<script type="text/x-handlebars-template" id="choosed_goods">
+{{#each data}}
+  <span>已选</span>
+  <span class="shopName">{{storeName}}</span>
+{{/each}}
+</script>
+
+<script type="text/x-handlebars-template" id="evaluate">
+  <span class="evaluate_num">全部评价<b>({{recordsTotal}})</b></span>
+  {{#findNiceScore list}}
+  {{#each this}}
+  <div class="each_evaluate">
+    <div class="main">
+      {{#each list}}
+      {{#hasPrefix this}}
+          <div class="evaluate_top">
+            <div class="evaluate_pic">
+              <img src="{{memberPic}}" />
+            </div>
+            <span class="evaluate_buyer">{{../memberName}}</span>
+          </div>
+          <div class="evaluate_star">
+            <div class="star_bg"></div>
+            <ul class="com_star">
+                {{#listStar ../../score}}{{/listStar}}
+            </ul>
+          </div>
+          <span class="evaluate_content">{{content}}</span>
+          <span class="evaluate_time">{{createDate}}</span>
+          {{else}}
+          <span class="prefix">{{prefix}}</span>
+          <span class="evaluate_content">{{content}}</span>
+          <span class="evaluate_time">{{createDate}}</span>
+      {{/hasPrefix}}
+      {{/each}}
+    </div>
+  </div>
+  {{/each}}
+  {{/findNiceScore}}
+</script>
+
+<script type="text/x-handlebars-template" id="all_evaluate">
+  <span class="evaluate_num">评价<b id="totalScore">({{recordsTotal}})</b>好评<b>({{score_good}})</b>中评<b>({{score_middle}})</b>差评<b>({{score_bad}})</b></span>
+  <div class="flag">1</div>
+  {{#each list}}
+  <div class="each_evaluate">
+    <div class="main">
+      <div class="evaluate_top">
+        <div class="evaluate_pic">
+          <img src="{{memberPic}}" />
+        </div>
+        <span class="evaluate_buyer">{{memberName}}</span>
+      </div>
+      <div class="evaluate_star">
+        <div class="star_bg"></div>
+        <ul class="com_star">
+            {{#listStar score}}{{/listStar}}
+        </ul>
+      </div>
+      {{#each list}}
+      {{#hasPrefix this}}
+      <span class="evaluate_content">{{content}}</span>
+      <span class="evaluate_time">{{createDate}}</span>
+      <div class="container_evaluate_pic">
+        <ul class="goods_evaluate_pic">
+          {{#each picList}}
+          <li>
+            <img src="{{picUrl}}{{picName}}" class="{{id}}" />
+            <img class="show_big_pic" id="{{id}}" src="{{picUrl}}{{picName}}"/>
+          </li>
+          {{/each}}
+        </ul>
+      </div>
+      {{else}}
+      <span class="prefix">{{prefix}}</span>
+      <span class="evaluate_content">{{content}}</span>
+      <span class="evaluate_time">{{createDate}}</span>
+      <div class="container_evaluate_pic">
+        <ul class="goods_evaluate_pic">
+          {{#each picList}}
+          <li>
+            <img src="{{picUrl}}{{picName}}" class="{{id}}" />
+            <img class="show_big_pic" id="{{id}}" />
+          </li>
+          {{/each}}
+        </ul>
+      </div>
+      {{/hasPrefix}}
+      {{/each}}
+
+    </div>
+  </div>
+  {{/each}}
+</script>
+
+
+<script type="text/x-handlebars-template" id="all_evaluate_no_num">
+  {{#each list}}
+  <div class="each_evaluate">
+    <div class="main">
+      <div class="evaluate_top">
+        <div class="evaluate_pic">
+          <img src="{{memberPic}}" />
+        </div>
+        <span class="evaluate_buyer">{{memberName}}</span>
+      </div>
+      <div class="evaluate_star">
+        <div class="star_bg"></div>
+        <ul class="com_star">
+            {{#listStar score}}{{/listStar}}
+        </ul>
+      </div>
+      {{#each list}}
+      {{#hasPrefix this}}
+      <span class="evaluate_content">{{content}}</span>
+      <span class="evaluate_time">{{createDate}}</span>
+      <div class="container_evaluate_pic">
+        <ul class="goods_evaluate_pic">
+          {{#each picList}}
+          <li>
+            <img src="{{picUrl}}{{picName}}" class="{{id}}" />
+            <img class="show_big_pic" id="{{id}}" src="{{picUrl}}{{picName}}"/>
+          </li>
+          {{/each}}
+        </ul>
+      </div>
+      {{else}}
+      <span class="prefix">{{prefix}}</span>
+      <span class="evaluate_content">{{content}}</span>
+      <span class="evaluate_time">{{createDate}}</span>
+      <div class="container_evaluate_pic">
+        <ul class="goods_evaluate_pic">
+          {{#each picList}}
+          <li>
+            <img src="{{picUrl}}{{picName}}" class="{{id}}" />
+            <img class="show_big_pic" id="{{id}}" src="{{picUrl}}{{picName}}"/>
+          </li>
+          {{/each}}
+        </ul>
+      </div>
+      {{/hasPrefix}}
+      {{/each}}
+
+    </div>
+  </div>
+  {{/each}}
+</script>
+
+
+
+
+<script type="text/x-handlebars-template" id="choosed">
+      <div class="jcm_4">
+      <div class="choosedGoods">
+        <div class="choosePic">
+          <img src="{{goodsList.[0].itemPictureList.[0].bigPicturePath}}" />
+        </div>
+        <div class="tip">
+          <b class="price">{{showPrice salesPriceList_min salesPriceList_max}}</b>
+          <span >库存{{localStock}}件</span>
+        </div>
+        <div style="clear: both"></div>
+      </div>
+      <a href="javascript:void(0);" class="guigeShut shut"></a>
+
+      <div class="jcm_5">
+        <span style="float: left;font-size: 0.24rem;margin-right: 0.2rem;line-height: 0.34rem;width: 55%;display: inline-block;padding-left: 0.4rem;box-sizing: border-box">数量</span>
+        <button class="jbtn5">-</button>
+        <input type="text" name="" id="j_ipt1" value="1"/>
+        <button class="jbtn6">+</button>
+          {{#eachAttrKey attrKeyList}}
+          <div name="{{id}}" class="ggli" style="overflow: hidden;padding-top: 0.1rem;">
+              <div class="guigeName">{{name}}&nbsp;:</div>
+              <ul name="{{id}}">
+                  {{#eachAttrValue ../attrValueList index}}
+                  <li><a>{{this}}</a></li>
+                  {{/eachAttrValue}}
+              </ul>
+          </div>
+          {{/eachAttrKey}}
+    </div>
+    </div>
+</script>
+<!--此处是活动计时模板开始 id="details_activityTime"-->
+<script type="text/x-handlebars-template" id="details_activityTime">
+    <span class="d_span">{{day}}</span>天<span class="h_span">{{hour}}</span>小时<span class="m_span">{{minute}}</span>分<span class="s_span">{{second}}</span>秒
+</script>
+
+</body>
+</html>

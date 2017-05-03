@@ -1,0 +1,224 @@
+
+<script type="text/x-handlebars-template" id="template_goods">
+    <div class="promotion-box-gy">
+    {{#each this}}
+        <div class="everyAds">
+            <a href="/fsgd/{{goodsInfo.id}}.jhtml"></a>
+
+            <div class="itemPic">
+                <img src="{{itemInfoList.0.itemPictureList.0.bigPicturePath}}" alt="">
+            </div>
+            <div class="itemName">
+                {{goodsInfo.name}}
+            </div>
+            <div class="itemDescription">
+                {{goodsInfo.description}}
+            </div>
+            <div class="wrap">
+                <div class="priceBox">
+                    <div class="itemPrice" style="color: #efefef">
+                        <span>原价：</span><span style="text-decoration: line-through;">¥{{showPrice itemInfoList.0.marketPrice}}</span>
+                    </div>
+                    <div class="itemPrice promotion-price">
+                        <span style="color: #000">{{priceHtml promotionInfo.promotionType}}</span><span style="color: red">¥{{showPrice itemInfoList.0.promotionItemForm.itemPromotionUnitPrice}}</span>
+                    </div>
+                </div>
+
+                <div class="buy {{buyflag itemInfoList.[0].localStock}}">
+                    {{btnHtml promotionInfo.promotionType itemInfoList.[0].localStock}}
+                </div>
+            </div>
+
+        </div>
+    {{/each}}
+    </div>
+    <div class="promotion-hb-fill"></div>
+    {{orderMore this}}
+</script>
+<script type="text/javascript">      //模板通用js
+$(function(){
+    var num=1;
+    var totalNum=0;
+    var requestNum=$("#promotion-common").attr("requestnum");
+    if(!requestNum){
+        return
+    }
+    if(localStorage.pageNum&&localStorage.pageNum!=''){
+        getHistoryPosition()
+
+    }
+    else{
+        localStorage.pageNum='';
+        getGoodsList();
+    }
+
+    function getGoodsList(pageNum,all){
+        pageNum=pageNum||1;
+        var dataNum;
+        if(all){
+            dataNum=pageNum*10;
+            pageNum=1;
+        }
+        else{
+            dataNum=10
+        }
+        var dateStr = (new Date()).Format("yyyy-MM-dd hh:mm:ss");
+        var request_params = {"activityType": requestNum,"date":dateStr,"pageIndex":pageNum,"pageSize":dataNum};
+        var goodsInfo = $.post("/fsActivity/activityList.ajax", request_params);
+        $.when(goodsInfo).done(function (data) {
+            var data = JSON.parse(data);
+            var maxNum=data.pageInfo.count;
+            totalNum=totalNum+data.dataList.length;
+            getGoodsListMain(data,totalNum,maxNum,pageNum);
+
+        });
+    }
+
+    function getGoodsListMain(data,totalNum,maxNum,pageNum) {
+        Handlebars.registerHelper({
+            showPrice: function (data) {
+                if (data != undefined && !isNaN(data)) {
+                    return $.ww.formatDecimal(data, 2);
+                } else {
+                    return "0.00";
+                }
+            },
+            deliverTime: function (day,time) {
+                var result = "";
+                if (time) {
+                    time = time.split(":")[0]
+                }
+                else {
+                    result = "/resources/basepage/store/default/common_img/deliver_time_01.png";
+                }
+                if ("2" == day) {
+                    if (time < 12) {
+                        result = "/resources/basepage/store/default/common_img/deliver_time_01.png";
+                    } else {
+                        result = "/resources/basepage/store/default/common_img/deliver_time_02.png";
+                    }
+                } else if ("3" == day) {
+                    result = "/resources/basepage/store/default/common_img/deliver_time_03.png";
+                }
+                return result;
+            },
+            increases:function(person) {
+                return ++person;
+            },
+            orderMore: function (i) {
+                if(i.length!=0&&totalNum>=maxNum){
+                    return new Handlebars.SafeString('<div class="orderMore" canClick="false">没有更多了</div>')
+                }
+                else if(i.length==0){
+                    return new Handlebars.SafeString('<div id="noData" style="padding:0 0 6rem;text-align: center;color: #fff;">暂时没有活动商品</div>')
+                }
+                else{
+                    return  new Handlebars.SafeString('<div class="orderMore" canClick="true">加载更多</div>')
+                }
+            },
+            promotionIcon:function(i){
+                switch (i){
+                    case '01':return '${resources}/basepage/store/default/about_pages/img/m_10.png'              //秒杀
+                    case '02':return '${resources}/basepage/store/default/about_pages/img/m_1.png'               //巨便宜
+                    case '03':return '${resources}/basepage/store/default/about_pages/img/m_7.png'               //免费试吃
+                    case '04':return '${resources}/basepage/store/default/about_pages/img/m_12.png'              //打折
+                    case '05':return '${resources}/basepage/store/default/about_pages/img/m_2.png'               //清仓
+                    case '06':return '${resources}/basepage/store/default/about_pages/img/m_15.png'              //疯抢
+                    case '07':return '${resources}/basepage/store/default/about_pages/img/m_45.png'              //每日爆款
+
+                }
+
+            },
+            priceHtml:function(i){
+                switch (i){
+                    case '01':return '秒杀价：';
+                    case '03':return '试吃价：';
+                    case '06':return '疯抢价：';
+                }
+                return '现价：'
+            },
+            btnHtml:function(i,n){
+                if(n==0){
+                    return '已抢光';
+                }
+                else {
+                    switch (i){
+                        case '03':return '免费申请';
+                    }
+                    return '立即抢购'
+                }
+            },
+            buyflag:function (n) {
+                if(n==0){
+                    return 'noCount';
+                }
+            }
+        });
+        var template_goods = $("#template_goods").html();
+        var html = loadHandlebarsTemplate(template_goods, data.dataList);
+        setTimeout(function(){
+            $(window).scrollTop(localStorage.scrollTop)
+        },500);
+
+        if(pageNum==1){
+            $(".promotion-common-content").html(html);
+        }else{
+            $('.promotion-common-content').append(html)
+        }
+
+        $(".goodsCollect").on("click", favStore);
+        $('.orderMore[canclick="true"]').on('click',orderMore)
+
+
+    }
+    /**加载更多*/
+    function orderMore(){
+        $(this).siblings('.promotion-hb-fill').remove()
+        $(this).siblings('#noData').remove()
+        $(this).remove();
+        num++;
+        rememberHistoryPosition()
+        getGoodsList(num)
+    }
+    /**
+     * 记录浏览位置
+     */
+    function rememberHistoryPosition(){
+        localStorage.pageNum=JSON.stringify(num);
+        localStorage.scrollTop=JSON.stringify($(window).scrollTop())
+    }
+    /**
+     * 根据本地存储数据回到上次位置
+     */
+    function getHistoryPosition(){
+            var num=JSON.parse(localStorage.pageNum)
+            getGoodsList(num,'all')
+
+    }
+    /**
+     * 收藏商品事件绑定
+     * Created by WW on 2016/10/12.
+     */
+    function favStore() {
+        var goodsId = $(this).attr("goods_id");
+        var storeId = $(this).attr("store_id");
+        $.ww.getLoginStatus(function () {
+            var success = function (data) {
+                if (data.success) {
+                    jsAlert("收藏成功");
+                } else {
+                    jsAlert(data.message);
+                }
+            };
+            var request = {"goodsId": goodsId, "storeId": storeId};
+            //API:"/fav/addToGdFav.ajax"
+            requestDataWithAJAX("/fav/addToGdFav.ajax", "post", true, {"success": success, data: request});
+        }, function () {
+            location.href = "/toLogin.jhtml";
+        });
+    };
+
+})
+
+
+</script>

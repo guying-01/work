@@ -1,0 +1,47 @@
+POM_SELLER_PATH=http://seller.fan1080.com
+POM_STORE_PATH=http://www.fan1080.com
+#Mail Config
+MAIL_HOST=smtp.exmail.qq.com
+MAIL_FROM=systest@fan1080.com
+MAIL_PWD=Fan1080
+MAIL_AUTH=true
+MAIL_TIMEOUT=0
+MAIL_ACTION_PATH=http://www.fan1080.com
+
+PAGE_TEMPLATES_BASE_PATH=/resources/templates/
+BROWSE_HISTORY_MAX_COUNT=100
+
+#page tracker config
+POM_PAGE_TRACKER_URL=http://piwik.fan1080.com
+
+#doctemplate
+DOWN_DOC_TEMPALATE_PATH=/resources/doctemplate/contractTemplate.doc
+DOWN_DOC_LINKPERSONTEMPLATE=${pom.down.doc.linkpersontemplate}
+DOWN_DOC_INCORPORATORTEMPLATE=${pom.down.doc.incorporatortemplate}
+
+POM_SHIPPING_URL=http://www.kuaidi100.com/
+PMO_SERVICE_PHONE=400-1680-9999
+
+#store default logo
+STORE_DEFAULT_LOGO=/resources/img/common/greaylogo.png
+
+#\u8BF7\u6C42url
+PAYMENT_B2C_URL = http://127.0.0.1:8085/payment-ec-web/b2c/pay/payGateway
+#\u7B7E\u540D\u540D\u5B57
+PAYMENT_B2C_SIGN_NAME = tzhy
+#\u7B7E\u540D\u5BC6\u7801
+PAYMENT_B2C_SIGN_PASSWORD = tzhy@654321
+#\u9875\u9762\u56DE\u8C03url
+PAYMENT_B2C_RETURN_URL=http://127.0.0.1:8082/pay/toPaySuccess.jhtml
+#\u5F02\u6B65\u901A\u77E5url
+PAYMENT_B2C_NOTIFY_URL=http://127.0.0.1:8082/pay/doPay.ajax
+PAYMENT_B2C_KEY=9071cfb1e0819121f83deaed8e201926
+PAYMENT_B2C_STORENO=2003000
+PAYMENT_TYPE=0
+
+SMSSHOW_TYPE=2
+
+#pc or monile   0:pc,1:mobile
+STORE_MOBILE_FLAG=1
+
+

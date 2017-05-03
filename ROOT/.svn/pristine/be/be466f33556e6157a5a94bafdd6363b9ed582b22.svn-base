@@ -1,0 +1,118 @@
+@charset "UTF-8";
+#commonTitleGy{
+    width: 100%;
+    height: 0.8rem;
+    line-height: 0.8rem;
+    text-align: center;
+    background: #fff;
+}
+#commonTitleGy h2{
+    font-size: 0.3rem;
+}
+#commonTitleGy i{
+    height: 0.5rem;
+    width: 0.35rem;
+    background: url(../../img/member/goBack.png) no-repeat center center;
+    background-size: contain;
+    position: absolute;
+    left: 0.2rem;
+    top: 0.13rem;
+}
+#member-list-gy .tabT{
+    height: auto;
+    border-bottom: 0.01rem solid #ddd;
+}
+#member-list-gy .tabT li{
+    width: 33.33%;
+    box-sizing: border-box;
+    border-right: 0.01rem solid #ddd;
+    border-top: 0.01rem solid #ddd;
+    height: 0.6rem;
+}
+#member-list-gy .tabT li:last-of-type{
+    border-right: none;
+}
+#member-list-gy .tabT li span{
+    box-sizing: border-box;
+    height: 100%;
+}
+#orderSearchGy{
+     padding:0;
+    background: #fff;
+    padding-bottom: 0.2rem;
+    border-bottom: 0.01rem solid #ddd;
+ }
+#orderSearchGy input:hover{
+    border: 0.01rem solid #ff8b0e;
+}
+#orderSearchGy .nameBox{
+    overflow: hidden;
+    padding: 0.2rem;
+    border-bottom: 0.01rem dashed #ddd;
+}
+#orderSearchGy strong{
+    display: inline-block;
+    margin-left: 0;
+    float: none;
+    font-size: 0.25rem;
+}
+#orderSearchGy input{
+    float: none;
+    display: inline-block;
+    border: 0.01rem solid #ddd;
+}
+#orderSearchGy span{
+    float: none;
+    padding: 0 0.1rem;
+    margin-left: 0;
+}
+#orderSearchGy .timeBox{
+    padding: 0.2rem;
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    border-bottom: 0.01rem dashed #ddd;
+}
+#orderSearchGy .timeBox input{
+    width: 26%;
+}
+#orderSearchGy .timeBox .laydate-icon{
+}
+#orderSearchGy .small-button{
+    margin: 0.2rem auto 0;
+    width: 2rem;
+    display: block;
+    border-radius: 0.5rem;
+}
+#returnContent .everyOrder{
+    background: #fff;
+    padding: 0.2rem;
+    width: 100%;
+    box-sizing: border-box;
+    position: static;
+}
+#returnContent .everyOrder div{
+    font-size: 0.25rem;
+}
+#returnContentMore{
+    width: 40%;
+    margin: auto;
+    height: 0.7rem;
+    background: #ff6600;
+    color: #fff;
+    text-align: center;
+    line-height: 0.7rem;
+    border-radius: 0.1rem;
+    font-size: 0.24rem;
+    margin-top: 0.5rem;
+}
+#returnContentFill{
+    width: 100%;
+    height: 1rem;
+}
+.noData{
+    width: 100%;
+    padding: 0.3rem 0;
+    text-align: center;
+    font-size: 0.26rem;
+}

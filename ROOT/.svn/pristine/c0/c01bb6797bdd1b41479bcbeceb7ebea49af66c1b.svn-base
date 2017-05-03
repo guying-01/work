@@ -1,0 +1,34 @@
+<#assign ctx = rc.contextPath,resources = ctx + "/resources">
+<#macro render >
+<script type="text/javascript" src="${ctx}/resources/js/lib/jquery/jquery.validate.min.js"></script>
+<script>
+	$(function(){
+		$("#next_form").validate({
+			onkeyup:false,
+			errorClass:"errorwrong",
+			rules:{
+				userCode:{
+					required:true,
+					remote:{
+						url:"${ctx}/forget/validate.ajax",
+						type:'post',
+						data:{
+							userCode:function(){
+								return $("#userCode").val();
+							}
+						}
+					}
+				}
+			},
+			messages:{
+				userCode:{
+					required:"<u></u><i></i>用户名不可为空",
+					remote:"<u></u><i></i>该用户不存在"
+				}
+			},
+			
+
+		});
+	});
+</script>
+</#macro>

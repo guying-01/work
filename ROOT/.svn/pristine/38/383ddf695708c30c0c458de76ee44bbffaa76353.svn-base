@@ -1,0 +1,100 @@
+.contentRight-List{
+    width: 100%;
+    overflow: hidden;
+    height: 3.395rem;
+    margin-bottom: 0.35rem;
+    background: #fff;
+    font-size: 0.24rem;
+    color: #000;
+    border-top: 1px solid #6a6a6a;
+    border-bottom: 1px solid #6a6a6a;
+}
+.contentRight-List a{
+    font-size: 0.24rem;
+    color: #000;
+}
+.contentRight-List table{
+    width: 4.04rem;
+    height: 3.395rem;
+    font-size: 0.24rem;
+    /*border-left: 1px solid #ddd;*/
+}
+.contentRight-List tr{
+    height:0.485rem;
+}
+.contentRight-List td{
+    text-align: center;
+    display: inline-block;
+    border-left:1px solid #6a6a6a;
+    border-bottom: 1px solid #6a6a6a;
+    height: 0.485rem;
+    line-height: 0.485rem;
+}
+.list_defaultAdsImg{
+    width: 100%;
+    height: 100%;
+}
+.contentRight-List-img{
+    width:2.36rem;
+    height: 2.36rem;
+    box-sizing: border-box;
+    margin-bottom:0.16rem;
+    border-bottom: 1px solid #6a6a6a;
+}
+.contentRight-List-img img{
+    width:100%;
+    height:100%;
+}
+.contentRight-List-Left{
+    width: 2.36rem;
+    height: 100%;
+    float: left;
+}
+.contentRight-List-Right{
+    width: 4.04rem;
+    height: 100%;
+    float: left;
+}
+.goodsDecoration{
+    width:1.16rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.goodsDecoration2{
+    width: 2.83rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.goodsDecoration1{
+    width: 0.819rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+#loadmore{
+    text-align: center;
+    margin-top: -0.26rem;
+    padding: 0.1rem 0 0.2rem;
+    font-size: 0.26rem;
+}
+.goodsCollect{
+    float: left;
+    width: 0.6rem;
+    text-align: center;
+    margin-left: 0.16rem;
+}
+.goodsCollect img{
+    width: 0.38rem;
+    height: 0.36rem;
+}
+.addShoppingCar{
+    width: 1.6rem;
+    text-align: center;
+    float: left;
+}
+.addShoppingCar img{
+    width: 0.36rem;
+    height: 0.36rem;
+}

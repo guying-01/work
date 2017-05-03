@@ -1,0 +1,12 @@
+@charset "utf-8";
+.link-con{padding:10px 0;}
+.link-con li{width:20%;height:30px; border-bottom:dotted 1px #e0e0e0; float:left; line-height:30px; }
+.link-con li a{ font-size:14px;}
+.submit{width:920px;height:500px; margin:20px auto 50px auto; border:solid 1px #e0e0e0;}
+.submit h5{height:40px; padding-left:20px; border-bottom:solid 1px #e0e0e0;line-height:40px;font-size:14px; }
+.submit_left{ width:399px;padding:0 30px 110px 30px;margin:20px 0 0 0; border-right:solid 1px #e0e0e0;float:left; line-height:30px; font-size:14px;}
+.panel{width:400px;padding:20px 30px; float:left; }
+.panel h4{line-height:40px;font-size:14px;}
+.form-group{ height:45px; clear:both;}
+.form-group .control-label{ float:left;line-height:30px;font-size:14px; width:80px;}
+.form-group .text_A{ float:left;}

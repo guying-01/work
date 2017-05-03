@@ -1,0 +1,52 @@
+<#include "/common/common_var_definds.ftl" />
+<!DOCTYPE html>
+<html>
+
+	<head lang="en">
+		<title>饭饭1080°直采平台</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+		<script type="text/javascript">
+			var deviceWidth = document.documentElement.clientWidth;
+			if(deviceWidth > 768) {
+				deviceWidth = 768;
+			}
+			document.documentElement.style.fontSize = deviceWidth / 6.4 + 'px';
+		</script>
+
+		<#import "/basepage/store/default/common/common_link.ftl" as link/>
+		<#import "/basepage/store/default/common/common_script.ftl" as script/>
+		<#import "/basepage/store/default/common/common_header_top.ftl" as top/>
+		<#import "/basepage/store/default/common/common_footer.ftl" as footer/>
+	    <#import "/basepage/store/default/common/common_scroll_top.ftl" as scrollTop/>
+		<@link.render />
+		<!--导入共通样式-->
+		<@script.render />
+	    <#include "/basepage/store/default/hb_templates/promotion_hb_templates.ftl" />
+        <!--导入共通脚本-->
+
+		<link rel="stylesheet" type="text/css" href="${resources}/basepage/store/default/promotion/css/freeSamples.css" />
+        <link rel="stylesheet" type="text/css" href="${resources}/basepage/store/default/promotion/css/promotion_hb.css" />
+        <script src="${resources}/basepage/store/default/promotion/js/freeSamples.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+    <input type="hidden" requestNum="03" id="promotion-common">
+	<@scrollTop.render />
+		<!--此处是头部开始-->
+		<div class="top">
+			<@top.render />
+			<#--导入header_top-->
+		</div>
+		<!--此处是头部结束-->
+		<div class="freeSamples_header"></div>
+    <ul class="promotion-common-content">
+
+
+	</ul>
+		<!-----------------------此处为footer（楼层以下）-------------------->
+		<@footer.render />
+		<!--导入footer-->
+	</body>
+
+</html>

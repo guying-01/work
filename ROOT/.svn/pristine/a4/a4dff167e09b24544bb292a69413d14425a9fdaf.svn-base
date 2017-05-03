@@ -1,0 +1,20 @@
+/**
+ * Created by kuban on 2017/4/4.
+ */
+var staticStore={
+    "101_00000000000000391_str":"shengguang",
+    "101_00000000000000310_str":"kaichenweier"
+};
+function ifStatic(store_id) {
+    for(key in staticStore){
+        if(store_id==key){
+            return true;
+        }
+    }
+    return false;
+}
+function shengguang() {
+    /*****
+     <div>静态商铺测试</div>
+     *****/
+}

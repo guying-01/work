@@ -1,0 +1,48 @@
+<#include "/common/common_var_definds.ftl" />
+<#import "/basepage/store/default/common/common_script.ftl" as script/>
+<#import "/basepage/store/default/about_pages/common_about_header.ftl" as header/>
+<#import "/basepage/store/default/about_pages/common_about_footer.ftl" as footer/>
+<#import "/basepage/store/default/about_pages/common_about_body.ftl" as body/>
+<#import "/basepage/store/default/common/common_scroll_top.ftl" as top/>
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="${resources}/basepage/store/default/common_css/common.css" type="text/css">
+    <link rel="stylesheet" href="${resources}/basepage/store/default/about_pages/css/about_pages1.css" type="text/css">
+<@script.render />  <!--导入共通脚本-->
+    <script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
+
+    <title>饭饭1080直采平台</title>
+</head>
+<body>
+<script type="text/javascript">
+    var meta = document.createElement('meta');
+    meta.setAttribute('name', 'viewport');
+    var content = 'with=device-width,initial-scale=' + 1 + ',minimum-scale=' + 1 + ',maximum-scale=' + 1 + ',user-scalable=' + 0;
+    meta.setAttribute('content', content);
+    document.querySelector('head').appendChild(meta);
+
+    var fontSize = document.documentElement.clientWidth / 6.4;
+    document.querySelector('html').style.fontSize = fontSize + 'px';
+    document.querySelector('body').style.fontSize = 16 + 'px';
+</script>
+<script type="text/javascript">
+    $(".mobileProductGy li").on('click',function(i){
+        $(this).addClass('about_on').siblings("li").removeClass('about_on');
+
+    })
+
+</script>
+<@header.render />
+<@body.render resource!""/>
+<@top.render />
+<@footer.render />
+</body>
+</html>
+
+
+
+
+

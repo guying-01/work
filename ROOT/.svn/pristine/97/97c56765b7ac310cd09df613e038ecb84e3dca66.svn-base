@@ -1,0 +1,61 @@
+<#include "/common/common_var_definds.ftl" />
+<#macro render>
+<script src="${resources}/js/lib/date/laydate.js"></script>
+<script src="${resources}/js/common/img_operation.js"></script>
+<script src="${resources}/js/lib/jquery/jquery.blockUI.min.js"></script>
+<script type="text/javascript"> 
+	//$(function() {
+	//	searchScoreList(1);
+	//});
+	//点击搜索按钮调用的查询方法
+	function searchScoreList(currentPage){
+		$("#returnOrderListTable_processing").css("display","block");
+		var param = {};
+		param.account = $("#tranAcc").attr("value");
+		//param.beginDate = $("#startDate").html();
+		param.beginDate = $("#startDate").val().replace(/\-/g,"");
+		param.endDate = $("#endDate").val().replace(new RegExp("-","g"),"");
+		$.dm.block();
+		if(param.beginDate!="" && param.endDate!=""){		
+		callService('${ctx}/member/findChangeDetailList.ajax',param,{
+			callSuccess:function(data){
+				if(data && data.length>0){
+				$.dm.unblock();
+					var html = '<span class="title">本月</span>';
+
+					for(var i in data){
+						html += '<div class="eachTip">';
+						if("退款" == data[i].summary || "+" == data[i].loanSign){
+							html +=  '<p class="addMoney">' + '+' + data[i].dealMoney + '</p>';
+
+						}else{
+
+							html +=  '<p class="delMoney">' + '-' + data[i].dealMoney + '</p>';
+						}
+						html +=  '<p class="time">' + data[i].dealDate + '  ' + data[i].dealTime + '</p>';
+						html +=  '<p class="summary">摘要:' + data[i].summary + '</p>';
+						html +=  '<p class="postScript">附言:' + data[i].postScript + '</p>';
+						html += '<em>' + '</em>'
+						html += '</div>';
+
+					}
+					$("#scoreData").html(html);
+					$("#returnOrderListTable_processing").css("display","none");
+				}else{
+				$.dm.unblock();
+				jsAlert('没有匹配的记录');
+				$("#scoreData").html(html);
+	        	$("#returnOrderListTable_processing").css("display","none");
+				}
+			}
+		});
+		}else{
+			jsAlert("请选择时间!");
+		}
+	};
+
+
+
+
+</script>
+</#macro>

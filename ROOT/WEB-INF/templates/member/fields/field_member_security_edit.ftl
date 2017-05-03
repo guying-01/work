@@ -1,0 +1,89 @@
+<#include "/common/common_var_definds.ftl" />
+<#macro render data>
+<#escape x as x?html>
+<#assign mobile=((mobile)!'') />
+
+	<!-- <div class="breadcrumb"><a href="${ctx}/index">首页</a> &gt; <a href="${ctx}/member/index.jhtml">个人中心</a> &gt; 安全设置</div> --> 
+	
+	  	<div class="member-list-tab safeService-gy" >
+            <h2 class="member-tit modify" onclick="window.history.go(-1)" style="position: relative;text-align: center"><a class="goBack-gy"></a>安全设置</h2>
+			<h2 class="member-tit-gy"><i>&nbsp;</i>登录信息</h2>
+	    <div class="orderdedetail" >
+	      <h3>上次登录时间：${(userInfo.logonTime?string('yyyy年MM月dd日 HH:mm:ss'))!''}</h3>
+	    </div>
+	     <h2 class="member-tit-gy"><i>&nbsp;</i>安全服务</h2>
+	    <div class="boxBig">
+	        <div class="box-gy"> <span>安全等级：</span><span >较高</span></div>
+	      <p  class="font-color-c">强烈建议您启动全部安全设置，以保障账户及资金安全</p> </div>
+	   
+	    <div id="isPwdStrength3" class="boxBig" style="display:none">
+	      <div class="box-gy"><span>登录密码：强度：</span>
+	        <div class="bg_red safeLevel">强</div>
+            <a href="javascript:void(0)" onclick="$.dm.jumpTo('/member/towstoreCheckAuthUpdatePwdModel.jhtml')" class="font-color-c floR">修改密码</a>
+	      </div>
+	      <p class="font-color-e"> 互联网账号存在被盗风险，安全性高的密码可以使您的账号更加安全，建议您定期更换密码以保护账户安全。 </p>
+	       </div>
+	 
+	    <div id="isPwdStrength2" class="boxBig" style="display:none">
+	      <div class="box-gy"><span>登录密码：强度：</span>
+	        <div class="bg_yellow safeLevel">中</div>
+            <a href="javascript:void(0)" onclick="$.dm.jumpTo('/member/towstoreCheckAuthUpdatePwdModel.jhtml')" class="font-color-c floR">修改密码</a>
+		  </div>
+	      <p class="font-color-c"> 您的登录密码强度不足，建议您设置更高强度的密码。</p> </div>
+	 
+	    <div id="isPwdStrength1" class="boxBig">
+	      <div class="box-gy"><span>登录密码：强度：</span>
+	        <div class="bg_green safeLevel">弱</div>
+              <a href="javascript:void(0)" onclick="$.dm.jumpTo('/member/towstoreCheckAuthUpdatePwdModel.jhtml')" class="font-color-c floR">修改密码</a>
+	      </div>
+	      
+	      <p class="font-color-c"> 您的登录密码强度不足，建议您设置更高强度的密码。</p></div>
+
+	<#--登录密码  强度结束-->
+
+	<#--密保问题开始-->
+	    <div id="isPwProtectAuth2" class="boxBig">
+	      <div class="box-gy"><span>密保问题：</span> <span class="set-gy"><i class="icon-gy">&nbsp;</i>未设置</span>
+              <a href="javascript:void(0)" onclick="$.dm.jumpTo('/member/towstoreCheckAuthIsPwdProtectModel.jhtml')" class="font-color-c floR">立即设置</a>
+		  </div>
+	      <p class="font-color-e marg6"> 密保问题是您找回登录密码的方式之一。建议您设置一个容易记住且最不容易被他人获取的问题及答案，可以更有效地保障您的登录密码安全。 </p>
+	       <span></span> </div>
+
+	    <div id="isPwProtectAuth1" class="boxBig" style="display:none">
+	      <div class="box-gy"><span>密保问题：</span> <span class="set-gy"><i class="icon-gy"></i>已设置</span>
+              <a href="javascript:void(0)" onclick="$.dm.jumpTo('/member/towstoreCheckAuthIsPwdProtectModel.jhtml')" class="font-color-c floR">更换密保</a>
+		  </div>
+	      <p class="font-color-e marg6"> 密保问题是您找回登录密码的方式之一。建议您设置一个容易记住且最 不容易被他人获取的问题及答案，可以更有效地保障您的登录密码安全。 </p>
+	      </div>
+
+	    <div id="isMailAuth2" class="boxBig">
+	      <div class="box-gy"><span>安全邮箱：</span> <span class="set-gy"><i class="icon-gy">&nbsp;</i>未设置</span>
+              <a href="javascript:void(0)" onclick="$.dm.jumpTo('/member/towstoreCheckAuthIsMailModel.jhtml')" class="font-color-c floR">立即设置</a>
+		  </div>
+	      <p class="font-color-e marg6"> 当您选择使用“密保问题”方式找回密码时，填写正确的密保问题答案后，我们会将新密码发到您的安全邮箱。 </p>
+	      <span></span> </div>
+	<#--密保问题结束-->
+
+	<#--安全邮箱开始-->
+	    <div id="isMailAuth1" class="boxBig" style="display:none">
+	      <div class="box-gy"><span>安全邮箱：</span> <span class=""><i class="icon-gy1">&nbsp;</i>已设置</span></div>
+	      <p class="font-color-e"> 当您选择使用“密保问题”方式找回密码时，填写正确的密保问题答案后，我们会将新密码发到您的安全邮箱。 </p>
+	      <a href="javascript:void(0)" onclick="$.dm.jumpTo('/member/towstoreCheckAuthIsMailModel.jhtml')" class="font-color-c">更换邮箱</a> </div>
+
+	    <div id="isMobileAuth2" class="boxBig">
+     	  <div class="box-gy"><span>手机绑定：</span> <span class="font-color-c"><i class="icon-gy1">&nbsp;</i>未设置</span></div>
+      	  <p class="font-color-e"> 绑定手机后，您即可享受手机号码登录、手机找回密码、开通手机动态密码等服务。 </p>
+      	  <a href="javascript:void(0)" onclick="$.dm.jumpTo('/member/towstoreCheckAuthUpdateMobileModel.jhtml')" class="font-color-c">立即绑定</a> </div>
+
+      	<div id="isMobileAuth1" class="boxBig"  style="display:none">
+	      <div class="box-gy"><span>手机绑定：</span> <span class=""><i class="icon-gy1">&nbsp;</i>已绑定</span>
+              <#--<a href="javascript:void(0)" onclick="$.dm.jumpTo('/member/towstoreCheckAuthUpdateMobileModel.jhtml')" class="font-color-c  floR">更换号码</a>-->
+		  </div>
+	      <p class="font-color-e"> 您绑定的手机号码：<#if mobile?length==11>${mobile?substring(0,3)}****${mobile?substring(mobile?length-4)}</#if> </p>
+	       </div>
+	  </div>
+	<#--安全邮箱结束-->
+		<div class="extendsPage "></div>
+
+</#escape>
+</#macro>

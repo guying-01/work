@@ -1,0 +1,252 @@
+body{
+	min-width: 300px;
+    max-width: 768px;
+    margin: 0 auto;
+}
+.mr0{
+	margin-right: 0!important;
+}
+.live_fish_title:after{
+	content: '.';
+	clear: both;
+	display: block;
+	visibility: hidden;
+	height: 0;
+}
+.category_search_box{
+	position: relative;
+	height: 0.73rem;
+}
+.page_fenlei_daohang{
+	padding:0.2rem;
+}
+.live_fish_title {
+	width: 100%;
+	background: #eeeeee;
+}
+
+.live_fish_titile_link {
+	float: left;
+}
+.live_fish_titile_link li,
+.live_fish_wrap_t {
+	float: left;
+	height: 0.5rem;
+	line-height: 0.5rem;
+	font-size: 0.2rem;
+	margin-left: 0.2rem;
+}
+.live_fish_titile_link .live_fish_wrap_t{
+	margin-left: 0px;
+	text-align: center;
+	width: 0.82rem;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	margin-left: 0.1rem;
+}
+.live_fish_wrap_t {
+	margin-left: 4%;
+}
+
+@media only screen and (min-width: 321px) {
+	.live_fish_titile_link li {
+		margin-left: 0.3rem;
+	}
+}
+
+.live_fish_titile_link li a {
+	color: #000;
+}
+
+.live_fish_wrap_b_fish {
+	width: 96%;
+	margin-left: 3%;
+	margin-top: 0.25rem;
+	margin-bottom: 0.16rem;
+}
+.live_fish_wrap_b_fish li {
+	float: left;
+	width: 22%;
+	height: 0.5rem;
+	margin-left: 2%;
+	margin-bottom: 8px;
+	border-radius: 4px;
+}
+
+.live_fish_wrap_b_fish li a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	line-height: 0.5rem;
+	text-align: center;
+	font-size: 0.22rem;
+	color: #fff;
+	box-sizing: border-box;
+	padding: 0 4px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+
+.page_fenlei_daohang ul:after {
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+    clear: both;
+}
+
+.page_fenlei_daohang li {
+    width: 1.34rem;
+    height: 0.5rem;
+    line-height: 0.5rem;
+    text-align: center;
+    box-sizing: border-box;
+    border: 1px solid #bcbcbc;
+    float: left;
+    position: relative;
+    margin-right:0.19rem;
+    margin-bottom:0.24rem;
+    background: #EEEEEE;
+    border-radius: 0.18rem;
+}
+
+.page_fenlei_daohang .active {
+    background: #c91622;
+}
+
+.page_fenlei_daohang .active a{
+    color: #fff;
+}
+.page_fenlei_daohang li a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    font-size: 0.2rem;
+    overflow: hidden;
+}
+
+.page_yiji_title_b {
+    border: 1px solid #ccc;
+}
+.page_yiji_title{
+	display: block;
+	width: 100%;
+	height: 0.5rem;
+    line-height:0.5rem;
+    background: #C91622;
+	text-align: center;
+	color: #fff;
+    font-size:0.26rem;
+}
+.page_yiji_title_b {
+    padding-left: 0.2rem;
+    padding-top: 0.1rem;
+}
+.page_yiji_title_b dl dt{
+	margin-bottom: 0.1rem;
+}
+.page_yiji_title_b dl dt a {
+    color: #c91622;
+    font-size:0.24rem;
+}
+
+.page_yiji_title_b dl dd a {
+    display: inline-block;
+    margin-right: 0.3rem;
+    margin-bottom: 0.18rem;
+    font-size:0.24rem;
+    color: #000;
+}
+/*mobile part start*/
+.nav{
+    width: 100%;
+	height:0.8rem;
+/*	border: 2px solid #898989;*/
+	border-right: none;
+	border-left:none;
+	text-align: center;
+	line-height: 0.8rem;
+	font-size: 0.3rem;
+	color: #333;
+	font-weight: 700;
+	position: relative;
+}
+.nav .goBack{
+	position: absolute;
+	width: 0.4rem;
+	height: 0.4rem;
+	background: url(../../../../../img/member/goBack.png) no-repeat;
+	background-size: contain;
+	left:0.1rem;
+	top:0.2rem;
+}
+.title{
+	padding: 0.2rem 0.2rem;
+	height: 0.6rem;
+	background: #F8F8F8;
+
+}
+.black{
+	float: left;
+	background: #c91622;
+	width: 0.3rem;
+	height: 100%;
+}
+.name{
+	height:0.6rem;
+	background: #fff;
+	padding-left: 0.3rem;
+	box-sizing: border-box;
+	line-height: 0.6rem;
+	float: left;
+	border: 1px solid #c91622;
+	border-radius: 0 0.05rem 0.05rem 0;
+	padding-right: 0.3rem;
+	color: #c91622;
+}
+.ul{
+	width: 50%;
+	height: auto;
+	/*border-top: 1px solid #707271;*/
+	float: left;
+	box-sizing: border-box;
+
+}
+.ul li{
+	height:0.6rem;
+	width: 100%;
+	text-align: left;
+	line-height: 0.6rem;
+	border-right: 1px solid #707271;
+	box-sizing: border-box;
+	padding-left: 30%;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	display: block;
+}
+.ul li a{
+	color:#202020;
+}
+.ul:nth-of-type(2n){
+	border-right: none;
+}
+.ul:nth-of-type(2n) li{
+	padding-left: 20%;
+	border-right: none;
+}
+.box{
+	border-top: 1px solid #707271;
+	overflow: hidden;
+	border-bottom: 1px solid #707271;
+
+}
+.bottom{
+	border-bottom: 1px solid #707271;
+}
+
+
+/*mobile part end*/

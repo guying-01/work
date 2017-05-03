@@ -1,0 +1,134 @@
+a:hover{
+    text-decoration: none;
+}
+.clear_top{
+    width: 100%;
+    height: 2.45rem;
+    background: url(../img/clear/clearBanner.png) no-repeat top center;
+    background-size: 100%;
+}
+.clear_con{
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+.clear_con_top{
+    width: 100%;
+    background: #42ceb9;
+    margin-bottom: 56px;
+    display: none;
+}
+.clears{
+    width: 50%;
+    box-sizing: border-box;
+    float: left;
+    padding: 0 0.1rem;
+}
+.clears:after,.info_box:after,.price_info_box:after{
+    content: '.';
+    clear: both;
+    visibility: hidden;
+    display: block;
+    height: 0;
+}
+.clears li{
+    width: 100%;
+    height: 3rem;
+    box-sizing: border-box;
+    font-size: 0.24rem;
+}
+.imgbox{
+    border-bottom: 1px solid #efefef;
+}
+.imgbox a img {
+  width: 100%;
+  height: 100%;
+}
+.borderBox{
+    overflow: hidden;
+    border:1px solid #efefef;
+}
+.info_box{
+    box-sizing: border-box;
+    padding: 0 10px;
+}
+.ul{
+    padding-top: 0.1rem;
+
+}
+.ul li{
+    float: left;
+    width: 100%;
+    height: 0.35rem;
+    padding-left: 0.1rem;
+
+}
+.ul .name {
+  font-weight: bold;
+}
+.ul .description {
+  line-height: 0.3rem;
+  height: 0.6rem;
+  font-size: 0.23rem;
+  padding-top: 0.05rem;
+}
+
+.font-yellow{
+    color: #DC9412;
+}
+.font-red{
+    color: #D01202;
+    font-weight: bold;
+    font-size: 0.24rem;
+}
+b{
+    color: #D01202;
+}
+.pic{
+    display: block;
+    width:100%;
+    height: 100%;
+}
+.clears .price{
+    position: relative;
+    height: 2.6rem;
+}
+.price .onlyHave {
+  font-size: 0.23rem;
+  line-height: 0.45rem;
+}
+.btn{
+  display: block;
+  color: #fff;
+  font-size: 0.22rem;
+  width: 0.9rem;
+  height: 0.35rem;
+  text-align: center;
+  background: #dd272f;
+  position: absolute;
+  bottom: 0.15rem;
+  right: 0.1rem;
+  line-height: 0.35rem;
+}
+.btn:hover{
+    color: #fff;
+}
+.price_box{
+    float: left;
+}
+.pre_price_box{
+    display: block;
+    font-size:16px ;
+    color:#8b8585;
+    letter-spacing: 0px;
+    /*	margin-top: 14px;*/
+}
+.now_price_box{
+    display: block;
+    font-size:16px ;
+    color:#dd272f;
+    letter-spacing: 0px;
+}
+.price_info_box{
+    margin-top: 22px;
+}

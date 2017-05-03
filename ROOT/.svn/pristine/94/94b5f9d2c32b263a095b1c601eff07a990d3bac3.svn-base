@@ -1,0 +1,65 @@
+/**
+ * @天上掉馅饼页
+ * Created by ldy on 2017/2/21.
+ */
+
+
+
+$(function () {
+
+    /**
+     * 广告位加载
+     * Created by WW on 2017/2/21.
+     */
+    var ajaxRetrieval = {
+        serData: {
+            type: 'index',
+            serialId: 'luckypie',
+            // rangeId: 'activity'
+        },
+        /*动态数据获取*/
+        ajax: function() {
+            var that = this;
+            $.ajax({
+                    url: '/fsajax/getAdsPic.ajax',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: this.serData
+                })
+                .done(function(data) {
+                    that.docData(data);
+                })
+                .fail(function() {
+                    console.log("error");
+                })
+        },
+        /*数据获取成功追加至页面*/
+        docData: function(data) {
+            var dataObject = new Object();
+            for(var i in data) {
+                var obj = data[i];
+                var key = obj.adsInfo.rangeId;
+                if (Object.prototype.toString.call(dataObject[key]) == '[object Array]') {
+                    dataObject[key].push(obj);
+                } else {
+                    dataObject[key] = new Array();
+                    dataObject[key].push(obj);
+                }
+            }
+            var template=Handlebars.compile($('#template_goods').html())
+            var templateHtml=template(dataObject)
+            $(".activity01").html(templateHtml)
+
+        },
+        // 获取商品销量
+        result: function(sales) {
+            $.post("/gd/findGoodsTransactionCount.ajax", {
+                "goodsId": sales.adsInfo.goodsId
+            }, function(data2) {
+                $('.' + sales.adsInfo.elementId + ' .rq_gb_sales').text(data2.result + '件');
+            });
+        }
+    }
+    ajaxRetrieval.ajax();
+
+});

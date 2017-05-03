@@ -1,0 +1,45 @@
+*{
+  margin:0;
+  padding: 0;
+}
+.return_pre_page{
+	position: relative;
+	text-align: center;
+	height: 0.5rem;
+	line-height: 0.5rem;
+	font-size: 0.3rem;
+	background: #f8f8f8;
+	border:solid #dcdcdc;
+	border-width: 1px 0;
+}
+.return_pre_page a{
+	position: absolute;
+	left: 0.2rem;
+	top: 0.1rem;
+	width: 0.28rem;
+	height: 0.35rem;
+	background: url(/resources/img/order/submit_return.png) no-repeat center center;
+	background-size: 100%;
+}
+.main{
+	padding:0.1rem 0;
+}
+.main h1 {
+  font-size: 0.3rem;
+  font-weight: normal;
+  text-align: center;
+  line-height: 0.7rem;
+}
+.main span {
+  font-size: 0.26rem;
+  text-align: center;
+  display: block;
+  width: 100%;
+}
+.main p {
+  font-size: 0.25rem;
+  text-indent: 0.5rem;
+  width: 83%;
+  margin: 0 auto;
+  margin-top: 0.2rem;
+}

@@ -1,0 +1,83 @@
+<#--店铺首页-->
+	<#include "/common/common_var_definds.ftl" />
+	<#include "/basepage/store/default/hb_templates/store_hb_templates.ftl" />
+	<#import "/basepage/store/default/common/zizhi_slider.ftl" as zizhi/>
+	<#import "/basepage/store/default/common/dangan_slider.ftl" as dangan/>
+	<!DOCTYPE html>
+	<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>饭饭1080直采平台</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+		<script type="text/javascript">
+			var deviceWidth = document.documentElement.clientWidth;
+			if(deviceWidth > 768) {
+				deviceWidth = 768;
+			}
+			document.documentElement.style.fontSize = deviceWidth / 6.4 + 'px';
+		</script>
+		<#import "/basepage/store/default/common/common_link.ftl" as link/>
+		<#import "/basepage/store/default/common/common_script.ftl" as script/>
+		<#import "/basepage/store/default/common/common_header_top.ftl" as top/>
+		<#import "/basepage/store/default/common/common_header_searchbox_default.ftl" as searchBox/>
+		<#import "/basepage/store/default/common/common_footer.ftl" as footerNoTab/>
+		<#import "/basepage/seller/seller_header_search.ftl" as sellerSearch/>
+		<@link.render />
+		<!--导入共通样式-->
+		<@script.render />
+		<!--导入共通脚本-->
+		<link rel="stylesheet" href="${resources}/basepage/seller/css/store.css" type="text/css">
+		<script src="${resources}/basepage/seller/js/store_common_head_load.js"></script>
+		<script src="${resources}/basepage/seller/js/store_dynamics.js"></script>
+		<script src="${resources}/basepage/seller/js/sp_getAboutImg.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<div id="pageInfo" store_id="${storeId!''}" store_template_code="${storeTemplateCode!''}" page_id="${storeTemplateCode!''}" style="display: none"></div>
+		<!--此处是头部开始-->
+		<div class="top">
+			<@top.render />
+			<div class="store_search_box">
+				<@searchBox.render />
+				<#--导入search_box-->
+			</div>
+		</div>
+		<!--此处是头部结束-->
+		<!--网页头部&导航开始-->
+		<div id="sp_hd_1"></div>
+		<div id="sp_hd_2"></div>
+		<@sellerSearch.render />
+		<div id="ff_tab_box">
+			<div class="ff_tab_content">
+				<div class="ff-tab-title">
+					<img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /> <span>商家介绍</span>
+				</div>
+				<div class="ff-tab-con-detail">
+                        <p>中国贵州茅台酒厂（集团）有限责任公司总部位于贵州省北部风光旖旎的赤水河畔茅台镇，平均海拔423米，员工3万多人，占地面积10,653亩，建筑面积350万平方米。公司拥有全资子公司、控股公司30家，并参股21家公司，涉足产业领域包括白酒、葡萄酒、证券、银行、保险、物业、科研、旅游、房地产开发等。2015年，公司营业收入（含税）419亿元，利税311亿元，企业总资产1057亿元，出口创汇2亿美元。税金、人均创利税、人均上缴税金、股票总市值、品牌价值和主导产品的营业收入、利税、利润等指标稳居我国白酒行业榜首。</p>
+                        <p>公司主导产品贵州茅台酒是中国一张飘香世界的名片，是中国民族工商业率先走向世界的代表，1915年荣获美国巴拿马万国博览会金奖，与法国科涅克白兰地、英国英格兰威士忌并称世界三大（蒸馏）名酒，是我国大曲酱香型白酒的鼻祖和典型代表。一个世纪以来，已先后18次荣获各种国际金奖，并蝉联历次国内名白酒评比之冠，是白酒行业内唯一集绿色食品、有机食品、国家地理标志保护产品、国家非物质文化遗产于一身的健康食品，被公认为中国“国酒”。</p>
+                        <p>公司属中国500强企业，“贵州茅台”多次入选《财富》杂志最受赞赏的中国公司，连续七年入选全球上市公司《福布斯》排行榜，多次入选“CCTV最有价值上市公司”，茅台以高达1015.86亿元的品牌价值，荣获第六届华樽杯大奖，在中国酒企中率先突破千亿元品牌价值大关。</p>
+                        <p>"十二五"期间,  公司将按照贵州省委省政府提出的"一看三打造"目标，认真实施"十二五"规划，做大茅台集团，做强茅台股份，打造世界蒸馏酒第一品牌。</p>
+				</div>
+			</div>
+			<div class="ff_tab_content only_book_content_zizhi">
+				<div class="ff-tab-title">
+					<img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /><span>商家资质</span> 
+				</div>
+				<div class="ff-tab-con-detail">
+					<@zizhi.render />
+				</div>
+			</div>
+			<div class="ff_tab_content">
+				<div class="ff-tab-title">
+					<img src="/resources/basepage/seller/img/${storeId!''}/top2.jpg" /> <span>商家活动</span>
+
+				</div>
+				<div class="ff-tab-con-detail">敬请期待</div>
+			</div>
+		</div>
+		<@footerNoTab.render />
+	</body>
+
+	</html>

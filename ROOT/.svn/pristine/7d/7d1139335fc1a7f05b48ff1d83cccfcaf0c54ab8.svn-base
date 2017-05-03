@@ -1,0 +1,104 @@
+<script type="text/javascript" src="/resources/js/common/browse_history.js"></script>
+<script type="text/javascript" src="/resources/js/common/shortcutbar.js"></script>
+<script id="car_list" type="text/x-handlebars-template">
+
+{{#each this}}
+
+<div class="tool_r_car" dm-container="sc-st" dm-data="{{storeId}}"  >
+
+  <h3>
+
+    <input name="" type="checkbox" value="{{storeId}}" class="tool_sec_all" dm-actor="sc-st-check" dm-data="{{storeId}}" />
+
+    <span class="left" title="{{storeName}}" style="width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"><a href="/st/{{storeId}}/index.jhtml" dm-data="{{storeId}}">{{storeName}}</a></span><span class="right"><strong dm-info="store-price" dm-data="{{storeId}}">��{{totalPrice}}</strong>Ԫ</span></h3>
+   {{#each items}}
+	  <div class="tool_r_car_div">
+	
+	    	{{#if isEnabled}}<input name="" type="checkbox"  value="{{id}}" class="tool_sec_all" dm-actor="sc-check" dm-data="{{id}}" {{#if isChecked}}checked{{/if}}/>{{/if}}
+	
+	    	<div class="tool_r_car_img"><a href="/gd/{{goodsId}}.jhtml"><img src="{{itemPic}}" width="80" height="80" /></a>
+	
+	      	{{#if isEnabled}}{{else}}<p>ʧЧ</p>{{/if}}
+	
+	   </div>
+	
+	   
+	   <h4><a href="/gd/{{goodsId}}.jhtml" dm-data={{storeId}} target="about:blank">{{name}}[{{itemName}}]</a></h4>
+	
+	   {{#if isEnabled}}
+		<div class="tool_r_div_sum left">
+	    <div class="tool_sum_add0" class="add_1" id="add"  dm-actor="sc-amt-add" dm-data="{{id}}"></a></div>
+        <div class="tool_sum_reduction0" class="reduce_0"  id="reduce" dm-actor="sc-amt-reduce" dm-data="{{id}}"></a></div>
+		<P id="numbox" dm-value="{{amount}}" dm-info="sc-amt" dm-data="{{id}}" dm-price="{{salesPrice}}" dm-stock="{{localStock}}">{{amount}}</P>
+	   </div>
+		{{else}}
+		<div class="tool_r_div_sum left">
+	    <div class="tool_sum_add0" class="add_1" id="add"  dm-data="{{id}}"></a></div>
+        <div class="tool_sum_reduction0" class="reduce_0"  id="reduce" dm-data="{{id}}"></a></div>
+		<P id="numbox" dm-value="{{amount}}" dm-info="sc-amt" dm-data="{{id}}" dm-price="{{salesPrice}}" dm-stock="{{localStock}}">{{amount}}</P>
+	   </div>
+		{{/if}}
+	   <div class="tool_r_price right"><strong  dm-info="price" dm-data-store="{{storeId}}" dm-data="{{id}}">��{{salesPrice}}</strong>Ԫ</div>
+	
+	   <div class="tool_car_shut" class="deletegoods" dm-actor="sc-del" dm-data="{{id}}"></div>
+	
+	 </div>
+	{{/each}}
+</div>
+
+{{/each}}
+
+</script> 
+<script id="favorites_list" type="text/x-handlebars-template">
+<div id="JKDivb_0" dm-container="rightFavGdMenu">
+{{#each list}}
+<li>
+	<img src="{{goodsPic}}" width="160" height="160" />
+	<div>
+		<h4><a href="/fsgd/{{goodsId}}.jhtml" title="{{goodsName}}">{{goodsName}}</a></h4>
+	    <P><i title="ɾ��"  class="deletegoods" dm-actor="favGd-del" dm-data="{{id}}"></i><span>{{goodsPrice}}Ԫ</span></P>
+	</div>
+</li>
+{{/each}}
+</div>
+</script>
+<script id="favorites_Slist" type="text/x-handlebars-template">
+<div id="JKDivb_1">
+	{{#each this}}
+		<li>
+			<img src="{{storeLogo}}" width="160" height="160">
+	              <div>
+	                <h4 title="{{storeName}}" style="width:50px;overflow:hidden;text-overflow:ellipsis;"><a href="/fsst/{{storeId}}/top.jhtml">{{storeName}}</a></h4>
+	                <p><i title="ɾ��" class="deleteStore" dm-actor="favStore-del" dm-data="{{id}}"></i></p>
+	              </div>
+	   </li>
+{{/each}}
+</div> 
+</script> 
+<script id="browse_history_disable_list" type="text/x-handlebars-template">
+{{#each list}}
+ <li dm-container="browse-history-item" dm-data="{{goodsId}}" style="display:none;">
+<div style="display: block;">
+  <h4 class="tool_failure"><a href="/gd/{{goodsId}}.jhtml">��ƷʧЧ</a></h4>
+  <p><i title="ɾ��" dm-actor="browse-history-item-delete" dm-data="{{goodsId}}"></i></p>
+</div>
+ </li>
+{{/each}}
+</script>
+<script id="browse_history_enable_list" type="text/x-handlebars-template">
+<a href="/gd/{{goodsId}}.jhtml" dm-info="goods-name" dm-data="{{goodsId}}" target="_blank">
+	<img dm-actor="browse-history-item-pic" dm-data="{{goodsId}}" src="{{pic}}" width="160" height="160" />
+</a>
+   <div>
+     <a href="/gd/{{goodsId}}.jhtml" dm-info="goods-name" dm-data="{{goodsId}}" target="_blank"><h4 dm-info="browse-history-item-goods-name" dm-data="{{goodsId}}">{{name}}</h4></a>
+     <P><i title="ɾ��" dm-actor="browse-history-item-delete" dm-data="{{goodsId}}"></i>
+	<span><u dm-info="browse-history-item-price" dm-data="{{goodsId}}">{{goodsPrice}}</u>Ԫ</span></P>
+   </div>
+</script> 
+<script id="asset_list" type="text/x-handlebars-template">
+{{#each list}}
+    <div class="coupons coupons-bgA"><i class="coupons-top-black"></i><i class="coupons-bottom-black"></i><div class="coupons-price"><strong>5</strong> Ԫ</div><div class="coupons-infor"><P>�º�����Ƽ��콢��</P><P>ȫ����100.00Ԫʹ��</P><P>��Ч��&nbsp;��2015-1-30</P><P>��2015-6-30</P></div></div>
+	<div class="coupons coupons-bgB"><i class="coupons-top-black"></i><i class="coupons-bottom-black"></i><div class="coupons-price"><strong>20</strong> Ԫ</div><div class="coupons-infor"><P>�º�����Ƽ��콢��</P><P>ȫ����100.00Ԫʹ��</P><P>��Ч��&nbsp;��2015-1-30</P><P>��2015-6-30</P></div></div>
+	<div class="coupons coupons-bgC"><i class="coupons-top-black"></i><i class="coupons-bottom-black"></i><div class="coupons-price"><strong>100</strong> Ԫ</div><div class="coupons-infor"><P>�º�����Ƽ��콢��</P><P>ȫ����100.00Ԫʹ��</P><P>��Ч��&nbsp;��2015-1-30</P><P>��2015-6-30</P></div></div>
+{{/each}}
+</script> 
