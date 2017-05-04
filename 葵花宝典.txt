@@ -1,0 +1,142 @@
+function a(){
+	var x=200
+	function b(){		
+	 console.log(x)		
+	}
+	b()
+      }
+  a()                 运行结果200 
+
+function a(){
+	var x=200
+	function b(){		
+	 console.log(x)	
+        var x	
+	}
+	b()
+      }
+  a()                 运行结果undefined
+
+function a(){
+	var x=200
+	function b(){		
+	 console.log(x)	
+         x=300	
+	}
+	b()
+      }
+  a()                 运行结果200
+
+function a(){
+	var x=200
+	function b(){		
+	 console.log(x)	
+         var x=300	
+	}
+	b()
+      }
+  a()                 运行结果300       先找局部的，然后找全局，如果局部有声明，不会使用全局
+
+var objs=document.getElementsByTagName("div")
+(function(a){
+  objs[a].onclick=function(){
+     alert(a)
+}
+})(i)                                  函数自调用，可以保存变量
+
+var nub="aa"
+var obj={aa:123}
+console.log(obj.nub)  运行结果undefined
+
+var nub="aa"
+var obj={aa:123}
+console.log(obj[nub]) 运行结果123
+
+var obj={aa：123}
+var obj2=obj
+obj.aa=456
+console.log(obj2.aa) 运行结果456           传址 把obj栈区地址传给obj2，所以obj2.aa=obj.aa
+
+每一个函数都有一个属性prototype,每一个对象都有一个属性__proto__ 主要用来继承 
+arr.concat()用来连接数组  	var b=arr.sort(function(a,b){
+		               return b-a
+	                      })           return b-a     从大到小排列   return a-b    从小到大排列
+
+
+事件绑定           如果不绑定事件，事件会产生覆盖。
+
+data 会在Jquery上缓存属性，  attr会加在dom元素上，可以通过审查元素看见，前者不可以
+outerheight  传一个boolean类型值，会计算padding
+
+detach remove 都会把dom元素删除掉，不同的是，detach会吧属性，事件保留下来，删除后可以通过$(document.body).append($("div"))再次添加
+
+clone()  无论传不传参数，子元素都会被复制，传一个true，它本身的事件会复制，传两个true，子元素的事件会复制
+on添加的就是绑定事件
+
+字符串，数组，对象的存储形式都是一样的，都可以类似通过下标的方式来取值，只不过对象很多时候使用字符串做键，所以为了方便我们添加了a.b的取值方法  a.b等同于a["b"]
+所有写在点后边的，全部当字符串处理。
+
+纯粹的全局变量会存储在window身上
+
+ 	$("<img>").attr("src",canvas.toDataURL()).appendTo(body)
+收集画布中所有像素转化为一张图片
+
+argument是对象的一个特殊属性。它本身也是对象，它的方法，argument.length
+
+移动端和pc端区别
+移动端使用css3的一些属性来实现，事件不同，touch click
+整站，library，知乎日报，小程序，强调对编程的热爱
+
+slice(start,end) 字符串、数组的截取  不会改变原数组
+split            字符串分割为数组
+splice           数组万能操作方法
+
+angular倾向于spa的大量数据增删改查。
+jquery倾向于一些网页需要处理兼容性以及工作效率
+面向对象可以锁定很多变量在里面，对数据和对数据的操作集合在一起。
+最基本的好处是需要很多对象的时候使用，new一个构造函数就是一个对象。不会污染外部变量。
+
+h5使用最多的touch事件，localstorage
+
+jquery队列用于在队列中间加入一些不属于jquery的动画
+
+cmd规范
+让js变成通用的语言
+以前只能操作元素，现在操作网络，数据库，文件，系统底层的tcp端口
+
+node.js是一个基于v8引擎的运行环境。添加了很多通用API
+
+var a=new myArray(1,2,3)
+1.创建一个空的{},
+2.调用myArray.apply({},[1,2,3])
+3.{
+   0:1,
+   1:2,
+   2:3,
+   
+}
+4.把原型链指向myArray.prototype
+
+事件相关函数、事件相关函数、ajax都是异步执行
+node.js中的js几乎都是异步
+
+宿主对象，内置对象
+宿主对象：浏览器(html文档)中的元素(标签)
+内置对象：不依赖html文档也能存在。
+
+jq扩展
+	var ele=$(".test")
+	$.extend({	changeColor:function (i){
+		i.css('background','purple')
+	}});
+	
+
+	$.changeColor(ele)
+	/////////////////////////////////////////////////////////
+	$.fn.extend({
+		changeColor:function(i){
+			$(this).css("background",i)
+		}
+		
+	})
+	ele.changeColor('purple')

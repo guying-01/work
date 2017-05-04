@@ -1,0 +1,37 @@
+<macro>标签用于自定义指令
+<#macro name param1 param2 ... paramN>
+...
+<#nested loopvar1, loopvar2, ..., loopvarN>
+...
+<#return>
+...
+</#macro>
+nested指令:nested标签输出使用自定义指令时的中间部分，其中name param1 param2
+ ... paramN为指令名
+
+include指令用于包含指定页
+
+import指令：该指令用于导入FreeMarker模板中的所有变量,并将该变量放置在指定的
+Map对象中,import指令的语法格式如下:
+<#import "/lib/common.ftl" as com>
+上面的代码将导入/lib/common.ftl模板文件中的所有变量,交将这些变量放置在一个
+名为com的Map对象中.
+
+assign指令：assign指令在前面已经使用了多次,它用于为该模板页面创建或替换一个
+顶层变量,assign指令的用法有多种,包含创建或替换一个顶层变量,或者创建或替换多
+个变量等,它的最简单的语法如下:<#assign name=value [in namespacehash]>,这个
+用法用于指定一个名为name的变量,该变量的值为value,此外,FreeMarker允许在使用
+assign指令里增加in子句,in子句用于将创建的name变量放入namespacehash命名空间
+中.
+
+list指令：list指令是一个迭代输出指令,用于迭代输出数据模型中的集合,list指令的语法格式如下:
+<#list sequence as item>
+...
+</#list>
+上面的语法格式中,sequence就是一个集合对象,也可以是一个表达式,但该表达式将返
+回一个集合对象,而item代表集合名称.此外,迭代集合对象时,还包含两个特殊的循环
+变量:
+item_index:当前变量的索引值
+item_has_next:是否存在下一个对象
+也可以使用<#break>指令跳出循环
+

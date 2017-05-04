@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app='myTest' ng-controller="ctrl">
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+	</head>
+	<style type="text/css">
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		body{
+			padding: 20px 0 0 20px;
+		}
+	</style>
+	<body>
+		
+		<div class="test"  >
+			<div>姓名：{{name}}<br>性别：{{sex}}</div>
+		</div>
+		<input type="checkbox" name="" id="" value="" ng-model='flag'/>
+		{{flag}}
+	</body>
+</html>
+<script type="text/javascript">
+	var app=angular.module('myTest',[]);
+	app.controller('ctrl',function($scope){
+		$scope.name='gy';
+		$scope.sex='man'
+	})
+</script>
